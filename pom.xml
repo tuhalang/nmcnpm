@@ -11,6 +11,8 @@
 
     <modules>
         <module>web</module>
+        <module>hashing</module>
+        <module>database</module>
     </modules>
 
     <name>tiki Maven Webapp</name>

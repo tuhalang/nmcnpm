@@ -27,6 +27,16 @@
             <artifactId>jstl</artifactId>
             <version>1.2</version>
         </dependency>
+        <dependency>
+            <groupId>com.nmcnpm</groupId>
+            <artifactId>hashing</artifactId>
+            <version>1.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.nmcnpm</groupId>
+            <artifactId>database</artifactId>
+            <version>1.0</version>
+        </dependency>
     </dependencies>
 
     
