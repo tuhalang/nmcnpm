@@ -16,18 +16,10 @@ import java.util.Base64;
 
 import javax.crypto.Cipher;
 
-public class RSA {
-	private static RSA rsa=null;
+public class RSA implements IMethod {
+	private static RSA rsa = null;
 
 	private RSA() {
-		
-	}
-	public static RSA getInstance() {
-		if (rsa==null) rsa=new RSA();
-		return rsa;
-	}
-
-	public void generateKey() {
 		try {
 			SecureRandom sr = new SecureRandom();
 			KeyPairGenerator kpg = KeyPairGenerator.getInstance("RSA");
@@ -56,6 +48,12 @@ public class RSA {
 		}
 	}
 
+	public static RSA getInstance() {
+		if (rsa == null)
+			rsa = new RSA();
+		return rsa;
+	}
+
 	private static File createKeyFile(File file) throws IOException {
 		if (!file.exists()) {
 			file.createNewFile();
@@ -66,7 +64,8 @@ public class RSA {
 		return file;
 	}
 
-	public String encrpytion(String msg) {
+	@Override
+	public String encrypt(String plainText) {
 		String strEncrypt = "";
 		try {
 			// Đọc file chứa public key
@@ -83,7 +82,7 @@ public class RSA {
 			// Mã hoá dữ liệu
 			Cipher c = Cipher.getInstance("RSA");
 			c.init(Cipher.ENCRYPT_MODE, pubKey);
-			byte encryptOut[] = c.doFinal(msg.getBytes());
+			byte encryptOut[] = c.doFinal(plainText.getBytes());
 			strEncrypt = Base64.getEncoder().encodeToString(encryptOut);
 			System.out.println(strEncrypt);
 		} catch (Exception ex) {
@@ -93,8 +92,9 @@ public class RSA {
 		return strEncrypt;
 	}
 
-	public String decryption(String input) {
-		String result="";
+	@Override
+	public String decrypt(String encodedText) {
+		String result = "";
 		try {
 			// Đọc file chứa private key
 			FileInputStream fis = new FileInputStream("C:/privateKey.rsa");
@@ -110,9 +110,9 @@ public class RSA {
 			// Giải mã dữ liệu
 			Cipher c = Cipher.getInstance("RSA");
 			c.init(Cipher.DECRYPT_MODE, priKey);
-			byte decryptOut[] = c.doFinal(Base64.getDecoder().decode(input));
-			//eJ1h2JLEulXQZf4t7rxP8HynxMKrYcAmGvIYsrUb77ys4K8uUj48ayT3bSsM3wfnoJLtgww2idNB7r8UeIyIGe
-			result=new String(decryptOut);
+			byte decryptOut[] = c.doFinal(Base64.getDecoder().decode(encodedText));
+			// eJ1h2JLEulXQZf4t7rxP8HynxMKrYcAmGvIYsrUb77ys4K8uUj48ayT3bSsM3wfnoJLtgww2idNB7r8UeIyIGe
+			result = new String(decryptOut);
 		} catch (Exception ex) {
 			ex.printStackTrace();
 			return "";
