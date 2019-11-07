@@ -1,6 +1,6 @@
-package src.main.java.com.nmcnpm.web.model;
+package com.nmcnpm.web.model;
 
-public class OrderedProduct {
+public class OrderedProduct extends BaseModel{
 	private Long orderID;
 	private Long productID;
 	private Long quantity;

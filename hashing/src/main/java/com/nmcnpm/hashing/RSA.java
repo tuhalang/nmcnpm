@@ -85,7 +85,7 @@ public class RSA {
 			c.init(Cipher.ENCRYPT_MODE, pubKey);
 			byte encryptOut[] = c.doFinal(msg.getBytes());
 			strEncrypt = Base64.getEncoder().encodeToString(encryptOut);
-
+			System.out.println(strEncrypt);
 		} catch (Exception ex) {
 			ex.printStackTrace();
 			return "";

@@ -1,8 +1,8 @@
-package src.main.java.com.nmcnpm.web.model;
+package com.nmcnpm.web.model;
 
 import java.util.Date;
 
-public class CustomerOrder {
+public class CustomerOrder extends BaseModel{
 	private Long orderID;
 	private Long amount;
 	private Date dateCreated;
