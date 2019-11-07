@@ -5,5 +5,4 @@ public class DataHashing extends Hashing {
 	public DataHashing(IMethod method) {
 		super(method);
 	}
-
 }
