@@ -1,6 +1,6 @@
-package src.main.java.com.nmcnpm.web.model;
+package com.nmcnpm.web.model;
 
-public class Customer {
+public class Customer extends BaseModel{
 	private Long customerID;
 	private String name;
 	private String email;

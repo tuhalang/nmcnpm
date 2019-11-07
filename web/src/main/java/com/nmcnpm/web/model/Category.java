@@ -1,6 +1,6 @@
-package src.main.java.com.nmcnpm.web.model;
+package com.nmcnpm.web.model;
 
-public class Category {
+public class Category extends BaseModel{
 	private Long categoryID;
 	private String name;
 	private String image;

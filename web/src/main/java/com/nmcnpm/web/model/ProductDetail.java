@@ -1,6 +1,6 @@
-package src.main.java.com.nmcnpm.web.model;
+package com.nmcnpm.web.model;
 
-public class ProductDetail {
+public class ProductDetail extends BaseModel{
 	private Long productID;
 	private String information;
 	private String image1;
@@ -10,6 +10,7 @@ public class ProductDetail {
 	private String image5;
 	private String accessories;
 	private String guarante;
+
 	public Long getProductID() {
 		return productID;
 	}

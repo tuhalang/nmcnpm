@@ -1,8 +1,8 @@
-package src.main.java.com.nmcnpm.web.model;
+package com.nmcnpm.web.model;
 
 import java.util.Date;
 
-public class Product {
+public class Product extends BaseModel{
 	private Long productID;
 	private String name;
 	private float price;
