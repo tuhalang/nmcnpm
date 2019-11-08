@@ -17,13 +17,17 @@ public class AuthorizationFilter implements Filter {
         HttpServletResponse response = (HttpServletResponse) servletResponse;
 
         String url = request.getRequestURI();
+        String contextPath = request.getContextPath();
+        System.out.println(url);
 
-        if(url.startsWith("login") || url.startsWith("register")){
-            filterChain.doFilter(servletRequest, servletResponse);
-        } else if(url.startsWith("admin")){
+        if(url.startsWith(contextPath+"/admin")){
 
+            response.sendRedirect(contextPath+"/templates/accessdenied.jsp");
+        } else if(url.startsWith(contextPath+"/user")){
+
+            response.sendRedirect(contextPath+"/templates/accessdenied.jsp");
         } else {
-
+            filterChain.doFilter(servletRequest, servletResponse);
         }
     }
 
