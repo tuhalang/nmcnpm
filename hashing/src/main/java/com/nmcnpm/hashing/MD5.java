@@ -5,6 +5,14 @@ import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 
 public class MD5 implements IMethod {
+	private static MD5 md=null;
+	private MD5() {
+		super();
+	}
+	public synchronized static MD5 getInstance() {
+		if (md==null) md=new MD5();
+		return md;
+	}
     @Override
     public String encrypt(String plainText) {
     	String output="";
