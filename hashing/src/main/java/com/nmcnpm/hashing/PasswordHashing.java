@@ -1,9 +1,11 @@
 package com.nmcnpm.hashing;
 
-public class PasswordHashing extends Hashing{
+import java.math.BigInteger;
+import java.security.MessageDigest;
 
+public class PasswordHashing extends Hashing {
 
-    public PasswordHashing(IMethod method) {
-        super(method);
-    }
+	public PasswordHashing(IMethod method) {
+		super(method);
+	}
 }

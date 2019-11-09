@@ -14,4 +14,5 @@ public abstract class Hashing{
     public void setMethod(IMethod method) {
         this.method = method;
     }
+    
 }
