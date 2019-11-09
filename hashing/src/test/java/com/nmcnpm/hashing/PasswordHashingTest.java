@@ -15,7 +15,7 @@ class PasswordHashingTest {
 	@AfterEach
 	void tearDown() throws Exception {
 	}
-	PasswordHashing ph=new PasswordHashing(new MD5());
+	PasswordHashing ph=new PasswordHashing(MD5.getInstance());
 
 	@Test
 	void testEncrypt() {

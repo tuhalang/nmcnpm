@@ -48,7 +48,7 @@ public class RSA implements IMethod {
 		}
 	}
 
-	public static RSA getInstance() {
+	public synchronized static RSA getInstance() {
 		if (rsa == null)
 			rsa = new RSA();
 		return rsa;

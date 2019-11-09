@@ -4,11 +4,14 @@ import java.math.BigInteger;
 import java.security.MessageDigest;
 
 public class SHA256 implements IMethod {
-
-	public SHA256() {
-		// TODO Auto-generated constructor stub
+	private static SHA256 sha=null;
+	private SHA256() {
 	}
-
+	
+	public synchronized static SHA256 getInstance() {
+		if (sha==null) sha=new SHA256();
+		return sha;
+	}
 	@Override
 	public String encrypt(String plainText) {
 		String output = "";
