@@ -1,9 +1,9 @@
-package com.nmcnpm.database.mapper.impl;
-
+package com.nmcnpm.web.mapprow;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import com.nmcnpm.database.mapper.IRowMapper;
+import com.nmcnpm.web.model.ProductDetail;
 
 public class ProductDetailMapper implements IRowMapper<ProductDetail>{
 
@@ -20,6 +20,8 @@ public class ProductDetailMapper implements IRowMapper<ProductDetail>{
 			productDetail.setImage5(result.getString("image5"));
 			productDetail.setAccessories(result.getString("accessories"));
 			productDetail.setGuarantee(result.getString("guarantee"));
+			productDetail.setCreatedAt(result.getDate("created_at"));
+			productDetail.setLastModifiedAt(result.getDate("last_modified_at"));
 			return productDetail;
 		}catch (SQLException e) {
 			e.printStackTrace();

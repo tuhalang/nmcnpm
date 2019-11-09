@@ -1,9 +1,9 @@
-package com.nmcnpm.database.mapper.impl;
-
+package com.nmcnpm.web.mapprow;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import com.nmcnpm.database.mapper.IRowMapper;
+import com.nmcnpm.web.model.Role;
 
 public class RoleMapper implements IRowMapper<Role>{
 

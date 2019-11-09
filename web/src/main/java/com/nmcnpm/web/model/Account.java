@@ -1,13 +1,19 @@
 package com.nmcnpm.web.model;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
 
 /**
  * @author tuhalang
  * @created on 11/9/19
  */
 @Data
-public class Account {
+@NoArgsConstructor
+@RequiredArgsConstructor
+@AllArgsConstructor
+public class Account extends BaseModel{
 
     private Long accountID;
 

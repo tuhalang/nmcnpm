@@ -1,6 +1,9 @@
 package com.nmcnpm.web.model;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
 
 /**
  * @author tuhalang
@@ -8,6 +11,9 @@ import lombok.Data;
  */
 
 @Data
+@NoArgsConstructor
+@RequiredArgsConstructor
+@AllArgsConstructor
 public class Role {
     private Long roleID;
     private RoleName roleName;
