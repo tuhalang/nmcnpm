@@ -7,14 +7,13 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Kipalog User Management</title>
-    <link href="../static/css/bootstrap.min.css" rel="stylesheet">
-    <link href="../static/css/font-awesome.min.css" rel="stylesheet">
-    <link href="../static/css/datepicker3.css" rel="stylesheet">
-    <link href="../static/css/admin.css" rel="stylesheet">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/static/bootstrap-4.0.0/css/bootstrap.min.css">
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/static/fontawesome-5.11.2/css/all.css">
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/admin.css">
+    <link href="${pageContext.request.contextPath}/static/css/datepicker3.css" rel="stylesheet">
 
     <!--Custom Font-->
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
     <!--[if lt IE 9]>
 	<script src="../static/js/html5shiv.js"></script>
 	<script src="../static/js/respond.min.js"></script>
@@ -117,12 +116,12 @@
             </div>
         </form>
         <ul class="nav menu">
-            <li><a href="index.html"><em class="fas fa-tachometer-alt">&nbsp;</em> Dashboard</a></li>
+            <li><a href="dashboard.html"><em class="fas fa-tachometer-alt">&nbsp;</em> Dashboard</a></li>
             <li><a href="widgets.html"><em class="fa fa-calendar">&nbsp;</em> Widgets</a></li>
             <li><a href="posts.html"><em class="fa fa-bar-chart">&nbsp;</em> Posts</a></li>
             <li class="active"><a href="management.html"><em class="fa fa-toggle-off">&nbsp;</em> User Management</a></li>
             <li><a href="panels.html"><em class="fa fa-clone">&nbsp;</em> Alerts &amp; Panels</a></li>
-            <li class="parent ">
+            <li class="parent">
                 <a data-toggle="collapse" href="#sub-item-1">
                     <em class="fa fa-navicon">&nbsp;</em> Multilevel <span data-toggle="collapse" href="#sub-item-1" class="icon pull-right"><em class="fa fa-plus"></em></span>
                 </a>
@@ -233,15 +232,14 @@
     </div>
     <!--/.main-->
 
-    <script src="../static/js/jquery-1.11.1.min.js"></script>
-    <script src="../static/js/bootstrap.min.js"></script>
-    <script src="../static/js/chart.min.js"></script>
-    <script src="../static/js/chart-data.js"></script>
-    <script src="../static/js/easypiechart.js"></script>
-    <script src="../static/js/easypiechart-data.js"></script>
-    <script src="../static/js/bootstrap-datepicker.js"></script>
-    <script src="../static/js/custom.js"></script>
-
+    <script src="${pageContext.request.contextPath}/static/jquery-3.4.1/jquery-3.4.1.min.js"></script>
+    <script src="${pageContext.request.contextPath}/static/jquery-3.4.1/chart.min.js"></script>
+    <script src="${pageContext.request.contextPath}/static/jquery-3.4.1/chart-data.js"></script>
+    <script src="${pageContext.request.contextPath}/static/jquery-3.4.1/easypiechart.js"></script>
+    <script src="${pageContext.request.contextPath}/static/jquery-3.4.1/easypiechart-data.js"></script>
+    <script src="${pageContext.request.contextPath}/static/jquery-3.4.1/bootstrap-datepicker.js"></script>
+    <script src="${pageContext.request.contextPath}/static/jquery-3.4.1/custom.js"></script>
+	<script src="${pageContext.request.contextPath}/static/bootstrap-4.0.0/js/bootstrap.min.js"></script>
 </body>
 
 </html>
