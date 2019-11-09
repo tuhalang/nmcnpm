@@ -66,6 +66,8 @@ public class DataBaseDaoImpl<T> implements IBaseDao<T> {
 			return results;
 		} catch (SQLException e) {
 			return results;
+		}catch (Exception e) {
+			e.printStackTrace();
 		} finally {
 			if(rs != null) {
 				try {
@@ -89,6 +91,7 @@ public class DataBaseDaoImpl<T> implements IBaseDao<T> {
 				}
 			}
 		}
+		return null;
 	}
 
 	@Override
@@ -118,6 +121,9 @@ public class DataBaseDaoImpl<T> implements IBaseDao<T> {
 					e1.printStackTrace();
 				}
 			}
+		}catch (Exception e) {
+			e.printStackTrace();
+			return -1;
 		} finally {
 			if (conn != null) {
 				try {
@@ -164,6 +170,8 @@ public class DataBaseDaoImpl<T> implements IBaseDao<T> {
 					e1.printStackTrace();
 				}
 			}
+		}catch (Exception e) {
+			e.printStackTrace();
 		} finally {
 			if (conn != null) {
 				try {
@@ -203,6 +211,8 @@ public class DataBaseDaoImpl<T> implements IBaseDao<T> {
 					e1.printStackTrace();
 				}
 			}
+		}catch (Exception e) {
+			e.printStackTrace();
 		} finally {
 			if (conn != null) {
 				try {
@@ -237,6 +247,9 @@ public class DataBaseDaoImpl<T> implements IBaseDao<T> {
 			}
 			return count;
 		} catch (SQLException e) {
+			e.printStackTrace();
+			return 0;
+		}catch (Exception e) {
 			e.printStackTrace();
 			return 0;
 		} finally {
