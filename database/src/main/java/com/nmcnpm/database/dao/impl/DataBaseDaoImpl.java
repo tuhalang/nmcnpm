@@ -256,7 +256,7 @@ public class DataBaseDaoImpl<T> implements IBaseDao<T> {
 		}
 	}
 	
-	private void setParameter(PreparedStatement statement, Object... parameters) {
+	private void setParameter(PreparedStatement statement, Object... parameters) throws Exception {
 		try {
 			for (int i = 0; i < parameters.length; i++) {
 				Object parameter = parameters[i];
@@ -275,6 +275,8 @@ public class DataBaseDaoImpl<T> implements IBaseDao<T> {
 					statement.setTimestamp(index, (Timestamp) parameter);
 				} else if (parameter instanceof Date) {
 					statement.setTimestamp(index, new Timestamp(((Date) parameter).getTime()));
+				}else {
+					throw new Exception(parameter.getClass().getName() + " has not supported yet!");
 				}
 			}
 		} catch (SQLException e) {
