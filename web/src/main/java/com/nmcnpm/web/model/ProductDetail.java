@@ -10,7 +10,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 @AllArgsConstructor
 public class ProductDetail extends BaseModel{
-	private Long productID;
+	private Long productDetailID;
 	private String information;
 	private String image1;
 	private String image2;

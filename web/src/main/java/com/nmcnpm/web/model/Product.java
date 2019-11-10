@@ -16,10 +16,10 @@ public class Product extends BaseModel{
 	private String name;
 	private float price;
 	private String description;
-	private Date lastUpdate;
 	private Long categoryID;
 	private String image;
 	private String thumbImage;
 	private String descriptionDetail;
+	private Long productDetailID;
 
 }

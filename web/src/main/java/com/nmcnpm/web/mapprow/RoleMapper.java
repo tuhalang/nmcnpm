@@ -4,6 +4,7 @@ import java.sql.SQLException;
 
 import com.nmcnpm.database.mapper.IRowMapper;
 import com.nmcnpm.web.model.Role;
+import com.nmcnpm.web.model.RoleName;
 
 public class RoleMapper implements IRowMapper<Role>{
 
@@ -12,7 +13,7 @@ public class RoleMapper implements IRowMapper<Role>{
 		try {
 			Role role = new Role();
 			role.setRoleID(result.getLong("role_id"));
-			role.setRoleName(result.getString("role_name"));
+			role.setRoleName(RoleName.valueOf(result.getString("role_name")));
 			return role;
 		}catch (SQLException e) {
 			e.printStackTrace();

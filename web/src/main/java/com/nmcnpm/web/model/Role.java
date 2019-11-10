@@ -14,7 +14,7 @@ import lombok.RequiredArgsConstructor;
 @NoArgsConstructor
 @RequiredArgsConstructor
 @AllArgsConstructor
-public class Role {
+public class Role extends BaseModel{
     private Long roleID;
     private RoleName roleName;
 }

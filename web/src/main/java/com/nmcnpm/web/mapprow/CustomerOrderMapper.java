@@ -6,7 +6,7 @@ import java.sql.SQLException;
 import com.nmcnpm.database.mapper.IRowMapper;
 import com.nmcnpm.web.model.CustomerOrder;
 
-public class CusromerOrderMapper implements IRowMapper<CustomerOrder>{
+public class CustomerOrderMapper implements IRowMapper<CustomerOrder>{
 
 	@Override
 	public CustomerOrder mapRow(ResultSet result) {
