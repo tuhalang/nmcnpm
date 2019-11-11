@@ -1,0 +1,41 @@
+@charset "UTF-8";
+.card {
+	line-height: 10px;
+}
+
+.card-link {
+	color: black;
+}
+
+.card-link:hover {
+	color: rgb(0, 0, 0);
+	-moz-box-shadow: 1px 1px 1px 1px #999;
+	-webkit-box-shadow: 2px 2px 2px 2px #999;
+	box-shadow: 2px 2px 2px 2px #999;
+}
+
+.card-title {
+	font-size: 14px;
+}
+
+.card-text {
+	font-size: 15px;
+}
+
+.sale-price {
+	color: red;
+	font-size: 14px;
+}
+
+.sale-tag {
+	color: rgb(135, 135, 135);
+	font-size: 12px;
+}
+
+.star-light {
+	color: rgb(254, 192, 56);
+}
+
+.star-dark {
+	color: rgb(184, 184, 184);
+}
