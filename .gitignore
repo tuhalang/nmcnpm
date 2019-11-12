@@ -13,7 +13,7 @@ local.properties
 .recommenders
 **/.classpath
 **/.project
-**/*.iml
+**/**.iml
 # External tool builders
 .externalToolBuilders/
 
