@@ -66,6 +66,8 @@ public class DataBaseDaoImpl<T> implements IBaseDao<T> {
 			return results;
 		} catch (SQLException e) {
 			return results;
+		} catch (Exception e) {
+			return results;
 		} finally {
 			if(rs != null) {
 				try {
@@ -109,7 +111,7 @@ public class DataBaseDaoImpl<T> implements IBaseDao<T> {
 			}
 			conn.commit();
 			return id;
-		} catch (SQLException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 			if(conn != null) {
 				try {
@@ -145,7 +147,7 @@ public class DataBaseDaoImpl<T> implements IBaseDao<T> {
 	}
 
 	@Override
-	public void update(String sql, Object... parameters) {
+	public void update(String sql, Object... parameters) throws Exception {
 		Connection conn = null;
 		PreparedStatement preparedStatement = null;
 		try {
@@ -194,7 +196,7 @@ public class DataBaseDaoImpl<T> implements IBaseDao<T> {
 			setParameter(preparedStatement, parameters);
 			preparedStatement.executeUpdate();
 			conn.commit();
-		} catch (SQLException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 			if(conn != null) {
 				try {
@@ -236,7 +238,7 @@ public class DataBaseDaoImpl<T> implements IBaseDao<T> {
 				count = resultSet.getInt(1);
 			}
 			return count;
-		} catch (SQLException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 			return 0;
 		} finally {
