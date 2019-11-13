@@ -1,3 +1,4 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -27,7 +28,7 @@
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span></button>
-                <a class="navbar-brand" href="#"><span>Kipalog</span>Admin</a>
+                <a class="navbar-brand" href="#"><span>Lazy</span>Admin</a>
                 <ul class="nav navbar-top-links navbar-right">
                     <li class="dropdown">
                         <a class="dropdown-toggle count-info" data-toggle="dropdown" href="#">
@@ -36,7 +37,7 @@
                         <ul class="dropdown-menu dropdown-messages">
                             <li>
                                 <div class="dropdown-messages-box">
-                                    <a href="profile.html" class="pull-left">
+                                    <a href="profile.jsp" class="pull-left">
                                         <img alt="image" class="img-circle" src="http://placehold.it/40/30a5ff/fff">
                                     </a>
                                     <div class="message-body"><small class="pull-right">3 mins ago</small>
@@ -47,7 +48,7 @@
                             <li class="divider"></li>
                             <li>
                                 <div class="dropdown-messages-box">
-                                    <a href="profile.html" class="pull-left">
+                                    <a href="profile.jsp" class="pull-left">
                                         <img alt="image" class="img-circle" src="http://placehold.it/40/30a5ff/fff">
                                     </a>
                                     <div class="message-body"><small class="pull-right">1 hour ago</small>
@@ -115,23 +116,23 @@
             </div>
         </form>
         <ul class="nav menu">
-            <li><a href="dashboard.html"><em class="fas fa-tachometer-alt">&nbsp;</em> Dashboard</a></li>
-            <li class="active"><a href="widgets.html"><em class="fa fa-calendar">&nbsp;</em> Widgets</a></li>
-            <li><a href="posts.html"><em class="fa fa-bar-chart">&nbsp;</em> Posts</a></li>
-            <li><a href="management.html"><em class="fa fa-toggle-off">&nbsp;</em> User Management</a></li>
-            <li><a href="panels.html"><em class="fa fa-clone">&nbsp;</em> Alerts &amp; Panels</a></li>
+            <li><a href="dashboard.jsp"><em class="fas fa-tachometer-alt">&nbsp;</em> Dashboard</a></li>
+            <li class="active"><a href="widgets.jsp"><em class="fa fa-calendar">&nbsp;</em> Widgets</a></li>
+            <li><a href="products.jsp"><em class="fab fa-product-hunt">&nbsp;</em> Products</a></li>
+            <li><a href="management.jsp"><em class="fa fa-toggle-off">&nbsp;</em> User Management</a></li>
+            <li><a href="panels.jsp"><em class="fa fa-clone">&nbsp;</em> Alerts &amp; Panels</a></li>
             <li class="parent ">
                 <a data-toggle="collapse" href="#sub-item-1">
                     <em class="fa fa-navicon">&nbsp;</em> Multilevel <span data-toggle="collapse" href="#sub-item-1" class="icon pull-right"><em class="fa fa-plus"></em></span>
                 </a>
                 <ul class="children collapse" id="sub-item-1">
                     <li>
-                        <a class="" href="error404.html">
+                        <a class="" href="error404.jsp">
                             <span class="fa fa-arrow-right">&nbsp;</span> Error 404
                         </a>
                     </li>
                     <li>
-                        <a class="" href="error500.html">
+                        <a class="" href="error505.jsp">
                             <span class="fa fa-arrow-right">&nbsp;</span> Error 500
                         </a>
                     </li>
@@ -142,7 +143,7 @@
                     </li>
                 </ul>
             </li>
-            <li><a href="login.html"><em class="fa fa-power-off">&nbsp;</em> Logout</a></li>
+            <li><a href="login.jsp"><em class="fa fa-power-off">&nbsp;</em> Logout</a></li>
         </ul>
     </div>
     <!--/.sidebar-->
@@ -407,7 +408,7 @@
                     </div>
                     <div class="panel-footer">
                         <div class="input-group">
-                            <input id="btn-input" type="text" class="form-control input-md" placeholder="Add new task" /><span class="input-group-btn">
+                            <input <%--id="btn-input"--%> type="text" class="form-control input-md" placeholder="Add new task" /><span class="input-group-btn">
 								<button class="btn btn-primary btn-md" id="btn-todo">Add</button>
 						</span></div>
                     </div>
@@ -641,7 +642,7 @@
                         </ul>
                         <span class="pull-right clickable panel-toggle panel-button-tab-left"><em class="fa fa-toggle-up"></em></span></div>
                     <div class="panel-body">
-                        <form class="form-horizontal" action="" method="post">
+                        <form class="form-horizontal" action="" method="product">
                             <fieldset>
                                 <!-- Name input-->
                                 <div class="form-group">
@@ -688,14 +689,14 @@
     <!--/.main-->
 
 
-    <script src="${pageContext.request.contextPath}/static/jquery-3.4.1/jquery-3.4.1.min.js"></script>
-    <script src="${pageContext.request.contextPath}/static/jquery-3.4.1/chart.min.js"></script>
-    <script src="${pageContext.request.contextPath}/static/jquery-3.4.1/chart-data.js"></script>
-    <script src="${pageContext.request.contextPath}/static/jquery-3.4.1/easypiechart.js"></script>
-    <script src="${pageContext.request.contextPath}/static/jquery-3.4.1/easypiechart-data.js"></script>
-    <script src="${pageContext.request.contextPath}/static/jquery-3.4.1/bootstrap-datepicker.js"></script>
-    <script src="${pageContext.request.contextPath}/static/jquery-3.4.1/custom.js"></script>
-	<script src="${pageContext.request.contextPath}/static/bootstrap-4.0.0/js/bootstrap.min.js"></script>
+    <script src="<c:url value="/static/jquery-3.4.1/jquery-1.11.1.min.js"/>"></script>
+    <script src="<c:url value="/static/jquery-3.4.1/chart.min.js"/>"></script>
+    <script src="<c:url value="/static/jquery-3.4.1/chart-data.js"/>"></script>
+    <script src="<c:url value="/static/jquery-3.4.1/easypiechart.js"/>"></script>
+    <script src="<c:url value="/static/jquery-3.4.1/easypiechart-data.js"/>"></script>
+    <script src="<c:url value="/static/jquery-3.4.1/bootstrap-datepicker.js"/>"></script>
+    <script src="<c:url value="/static/jquery-3.4.1/custom.js"/>"></script>
+    <script src="<c:url value="/static/bootstrap-4.0.0/js/bootstrap.min.js"/>"></script>
 
 </body>
 

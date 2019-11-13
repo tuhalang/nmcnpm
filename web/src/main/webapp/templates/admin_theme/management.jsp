@@ -24,7 +24,7 @@
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span></button>
-                <a class="navbar-brand" href="#"><span>Kipalog</span>Admin</a>
+                <a class="navbar-brand" href="#"><span>Lazy</span>Admin</a>
                 <ul class="nav navbar-top-links navbar-right">
                     <li class="dropdown">
                         <a class="dropdown-toggle count-info" data-toggle="dropdown" href="#">
@@ -33,7 +33,7 @@
                         <ul class="dropdown-menu dropdown-messages">
                             <li>
                                 <div class="dropdown-messages-box">
-                                    <a href="profile.html" class="pull-left">
+                                    <a href="profile.jsp" class="pull-left">
                                         <img alt="image" class="img-circle" src="http://placehold.it/40/30a5ff/fff">
                                     </a>
                                     <div class="message-body"><small class="pull-right">3 mins ago</small>
@@ -44,7 +44,7 @@
                             <li class="divider"></li>
                             <li>
                                 <div class="dropdown-messages-box">
-                                    <a href="profile.html" class="pull-left">
+                                    <a href="profile.jsp" class="pull-left">
                                         <img alt="image" class="img-circle" src="http://placehold.it/40/30a5ff/fff">
                                     </a>
                                     <div class="message-body"><small class="pull-right">1 hour ago</small>
@@ -112,23 +112,23 @@
             </div>
         </form>
         <ul class="nav menu">
-            <li><a href="dashboard.html"><em class="fas fa-tachometer-alt">&nbsp;</em> Dashboard</a></li>
-            <li><a href="widgets.html"><em class="fa fa-calendar">&nbsp;</em> Widgets</a></li>
-            <li><a href="posts.html"><em class="fa fa-bar-chart">&nbsp;</em> Posts</a></li>
-            <li class="active"><a href="management.html"><em class="fa fa-toggle-off">&nbsp;</em> User Management</a></li>
-            <li><a href="panels.html"><em class="fa fa-clone">&nbsp;</em> Alerts &amp; Panels</a></li>
+            <li><a href="dashboard.jsp"><em class="fas fa-tachometer-alt">&nbsp;</em> Dashboard</a></li>
+            <li><a href="widgets.jsp"><em class="fa fa-calendar">&nbsp;</em> Widgets</a></li>
+            <li><a href="products.jsp"><em class="fab fa-product-hunt">&nbsp;</em> Products</a></li>
+            <li class="active"><a href="management.jsp"><em class="fa fa-toggle-off">&nbsp;</em> User Management</a></li>
+            <li><a href="panels.jsp"><em class="fa fa-clone">&nbsp;</em> Alerts &amp; Panels</a></li>
             <li class="parent">
                 <a data-toggle="collapse" href="#sub-item-1">
                     <em class="fa fa-navicon">&nbsp;</em> Multilevel <span data-toggle="collapse" href="#sub-item-1" class="icon pull-right"><em class="fa fa-plus"></em></span>
                 </a>
                 <ul class="children collapse" id="sub-item-1">
                     <li>
-                        <a class="" href="error404.html">
+                        <a class="" href="error404.jsp">
                             <span class="fa fa-arrow-right">&nbsp;</span> Error 404
                         </a>
                     </li>
                     <li>
-                        <a class="" href="error500.html">
+                        <a class="" href="error505.jsp">
                             <span class="fa fa-arrow-right">&nbsp;</span> Error 500
                         </a>
                     </li>
@@ -139,7 +139,7 @@
                     </li>
                 </ul>
             </li>
-            <li><a href="login.html"><em class="fa fa-power-off">&nbsp;</em> Logout</a></li>
+            <li><a href="login.jsp"><em class="fa fa-power-off">&nbsp;</em> Logout</a></li>
         </ul>
     </div>
     <!--/.sidebar-->
@@ -187,7 +187,7 @@
                             <div class="info left">
                                 <h4 class="nickname left">Trandiep</h4>
                                 <h4 class="email left">trandiep10121999@gmail.com</h4>
-                                <h4 class="number-post left">0 <i class="fa fa-edit"></i></h4>
+                                <h4 class="number-product left">0 <i class="fa fa-edit"></i></h4>
                             </div>
                             <div class="edit-user right">
                                 <a class="center send-email left">
