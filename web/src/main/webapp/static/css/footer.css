@@ -1,0 +1,35 @@
+@charset "UTF-8";
+body{
+    font-family: 'Roboto', sans-serif;
+    height:80vh;
+}
+a{
+    color:black !important;
+}
+.footer{
+	background-color:#FFFDD0;
+	font-size:14px;
+}
+.middle{
+    position: relative;
+    left: 50%;
+    transform: translate(-50%,0);
+    width: fit-content;
+    margin: 0;
+}
+.row{
+    margin-left:0 !important;
+    margin-right:0 !important;
+}
+.icon{
+    font-size: 1.7em;
+}
+.red{
+    color:red;
+}
+.blue{
+    color:#4267b2;
+}
+.footer-copyright{
+	width: 100%;
+}
