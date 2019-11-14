@@ -1,7 +1,3 @@
-<%@ page import="java.util.List" %>
-<%@ page import="com.nmcnpm.web.model.Product" %>
-<%@ page import="java.util.ArrayList" %>
-<%@ page import="java.util.Date" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
@@ -12,7 +8,6 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Lazy-Products</title>
-    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="<c:url value="/static/css/bootstrap.min.css"/>">
     <link rel="stylesheet" href="<c:url value="/static/fontawesome-5.11.2/css/all.css"/>">
@@ -102,7 +97,7 @@
     <!-- /.container-fluid -->
 </nav>
 <div id="sidebar-collapse" class="col-sm-3 col-lg-2 sidebar">
-    <div class="profile-sidebar">
+    <div class="profile-sidebar" type="button" data-toggle="modal" data-target="#account-settings">
         <div class="profile-userpic">
             <img src="http://placehold.it/50/30a5ff/fff" class="img-responsive" alt="">
         </div>
@@ -123,7 +118,7 @@
         <li><a href="widgets.jsp"><em class="fa fa-calendar">&nbsp;</em> Widgets</a></li>
         <li class="active"><a href="products.jsp"><em class="fab fa-product-hunt">&nbsp;</em> Product</a></li>
         <li><a href="management.jsp"><em class="fa fa-toggle-off">&nbsp;</em> User Management</a></li>
-        <li><a href="panels.jsp"><em class="fa fa-clone">&nbsp;</em> Alerts &amp; Panels</a></li>
+        <li><a href="category.jsp"><em class="fa fa-clone">&nbsp;</em> Category</a></li>
         <li class="parent ">
             <a data-toggle="collapse" href="#sub-item-1">
                 <em class="fa fa-navicon">&nbsp;</em> Multilevel <span data-toggle="collapse" href="#sub-item-1" class="icon pull-right"><em class="fa fa-plus"></em></span>
@@ -150,6 +145,20 @@
     </ul>
 </div>
 <!--/.sidebar-->
+    <div class="modal" id="account-settings">
+        <div class="modal-dialog modal-dialog-centered" type="document">
+            <div class="modal-content">
+                <div class="modal-header">Settings</div>
+                <div class="modal-body">
+                    <%@ include file="account-settings.jsp" %>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-primary">Save</button>
+                    <button class="btn btn-primary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
 <div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
     <div class="row">
@@ -182,52 +191,17 @@
             </div>
         </div>
     </div>
-    <%-- show products------------------%>
-    <%--<div class="row">
-        <div class="col-lg-12">
-            <div class="panel panel-default">
-                <div class="panel-heading">View Products</div>
-                <div class="panel-body">
-                    <% ArrayList<Product> products=new ArrayList<>();
-                        products.add(new Product(1l,"abc",12.1f,"d",new Date("10/10/2019"),10l,"a","a","a"));
-                        products.add(new Product(1l,"abc",12.1f,"d",new Date("10/10/2019"),10l,"a","a","a"));
-                    %>
-                    <table cellpadding="5" cellspacing="5" border="1">
-                        <tr>
-                            <th>Student ID</th>
-                            <th>FirstName</th>
-                            <th>LastName</th>
-                            <th>Address</th>
-                            <th>Email</th>
-                            <th>Password</th>
-                        </tr>
-                        <c:forEach var="product" items="${products}">
-                            <tr>
-                                <td>${product.productID}</td>
-                                <td>${product.name}</td>
-                                <td>${product.price}</td>
-                                <td>${product.description}</td>
-                                <td>${product.image}</td>
-                                <td>${product.thumbImage}</td>
-                            </tr>
-                        </c:forEach>
-                    </table>
-                </div>
-            </div>
-        </div>
-    </div>--%>
-    <%-- end show product------------------------------%>
     <div class="row">
         <div class="col-lg-12">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <div class="col-sm-9">Category</div>
-                    <div class="col-sm-3"><i class="fas fa-plus" type="button" data-toggle="modal" data-target="#modal-add-group"></i> Add Category</div>
+                    <div class="col-sm-9">Products</div>
+                    <div class="col-sm-3"><i class="fas fa-plus" type="button" data-toggle="modal" data-target="#modal-add-group"></i> Add Product</div>
                 </div>
                 <div class="modal" id="modal-add-group">
-                    <div class="modal-dialog modal-dialog-centered" type="document">
+                    <div class="modal-dialog modal-dialog-centered modal-lg" type="document">
                         <div class="modal-content">
-                            <div class="modal-header">Add Category</div>
+                            <div class="modal-header">Add Product</div>
                             <div class="modal-body">
                                 <form id="input-add-group">
                                     <input style="width: 100%;" placeholder="Name Group"/>
@@ -244,23 +218,40 @@
                     <div class="panel-group">
                         <div class="panel panel-default">
                             <div class="panel-body">
-                                <div class="group-product-name col-sm-8">
-                                    <i class="fas fa-angle-right"></i><i class="invisible fas fa-angle-down"></i> Book
+                                <div class="group-product-name col-sm-9">
+                                    <i class="fas fa-angle-right"></i>Nhà giả kim
                                 </div>
-                                <div class="col-sm-1"><i class="fas fa-plus-circle"> Add</i></div>
-                                <div class="col-sm-2"><i class="fas fa-tools">  Rename</i></div>
-                                <div class="col-sm-1"><i class="fas fa-trash"> Delete</i></div>
+                                <div class="col-sm-1"><i class="fa fa-eye" data-toggle="modal" data-target="#review-product-one" type="button"></i></div>
+                                <div class="modal" id="review-product-one">
+                                    <div class="modal-dialog modal-dialog-centered" type="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">Settings</div>
+                                            <div class="modal-body" style="overflow-y:auto;">
+                                                <%@ include file="reviewProduct.jsp" %>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button class="btn btn-primary">Save</button>
+                                                <button class="btn btn-primary" data-dismiss="modal">Close</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-1"><i class="fas fa-tools"></i></div>
+                                <div class="col-sm-1"><i class="fas fa-minus-circle"></i></div>
                             </div>
                         </div>
                         <div class="panel panel-default">
                             <div class="panel-body">
-                                <div class="group-product-name col-sm-8">
-                                    <i class="fas fa-angle-right"></i><i class="invisible fas fa-angle-down"></i> Book
+                                <div class="group-product-name col-sm-9">
+                                    <i class="fas fa-angle-right"></i>Toán cao cấp
                                 </div>
-                                <div class="col-sm-1"><i class="fas fa-plus-circle"> Add</i></div>
-                                <div class="col-sm-2"><i class="fas fa-tools">  Rename</i></div>
-                                <div class="col-sm-1"><i class="fas fa-trash"> Delete</i></div>
+                                <div class="col-sm-1"><i class="fa fa-eye"></i></div>
+                                <div class="col-sm-1"><i class="fas fa-tools"></i></div>
+                                <div class="col-sm-1"><i class="fas fa-plus-circle"></i></div>
                             </div>
+                        </div>
+                        <div class="panel panel-default">
+                            <%--<%@ include file="pagination.jsp"%>--%>
                         </div>
                     </div>
                 </div>

@@ -99,7 +99,7 @@
     <!-- /.container-fluid -->
 </nav>
 <div id="sidebar-collapse" class="col-sm-3 col-lg-2 sidebar">
-    <div class="profile-sidebar">
+    <div class="profile-sidebar" type="button" data-toggle="modal" data-target="#account-settings">
         <div class="profile-userpic">
             <img src="http://placehold.it/50/30a5ff/fff" class="img-responsive" alt="">
         </div>
@@ -120,7 +120,7 @@
         <li><a href="widgets.jsp"><em class="fa fa-calendar">&nbsp;</em> Widgets</a></li>
         <li><a href="products.jsp"><em class="fab fa-product-hunt">&nbsp;</em> Products</a></li>
         <li><a href="management.jsp"><em class="fa fa-toggle-off">&nbsp;</em> User Management</a></li>
-        <li><a href="panels.jsp"><em class="fa fa-clone">&nbsp;</em> Alerts &amp; Panels</a></li>
+        <li><a href="category.jsp"><em class="fa fa-clone">&nbsp;</em> Category</a></li>
         <li class="parent ">
             <a data-toggle="collapse" href="#sub-item-1">
                 <em class="fa fa-navicon">&nbsp;</em> Multilevel <span data-toggle="collapse" href="#sub-item-1" class="icon pull-right"><em class="fa fa-plus"></em></span>
@@ -147,6 +147,20 @@
     </ul>
 </div>
 <!--/.sidebar-->
+    <div class="modal" id="account-settings">
+        <div class="modal-dialog modal-dialog-centered" type="document">
+            <div class="modal-content">
+                <div class="modal-header">Settings</div>
+                <div class="modal-body">
+                    <%@ include file="account-settings.jsp" %>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-primary">Save</button>
+                    <button class="btn btn-primary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
 <div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
     <div class="row">

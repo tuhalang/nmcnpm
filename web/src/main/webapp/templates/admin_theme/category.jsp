@@ -7,10 +7,9 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Error 404</title>
+    <title>Lazy - Category</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Kipalog User Management</title>
     <link rel="stylesheet" href="<c:url value="/static/css/bootstrap.min.css"/>">
     <link rel="stylesheet" href="<c:url value="/static/fontawesome-5.11.2/css/all.css"/>">
     <link rel="stylesheet" href="<c:url value="/static/css/admin.css"/>">
@@ -116,18 +115,18 @@
         </div>
     </form>
     <ul class="nav menu">
-        <li class="active"><a href="dashboard.jsp"><em class="fas fa-tachometer-alt">&nbsp;</em> Dashboard</a></li>
+        <li><a href="dashboard.jsp"><em class="fas fa-tachometer-alt">&nbsp;</em> Dashboard</a></li>
         <li><a href="widgets.jsp"><em class="fa fa-calendar">&nbsp;</em> Widgets</a></li>
         <li><a href="products.jsp"><em class="fab fa-product-hunt">&nbsp;</em> Products</a></li>
         <li><a href="management.jsp"><em class="fa fa-toggle-off">&nbsp;</em> User Management</a></li>
-        <li><a href="category.jsp"><em class="fa fa-clone">&nbsp;</em> Category</a></li>
-        <li class="parent ">
+        <li class="active"><a href="category.jsp"><em class="fa fa-clone">&nbsp;</em> Category</a></li>
+        <li class="parent">
             <a data-toggle="collapse" href="#sub-item-1">
                 <em class="fa fa-navicon">&nbsp;</em> Multilevel <span data-toggle="collapse" href="#sub-item-1" class="icon pull-right"><em class="fa fa-plus"></em></span>
             </a>
             <ul class="children collapse" id="sub-item-1">
                 <li>
-                    <a class="" href="#">
+                    <a class="" href="error404.jsp">
                         <span class="fa fa-arrow-right">&nbsp;</span> Error 404
                     </a>
                 </li>
@@ -141,7 +140,7 @@
                         <span class="fa fa-arrow-right">&nbsp;</span> Blank Page
                     </a>
                 </li>
-            </ul>r
+            </ul>
         </li>
         <li><a href="login.jsp"><em class="fa fa-power-off">&nbsp;</em> Logout</a></li>
     </ul>
@@ -161,7 +160,6 @@
             </div>
         </div>
     </div>
-
 <div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
     <div class="row">
         <ol class="breadcrumb">
@@ -170,74 +168,77 @@
                     <em class="fa fa-home"></em>
                 </a>
             </li>
-            <li class="active">Error 404</li>
+            <li class="active">Category</li>
         </ol>
     </div>
     <div class="row">
-        <div class="col-xs-12">
-            <!-- PAGE CONTENT BEGINS -->
-
-            <div class="error-container">
-                <div class="well">
-                    <h1 class="grey lighter smaller">
-                            <span class="blue bigger-125">
-                                        <i class="ace-icon fa fa-sitemap"></i>
-                                        404
-                                    </span> Page Not Found
-                    </h1>
-
-                    <hr>
-                    <h3 class="lighter smaller">We looked everywhere but we couldn't find it!</h3>
-
-                    <div>
-                        <form class="form-search">
-                                <span class="input-icon align-middle">
-                                            <i class="ace-icon fa fa-search"></i>
-
-                                            <input type="text" class="search-query" placeholder="Give it a search...">
-                                        </span>
-                            <button class="btn btn-sm" type="button">Go!</button>
-                        </form>
-
-                        <div class="space"></div>
-                        <h4 class="smaller">Try one of the following:</h4>
-
-                        <ul class="list-unstyled spaced inline bigger-110 margin-15">
-                            <li>
-                                <i class="ace-icon fa fa-hand-o-right blue"></i> Re-check the url for typos
-                            </li>
-
-                            <li>
-                                <i class="ace-icon fa fa-hand-o-right blue"></i> Read the faq
-                            </li>
-
-                            <li>
-                                <i class="ace-icon fa fa-hand-o-right blue"></i> Tell us about it
-                            </li>
-                        </ul>
+        <div class="col-lg-12">
+            <h1 class="page-header">Category</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">Search Category</div>
+                <div class="panel-body">
+                    <form id="search-product">
+                        <input placeholder="Search">
+                    </form>
+                    <div class="show-products"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <div class="col-sm-9">Category</div>
+                    <div class="col-sm-3"><i class="fas fa-plus" type="button" data-toggle="modal" data-target="#modal-add-group"></i> Add Category</div>
+                </div>
+                <div class="modal" id="modal-add-group">
+                    <div class="modal-dialog modal-dialog-centered" type="document">
+                        <div class="modal-content">
+                            <div class="modal-header">Add Category</div>
+                            <div class="modal-body">
+                                <form id="input-add-group">
+                                    <input style="width: 100%;" placeholder="Name Group"/>
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                                <button class="btn btn-primary" id="btn-add-group">Add</button>
+                                <button class="btn btn-primary" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
                     </div>
-
-                    <hr>
-                    <div class="space"></div>
-
-                    <div class="center">
-                        <a href="javascript:history.back()" class="btn btn-grey">
-                            <i class="ace-icon fa fa-arrow-left"></i> Go Back
-                        </a>
-
-                        <a href="#" class="btn btn-primary">
-                            <i class="ace-icon fas fa-tachometer-alt"></i> Dashboard
-                        </a>
+                </div>
+                <div class="panel-body panel-group">
+                    <div class="panel-group">
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+                                <div class="group-product-name col-sm-8">
+                                    <i class="fas fa-angle-right"></i><i class="invisible fas fa-angle-down"></i> Book
+                                </div>
+                                <div class="col-sm-1"><i class="fas fa-plus-circle"> Add</i></div>
+                                <div class="col-sm-2"><i class="fas fa-tools">  Rename</i></div>
+                                <div class="col-sm-1"><i class="fas fa-trash"> Delete</i></div>
+                            </div>
+                        </div>
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+                                <div class="group-product-name col-sm-8">
+                                    <i class="fas fa-angle-right"></i><i class="invisible fas fa-angle-down"></i> Book
+                                </div>
+                                <div class="col-sm-1"><i class="fas fa-plus-circle"> Add</i></div>
+                                <div class="col-sm-2"><i class="fas fa-tools">  Rename</i></div>
+                                <div class="col-sm-1"><i class="fas fa-trash"> Delete</i></div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-
-            <!-- PAGE CONTENT ENDS -->
         </div>
-        <!-- /.col -->
     </div>
-    <!-- /.row -->
-</div>
 </div>
 <!--/.main-->
 
@@ -249,18 +250,6 @@
 <script src="<c:url value="/static/jquery-3.4.1/bootstrap-datepicker.js"/>"></script>
 <script src="<c:url value="/static/jquery-3.4.1/custom.js"/>"></script>
 <script src="<c:url value="/static/bootstrap-4.0.0/js/bootstrap.min.js"/>"></script>
-<script>
-    window.onload = function() {
-        var chart1 = document.getElementById("line-chart").getContext("2d");
-        window.myLine = new Chart(chart1).Line(lineChartData, {
-            responsive: true,
-            scaleLineColor: "rgba(0,0,0,.2)",
-            scaleGridLineColor: "rgba(0,0,0,.05)",
-            scaleFontColor: "#c5c7cc"
-        });
-    };
-</script>
-
 </body>
 
 </html>

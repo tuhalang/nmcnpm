@@ -12,5 +12,8 @@
 </head>
 <body>
     Hello world
+    <form action="/admin/products" method="get">
+        <input type="submit" value="click">
+    </form>
 </body>
 </html>
