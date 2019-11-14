@@ -1,10 +1,16 @@
 package com.nmcnpm.web.model;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
 
 @Data
+@NoArgsConstructor
+@RequiredArgsConstructor
+@AllArgsConstructor
 public class ProductDetail extends BaseModel{
-	private Long productID;
+	private Long productDetailID;
 	private String information;
 	private String image1;
 	private String image2;
