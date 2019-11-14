@@ -221,13 +221,13 @@
         <div class="col-lg-12">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <div class="col-sm-9">Group Of Products</div>
-                    <div class="col-sm-3"><i class="fas fa-plus" type="button" data-toggle="modal" data-target="#modal-add-group"></i> Add Group</div>
+                    <div class="col-sm-9">Category</div>
+                    <div class="col-sm-3"><i class="fas fa-plus" type="button" data-toggle="modal" data-target="#modal-add-group"></i> Add Category</div>
                 </div>
                 <div class="modal" id="modal-add-group">
                     <div class="modal-dialog modal-dialog-centered" type="document">
                         <div class="modal-content">
-                            <div class="modal-header">Add Group</div>
+                            <div class="modal-header">Add Category</div>
                             <div class="modal-body">
                                 <form id="input-add-group">
                                     <input style="width: 100%;" placeholder="Name Group"/>
