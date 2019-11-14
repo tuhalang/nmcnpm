@@ -22,7 +22,7 @@ public class AuthorizationFilter implements Filter {
 
         if(url.startsWith(contextPath+"/admin")){
 
-            response.sendRedirect(contextPath+"/templates/accessdenied.jsp");
+            //response.sendRedirect(contextPath+"/templates/accessdenied.jsp");
         } else if(url.startsWith(contextPath+"/user")){
 
             response.sendRedirect(contextPath+"/templates/accessdenied.jsp");

@@ -15,6 +15,6 @@ public class ProductController extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setAttribute("noOfPage",3);
-        request.getRequestDispatcher("/productsjsp").forward(request,response);
+        request.getRequestDispatcher("/templates/admin_theme/products.jsp").forward(request,response);
     }
 }
