@@ -9,12 +9,12 @@ import java.io.IOException;
 
 //@WebServlet(name = "ProductController")
 public class ProductController extends HttpServlet {
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-    }
+//    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+//
+//    }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setAttribute("noOfPage",3);
-        request.getRequestDispatcher("/templates/admin_theme/products.jsp").forward(request,response);
+        request.getRequestDispatcher("product").forward(request,response);
     }
 }
