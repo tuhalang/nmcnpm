@@ -5,11 +5,7 @@ import java.io.InputStream;
 import java.util.Date;
 import java.util.Properties;
 
-import javax.activation.DataHandler;
-import javax.activation.DataSource;
-import javax.activation.FileDataSource;
 import javax.mail.Authenticator;
-import javax.mail.BodyPart;
 import javax.mail.Message;
 import javax.mail.MessagingException;
 import javax.mail.Multipart;
@@ -17,11 +13,27 @@ import javax.mail.PasswordAuthentication;
 import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
-import javax.mail.internet.MimeMultipart;
 
 public class MailAttachment implements ISendMail {
+private String emailFrom;
+private String emailTo;
+private Multipart multipart;
+private String subject;
+
+	public MailAttachment(String emailFrom, String emailTo, Multipart multipart, String subject) {
+	super();
+	this.emailFrom = emailFrom;
+	this.emailTo = emailTo;
+	this.multipart = multipart;
+	this.subject = subject;
+}
+
+	@Override
+	public void send() {
+		startSend(config(), emailFrom, emailTo, multipart, subject);
+
+	}
 
 	@Override
 	public Session config() {
@@ -31,10 +43,12 @@ public class MailAttachment implements ISendMail {
 
 		try {
 			is = getClass().getResourceAsStream("/application.properties");
+
 			prop.load(is);
 			prop.put("mail.smtp.auth", "true");
 			prop.put("mail.smtp.starttls.enable", "true");
 			session = Session.getInstance(prop, new Authenticator() {
+				@Override
 				protected PasswordAuthentication getPasswordAuthentication() {
 					return new PasswordAuthentication(prop.getProperty("username"), prop.getProperty("password"));
 				}
@@ -48,31 +62,22 @@ public class MailAttachment implements ISendMail {
 		}
 		return session;
 	};
-
-	@Override
-	public void send(Session session, String emailFrom, String emailTo, String pathFile, String subject) {
+      
+	public void startSend(Session session, String emailFrom, String emailTo,Multipart multipart, String subject) {
 		Message message = new MimeMessage(session);
 		try {
 			message.setFrom(new InternetAddress(emailFrom));
 			message.setRecipient(Message.RecipientType.TO, new InternetAddress(emailTo));
-			BodyPart bodyPart = new MimeBodyPart();
-			DataSource data = new FileDataSource(pathFile);
-			bodyPart.setDataHandler(new DataHandler(data));
-			bodyPart.setFileName(pathFile);
-			Multipart multipart = new MimeMultipart();
-			multipart.addBodyPart(bodyPart);
-			message.setContent(multipart);
+		message.setContent(multipart);
 			message.setSubject(subject);
 			message.setSentDate(new Date());
 			Transport.send(message);
 			System.out.println("Sent message successfully....");
-		} catch (
-
-		MessagingException e) {
-
+		} catch (MessagingException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
-	}
+	};
 
 }

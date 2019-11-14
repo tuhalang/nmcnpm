@@ -15,6 +15,24 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
 public class MailSMTP implements ISendMail {
+	private String emailFrom;
+	private String emailTo;
+	private String content;
+	private String subject;
+
+	public MailSMTP(String emailFrom, String emailTo, String content, String subject) {
+		super();
+		this.emailFrom = emailFrom;
+		this.emailTo = emailTo;
+		this.content = content;
+		this.subject = subject;
+	}
+
+	@Override
+	public void send() {
+		startSend(config(), emailFrom, emailTo, content, subject);
+
+	}
 
 	@Override
 	public Session config() {
@@ -29,6 +47,7 @@ public class MailSMTP implements ISendMail {
 			prop.put("mail.smtp.auth", "true");
 			prop.put("mail.smtp.starttls.enable", "true");
 			session = Session.getInstance(prop, new Authenticator() {
+				@Override
 				protected PasswordAuthentication getPasswordAuthentication() {
 					return new PasswordAuthentication(prop.getProperty("username"), prop.getProperty("password"));
 				}
@@ -43,8 +62,7 @@ public class MailSMTP implements ISendMail {
 		return session;
 	};
 
-	@Override
-	public void send(Session session, String emailFrom, String emailTo, String content, String subject) {
+	public void startSend(Session session, String emailFrom, String emailTo, String content, String subject) {
 		Message message = new MimeMessage(session);
 		try {
 			message.setFrom(new InternetAddress(emailFrom));

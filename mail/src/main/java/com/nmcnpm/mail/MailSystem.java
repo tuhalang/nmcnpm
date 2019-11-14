@@ -1,26 +1,38 @@
 package com.nmcnpm.mail;
 
-public class MailSystem implements Runnable {
-	private ISendMail mail;
-	private String emailFrom;
-	private String emailTo;
-	private String content;
-	private String subject;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
-	public MailSystem(ISendMail mail) {
-		this.mail = mail;
+@ SuppressWarnings("unused")
+public class MailSystem {
+	private static ExecutorService executor=Executors.newSingleThreadExecutor();
+	public static void execute(ISendMail mail) {
+		Runnable task=new Runnable() {
+			
+			@Override
+			public void run() {
+				try{
+					mail.send();
+				}catch (RuntimeException e) {
+					// TODO: handle exception
+				}
+				
+			}
+		};
+		executor.execute(task);
+		while(!executor.isTerminated()) {}
 	}
-
-	public void setEmail(String emailFrom, String emailTo, String content, String subject) {
-		this.emailFrom = emailFrom;
-		this.emailTo = emailTo;
-		this.content = content;
-		this.subject = subject;
-	}
-
-	@Override
-	public void run() {
-		mail.send(mail.config(), emailFrom, emailTo, content, subject);
-
-	}
+public static void shutdown() {
+	executor.shutdown();
 }
+	public static void main(String[] args) {
+		String email="huydong.hoanam@gmail.com";
+		String content="Hbbbub";
+		String subject="ub";
+		MailSMTP mail= new MailSMTP(email, email, content, subject);
+		MailSystem.execute(mail);
+		
+	}
+	}
+
+
