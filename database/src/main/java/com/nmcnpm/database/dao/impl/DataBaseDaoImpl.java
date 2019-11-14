@@ -20,20 +20,12 @@ public class DataBaseDaoImpl<T> implements IBaseDao<T> {
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 			conn = DriverManager.getConnection(
-					"jdbc:mysql://localhost:3306/nmcnpm","root","root");
-
+					"jdbc:mysql://localhost:3306/tiki","root","1999");
 			return conn;
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
-		} finally {
-			try {
-				conn.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-			
 		}
 		return null;
 	}
@@ -56,6 +48,7 @@ public class DataBaseDaoImpl<T> implements IBaseDao<T> {
 			}
 			return results;
 		} catch (SQLException e) {
+			e.printStackTrace();
 			return results;
 		}catch (Exception e) {
 			e.printStackTrace();
