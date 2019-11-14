@@ -13,7 +13,7 @@ public class AccountDAO extends DataBaseDaoImpl{
 		insert(sql, account.getAccountID(), account.getUsername(), account.getPassword(), account.getStatus());
 	}
 	
-	public void update(Account account) {
+	public void update(Account account) throws Exception {
 		String sql = "update account set username=?, password=?, status=?, last_modified_at=CURRENT_TIMESTAMP() where account_id=?";
 		update(sql, account.getUsername(), account.getPassword(), account.getStatus(), account.getAccountID());
 		

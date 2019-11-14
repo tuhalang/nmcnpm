@@ -5,14 +5,13 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 
+import java.util.Date;
+
 /**
  * @author tuhalang
  * @created on 11/9/19
  */
 @Data
-@NoArgsConstructor
-@RequiredArgsConstructor
-@AllArgsConstructor
 public class Account extends BaseModel{
 
     private Long accountID;
@@ -20,4 +19,22 @@ public class Account extends BaseModel{
     private String username;
     private String password;
     private Boolean status;
+
+    public Account(Long accountID, String username, String password, Boolean status) {
+        this.accountID = accountID;
+        this.username = username;
+        this.password = password;
+        this.status = status;
+    }
+
+    public Account(Date createdAt, Date lastModifiedAt, Long accountID, String username, String password, Boolean status) {
+        super(createdAt, lastModifiedAt);
+        this.accountID = accountID;
+        this.username = username;
+        this.password = password;
+        this.status = status;
+    }
+
+    public Account() {
+    }
 }

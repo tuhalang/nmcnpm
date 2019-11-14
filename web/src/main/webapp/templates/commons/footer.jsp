@@ -15,7 +15,7 @@
 	src="${pageContext.request.contextPath}/static/jquery-3.4.1/jquery-3.4.1.min.js"></script>
 </head>
 <body>
-	<div class="footer fixed-bottom">
+	<div class="footer bottom">
 		<div class="row">
 			<div class="col-sm-4">
 				<div class="row h5 text-weight-bold">Hỗ trợ khách hàng</div>

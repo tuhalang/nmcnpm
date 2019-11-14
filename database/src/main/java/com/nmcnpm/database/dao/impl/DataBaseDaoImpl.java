@@ -1,11 +1,6 @@
 package com.nmcnpm.database.dao.impl;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.sql.Timestamp;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -21,25 +16,21 @@ import com.nmcnpm.database.mapper.IRowMapper;
 public class DataBaseDaoImpl<T> implements IBaseDao<T> {
 	
 	public Connection getConnection() {
-		Context ctx = null;
-		Connection conn = null;	
+		Connection conn = null;
 		try {
-			ctx = new InitialContext();
-			DataSource ds = (DataSource) ctx.lookup("java:/comp/env/jdbc/MyLocalDB");
-			conn = ds.getConnection();
-			
-            return conn;
-		} catch (NamingException e) {
-			e.printStackTrace();
+			Class.forName("com.mysql.jdbc.Driver");
+			conn = DriverManager.getConnection(
+					"jdbc:mysql://localhost:3306/nmcnpm","root","root");
+
+			return conn;
 		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		} finally {
 			try {
 				conn.close();
-				ctx.close();
 			} catch (SQLException e) {
-				e.printStackTrace();
-			} catch (NamingException e) {
 				e.printStackTrace();
 			}
 			

@@ -5,10 +5,9 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 
+import java.util.Date;
+
 @Data
-@NoArgsConstructor
-@RequiredArgsConstructor
-@AllArgsConstructor
 public class ProductDetail extends BaseModel{
 	private Long productDetailID;
 	private String information;
@@ -19,4 +18,34 @@ public class ProductDetail extends BaseModel{
 	private String image5;
 	private String accessories;
 	private String guarantee;
+
+	public ProductDetail(Long productDetailID, String information, String image1, String image2, String image3, String image4, String image5, String accessories, String guarantee) {
+		this.productDetailID = productDetailID;
+		this.information = information;
+		this.image1 = image1;
+		this.image2 = image2;
+		this.image3 = image3;
+		this.image4 = image4;
+		this.image5 = image5;
+		this.accessories = accessories;
+		this.guarantee = guarantee;
+	}
+
+	public ProductDetail(Date createdAt, Date lastModifiedAt, Long productDetailID, String information, String image1, String image2, String image3, String image4, String image5, String accessories, String guarantee) {
+		super(createdAt, lastModifiedAt);
+		this.productDetailID = productDetailID;
+		this.information = information;
+		this.image1 = image1;
+		this.image2 = image2;
+		this.image3 = image3;
+		this.image4 = image4;
+		this.image5 = image5;
+		this.accessories = accessories;
+		this.guarantee = guarantee;
+	}
+
+	public ProductDetail(){}
+
+	public void setProductID(long product_id) {
+	}
 }

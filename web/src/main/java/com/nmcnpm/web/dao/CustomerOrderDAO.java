@@ -13,7 +13,7 @@ public class CustomerOrderDAO extends DataBaseDaoImpl {
         insert(sql, customerOrder.getOrderID(), customerOrder.getAmount(), customerOrder.getConfirmNumber());
     }
 
-    public void update(CustomerOrder customerOrder) {
+    public void update(CustomerOrder customerOrder) throws Exception {
         String sql = "update customer_order set amount=?, confirm_number=?, last_modified_at=CURRENT_TIMESTAMP() where order_id=?";
         update(sql, customerOrder.getAmount(), customerOrder.getConfirmNumber(), customerOrder.getOrderID());
 

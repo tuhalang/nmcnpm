@@ -13,7 +13,7 @@ public class CustomerDAO extends DataBaseDaoImpl {
         insert(sql, customer.getCustomerID(), customer.getAddress(), customer.getCityRegion(), customer.getEmail(), customer.getName(), customer.getPhone());
     }
 
-    public void update(Customer customer) {
+    public void update(Customer customer) throws Exception {
         String sql = "update customer set address=?, city_region=?, email=?, name=?, phone=?, last_modified_at=CURRENT_TIMESTAMP() where customer_id=?";
         update(sql, customer.getAddress(), customer.getCityRegion(), customer.getEmail(), customer.getName(), customer.getPhone(), customer.getCustomerID());
 

@@ -14,7 +14,7 @@ public class OrderedProductDAO extends DataBaseDaoImpl {
         insert(sql, orderedProduct.getOrderID(), orderedProduct.getProductID(), orderedProduct.getQuantity());
     }
 
-    public void update(OrderedProduct orderedProduct) {
+    public void update(OrderedProduct orderedProduct) throws Exception {
         String sql = "update order_product set product_id=?, quantity=?, last_modified_at=CURRENT_TIMESTAMP() where order_id=?";
         update(sql, orderedProduct.getProductID(), orderedProduct.getQuantity(), orderedProduct.getOrderID());
 

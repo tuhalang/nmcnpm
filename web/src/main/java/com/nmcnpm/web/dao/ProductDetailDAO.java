@@ -16,7 +16,7 @@ public class ProductDetailDAO  extends DataBaseDaoImpl {
                 productDetail.getImage4(), productDetail.getImage5(), productDetail.getAccessories(), productDetail.getGuarantee());
     }
 
-    public void update(ProductDetail productDetail) {
+    public void update(ProductDetail productDetail) throws Exception {
         String sql = "update product_detail set  information=?, image1=?, image2=?, image3=?, image4=?, image5=?," +
                 " accessories=?, guarantee=?, last_modified_at=CURRENT_TIMESTAMP() where product_detail_id=?";
         update(sql, productDetail.getInformation(), productDetail.getImage1(), productDetail.getImage2(), productDetail.getImage3(),

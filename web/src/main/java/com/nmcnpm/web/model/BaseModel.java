@@ -1,17 +1,21 @@
 package com.nmcnpm.web.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
+import lombok.*;
 
 import java.util.Date;
 
-@Data
-@NoArgsConstructor
-@RequiredArgsConstructor
-@AllArgsConstructor
+@Setter
+@Getter
 public abstract class BaseModel {
     private Date createdAt;
     private Date lastModifiedAt;
+
+    public BaseModel() {
+    }
+
+    public BaseModel(Date createdAt, Date lastModifiedAt) {
+        this.createdAt = createdAt;
+        this.lastModifiedAt = lastModifiedAt;
+    }
+
 }

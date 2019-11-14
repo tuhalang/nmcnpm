@@ -14,7 +14,7 @@ public class RoleDAO extends DataBaseDaoImpl {
         insert(sql, role.getRoleID(), role.getRoleName());
     }
 
-    public void update(Role role) {
+    public void update(Role role) throws Exception {
         String sql = "update role set role_name , last_modified_at=CURRENT_TIMESTAMP() where role_id=?";
         update(sql, role.getRoleName(), role.getRoleID());
     }

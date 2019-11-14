@@ -14,7 +14,7 @@ public class CategoryDAO extends DataBaseDaoImpl {
         insert(sql, category.getCategoryID(), category.getImage(), category.getName());
     }
 
-    public void update(Category category) {
+    public void update(Category category) throws Exception {
         String sql = "update category set image=?, name=?, last_modified_at=CURRENT_TIMESTAMP() where category_id=?";
         update(sql, category.getImage(), category.getName(), category.getCategoryID());
 
@@ -25,13 +25,13 @@ public class CategoryDAO extends DataBaseDaoImpl {
         delete(sql, category.getCategoryID(), category.getImage(), category.getName());
     }
 
-    public List<Category> findAll() {
+    public List<Category> findAll() throws Exception{
         String sql = "select * from category";
         List<Category> category = query(sql, new CategoryMapper());
         return category;
     }
 
-    public Category findById(long id) {
+    public Category findById(long id) throws Exception{
         String sql = "select * from category where category_id=?";
         List<Category> category = query(sql,new CategoryMapper(), id);
         if(category.isEmpty())
