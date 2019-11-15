@@ -20,7 +20,7 @@ public class MailSystem {
 			}
 		};
 		executor.execute(task);
-		while(!executor.isTerminated()) {}
+		
 	}
 public static void shutdown() {
 	executor.shutdown();
@@ -29,9 +29,10 @@ public static void shutdown() {
 		String email="huydong.hoanam@gmail.com";
 		String content="Hbbbub";
 		String subject="ub";
+		for(int i=0;i<20;i++){
 		MailSMTP mail= new MailSMTP(email, email, content, subject);
 		MailSystem.execute(mail);
-		
+		}
 	}
 	}
 
