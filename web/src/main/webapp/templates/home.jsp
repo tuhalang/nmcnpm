@@ -10,332 +10,54 @@
 <html>
 <head>
     <title>Title</title>
-    <link rel="stylesheet"
-          href="${pageContext.request.contextPath}/static/bootstrap/css/card.css"
-          type="text/css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/static/bootstrap/css/card.css" type="text/css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/footer.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <style>
-        #main{
+        <%@include file="/static/css/header.css"%>
+    </style>
+    <style>
+        #main {
             margin-bottom: 20px;
             margin-top: 20px;
         }
     </style>
 </head>
 <body>
-    <jsp:include page="commons/header.jsp"></jsp:include>
+<jsp:include page="commons/header.jsp"></jsp:include>
 
-    <div class="container" id="main">
-        <div class="row">
+<div class="container" id="main">
+    <div class="row w-100">
+        <%--        <c:forEach items="${products}" var="product">--%>
 
-            <c:forEach items="${products}" var="product">
-                <div class="col-3">
-                    <div class="card" style="max-width: 15rem;">
-                        <a href="https://mil.ufl.edu/3744/docs/lcdmanual/characterset.html"
-                           class="card-link"> <img
-                                src="${pageContext.request.contextPath}/${product.image}"
-                                class="card-img-top" alt="Ảnh sản phẩm ">
-
-                            <div class="card-body">
-                                <p class="card-title">${product.name}</p>
-                                <p class="card-text">
-                                    <b>${product.price}</b> <span class="sale-tag"><small>
-							phần trăm sale</small></span>
-                                </p>
-                                <p>
-                                    <span class="sale-price"><del>Giá so sánh</del></span>
-
-                                </p>
-                                <p>
-					<span class="star-light"> <i class="fas fa-star"></i> <i
-                            class="fas fa-star"></i> <i class="fas fa-star"></i> <span
-                            class="star-dark"> <i class="fas fa-star"></i> <i
-                            class="fas fa-star"></i>
-					</span>
-					</span>
-                                </p>
+        <%--        </c:forEach>--%>
+        <div class="col-lg-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <div class="col-lg-12"><h2>Category</h2></div>
+                </div>
+                <div class="panel-body">
+                    <c:forEach begin="1" end="10" var="i">
+                        <div class="panel panel-default row w-100 mb-2">
+                            <div class="panel-body row w-100">
+                                <c:forEach begin="1" end="4" var="j">
+                                    <jsp:include page="cardProduct.jsp"></jsp:include>
+                                </c:forEach>
                             </div>
-                        </a>
-
-                    </div>
-                </div>
-            </c:forEach>
-
-
-
-            <div class="col-3">
-                <div class="card" style="max-width: 15rem;">
-                    <a href="https://mil.ufl.edu/3744/docs/lcdmanual/characterset.html"
-                       class="card-link"> <img
-                            src="${pageContext.request.contextPath}/static/image/91201c275b863a12466c964436a945a6.png"
-                            class="card-img-top" alt="Ảnh sản phẩm ">
-
-                        <div class="card-body">
-                            <p class="card-title">Nhãn sản phẩm</p>
-                            <p class="card-text">
-                                <b>giá chính thức</b> <span class="sale-tag"><small>
-							phần trăm sale</small></span>
-                            </p>
-                            <p>
-                                <span class="sale-price"><del>Giá so sánh</del></span>
-
-                            </p>
-                            <p>
-					<span class="star-light"> <i class="fas fa-star"></i> <i
-                            class="fas fa-star"></i> <i class="fas fa-star"></i> <span
-                            class="star-dark"> <i class="fas fa-star"></i> <i
-                            class="fas fa-star"></i>
-					</span>
-					</span>
-
-
-
-                            </p>
                         </div>
-                    </a>
-
+                    </c:forEach>
                 </div>
             </div>
-
-            <div class="col-3">
-                <div class="card" style="max-width: 15rem;">
-                    <a href="https://mil.ufl.edu/3744/docs/lcdmanual/characterset.html"
-                       class="card-link"> <img
-                            src="${pageContext.request.contextPath}/static/image/91201c275b863a12466c964436a945a6.png"
-                            class="card-img-top" alt="Ảnh sản phẩm ">
-
-                        <div class="card-body">
-                            <p class="card-title">Nhãn sản phẩm</p>
-                            <p class="card-text">
-                                <b>giá chính thức</b> <span class="sale-tag"><small>
-							phần trăm sale</small></span>
-                            </p>
-                            <p>
-                                <span class="sale-price"><del>Giá so sánh</del></span>
-
-                            </p>
-                            <p>
-					<span class="star-light"> <i class="fas fa-star"></i> <i
-                            class="fas fa-star"></i> <i class="fas fa-star"></i> <span
-                            class="star-dark"> <i class="fas fa-star"></i> <i
-                            class="fas fa-star"></i>
-					</span>
-					</span>
-
-
-
-                            </p>
-                        </div>
-                    </a>
-
-                </div>
-            </div>
-
-            <div class="col-3">
-                <div class="card" style="max-width: 15rem;">
-                    <a href="https://mil.ufl.edu/3744/docs/lcdmanual/characterset.html"
-                       class="card-link"> <img
-                            src="${pageContext.request.contextPath}/static/image/91201c275b863a12466c964436a945a6.png"
-                            class="card-img-top" alt="Ảnh sản phẩm ">
-
-                        <div class="card-body">
-                            <p class="card-title">Nhãn sản phẩm</p>
-                            <p class="card-text">
-                                <b>giá chính thức</b> <span class="sale-tag"><small>
-							phần trăm sale</small></span>
-                            </p>
-                            <p>
-                                <span class="sale-price"><del>Giá so sánh</del></span>
-
-                            </p>
-                            <p>
-					<span class="star-light"> <i class="fas fa-star"></i> <i
-                            class="fas fa-star"></i> <i class="fas fa-star"></i> <span
-                            class="star-dark"> <i class="fas fa-star"></i> <i
-                            class="fas fa-star"></i>
-					</span>
-					</span>
-
-
-
-                            </p>
-                        </div>
-                    </a>
-
-                </div>
-            </div>
-
-            <div class="col-3">
-                <div class="card" style="max-width: 15rem;">
-                    <a href="https://mil.ufl.edu/3744/docs/lcdmanual/characterset.html"
-                       class="card-link"> <img
-                            src="${pageContext.request.contextPath}/static/image/91201c275b863a12466c964436a945a6.png"
-                            class="card-img-top" alt="Ảnh sản phẩm ">
-
-                        <div class="card-body">
-                            <p class="card-title">Nhãn sản phẩm</p>
-                            <p class="card-text">
-                                <b>giá chính thức</b> <span class="sale-tag"><small>
-							phần trăm sale</small></span>
-                            </p>
-                            <p>
-                                <span class="sale-price"><del>Giá so sánh</del></span>
-
-                            </p>
-                            <p>
-					<span class="star-light"> <i class="fas fa-star"></i> <i
-                            class="fas fa-star"></i> <i class="fas fa-star"></i> <span
-                            class="star-dark"> <i class="fas fa-star"></i> <i
-                            class="fas fa-star"></i>
-					</span>
-					</span>
-
-
-
-                            </p>
-                        </div>
-                    </a>
-
-                </div>
-            </div>
-
-            <div class="col-3">
-                <div class="card" style="max-width: 15rem;">
-                    <a href="https://mil.ufl.edu/3744/docs/lcdmanual/characterset.html"
-                       class="card-link"> <img
-                            src="${pageContext.request.contextPath}/static/image/91201c275b863a12466c964436a945a6.png"
-                            class="card-img-top" alt="Ảnh sản phẩm ">
-
-                        <div class="card-body">
-                            <p class="card-title">Nhãn sản phẩm</p>
-                            <p class="card-text">
-                                <b>giá chính thức</b> <span class="sale-tag"><small>
-							phần trăm sale</small></span>
-                            </p>
-                            <p>
-                                <span class="sale-price"><del>Giá so sánh</del></span>
-
-                            </p>
-                            <p>
-					<span class="star-light"> <i class="fas fa-star"></i> <i
-                            class="fas fa-star"></i> <i class="fas fa-star"></i> <span
-                            class="star-dark"> <i class="fas fa-star"></i> <i
-                            class="fas fa-star"></i>
-					</span>
-					</span>
-
-
-
-                            </p>
-                        </div>
-                    </a>
-
-                </div>
-            </div>
-
-            <div class="col-3">
-                <div class="card" style="max-width: 15rem;">
-                    <a href="https://mil.ufl.edu/3744/docs/lcdmanual/characterset.html"
-                       class="card-link"> <img
-                            src="${pageContext.request.contextPath}/static/image/91201c275b863a12466c964436a945a6.png"
-                            class="card-img-top" alt="Ảnh sản phẩm ">
-
-                        <div class="card-body">
-                            <p class="card-title">Nhãn sản phẩm</p>
-                            <p class="card-text">
-                                <b>giá chính thức</b> <span class="sale-tag"><small>
-							phần trăm sale</small></span>
-                            </p>
-                            <p>
-                                <span class="sale-price"><del>Giá so sánh</del></span>
-
-                            </p>
-                            <p>
-					<span class="star-light"> <i class="fas fa-star"></i> <i
-                            class="fas fa-star"></i> <i class="fas fa-star"></i> <span
-                            class="star-dark"> <i class="fas fa-star"></i> <i
-                            class="fas fa-star"></i>
-					</span>
-					</span>
-
-
-
-                            </p>
-                        </div>
-                    </a>
-
-                </div>
-            </div>
-
-            <div class="col-3">
-                <div class="card" style="max-width: 15rem;">
-                    <a href="https://mil.ufl.edu/3744/docs/lcdmanual/characterset.html"
-                       class="card-link"> <img
-                            src="${pageContext.request.contextPath}/static/image/91201c275b863a12466c964436a945a6.png"
-                            class="card-img-top" alt="Ảnh sản phẩm ">
-
-                        <div class="card-body">
-                            <p class="card-title">Nhãn sản phẩm</p>
-                            <p class="card-text">
-                                <b>giá chính thức</b> <span class="sale-tag"><small>
-							phần trăm sale</small></span>
-                            </p>
-                            <p>
-                                <span class="sale-price"><del>Giá so sánh</del></span>
-
-                            </p>
-                            <p>
-					<span class="star-light"> <i class="fas fa-star"></i> <i
-                            class="fas fa-star"></i> <i class="fas fa-star"></i> <span
-                            class="star-dark"> <i class="fas fa-star"></i> <i
-                            class="fas fa-star"></i>
-					</span>
-					</span>
-
-
-
-                            </p>
-                        </div>
-                    </a>
-
-                </div>
-            </div>
-
-            <div class="col-3">
-                <div class="card" style="max-width: 15rem;">
-                    <a href="https://mil.ufl.edu/3744/docs/lcdmanual/characterset.html"
-                       class="card-link"> <img
-                            src="${pageContext.request.contextPath}/static/image/91201c275b863a12466c964436a945a6.png"
-                            class="card-img-top" alt="Ảnh sản phẩm ">
-
-                        <div class="card-body">
-                            <p class="card-title">Nhãn sản phẩm</p>
-                            <p class="card-text">
-                                <b>giá chính thức</b> <span class="sale-tag"><small>
-							phần trăm sale</small></span>
-                            </p>
-                            <p>
-                                <span class="sale-price"><del>Giá so sánh</del></span>
-
-                            </p>
-                            <p>
-					<span class="star-light"> <i class="fas fa-star"></i> <i
-                            class="fas fa-star"></i> <i class="fas fa-star"></i> <span
-                            class="star-dark"> <i class="fas fa-star"></i> <i
-                            class="fas fa-star"></i>
-					</span>
-					</span>
-
-
-
-                            </p>
-                        </div>
-                    </a>
-
-                </div>
-            </div>
-
         </div>
     </div>
+</div>
 
-    <jsp:include page="commons/footer.jsp"></jsp:include>
+<jsp:include page="commons/footer.jsp"></jsp:include>
 </body>
 </html>

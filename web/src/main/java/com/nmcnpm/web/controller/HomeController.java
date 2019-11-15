@@ -17,7 +17,7 @@ import java.util.List;
  * @created on 11/6/19
  */
 
-@WebServlet("/home")
+//@WebServlet("/home")
 public class HomeController extends HttpServlet {
 
     public HomeController() {
@@ -27,17 +27,20 @@ public class HomeController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        ProductDAO productDAO = new ProductDAO();
-        List<Product> products = productDAO.findAll();
-
-        req.setAttribute("products", products);
-
-        RequestDispatcher rd = req.getRequestDispatcher("/templates/home.jsp");
+//        ProductDAO productDAO = new ProductDAO();
+//        List<Product> products = productDAO.findAll();
+//
+//        req.setAttribute("products", products);
+//
+//        RequestDispatcher rd = req.getRequestDispatcher("/templates/home.jsp");
+//        rd.forward(req, resp);
+        //req.setAttribute("path_img","${pageContext.request.contextPath}/static/image/91201c275b863a12466c964436a945a6.png");
+        RequestDispatcher rd = req.getRequestDispatcher("home");
         rd.forward(req, resp);
     }
 
-    @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        super.doPost(req, resp);
-    }
+//    @Override
+//    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+//        super.doPost(req, resp);
+//    }
 }

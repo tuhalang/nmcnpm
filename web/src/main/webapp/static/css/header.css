@@ -4,8 +4,7 @@ header {
 }
 
 .navbar{
-	width: 1240px!important;
-	height: 50px!important;
+	width: 100vw !important;
 	margin-right: auto;
 	margin-left: auto;
 	color: #fff!important;

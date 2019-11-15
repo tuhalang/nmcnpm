@@ -42,5 +42,20 @@
         <error-code>401</error-code>
         <location>/templates/accessdenied.jsp</location>
     </error-page>
-
+<!--    <servlet>-->
+<!--        <servlet-name>index</servlet-name>-->
+<!--        <servlet-class>com.nmcnpm.web.controller.HomeController</servlet-class>-->
+<!--    </servlet>-->
+<!--    <servlet-mapping>-->
+<!--        <servlet-name>index</servlet-name>-->
+<!--        <url-pattern>/</url-pattern>-->
+<!--    </servlet-mapping>-->
+<!--    <servlet>-->
+<!--        <servlet-name>jsp_file</servlet-name>-->
+<!--        <jsp-file>/templates/home.jsp</jsp-file>-->
+<!--    </servlet>-->
+<!--    <servlet-mapping>-->
+<!--        <servlet-name>jsp_file</servlet-name>-->
+<!--        <url-pattern>/home</url-pattern>-->
+<!--    </servlet-mapping>-->
 </web-app>
