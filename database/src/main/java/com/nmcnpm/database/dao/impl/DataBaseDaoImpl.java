@@ -4,7 +4,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-
+import java.util.ResourceBundle;
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
@@ -14,13 +14,15 @@ import com.nmcnpm.database.dao.IBaseDao;
 import com.nmcnpm.database.mapper.IRowMapper;
 
 public class DataBaseDaoImpl<T> implements IBaseDao<T> {
-	
+	ResourceBundle resourceBundle = ResourceBundle.getBundle("application");
 	public Connection getConnection() {
 		Connection conn = null;
 		try {
-			Class.forName("com.mysql.jdbc.Driver");
+			Class.forName(resourceBundle.getString("driver.name"));
 			conn = DriverManager.getConnection(
-					"jdbc:mysql://localhost:3306/tiki","root","1999");
+					resourceBundle.getString("nmcnpm.mysql.url"),
+					resourceBundle.getString("nmcnpm.mysql.user"),
+					resourceBundle.getString("nmcnpm.mysql.password"));
 			return conn;
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -132,7 +134,7 @@ public class DataBaseDaoImpl<T> implements IBaseDao<T> {
 	}
 
 	@Override
-	public void update(String sql, Object... parameters) throws Exception {
+	public void update(String sql, Object... parameters){
 		Connection conn = null;
 		PreparedStatement preparedStatement = null;
 		try {
@@ -266,6 +268,10 @@ public class DataBaseDaoImpl<T> implements IBaseDao<T> {
 					statement.setTimestamp(index, (Timestamp) parameter);
 				} else if (parameter instanceof Date) {
 					statement.setTimestamp(index, new Timestamp(((Date) parameter).getTime()));
+				} else if (parameter instanceof Boolean) {
+					statement.setBoolean(index, ((Boolean) parameter));
+				}else if (parameter instanceof Enum) {
+					statement.setString(index, (parameter.toString()));
 				}else {
 					throw new Exception(parameter.getClass().getName() + " has not supported yet!");
 				}

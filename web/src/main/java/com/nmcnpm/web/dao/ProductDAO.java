@@ -10,13 +10,13 @@ import java.util.List;
 
 public class ProductDAO extends DataBaseDaoImpl {
     public void insert(Product product) {
-        String sql = "insert into product(product_id, name, price, description, category_id, image, thumb_image," +
-                " description_detail, product_detail_id, created_at, last_modified_at) value(?,?,?,?,?,?,?,?,?,CURRENT_TIMESTAMP(),CURRENT_TIMESTAMP())";
-        insert(sql, product.getProductID(), product.getName(), product.getPrice(), product.getDescription(), product.getCategoryID(),
+        String sql = "insert into product(name, price, description, category_id, image, thumb_image," +
+                " description_detail, product_detail_id, created_at, last_modified_at) value(?,?,?,?,?,?,?,?,CURRENT_TIMESTAMP(),CURRENT_TIMESTAMP())";
+        insert(sql, product.getName(), product.getPrice(), product.getDescription(), product.getCategoryID(),
                 product.getImage(), product.getThumbImage(), product.getDescriptionDetail(), product.getProductDetailID());
     }
 
-    public void update(Product product) throws Exception {
+    public void update(Product product) {
         String sql = "update product set name=?,price =?, description=?, category_id=?, image=?, thumb_image=?," +
                 " description_detail=?, product_detail_id=?, last_modified_at=CURRENT_TIMESTAMP() where product_id=?";
         update(sql, product.getName(), product.getPrice(), product.getDescription(), product.getCategoryID(),
@@ -25,7 +25,7 @@ public class ProductDAO extends DataBaseDaoImpl {
     }
 
     public void delete(Product product) {
-        String sql = "delete from product where product_id=?";
+        String sql = "delete from product where product_id=? limit 1";
         delete(sql, product.getProductID());
     }
 
@@ -35,7 +35,7 @@ public class ProductDAO extends DataBaseDaoImpl {
         return products;
     }
 
-    public Product findByOrderId(long id) {
+    public Product findById(long id) {
         String sql = "select * from product where product_id=?";
         List<Product> products = query(sql,new ProductMapper(), id);
         if(products.isEmpty())

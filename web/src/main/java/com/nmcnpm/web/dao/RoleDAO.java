@@ -10,17 +10,17 @@ import java.util.List;
 
 public class RoleDAO extends DataBaseDaoImpl {
     public void insert(Role role) {
-        String sql = "insert into role(role_id, role_name, created_at, last_modified_at) value(?,?,CURRENT_TIMESTAMP(),CURRENT_TIMESTAMP())";
-        insert(sql, role.getRoleID(), role.getRoleName());
+        String sql = "insert into role( role_name, created_at, last_modified_at) value(?,CURRENT_TIMESTAMP(),CURRENT_TIMESTAMP())";
+        insert(sql, role.getRoleName());
     }
 
-    public void update(Role role) throws Exception {
-        String sql = "update role set role_name , last_modified_at=CURRENT_TIMESTAMP() where role_id=?";
+    public void update(Role role) {
+        String sql = "update role set role_name=? , last_modified_at=CURRENT_TIMESTAMP() where role_id=?";
         update(sql, role.getRoleName(), role.getRoleID());
     }
 
     public void delete(Role role) {
-        String sql = "delete from role where role_id=?";
+        String sql = "delete from role where role_id=? limit 1";
         delete(sql, role.getRoleID());
     }
 

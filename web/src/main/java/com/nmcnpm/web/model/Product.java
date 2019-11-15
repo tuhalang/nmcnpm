@@ -42,5 +42,15 @@ public class Product extends BaseModel{
 		this.productDetailID = productDetailID;
 	}
 
-	public Product(){}
+	public Product(){
+		this.productID = 1L;
+		this.name = "";
+		this.price = 0;
+		this.description = "";
+		this.categoryID = 1L;
+		this.image = "";
+		this.thumbImage = "";
+		this.descriptionDetail = "";
+		this.productDetailID = 1L;
+	}
 }

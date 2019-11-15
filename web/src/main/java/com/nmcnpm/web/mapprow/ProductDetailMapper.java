@@ -11,7 +11,7 @@ public class ProductDetailMapper implements IRowMapper<ProductDetail>{
 	public ProductDetail mapRow(ResultSet result) {
 		try {
 			ProductDetail productDetail = new ProductDetail();
-			productDetail.setProductDetailID(result.getLong("product_id"));
+			productDetail.setProductDetailID(result.getLong("product_detail_id"));
 			productDetail.setInformation(result.getString("information"));
 			productDetail.setImage1(result.getString("image1"));
 			productDetail.setImage2(result.getString("image2"));

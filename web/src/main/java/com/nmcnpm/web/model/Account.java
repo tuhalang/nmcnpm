@@ -36,5 +36,9 @@ public class Account extends BaseModel{
     }
 
     public Account() {
+        this.accountID = 1L;
+        this.username = "username";
+        this.password = "password";
+        this.status = false;
     }
 }

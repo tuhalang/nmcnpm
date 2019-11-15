@@ -9,18 +9,18 @@ import java.util.List;
 
 public class CustomerOrderDAO extends DataBaseDaoImpl {
     public void insert(CustomerOrder customerOrder) {
-        String sql = "insert into customer_order(order_id, amount, confirm_number, created_at, last_modified_at) value(?,?,?,CURRENT_TIMESTAMP(),CURRENT_TIMESTAMP())";
-        insert(sql, customerOrder.getOrderID(), customerOrder.getAmount(), customerOrder.getConfirmNumber());
+        String sql = "insert into customer_order( amount, confirm_number, created_at, last_modified_at) value(?,?,CURRENT_TIMESTAMP(),CURRENT_TIMESTAMP())";
+        insert(sql, customerOrder.getAmount(), customerOrder.getConfirmNumber());
     }
 
-    public void update(CustomerOrder customerOrder) throws Exception {
+    public void update(CustomerOrder customerOrder) {
         String sql = "update customer_order set amount=?, confirm_number=?, last_modified_at=CURRENT_TIMESTAMP() where order_id=?";
         update(sql, customerOrder.getAmount(), customerOrder.getConfirmNumber(), customerOrder.getOrderID());
 
     }
 
     public void delete(CustomerOrder customerOrder) {
-        String sql = "delete from customer_order where order_id=?";
+        String sql = "delete from customer_order where order_id=? limit 1";
         delete(sql, customerOrder.getOrderID());
     }
 

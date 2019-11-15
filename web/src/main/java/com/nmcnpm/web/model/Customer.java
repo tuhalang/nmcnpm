@@ -35,5 +35,12 @@ public class Customer extends BaseModel{
 		this.cityRegion = cityRegion;
 	}
 
-	public Customer(){}
+	public Customer(){
+		this.customerID = 1L;
+		this.name = "";
+		this.email = "";
+		this.phone = 0L;
+		this.address = "";
+		this.cityRegion = "";
+	}
 }

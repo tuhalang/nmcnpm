@@ -9,18 +9,18 @@ import com.nmcnpm.web.model.Account;
 
 public class AccountDAO extends DataBaseDaoImpl{
 	public void insert(Account account) {
-		String sql = "insert into account(account_id, username, password, status, created_at, last_modified_at) value(?,?,?,?,CURRENT_TIMESTAMP(),CURRENT_TIMESTAMP())";
-		insert(sql, account.getAccountID(), account.getUsername(), account.getPassword(), account.getStatus());
+		String sql = "insert into account( username, password, status, created_at, last_modified_at) value(?,?,?,CURRENT_TIMESTAMP(),CURRENT_TIMESTAMP())";
+		insert(sql, account.getUsername(), account.getPassword(), account.getStatus());
 	}
 	
-	public void update(Account account) throws Exception {
+	public void update(Account account) {
 		String sql = "update account set username=?, password=?, status=?, last_modified_at=CURRENT_TIMESTAMP() where account_id=?";
 		update(sql, account.getUsername(), account.getPassword(), account.getStatus(), account.getAccountID());
 		
 	}
 	
 	public void delete(Account account) {
-		String sql = "delete from account where username=? and password=? and account_id=?";
+		String sql = "delete from account where username=? and password=? and account_id=? limit 1";
 		delete(sql, account.getUsername(), account.getPassword(), account.getAccountID());
 	}
 	

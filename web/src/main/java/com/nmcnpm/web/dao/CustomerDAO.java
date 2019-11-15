@@ -9,18 +9,18 @@ import java.util.List;
 
 public class CustomerDAO extends DataBaseDaoImpl {
     public void insert(Customer customer) {
-        String sql = "insert into customer(customer_id, address, city_region, email, name, phone, created_at, last_modified_at) value(?,?,?,?,?,?,CURRENT_TIMESTAMP(),CURRENT_TIMESTAMP())";
-        insert(sql, customer.getCustomerID(), customer.getAddress(), customer.getCityRegion(), customer.getEmail(), customer.getName(), customer.getPhone());
+        String sql = "insert into customer( address, city_region, email, name, phone, created_at, last_modified_at) value(?,?,?,?,?,CURRENT_TIMESTAMP(),CURRENT_TIMESTAMP())";
+        insert(sql, customer.getAddress(), customer.getCityRegion(), customer.getEmail(), customer.getName(), customer.getPhone());
     }
 
-    public void update(Customer customer) throws Exception {
+    public void update(Customer customer){
         String sql = "update customer set address=?, city_region=?, email=?, name=?, phone=?, last_modified_at=CURRENT_TIMESTAMP() where customer_id=?";
         update(sql, customer.getAddress(), customer.getCityRegion(), customer.getEmail(), customer.getName(), customer.getPhone(), customer.getCustomerID());
 
     }
 
     public void delete(Customer customer) {
-        String sql = "delete from customer where customer_id=?";
+        String sql = "delete from customer where customer_id=? limit 1";
         delete(sql, customer.getCustomerID());
     }
 

@@ -33,5 +33,11 @@ public class CustomerOrder extends BaseModel{
 		this.orderStatus = orderStatus;
 	}
 
-	public CustomerOrder(){}
+	public CustomerOrder(){
+		this.orderID = 1L;
+		this.amount = 0L;
+		this.confirmNumber = 0L;
+		this.paymentMethod = PaymentMethod.COD;
+		this.orderStatus = OrderStatus.RECEIVED;
+	}
 }

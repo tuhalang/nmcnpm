@@ -27,6 +27,8 @@ public class Category extends BaseModel{
 	}
 
 	public Category(){
-
+		this.categoryID = 1L;
+		this.name = "";
+		this.image = "";
 	}
 }

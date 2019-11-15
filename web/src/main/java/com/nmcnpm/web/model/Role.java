@@ -28,5 +28,8 @@ public class Role extends BaseModel{
         this.roleName = roleName;
     }
 
-    public Role(){}
+    public Role(){
+        this.roleID = 1L;
+        this.roleName = RoleName.ROLE_USER;
+    }
 }
