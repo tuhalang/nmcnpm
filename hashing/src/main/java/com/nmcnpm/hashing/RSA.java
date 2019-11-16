@@ -42,7 +42,6 @@ public class RSA implements IMethod {
 			fos.write(privateKey.getEncoded());
 			fos.close();
 
-			System.out.println("Generate key successfully");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -84,7 +83,6 @@ public class RSA implements IMethod {
 			c.init(Cipher.ENCRYPT_MODE, pubKey);
 			byte encryptOut[] = c.doFinal(plainText.getBytes());
 			strEncrypt = Base64.getEncoder().encodeToString(encryptOut);
-			System.out.println(strEncrypt);
 		} catch (Exception ex) {
 			ex.printStackTrace();
 			return "";
@@ -97,7 +95,7 @@ public class RSA implements IMethod {
 		String result = "";
 		try {
 			// Đọc file chứa private key
-			FileInputStream fis = new FileInputStream("C:/privateKey.rsa");
+			FileInputStream fis = new FileInputStream("privateKey.rsa");
 			byte[] b = new byte[fis.available()];
 			fis.read(b);
 			fis.close();

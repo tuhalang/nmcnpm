@@ -8,18 +8,6 @@ import org.junit.jupiter.api.Test;
 
 class PasswordHashingTest {
 
-	@BeforeEach
-	void setUp() throws Exception {
-	}
 
-	@AfterEach
-	void tearDown() throws Exception {
-	}
-	PasswordHashing ph=new PasswordHashing(MD5.getInstance());
-
-	@Test
-	void testEncrypt() {
-		assertEquals("fcea920f7412b5da7be0cf42b8c93759", ph.getMethod().encrypt("1234567"));
-	}
 
 }

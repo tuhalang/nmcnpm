@@ -1,4 +1,4 @@
-package com.nmcnpm.web.dao;
+package com.nmcnpm.web.dao.impl;
 
 import com.nmcnpm.database.dao.impl.DataBaseDaoImpl;
 import com.nmcnpm.web.mapprow.CustomerMapper;

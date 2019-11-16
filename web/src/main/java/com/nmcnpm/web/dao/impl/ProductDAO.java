@@ -1,4 +1,4 @@
-package com.nmcnpm.web.dao;
+package com.nmcnpm.web.dao.impl;
 
 import com.nmcnpm.database.dao.impl.DataBaseDaoImpl;
 import com.nmcnpm.web.mapprow.OrderedProductMapper;
@@ -12,8 +12,9 @@ public class ProductDAO extends DataBaseDaoImpl {
     public void insert(Product product) {
         String sql = "insert into product(name, price, description, category_id, image, thumb_image," +
                 " description_detail, product_detail_id, created_at, last_modified_at) value(?,?,?,?,?,?,?,?,CURRENT_TIMESTAMP(),CURRENT_TIMESTAMP())";
-        insert(sql, product.getName(), product.getPrice(), product.getDescription(), product.getCategoryID(),
+        Long id = insert(sql, product.getName(), product.getPrice(), product.getDescription(), product.getCategoryID(),
                 product.getImage(), product.getThumbImage(), product.getDescriptionDetail(), product.getProductDetailID());
+        product.setProductID(id);
     }
 
     public void update(Product product) {

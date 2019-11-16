@@ -1,6 +1,7 @@
-package com.nmcnpm.web.dao;
+package com.nmcnpm.web.dao.impl;
 
 import com.nmcnpm.database.dao.impl.DataBaseDaoImpl;
+import com.nmcnpm.web.dao.IRoleDAO;
 import com.nmcnpm.web.mapprow.ProductDetailMapper;
 import com.nmcnpm.web.mapprow.RoleMapper;
 import com.nmcnpm.web.model.ProductDetail;
@@ -8,10 +9,11 @@ import com.nmcnpm.web.model.Role;
 
 import java.util.List;
 
-public class RoleDAO extends DataBaseDaoImpl {
+public class RoleDAO extends DataBaseDaoImpl<Role> implements IRoleDAO {
     public void insert(Role role) {
         String sql = "insert into role( role_name, created_at, last_modified_at) value(?,CURRENT_TIMESTAMP(),CURRENT_TIMESTAMP())";
-        insert(sql, role.getRoleName());
+        Long id = insert(sql, role.getRoleName());
+        role.setRoleID(id);
     }
 
     public void update(Role role) {
@@ -45,6 +47,14 @@ public class RoleDAO extends DataBaseDaoImpl {
     public List<Role> findByRoleName(String name) {
         String sql = "select * from role where role_name like ?";
         List<Role> roles = query(sql, new RoleMapper(),"%"+name+"%");
+        return roles;
+    }
+
+    public List<Role> findRolesByAccountId(Long id){
+        String sql = "select role.role_id, role.role_name from role \n" +
+                "inner join account_role on role.role_id=account_role.role_id\n" +
+                "where account_role.account_id=?;";
+        List<Role> roles = query(sql, new RoleMapper(), id);
         return roles;
     }
 }

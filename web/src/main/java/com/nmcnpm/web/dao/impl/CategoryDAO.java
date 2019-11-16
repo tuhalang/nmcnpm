@@ -1,6 +1,7 @@
-package com.nmcnpm.web.dao;
+package com.nmcnpm.web.dao.impl;
 
 import com.nmcnpm.database.dao.impl.DataBaseDaoImpl;
+import com.nmcnpm.web.dao.ICategoryDAO;
 import com.nmcnpm.web.mapprow.AccountMapper;
 import com.nmcnpm.web.mapprow.CategoryMapper;
 import com.nmcnpm.web.model.Account;
@@ -8,10 +9,11 @@ import com.nmcnpm.web.model.Category;
 
 import java.util.List;
 
-public class CategoryDAO extends DataBaseDaoImpl {
+public class CategoryDAO extends DataBaseDaoImpl<Category> implements ICategoryDAO {
     public void insert(Category category) {
         String sql = "insert into category(image, name, created_at, last_modified_at) value(?,?,CURRENT_TIMESTAMP(),CURRENT_TIMESTAMP())";
-        insert(sql, category.getImage(), category.getName());
+        Long id = insert(sql, category.getImage(), category.getName());
+        category.setCategoryID(id);
     }
 
     public void update(Category category) {

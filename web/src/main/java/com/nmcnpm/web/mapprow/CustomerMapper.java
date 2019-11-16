@@ -15,7 +15,7 @@ public class CustomerMapper implements IRowMapper<Customer> {
 			customer.setCustomerID(result.getLong("customer_id"));
 			customer.setName(result.getString("name"));
 			customer.setEmail(result.getString("email"));
-			customer.setPhone(result.getLong("phone"));
+			customer.setPhone(result.getString("phone"));
 			customer.setAddress(result.getString("address"));
 			customer.setCityRegion(result.getString("city_region"));
 			customer.setCreatedAt(result.getDate("created_at"));

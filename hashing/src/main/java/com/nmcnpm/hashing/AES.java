@@ -10,7 +10,7 @@ public class AES implements IMethod {
 	private byte[] key;
 	private static AES aes=null;
 	private AES() {
-		key = new byte[20]; // length is bounded by 7
+		key = new byte[32]; // length is bounded by 7
 	    new Random().nextBytes(key);
 	}
 	public synchronized static AES getInstance() {

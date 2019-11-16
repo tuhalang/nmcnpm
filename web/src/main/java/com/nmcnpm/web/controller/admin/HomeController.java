@@ -1,6 +1,6 @@
 package com.nmcnpm.web.controller.admin;
 
-import com.nmcnpm.web.dao.ProductDAO;
+import com.nmcnpm.web.dao.impl.ProductDAO;
 import com.nmcnpm.web.model.Product;
 
 import javax.servlet.RequestDispatcher;

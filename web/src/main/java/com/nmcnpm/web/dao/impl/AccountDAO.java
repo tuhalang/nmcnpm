@@ -1,16 +1,19 @@
-package com.nmcnpm.web.dao;
+package com.nmcnpm.web.dao.impl;
 
 import java.util.List;
 
 import com.nmcnpm.database.dao.impl.DataBaseDaoImpl;
+import com.nmcnpm.web.dao.IAccountDAO;
 
 import com.nmcnpm.web.mapprow.AccountMapper;
 import com.nmcnpm.web.model.Account;
 
-public class AccountDAO extends DataBaseDaoImpl{
+public class AccountDAO extends DataBaseDaoImpl<Account> implements IAccountDAO{
+
 	public void insert(Account account) {
 		String sql = "insert into account( username, password, status, created_at, last_modified_at) value(?,?,?,CURRENT_TIMESTAMP(),CURRENT_TIMESTAMP())";
-		insert(sql, account.getUsername(), account.getPassword(), account.getStatus());
+		Long id = insert(sql, account.getUsername(), account.getPassword(), account.getStatus());
+		account.setAccountID(id);
 	}
 	
 	public void update(Account account) {
@@ -64,5 +67,11 @@ public class AccountDAO extends DataBaseDaoImpl{
 		String sql = "select * from account where username like ?";
 		List<Account> accounts = query(sql, new AccountMapper(), "%"+username+"%");
 		return accounts;
+	}
+
+	@Override
+	public void setRole(Long accountId, Long roleId) {
+		String sql = "insert into account_role(account_id, role_id) values (?,?)";
+		insert(sql,accountId,roleId);
 	}
 }

@@ -1,5 +1,10 @@
 package com.nmcnpm.web.security;
 
+import com.nmcnpm.web.model.Account;
+import com.nmcnpm.web.model.Role;
+import com.nmcnpm.web.model.RoleName;
+import com.nmcnpm.web.utils.SessionUtils;
+
 import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -16,16 +21,39 @@ public class AuthorizationFilter implements Filter {
         HttpServletRequest request = (HttpServletRequest) servletRequest;
         HttpServletResponse response = (HttpServletResponse) servletResponse;
 
+        request.setCharacterEncoding("UTF-8");
+
         String url = request.getRequestURI();
         String contextPath = request.getContextPath();
-        System.out.println(url);
 
         if(url.startsWith(contextPath+"/admin")){
-            filterChain.doFilter(servletRequest, servletResponse);
-            //response.sendRedirect(contextPath+"/templates/accessdenied.jsp");
+            Boolean isLogin = (Boolean) SessionUtils.getInstance().getValue(request, "IS_LOGIN");
+            Account account = (Account) SessionUtils.getInstance().getValue(request, "USER");
+
+            if(isLogin.equals(Boolean.TRUE) && account != null){
+                Role role = account.getRoles().get(0);
+                if(role.getRoleName().equals(RoleName.ROLE_ADMIN)){
+                    filterChain.doFilter(servletRequest, servletResponse);
+                }else {
+                    response.sendRedirect(contextPath+"/templates/accessdenied.jsp");
+                }
+            }else {
+                response.sendRedirect(contextPath+"/templates/accessdenied.jsp");
+            }
         } else if(url.startsWith(contextPath+"/user")){
-            filterChain.doFilter(servletRequest, servletResponse);
-            //response.sendRedirect(contextPath+"/templates/accessdenied.jsp");
+            Boolean isLogin = (Boolean) SessionUtils.getInstance().getValue(request, "IS_LOGIN");
+            Account account = (Account) SessionUtils.getInstance().getValue(request, "USER");
+
+            if(isLogin.equals(Boolean.TRUE) && account != null){
+                Role role = account.getRoles().get(0);
+                if(role.getRoleName().equals(RoleName.ROLE_USER) || role.getRoleName().equals(RoleName.ROLE_ADMIN)){
+                    filterChain.doFilter(servletRequest, servletResponse);
+                }else {
+                    response.sendRedirect(contextPath+"/templates/accessdenied.jsp");
+                }
+            }else {
+                response.sendRedirect(contextPath+"/templates/accessdenied.jsp");
+            }
         } else {
             filterChain.doFilter(servletRequest, servletResponse);
         }
