@@ -16,7 +16,7 @@
     </filter-mapping>
 
     <welcome-file-list>
-        <welcome-file>templates/commons/header.jsp</welcome-file>
+        <welcome-file>index.jsp</welcome-file>
     </welcome-file-list>
 
     <jsp-config>
@@ -45,11 +45,11 @@
 <!--    servlet mapping++++++++++++++++++++++++++++++++++++++++++++++ -->
     <servlet>
         <servlet-name>products</servlet-name>
-        <servlet-class>com.nmcnpm.web.controller.ProductController</servlet-class>
+        <servlet-class>com.nmcnpm.web.controller.admin.ProductController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>products</servlet-name>
-        <url-pattern>/admin/products</url-pattern>
+        <url-pattern>/admin/product</url-pattern>
     </servlet-mapping>
 <!--    end servlet mapping++++++++++++++++++++++-->
 <!--    jsp file-->

@@ -1,4 +1,4 @@
-package com.nmcnpm.web.controller;
+package com.nmcnpm.web.controller.admin;
 
 import com.nmcnpm.web.dao.ProductDAO;
 import com.nmcnpm.web.model.Product;

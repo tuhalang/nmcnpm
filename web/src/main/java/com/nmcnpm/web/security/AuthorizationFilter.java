@@ -21,11 +21,11 @@ public class AuthorizationFilter implements Filter {
         System.out.println(url);
 
         if(url.startsWith(contextPath+"/admin")){
-
+            filterChain.doFilter(servletRequest, servletResponse);
             //response.sendRedirect(contextPath+"/templates/accessdenied.jsp");
         } else if(url.startsWith(contextPath+"/user")){
-
-            response.sendRedirect(contextPath+"/templates/accessdenied.jsp");
+            filterChain.doFilter(servletRequest, servletResponse);
+            //response.sendRedirect(contextPath+"/templates/accessdenied.jsp");
         } else {
             filterChain.doFilter(servletRequest, servletResponse);
         }
