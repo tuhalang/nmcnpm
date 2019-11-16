@@ -5,10 +5,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
-import javax.naming.Context;
-import javax.naming.InitialContext;
-import javax.naming.NamingException;
-import javax.sql.DataSource;
 
 import com.nmcnpm.database.dao.IBaseDao;
 import com.nmcnpm.database.mapper.IRowMapper;
@@ -77,11 +73,7 @@ public class DataBaseDaoImpl<T> implements IBaseDao<T> {
 				}
 			}
 		}
-<<<<<<< HEAD
-		return results;
-=======
 		return null;
->>>>>>> databaseDao
 	}
 
 	@Override
@@ -111,8 +103,6 @@ public class DataBaseDaoImpl<T> implements IBaseDao<T> {
 					e1.printStackTrace();
 				}
 			}
-		} catch (Exception e) {
-			e.printStackTrace();
 		} finally {
 			if (conn != null) {
 				try {
@@ -159,11 +149,8 @@ public class DataBaseDaoImpl<T> implements IBaseDao<T> {
 					e1.printStackTrace();
 				}
 			}
-<<<<<<< HEAD
-		} catch (Exception e) {
-=======
+
 		}catch (Exception e) {
->>>>>>> databaseDao
 			e.printStackTrace();
 		} finally {
 			if (conn != null) {
@@ -204,12 +191,6 @@ public class DataBaseDaoImpl<T> implements IBaseDao<T> {
 					e1.printStackTrace();
 				}
 			}
-<<<<<<< HEAD
-		} catch (Exception e) {
-			e.printStackTrace();
-=======
-
->>>>>>> databaseDao
 		} finally {
 			if (conn != null) {
 				try {
@@ -246,12 +227,6 @@ public class DataBaseDaoImpl<T> implements IBaseDao<T> {
 		} catch (Exception e) {
 			e.printStackTrace();
 			return 0;
-<<<<<<< HEAD
-		} catch (Exception e) {
-			e.printStackTrace();
-=======
-
->>>>>>> databaseDao
 		} finally {
 			try {
 				if (connection != null) {
@@ -267,7 +242,6 @@ public class DataBaseDaoImpl<T> implements IBaseDao<T> {
 				e.printStackTrace();
 			}
 		}
-		return 0;
 	}
 	
 	private void setParameter(PreparedStatement statement, Object... parameters) throws Exception {
