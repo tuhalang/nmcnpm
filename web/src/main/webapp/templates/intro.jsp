@@ -10,19 +10,16 @@
 <html>
 <head>
     <title>Intro</title>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/static/bootstrap/css/card.css" type="text/css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/card.css" type="text/css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/static/bootstrap-4.0.0/css/bootstrap.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/static/fontawesome-5.11.2/css/all.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/footer.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/intro.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/header.css">
     <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="${pageContext.request.contextPath}/static/jquery-3.4.1/jquery-3.4.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-    <style>
-        <%@include file="/static/css/header.css"%>
-    </style>
+    <script src="${pageContext.request.contextPath}/static/bootstrap-4.0.0/js/bootstrap.min.js"></script>
     <style>
         #main {
             margin-bottom: 20px;

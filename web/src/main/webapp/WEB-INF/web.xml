@@ -6,17 +6,17 @@
     <display-name>Tiki</display-name>
 
 
-    <filter>
-        <filter-name>servletFilter</filter-name>
-        <filter-class>com.nmcnpm.web.security.AuthorizationFilter</filter-class>
-    </filter>
-    <filter-mapping>
-        <filter-name>servletFilter</filter-name>
-        <url-pattern>/*</url-pattern>
-    </filter-mapping>
+<!--    <filter>-->
+<!--        <filter-name>servletFilter</filter-name>-->
+<!--        <filter-class>com.nmcnpm.web.security.AuthorizationFilter</filter-class>-->
+<!--    </filter>-->
+<!--    <filter-mapping>-->
+<!--        <filter-name>servletFilter</filter-name>-->
+<!--        <url-pattern>/*</url-pattern>-->
+<!--    </filter-mapping>-->
 
     <welcome-file-list>
-        <welcome-file>templates/commons/header.jsp</welcome-file>
+        <welcome-file>/templates/home.jsp</welcome-file>
     </welcome-file-list>
 
     <jsp-config>
@@ -43,11 +43,11 @@
         <location>/templates/accessdenied.jsp</location>
     </error-page>
 <!--    <servlet>-->
-<!--        <servlet-name>index</servlet-name>-->
+<!--        <servlet-name>index_</servlet-name>-->
 <!--        <servlet-class>com.nmcnpm.web.controller.HomeController</servlet-class>-->
 <!--    </servlet>-->
 <!--    <servlet-mapping>-->
-<!--        <servlet-name>index</servlet-name>-->
+<!--        <servlet-name>index_</servlet-name>-->
 <!--        <url-pattern>/</url-pattern>-->
 <!--    </servlet-mapping>-->
 <!--    <servlet>-->

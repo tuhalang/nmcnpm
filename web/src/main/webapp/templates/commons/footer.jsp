@@ -12,10 +12,9 @@
     </div>
     <div class="col-lg-4">
         <div class="row h5 text-weight-bold">Về lazyyy</div>
-        <a class="row" href="#">Giới thiệu về lazyyy</a> <a class="row"
-                                                            href="#">Chính sách bảo mật thanh toán</a> <a class="row"
-                                                                                                          href="#">Chính
-        sách bảo mật tài khoản</a>
+        <a class="row" href="${pageContext.request.contextPath}/templates/intro.jsp">Giới thiệu về lazyyy</a>
+        <a class="row" href="#">Chính sách bảo mật thanh toán</a>
+        <a class="row" href="#">Chính sách bảo mật tài khoản</a>
     </div>
     <div class="col-lg-4 connect align-middle">
         <div class="row h5 text-weight-bold">Kết nối với chúng tôi</div>

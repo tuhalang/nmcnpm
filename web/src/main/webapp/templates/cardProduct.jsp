@@ -5,7 +5,8 @@
     <div class="card" style="max-width: 15rem;">
         <a href="https://mil.ufl.edu/3744/docs/lcdmanual/characterset.html"
            class="card-link"> <img
-                src="https://cdn.24h.com.vn/upload/4-2019/images/2019-10-11/dang-anh-selfie-tren-khan-dai-san-My-dinh-nu-CdV-nu-cdv-8-1570777932-487-width660height660.jpg"
+<%--                src="https://cdn.24h.com.vn/upload/4-2019/images/2019-10-11/dang-anh-selfie-tren-khan-dai-san-My-dinh-nu-CdV-nu-cdv-8-1570777932-487-width660height660.jpg"--%>
+                src="${pageContext.request.contextPath}/static/image/91201c275b863a12466c964436a945a6.png"
                 class="card-img-top" alt="image">
 
             <div class="card-body">

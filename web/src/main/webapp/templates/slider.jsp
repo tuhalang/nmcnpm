@@ -10,7 +10,7 @@
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath }/static/bootstrap/css/bootstrap.min.css">
 	<link rel="stylesheet"
-	href="${pageContext.request.contextPath }/static/bootstrap/css/slider.css">
+	href="${pageContext.request.contextPath }/static/css/slider.css">
 <script
 	src="${pageContext.request.contextPath}/static/bootstrap/jquery-3.3.1.slim.min.js">
  </script>
