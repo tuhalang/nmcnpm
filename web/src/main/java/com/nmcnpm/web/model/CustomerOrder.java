@@ -8,6 +8,7 @@ public class CustomerOrder extends BaseModel{
 	private Long orderID;
 	private Long amount;
 	private Long confirmNumber;
-
+	private PaymentMethod paymentMethod;
+	private OrderStatus orderStatus;
 
 }

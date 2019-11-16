@@ -168,6 +168,8 @@ CREATE TABLE `order_product` (
   `quantity` bigint(20) DEFAULT NULL,
   `order_id` bigint(20) NOT NULL,
   `product_id` bigint(20) NOT NULL,
+  `status` varchar(45) DEFAULT NULL,
+  `payment_method` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`product_id`,`order_id`),
   KEY `FKmx4qjk512djj1adniweb0599c` (`order_id`),
   CONSTRAINT `FKhnfgqyjx3i80qoymrssls3kno` FOREIGN KEY (`product_id`) REFERENCES `product` (`product_id`),
@@ -286,4 +288,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-11-09  9:04:22
+-- Dump completed on 2019-11-12 19:24:11
