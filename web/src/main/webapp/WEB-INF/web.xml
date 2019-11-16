@@ -5,6 +5,7 @@
          version="3.0">
     <display-name>Tiki</display-name>
 
+
     <filter>
         <filter-name>servletFilter</filter-name>
         <filter-class>com.nmcnpm.web.security.AuthorizationFilter</filter-class>
@@ -15,7 +16,7 @@
     </filter-mapping>
 
     <welcome-file-list>
-        <welcome-file>index.jsp</welcome-file>
+        <welcome-file>templates/commons/header.jsp</welcome-file>
     </welcome-file-list>
 
     <jsp-config>

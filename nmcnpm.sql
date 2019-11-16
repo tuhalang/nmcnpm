@@ -1,3 +1,5 @@
+
+
 -- MySQL dump 10.13  Distrib 5.7.27, for Linux (x86_64)
 --
 -- Host: localhost    Database: nmcnpm
@@ -23,7 +25,7 @@ DROP TABLE IF EXISTS `account`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `account` (
-  `account_id` bigint(20) NOT NULL,
+  `account_id` bigint(20) NOT NULL AUTO_INCREMENT,
   `created_at` timestamp NULL DEFAULT NULL,
   `last_modified_at` timestamp NULL DEFAULT NULL,
   `password` varchar(255) DEFAULT NULL,
@@ -76,7 +78,7 @@ DROP TABLE IF EXISTS `category`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `category` (
-  `category_id` bigint(20) NOT NULL,
+  `category_id` bigint(20) NOT NULL AUTO_INCREMENT,
   `created_at` timestamp NULL DEFAULT NULL,
   `last_modified_at` timestamp NULL DEFAULT NULL,
   `image` varchar(255) DEFAULT NULL,
@@ -102,7 +104,7 @@ DROP TABLE IF EXISTS `customer`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `customer` (
-  `customer_id` bigint(20) NOT NULL,
+  `customer_id` bigint(20) NOT NULL AUTO_INCREMENT,
   `created_at` timestamp NULL DEFAULT NULL,
   `last_modified_at` timestamp NULL DEFAULT NULL,
   `address` varchar(255) DEFAULT NULL,
@@ -134,12 +136,14 @@ DROP TABLE IF EXISTS `customer_order`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `customer_order` (
-  `order_id` bigint(20) NOT NULL,
+  `order_id` bigint(20) NOT NULL AUTO_INCREMENT,
   `created_at` timestamp NULL DEFAULT NULL,
   `last_modified_at` timestamp NULL DEFAULT NULL,
   `amount` int(11) DEFAULT NULL,
   `confirm_number` int(11) DEFAULT NULL,
   `customer_id` bigint(20) DEFAULT NULL,
+  `status` varchar(45) DEFAULT NULL,
+  `payment_method` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`order_id`),
   KEY `FKf9abd30bhiqvugayxlpq8ryq9` (`customer_id`),
   CONSTRAINT `FKf9abd30bhiqvugayxlpq8ryq9` FOREIGN KEY (`customer_id`) REFERENCES `customer` (`customer_id`)
@@ -168,8 +172,6 @@ CREATE TABLE `order_product` (
   `quantity` bigint(20) DEFAULT NULL,
   `order_id` bigint(20) NOT NULL,
   `product_id` bigint(20) NOT NULL,
-  `status` varchar(45) DEFAULT NULL,
-  `payment_method` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`product_id`,`order_id`),
   KEY `FKmx4qjk512djj1adniweb0599c` (`order_id`),
   CONSTRAINT `FKhnfgqyjx3i80qoymrssls3kno` FOREIGN KEY (`product_id`) REFERENCES `product` (`product_id`),
@@ -194,7 +196,7 @@ DROP TABLE IF EXISTS `product`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `product` (
-  `product_id` bigint(20) NOT NULL,
+  `product_id` bigint(20) NOT NULL AUTO_INCREMENT,
   `created_at` timestamp NULL DEFAULT NULL,
   `last_modified_at` timestamp NULL DEFAULT NULL,
   `description` text,
@@ -230,7 +232,7 @@ DROP TABLE IF EXISTS `product_detail`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `product_detail` (
-  `product_detail_id` bigint(20) NOT NULL,
+  `product_detail_id` bigint(20) NOT NULL AUTO_INCREMENT,
   `created_at` timestamp NULL DEFAULT NULL,
   `last_modified_at` timestamp NULL DEFAULT NULL,
   `accessories` text,
@@ -262,7 +264,7 @@ DROP TABLE IF EXISTS `role`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `role` (
-  `role_id` bigint(20) NOT NULL,
+  `role_id` bigint(20) NOT NULL AUTO_INCREMENT,
   `created_at` datetime DEFAULT NULL,
   `last_modified_at` datetime DEFAULT NULL,
   `role_name` varchar(255) DEFAULT NULL,
