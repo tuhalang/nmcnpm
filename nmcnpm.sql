@@ -1,8 +1,6 @@
-
-
 -- MySQL dump 10.13  Distrib 5.7.27, for Linux (x86_64)
 --
--- Host: localhost    Database: nmcnpm
+-- Host: localhost    Database: mncnpm
 -- ------------------------------------------------------
 -- Server version	5.7.27-0ubuntu0.18.04.1
 
@@ -32,7 +30,7 @@ CREATE TABLE `account` (
   `status` bit(1) DEFAULT NULL,
   `username` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`account_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -41,6 +39,7 @@ CREATE TABLE `account` (
 
 LOCK TABLES `account` WRITE;
 /*!40000 ALTER TABLE `account` DISABLE KEYS */;
+INSERT INTO `account` VALUES (1,'2019-11-16 06:49:45','2019-11-16 06:49:45','fedcc1e311982c59e21acd3b834e94c2ff9d66aef692f9b96322041a94ce31e8',_binary '','tuhalang'),(2,'2019-11-16 06:49:45','2019-11-16 06:49:45','fedcc1e311982c59e21acd3b834e94c2ff9d66aef692f9b96322041a94ce31e8',_binary '','admin');
 /*!40000 ALTER TABLE `account` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -67,6 +66,7 @@ CREATE TABLE `account_role` (
 
 LOCK TABLES `account_role` WRITE;
 /*!40000 ALTER TABLE `account_role` DISABLE KEYS */;
+INSERT INTO `account_role` VALUES (1,1),(2,2);
 /*!40000 ALTER TABLE `account_role` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -83,6 +83,7 @@ CREATE TABLE `category` (
   `last_modified_at` timestamp NULL DEFAULT NULL,
   `image` varchar(255) DEFAULT NULL,
   `name` varchar(255) DEFAULT NULL,
+  `quantity` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`category_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -116,7 +117,7 @@ CREATE TABLE `customer` (
   PRIMARY KEY (`customer_id`),
   KEY `FKn9x2k8svpxj3r328iy1rpur83` (`account_id`),
   CONSTRAINT `FKn9x2k8svpxj3r328iy1rpur83` FOREIGN KEY (`account_id`) REFERENCES `account` (`account_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -125,6 +126,7 @@ CREATE TABLE `customer` (
 
 LOCK TABLES `customer` WRITE;
 /*!40000 ALTER TABLE `customer` DISABLE KEYS */;
+INSERT INTO `customer` VALUES (1,'2019-11-16 06:49:45','2019-11-16 06:49:45','Ninh Bình',NULL,'vanhung101299@gmail.com','Pham Hung','0394675935',1);
 /*!40000 ALTER TABLE `customer` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -207,6 +209,8 @@ CREATE TABLE `product` (
   `thumb_image` varchar(255) DEFAULT NULL,
   `category_id` bigint(20) NOT NULL,
   `product_detail_id` bigint(20) NOT NULL,
+  `quantity` varchar(45) DEFAULT NULL,
+  `status` bit(1) DEFAULT NULL,
   PRIMARY KEY (`product_id`),
   KEY `FK1mtsbur82frn64de7balymq9s` (`category_id`),
   KEY `FKr9faxumx2401v6n081g0ju9u` (`product_detail_id`),
@@ -269,7 +273,7 @@ CREATE TABLE `role` (
   `last_modified_at` datetime DEFAULT NULL,
   `role_name` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`role_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -278,6 +282,7 @@ CREATE TABLE `role` (
 
 LOCK TABLES `role` WRITE;
 /*!40000 ALTER TABLE `role` DISABLE KEYS */;
+INSERT INTO `role` VALUES (1,'2019-11-16 13:49:45','2019-11-16 13:49:45','ROLE_USER'),(2,'2019-11-16 13:49:45','2019-11-16 13:49:45','ROLE_ADMIN');
 /*!40000 ALTER TABLE `role` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -290,4 +295,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-11-12 19:24:11
+-- Dump completed on 2019-11-16 18:00:07

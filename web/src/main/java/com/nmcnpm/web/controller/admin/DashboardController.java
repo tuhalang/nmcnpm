@@ -9,11 +9,18 @@ import java.io.IOException;
 
 @WebServlet(name = "DashboardController")
 public class DashboardController extends HttpServlet {
+
+    public DashboardController() {
+        super();
+    }
+
+    @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
     }
 
+    @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+        request.getRequestDispatcher("/WEB-INF/admin_theme/dashboard.jsp").forward(request, response);
     }
 }

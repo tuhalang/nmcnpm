@@ -46,4 +46,10 @@ public class CategoryDAO extends DataBaseDaoImpl<Category> implements ICategoryD
         List<Category> category = query(sql,new CategoryMapper(), start, limit);
         return category;
     }
+
+    @Override
+    public Long count() {
+        String sql = "select count(1) from category";
+        return count(sql);
+    }
 }

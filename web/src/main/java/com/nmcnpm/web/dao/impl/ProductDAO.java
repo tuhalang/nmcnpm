@@ -1,6 +1,7 @@
 package com.nmcnpm.web.dao.impl;
 
 import com.nmcnpm.database.dao.impl.DataBaseDaoImpl;
+import com.nmcnpm.web.dao.IProductDAO;
 import com.nmcnpm.web.mapprow.OrderedProductMapper;
 import com.nmcnpm.web.mapprow.ProductMapper;
 import com.nmcnpm.web.model.OrderedProduct;
@@ -8,7 +9,7 @@ import com.nmcnpm.web.model.Product;
 
 import java.util.List;
 
-public class ProductDAO extends DataBaseDaoImpl {
+public class ProductDAO extends DataBaseDaoImpl<Product> implements IProductDAO{
     public void insert(Product product) {
         String sql = "insert into product(name, price, description, category_id, image, thumb_image," +
                 " description_detail, product_detail_id, created_at, last_modified_at) value(?,?,?,?,?,?,?,?,CURRENT_TIMESTAMP(),CURRENT_TIMESTAMP())";
@@ -60,5 +61,10 @@ public class ProductDAO extends DataBaseDaoImpl {
         String sql = "select * from product where product_detail_id=?";
         List<Product> products = query(sql, new ProductMapper(),id);
         return products;
+    }
+    
+    public Long count(){
+        String sql = "select count(1) from product";
+        return count(sql);
     }
 }

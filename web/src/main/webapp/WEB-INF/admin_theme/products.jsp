@@ -114,11 +114,11 @@
         </div>
     </form>
     <ul class="nav menu">
-        <li><a href="dashboard.jsp"><em class="fas fa-tachometer-alt">&nbsp;</em> Dashboard</a></li>
+        <li><a href="${pageContext.request.contextPath}/admin"><em class="fas fa-tachometer-alt">&nbsp;</em> Dashboard</a></li>
         <li><a href="widgets.jsp"><em class="fa fa-calendar">&nbsp;</em> Widgets</a></li>
-        <li class="active"><a href="products.jsp"><em class="fab fa-product-hunt">&nbsp;</em> Product</a></li>
-        <li><a href="management.jsp"><em class="fa fa-toggle-off">&nbsp;</em> User Management</a></li>
-        <li><a href="category.jsp"><em class="fa fa-clone">&nbsp;</em> Category</a></li>
+        <li class="active"><a href="${pageContext.request.contextPath}/admin/product"><em class="fab fa-product-hunt">&nbsp;</em> Product</a></li>
+        <li><a href="${pageContext.request.contextPath}/admin/user"><em class="fa fa-toggle-off">&nbsp;</em> User Management</a></li>
+        <li><a href="${pageContext.request.contextPath}/admin/category"><em class="fa fa-clone">&nbsp;</em> Category</a></li>
         <li class="parent ">
             <a data-toggle="collapse" href="#sub-item-1">
                 <em class="fa fa-navicon">&nbsp;</em> Multilevel <span data-toggle="collapse" href="#sub-item-1" class="icon pull-right"><em class="fa fa-plus"></em></span>
@@ -172,16 +172,9 @@
         </ol>
     </div>
     <!--/.row-->
-
-    <div class="row">
-        <div class="col-lg-12">
-            <h1 class="page-header">Products</h1>
-        </div>
-    </div>
     <div class="row">
         <div class="col-lg-12">
             <div class="panel panel-default">
-                <div class="panel-heading">Search Products</div>
                 <div class="panel-body">
                     <form id="search-product">
                         <input placeholder="Search">
@@ -216,40 +209,21 @@
                 </div>
                 <div class="panel-body panel-group">
                     <div class="panel-group">
-                        <div class="panel panel-default">
-                            <div class="panel-body">
-                                <div class="group-product-name col-sm-9">
-                                    <i class="fas fa-angle-right"></i>Nhà giả kim
+                        <c:forEach items="${productDto.listOfdata}" var="product">
+                            <div class="panel panel-default">
+                                <div class="panel-body">
+                                    <div class="col-sm-1">${product.productID}</div>
+                                    <div class="group-product-name col-sm-2">${product.name}</div>
+                                    <div class="col-sm-2">${product.price}</div>
+                                    <div class="col-sm-2">${product.quantity}</div>
+                                    <div class="col-sm-2">${product.status}</div>
+                                    <div class="col-sm-1"><i class="fa fa-eye"></i></div>
+                                    <div class="col-sm-1"><i class="fas fa-tools"></i></div>
+                                    <div class="col-sm-1"><i class="fas fa-plus-circle"></i></div>
                                 </div>
-                                <div class="col-sm-1"><i class="fa fa-eye" data-toggle="modal" data-target="#review-product-one" type="button"></i></div>
-                                <div class="modal" id="review-product-one">
-                                    <div class="modal-dialog modal-dialog-centered" type="document">
-                                        <div class="modal-content">
-                                            <div class="modal-header">Settings</div>
-                                            <div class="modal-body" style="overflow-y:auto;">
-                                                <%@ include file="reviewProduct.jsp" %>
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button class="btn btn-primary">Save</button>
-                                                <button class="btn btn-primary" data-dismiss="modal">Close</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-sm-1"><i class="fas fa-tools"></i></div>
-                                <div class="col-sm-1"><i class="fas fa-minus-circle"></i></div>
                             </div>
-                        </div>
-                        <div class="panel panel-default">
-                            <div class="panel-body">
-                                <div class="group-product-name col-sm-9">
-                                    <i class="fas fa-angle-right"></i>Toán cao cấp
-                                </div>
-                                <div class="col-sm-1"><i class="fa fa-eye"></i></div>
-                                <div class="col-sm-1"><i class="fas fa-tools"></i></div>
-                                <div class="col-sm-1"><i class="fas fa-plus-circle"></i></div>
-                            </div>
-                        </div>
+                        </c:forEach>
+                        
                         <div class="panel panel-default">
                             <%--<%@ include file="pagination.jsp"%>--%>
                         </div>

@@ -115,11 +115,11 @@
         </div>
     </form>
     <ul class="nav menu">
-        <li><a href="dashboard.jsp"><em class="fas fa-tachometer-alt">&nbsp;</em> Dashboard</a></li>
+        <li><a href="${pageContext.request.contextPath}/admin"><em class="fas fa-tachometer-alt">&nbsp;</em> Dashboard</a></li>
         <li><a href="widgets.jsp"><em class="fa fa-calendar">&nbsp;</em> Widgets</a></li>
-        <li><a href="products.jsp"><em class="fab fa-product-hunt">&nbsp;</em> Products</a></li>
-        <li><a href="management.jsp"><em class="fa fa-toggle-off">&nbsp;</em> User Management</a></li>
-        <li class="active"><a href="category.jsp"><em class="fa fa-clone">&nbsp;</em> Category</a></li>
+        <li><a href="${pageContext.request.contextPath}/admin/product"><em class="fab fa-product-hunt">&nbsp;</em> Products</a></li>
+        <li><a href="${pageContext.request.contextPath}/admin/user"><em class="fa fa-toggle-off">&nbsp;</em> User Management</a></li>
+        <li class="active"><a href="${pageContext.request.contextPath}/admin/category"><em class="fa fa-clone">&nbsp;</em> Category</a></li>
         <li class="parent">
             <a data-toggle="collapse" href="#sub-item-1">
                 <em class="fa fa-navicon">&nbsp;</em> Multilevel <span data-toggle="collapse" href="#sub-item-1" class="icon pull-right"><em class="fa fa-plus"></em></span>
@@ -171,15 +171,10 @@
             <li class="active">Category</li>
         </ol>
     </div>
-    <div class="row">
-        <div class="col-lg-12">
-            <h1 class="page-header">Category</h1>
-        </div>
-    </div>
+    
     <div class="row">
         <div class="col-lg-12">
             <div class="panel panel-default">
-                <div class="panel-heading">Search Category</div>
                 <div class="panel-body">
                     <form id="search-product">
                         <input placeholder="Search">
@@ -199,7 +194,7 @@
                 <div class="modal" id="modal-add-group">
                     <div class="modal-dialog modal-dialog-centered" type="document">
                         <div class="modal-content">
-                            <div class="modal-header">Add Category</div>
+                            <div class="modal-header">Add</div>
                             <div class="modal-body">
                                 <form id="input-add-group">
                                     <input style="width: 100%;" placeholder="Name Group"/>
@@ -214,26 +209,18 @@
                 </div>
                 <div class="panel-body panel-group">
                     <div class="panel-group">
-                        <div class="panel panel-default">
-                            <div class="panel-body">
-                                <div class="group-product-name col-sm-8">
-                                    <i class="fas fa-angle-right"></i><i class="invisible fas fa-angle-down"></i> Book
+                        <c:forEach items="${categoryDto.listOfData}" var="category">
+                            <div class="panel panel-default">
+                                <div class="panel-body">
+                                    <div class="col-sm-2"> ${category.categoryID}</div>
+                                    <div class="group-product-name col-sm-4"> ${category.name}</div>
+                                    <div class="col-sm-2"> ${category.quantity}</div>
+                                    <div class="col-sm-1"><i class="fas fa-plus-circle"> Add</i></div>
+                                    <div class="col-sm-2"><i class="fas fa-tools">  Rename</i></div>
+                                    <div class="col-sm-1"><i class="fas fa-trash"> Delete</i></div>
                                 </div>
-                                <div class="col-sm-1"><i class="fas fa-plus-circle"> Add</i></div>
-                                <div class="col-sm-2"><i class="fas fa-tools">  Rename</i></div>
-                                <div class="col-sm-1"><i class="fas fa-trash"> Delete</i></div>
                             </div>
-                        </div>
-                        <div class="panel panel-default">
-                            <div class="panel-body">
-                                <div class="group-product-name col-sm-8">
-                                    <i class="fas fa-angle-right"></i><i class="invisible fas fa-angle-down"></i> Book
-                                </div>
-                                <div class="col-sm-1"><i class="fas fa-plus-circle"> Add</i></div>
-                                <div class="col-sm-2"><i class="fas fa-tools">  Rename</i></div>
-                                <div class="col-sm-1"><i class="fas fa-trash"> Delete</i></div>
-                            </div>
-                        </div>
+                        </c:forEach>
                     </div>
                 </div>
             </div>

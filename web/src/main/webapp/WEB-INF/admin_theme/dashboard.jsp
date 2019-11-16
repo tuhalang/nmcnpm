@@ -7,7 +7,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Kipalog - Dashboard</title>
+    <title>Lazy - Dashboard</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Kipalog User Management</title>
@@ -116,11 +116,11 @@
             </div>
         </form>
         <ul class="nav menu">
-            <li class="active"><a href="dashboard.jsp"><em class="fas fa-tachometer-alt">&nbsp;</em> Dashboard</a></li>
+            <li class="active"><a href="${pageContext.request.contextPath}/admin"><em class="fas fa-tachometer-alt">&nbsp;</em> Dashboard</a></li>
             <li><a href="widgets.jsp"><em class="fa fa-calendar">&nbsp;</em> Widgets</a></li>
-            <li><a href="products.jsp"><em class="fab fa-product-hunt">&nbsp;</em> Products</a></li>
-            <li><a href="management.jsp"><em class="fa fa-toggle-off">&nbsp;</em> User Management</a></li>
-            <li><a href="category.jsp"><em class="fa fa-clone">&nbsp;</em> Category</a></li>
+            <li><a href="${pageContext.request.contextPath}/admin/product"><em class="fab fa-product-hunt">&nbsp;</em> Products</a></li>
+            <li><a href="${pageContext.request.contextPath}/admin/user"><em class="fa fa-toggle-off">&nbsp;</em> User Management</a></li>
+            <li><a href="${pageContext.request.contextPath}/admin/category"><em class="fa fa-clone">&nbsp;</em> Category</a></li>
             <li class="parent">
                 <a data-toggle="collapse" href="#sub-item-1">
                     <em class="fa fa-navicon">&nbsp;</em> Multilevel <span data-toggle="collapse" href="#sub-item-1" class="icon pull-right"><em class="fa fa-plus"></em></span>

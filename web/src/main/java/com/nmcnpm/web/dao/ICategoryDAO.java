@@ -16,4 +16,5 @@ public interface ICategoryDAO extends IBaseDao<Category> {
     List<Category> findAll();
     Category findById(long id);
     List<Category> find(int start, int limit);
+    Long count();
 }

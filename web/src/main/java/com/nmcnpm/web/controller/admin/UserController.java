@@ -1,6 +1,4 @@
-package com.nmcnpm.web.controller;
-
-import com.nmcnpm.web.utils.SessionUtils;
+package com.nmcnpm.web.controller.admin;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -12,17 +10,15 @@ import java.io.IOException;
  * @author tuhalang
  * @created on 11/16/19
  */
-public class LogoutController extends HttpServlet {
+public class UserController extends HttpServlet {
 
-    public LogoutController() {
+    public UserController() {
         super();
     }
 
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        SessionUtils.getInstance().removeValue(req,"IS_LOGIN");
-        SessionUtils.getInstance().removeValue(req,"USER");
-        resp.sendRedirect("/templates/signin.jsp");
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.getRequestDispatcher("/WEB-INF/admin_theme/management.jsp").forward(request,response);
     }
 
     @Override

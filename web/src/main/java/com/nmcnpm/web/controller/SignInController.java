@@ -47,20 +47,25 @@ public class SignInController extends HttpServlet {
         Account account = accountService.authentication(username,password);
         if(account != null && account.getStatus()){
 
+            account.setPassword("");
             SessionUtils.getInstance().putValue(req, "USER", account);
             SessionUtils.getInstance().putValue(req, "IS_LOGIN", true);
 
             Role role = account.getRoles().get(0);
             if(role.getRoleName().equals(RoleName.ROLE_ADMIN)){
-                req.getRequestDispatcher("/admin.jsp").forward(req,resp);
+                req.getRequestDispatcher("/WEB-INF/admin_theme/dashboard.jsp").forward(req,resp);
+            } else if(role.getRoleName().equals(RoleName.ROLE_USER)){
+                req.getRequestDispatcher("/templates/home.jsp").forward(req,resp);
+            } else {
+                req.setAttribute("error", "oops!");
+                req.getRequestDispatcher("/templates/signin.jsp").forward(req,resp);
             }
-            if(role.getRoleName().equals(RoleName.ROLE_USER)){
-                req.getRequestDispatcher("/home.jsp").forward(req,resp);
-            }
+        } else {
+            req.setAttribute("error", "oops!");
+            req.getRequestDispatcher("/templates/signin.jsp").forward(req,resp);
         }
 
-        req.setAttribute("error", "oops!");
-        req.getRequestDispatcher("/templates/signin.jsp").forward(req,resp);
+
     }
 
 }

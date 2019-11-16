@@ -57,7 +57,9 @@ public class AccountService implements IAccountService {
     public Account authentication(String username, String password) {
         password = PasswordHashing.getInstance().getMethod().encrypt(password);
         Account account = accountDAO.findByUsernameAndPassword(username, password);
-        account.setRoles(roleDAO.findRolesByAccountId(account.getAccountID()));
+        if(account != null){
+            account.setRoles(roleDAO.findRolesByAccountId(account.getAccountID()));
+        }
         return  account;
     }
 
