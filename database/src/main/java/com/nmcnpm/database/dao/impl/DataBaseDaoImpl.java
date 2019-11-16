@@ -91,6 +91,7 @@ public class DataBaseDaoImpl<T> implements IBaseDao<T> {
 				}
 			}
 		}
+		return results;
 	}
 
 	@Override
@@ -120,6 +121,8 @@ public class DataBaseDaoImpl<T> implements IBaseDao<T> {
 					e1.printStackTrace();
 				}
 			}
+		} catch (Exception e) {
+			e.printStackTrace();
 		} finally {
 			if (conn != null) {
 				try {
@@ -166,6 +169,8 @@ public class DataBaseDaoImpl<T> implements IBaseDao<T> {
 					e1.printStackTrace();
 				}
 			}
+		} catch (Exception e) {
+			e.printStackTrace();
 		} finally {
 			if (conn != null) {
 				try {
@@ -205,6 +210,8 @@ public class DataBaseDaoImpl<T> implements IBaseDao<T> {
 					e1.printStackTrace();
 				}
 			}
+		} catch (Exception e) {
+			e.printStackTrace();
 		} finally {
 			if (conn != null) {
 				try {
@@ -241,6 +248,8 @@ public class DataBaseDaoImpl<T> implements IBaseDao<T> {
 		} catch (Exception e) {
 			e.printStackTrace();
 			return 0;
+		} catch (Exception e) {
+			e.printStackTrace();
 		} finally {
 			try {
 				if (connection != null) {
@@ -256,6 +265,7 @@ public class DataBaseDaoImpl<T> implements IBaseDao<T> {
 				e.printStackTrace();
 			}
 		}
+		return 0;
 	}
 	
 	private void setParameter(PreparedStatement statement, Object... parameters) throws Exception {

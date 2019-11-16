@@ -1,10 +1,13 @@
 package com.nmcnpm.web.model;
 
-import lombok.Data;
+import lombok.*;
 
 import java.util.Date;
 
 @Data
+@Getter
+@Setter
+@NoArgsConstructor
 public class Product extends BaseModel{
 	private Long productID;
 	private String name;
@@ -16,4 +19,15 @@ public class Product extends BaseModel{
 	private String thumbImage;
 	private String descriptionDetail;
 
+	public Product(Long productID, String name, float price, String description, Date lastUpdate, Long categoryID, String image, String thumbImage, String descriptionDetail) {
+		this.productID = productID;
+		this.name = name;
+		this.price = price;
+		this.description = description;
+		this.lastUpdate = lastUpdate;
+		this.categoryID = categoryID;
+		this.image = image;
+		this.thumbImage = thumbImage;
+		this.descriptionDetail = descriptionDetail;
+	}
 }

@@ -41,5 +41,24 @@
         <error-code>401</error-code>
         <location>/templates/accessdenied.jsp</location>
     </error-page>
-
+<!--    servlet mapping++++++++++++++++++++++++++++++++++++++++++++++ -->
+    <servlet>
+        <servlet-name>products</servlet-name>
+        <servlet-class>com.nmcnpm.web.controller.ProductController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>products</servlet-name>
+        <url-pattern>/admin/products</url-pattern>
+    </servlet-mapping>
+<!--    end servlet mapping++++++++++++++++++++++-->
+<!--    jsp file-->
+    <servlet>
+        <servlet-name>product_jsp</servlet-name>
+        <jsp-file>/templates/admin_theme/products.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>product_jsp</servlet-name>
+        <url-pattern>/product</url-pattern>
+    </servlet-mapping>
+<!--    end jsp file-->
 </web-app>
