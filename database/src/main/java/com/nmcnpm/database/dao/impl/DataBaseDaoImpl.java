@@ -1,15 +1,10 @@
 package com.nmcnpm.database.dao.impl;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.sql.Timestamp;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-
+import java.util.ResourceBundle;
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
@@ -19,30 +14,20 @@ import com.nmcnpm.database.dao.IBaseDao;
 import com.nmcnpm.database.mapper.IRowMapper;
 
 public class DataBaseDaoImpl<T> implements IBaseDao<T> {
-	
+	ResourceBundle resourceBundle = ResourceBundle.getBundle("application");
 	public Connection getConnection() {
-		Context ctx = null;
-		Connection conn = null;	
+		Connection conn = null;
 		try {
-			ctx = new InitialContext();
-			DataSource ds = (DataSource) ctx.lookup("java:/comp/env/jdbc/MyLocalDB");
-			conn = ds.getConnection();
-			
-            return conn;
-		} catch (NamingException e) {
-			e.printStackTrace();
+			Class.forName(resourceBundle.getString("driver.name"));
+			conn = DriverManager.getConnection(
+					resourceBundle.getString("nmcnpm.mysql.url"),
+					resourceBundle.getString("nmcnpm.mysql.user"),
+					resourceBundle.getString("nmcnpm.mysql.password"));
+			return conn;
 		} catch (SQLException e) {
 			e.printStackTrace();
-		} finally {
-			try {
-				conn.close();
-				ctx.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			} catch (NamingException e) {
-				e.printStackTrace();
-			}
-			
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
 		}
 		return null;
 	}
@@ -65,7 +50,10 @@ public class DataBaseDaoImpl<T> implements IBaseDao<T> {
 			}
 			return results;
 		} catch (SQLException e) {
+			e.printStackTrace();
 			return results;
+		}catch (Exception e) {
+			e.printStackTrace();
 		} finally {
 			if(rs != null) {
 				try {
@@ -89,6 +77,7 @@ public class DataBaseDaoImpl<T> implements IBaseDao<T> {
 				}
 			}
 		}
+		return null;
 	}
 
 	@Override
@@ -109,7 +98,7 @@ public class DataBaseDaoImpl<T> implements IBaseDao<T> {
 			}
 			conn.commit();
 			return id;
-		} catch (SQLException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 			if(conn != null) {
 				try {
@@ -145,7 +134,7 @@ public class DataBaseDaoImpl<T> implements IBaseDao<T> {
 	}
 
 	@Override
-	public void update(String sql, Object... parameters) {
+	public void update(String sql, Object... parameters){
 		Connection conn = null;
 		PreparedStatement preparedStatement = null;
 		try {
@@ -164,6 +153,8 @@ public class DataBaseDaoImpl<T> implements IBaseDao<T> {
 					e1.printStackTrace();
 				}
 			}
+		}catch (Exception e) {
+			e.printStackTrace();
 		} finally {
 			if (conn != null) {
 				try {
@@ -194,7 +185,7 @@ public class DataBaseDaoImpl<T> implements IBaseDao<T> {
 			setParameter(preparedStatement, parameters);
 			preparedStatement.executeUpdate();
 			conn.commit();
-		} catch (SQLException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 			if(conn != null) {
 				try {
@@ -203,6 +194,7 @@ public class DataBaseDaoImpl<T> implements IBaseDao<T> {
 					e1.printStackTrace();
 				}
 			}
+
 		} finally {
 			if (conn != null) {
 				try {
@@ -236,9 +228,10 @@ public class DataBaseDaoImpl<T> implements IBaseDao<T> {
 				count = resultSet.getInt(1);
 			}
 			return count;
-		} catch (SQLException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 			return 0;
+
 		} finally {
 			try {
 				if (connection != null) {
@@ -275,6 +268,10 @@ public class DataBaseDaoImpl<T> implements IBaseDao<T> {
 					statement.setTimestamp(index, (Timestamp) parameter);
 				} else if (parameter instanceof Date) {
 					statement.setTimestamp(index, new Timestamp(((Date) parameter).getTime()));
+				} else if (parameter instanceof Boolean) {
+					statement.setBoolean(index, ((Boolean) parameter));
+				}else if (parameter instanceof Enum) {
+					statement.setString(index, (parameter.toString()));
 				}else {
 					throw new Exception(parameter.getClass().getName() + " has not supported yet!");
 				}
