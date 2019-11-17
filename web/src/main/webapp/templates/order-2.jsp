@@ -1,9 +1,26 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%--
+  Created by IntelliJ IDEA.
+  User: tuhalang
+  Date: 11/14/19
+  Time: 8:25 AM
+  To change this template use File | Settings | File Templates.
+--%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<html>
+<head>
+    <title>Title</title>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/card.css" type="text/css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/static/bootstrap-4.0.0/css/bootstrap.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/static/fontawesome-5.11.2/css/all.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/order-2.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
 
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">;
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
-<link rel="stylesheet" type="text/css" href="../static/css/order-2.css">
+    <script src="${pageContext.request.contextPath}/static/jquery-3.4.1/jquery-3.4.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="${pageContext.request.contextPath}/static/bootstrap-4.0.0/js/bootstrap.min.js"></script>
+</head>
+<body>
 <div class="row shipping-header">
     <div class="cont">
         <ul class="progressbar">
@@ -107,7 +124,7 @@
                         <div class="form-group row">
                             <label for="full_name" class="col-lg-4 control-label visible-lg-block">Họ tên </label>
                             <div class="col-lg-8 input-wrap has-feedback has-error">
-                                <input type="text" name="full_name" class="form-control address" id="full_name" value="" placeholder="Nhập họ tên" data-bv-field="full_name"><i class="form-control-feedback bv-no-label fa fa-times" data-bv-icon-for="full_name" style=""></i>
+                                <input type="text" name="full_name" class="form-control address" id="full_name" value="" placeholder="Nhập họ tên" data-bv-field="full_name"><i class="form-control-feedback bv-no-label fa fa-times" data-bv-icon-for="full_name" style="display: none"></i>
                                 <small class="help-block" data-bv-validator="notEmpty" data-bv-for="full_name" data-bv-result="INVALID" style="display: none">Vui lòng nhập Họ tên</small></div>
                         </div>
 
@@ -253,3 +270,5 @@
     </div>
 </div>
 
+</body>
+</html>
