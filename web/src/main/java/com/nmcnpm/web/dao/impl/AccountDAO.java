@@ -1,26 +1,33 @@
-package com.nmcnpm.web.dao;
+package com.nmcnpm.web.dao.impl;
 
 import java.util.List;
 
 import com.nmcnpm.database.dao.impl.DataBaseDaoImpl;
+import com.nmcnpm.web.dao.IAccountDAO;
 
 import com.nmcnpm.web.mapprow.AccountMapper;
 import com.nmcnpm.web.model.Account;
 
-public class AccountDAO extends DataBaseDaoImpl{
+public class AccountDAO extends DataBaseDaoImpl<Account> implements IAccountDAO{
+
 	public void insert(Account account) {
-		String sql = "insert into account(account_id, username, password, status, created_at, last_modified_at) value(?,?,?,?,CURRENT_TIMESTAMP(),CURRENT_TIMESTAMP())";
-		insert(sql, account.getAccountID(), account.getUsername(), account.getPassword(), account.getStatus());
+		String sql = "insert into account( username, password, status, created_at, last_modified_at) value(?,?,?,CURRENT_TIMESTAMP(),CURRENT_TIMESTAMP())";
+		Long id = insert(sql, account.getUsername(), account.getPassword(), account.getStatus());
+		account.setAccountID(id);
 	}
 	
-	public void update(Account account) throws Exception {
+	public void update(Account account) {
 		String sql = "update account set username=?, password=?, status=?, last_modified_at=CURRENT_TIMESTAMP() where account_id=?";
-		update(sql, account.getUsername(), account.getPassword(), account.getStatus(), account.getAccountID());
-		
+		try {
+			update(sql, account.getUsername(), account.getPassword(), account.getStatus(), account.getAccountID());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
 	}
 	
 	public void delete(Account account) {
-		String sql = "delete from account where username=? and password=? and account_id=?";
+		String sql = "delete from account where username=? and password=? and account_id=? limit 1";
 		delete(sql, account.getUsername(), account.getPassword(), account.getAccountID());
 	}
 	
@@ -64,5 +71,11 @@ public class AccountDAO extends DataBaseDaoImpl{
 		String sql = "select * from account where username like ?";
 		List<Account> accounts = query(sql, new AccountMapper(), "%"+username+"%");
 		return accounts;
+	}
+
+	@Override
+	public void setRole(Long accountId, Long roleId) {
+		String sql = "insert into account_role(account_id, role_id) values (?,?)";
+		insert(sql,accountId,roleId);
 	}
 }

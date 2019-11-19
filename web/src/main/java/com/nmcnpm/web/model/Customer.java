@@ -12,11 +12,11 @@ public class Customer extends BaseModel{
 	private Long customerID;
 	private String name;
 	private String email;
-	private Long phone;
+	private String phone;
 	private String address;
 	private String cityRegion;
 
-	public Customer(Long customerID, String name, String email, Long phone, String address, String cityRegion) {
+	public Customer(Long customerID, String name, String email, String phone, String address, String cityRegion) {
 		this.customerID = customerID;
 		this.name = name;
 		this.email = email;
@@ -25,7 +25,7 @@ public class Customer extends BaseModel{
 		this.cityRegion = cityRegion;
 	}
 
-	public Customer(Date createdAt, Date lastModifiedAt, Long customerID, String name, String email, Long phone, String address, String cityRegion) {
+	public Customer(Date createdAt, Date lastModifiedAt, Long customerID, String name, String email, String phone, String address, String cityRegion) {
 		super(createdAt, lastModifiedAt);
 		this.customerID = customerID;
 		this.name = name;
@@ -35,5 +35,12 @@ public class Customer extends BaseModel{
 		this.cityRegion = cityRegion;
 	}
 
-	public Customer(){}
+	public Customer(){
+		this.customerID = 1L;
+		this.name = "";
+		this.email = "";
+		this.phone = "";
+		this.address = "";
+		this.cityRegion = "";
+	}
 }

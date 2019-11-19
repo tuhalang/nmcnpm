@@ -5,7 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 
-import java.util.Date;
+import java.util.*;
 
 /**
  * @author tuhalang
@@ -19,6 +19,8 @@ public class Account extends BaseModel{
     private String username;
     private String password;
     private Boolean status;
+
+    private List<Role> roles;
 
     public Account(Long accountID, String username, String password, Boolean status) {
         this.accountID = accountID;
@@ -36,5 +38,9 @@ public class Account extends BaseModel{
     }
 
     public Account() {
+        this.accountID = 1L;
+        this.username = "username";
+        this.password = "password";
+        this.status = false;
     }
 }

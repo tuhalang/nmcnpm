@@ -44,7 +44,17 @@ public class ProductDetail extends BaseModel{
 		this.guarantee = guarantee;
 	}
 
-	public ProductDetail(){}
+	public ProductDetail(){
+		this.productDetailID = 1L;
+		this.information = "";
+		this.image1 = "";
+		this.image2 = "";
+		this.image3 = "";
+		this.image4 = "";
+		this.image5 = "";
+		this.accessories = "";
+		this.guarantee = "";
+	}
 
 	public void setProductID(long product_id) {
 	}

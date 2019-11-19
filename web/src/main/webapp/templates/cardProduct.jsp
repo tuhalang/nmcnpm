@@ -10,9 +10,9 @@
                 class="card-img-top" alt="image">
 
             <div class="card-body">
-                <p class="card-title">Girl</p>
+                <p class="card-title">${productDto.listOfdata[status.index+1].name}</p>
                 <p class="card-text">
-                    <b>12 000 VND</b>
+                    <b>${productDto.listOfdata[status.index+1].price} VND</b>
                     <span class="sale-tag"><small>-12%</small></span>
                 </p>
                 <div class="row">

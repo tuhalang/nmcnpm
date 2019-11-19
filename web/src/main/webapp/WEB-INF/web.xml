@@ -4,21 +4,9 @@
          xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
          version="3.0">
     <display-name>Tiki</display-name>
-
-
-<!--    <filter>-->
-<!--        <filter-name>servletFilter</filter-name>-->
-<!--        <filter-class>com.nmcnpm.web.security.AuthorizationFilter</filter-class>-->
-<!--    </filter>-->
-<!--    <filter-mapping>-->
-<!--        <filter-name>servletFilter</filter-name>-->
-<!--        <url-pattern>/*</url-pattern>-->
-<!--    </filter-mapping>-->
-
-<!--    <welcome-file-list>-->
-<!--        <welcome-file>/templates/home.jsp</welcome-file>-->
-<!--    </welcome-file-list>-->
-
+    <welcome-file-list>
+        <welcome-file>index.jsp</welcome-file>
+    </welcome-file-list>
     <jsp-config>
         <jsp-property-group>
             <url-pattern>*.jsp</url-pattern>
@@ -48,14 +36,6 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>index_</servlet-name>
-        <url-pattern>/</url-pattern>
-    </servlet-mapping>
-    <servlet>
-        <servlet-name>jsp_file</servlet-name>
-        <jsp-file>/templates/home.jsp</jsp-file>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>jsp_file</servlet-name>
         <url-pattern>/home</url-pattern>
     </servlet-mapping>
 </web-app>

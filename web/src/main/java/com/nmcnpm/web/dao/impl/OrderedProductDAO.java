@@ -1,4 +1,4 @@
-package com.nmcnpm.web.dao;
+package com.nmcnpm.web.dao.impl;
 
 import com.nmcnpm.database.dao.impl.DataBaseDaoImpl;
 import com.nmcnpm.web.mapprow.CustomerMapper;
@@ -14,14 +14,18 @@ public class OrderedProductDAO extends DataBaseDaoImpl {
         insert(sql, orderedProduct.getOrderID(), orderedProduct.getProductID(), orderedProduct.getQuantity());
     }
 
-    public void update(OrderedProduct orderedProduct) throws Exception {
+    public void update(OrderedProduct orderedProduct) {
         String sql = "update order_product set product_id=?, quantity=?, last_modified_at=CURRENT_TIMESTAMP() where order_id=?";
-        update(sql, orderedProduct.getProductID(), orderedProduct.getQuantity(), orderedProduct.getOrderID());
+        try {
+            update(sql, orderedProduct.getProductID(), orderedProduct.getQuantity(), orderedProduct.getOrderID());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
     }
 
     public void delete(OrderedProduct orderedProduct) {
-        String sql = "delete from order_product where order_id=?";
+        String sql = "delete from order_product where order_id=? limit 1";
         delete(sql, orderedProduct.getOrderID());
     }
 
@@ -31,12 +35,10 @@ public class OrderedProductDAO extends DataBaseDaoImpl {
         return orderedProducts;
     }
 
-    public OrderedProduct findByOrderId(long id) {
+    public List<OrderedProduct> findByOrderId(long id) {
         String sql = "select * from order_product where order_id=?";
         List<OrderedProduct> orderedProducts = query(sql,new OrderedProductMapper(), id);
-        if(orderedProducts.isEmpty())
-            return null;
-        return orderedProducts.get(0);
+        return orderedProducts;
     }
 
     public List<OrderedProduct> find(int start, int limit) {

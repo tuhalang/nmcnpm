@@ -28,7 +28,7 @@ public class MD5 implements IMethod {
     }
 
     @Override
-    public String decrypt(String encodedText) {
-        return null;
-    }
+    public String decrypt(String encodedText) throws Exception {
+		throw new Exception("Method is not supported!");
+	}
 }

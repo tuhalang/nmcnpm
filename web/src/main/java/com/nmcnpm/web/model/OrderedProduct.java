@@ -26,5 +26,9 @@ public class OrderedProduct extends BaseModel{
 		this.quantity = quantity;
 	}
 
-	public OrderedProduct(){}
+	public OrderedProduct(){
+		this.orderID = 1L;
+		this.productID = 1L;
+		this.quantity = 1L;
+	}
 }
