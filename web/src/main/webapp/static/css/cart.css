@@ -1,0 +1,43 @@
+@charset "UTF-8";
+  .main{
+
+  min-height:900px;
+  margin: 0px 0px 0px 0px;
+  }
+  .content-left{
+  background-color: rgb(244,244,244);
+    min-height:900px;
+  }
+   .content-right{
+  
+    min-height:900px;
+  }
+  #item{
+  background-color: white;
+  }
+  #img-thumb{
+  padding: 5px 5px 5px 5px;
+  width:150px;
+  height:150px;
+  }
+  
+  .tinh-tien{
+  width:200px;
+  height:200px;
+  margin-left:5%;
+  position: fixed;
+  margin-top:5%;
+  background-color: white;
+  }
+  #linkSp{
+  color: black;
+  padding: 5px 5px 5px 5px;
+  }
+  #linkSp:hover {
+	text-decoration: none;
+}
+  .price{
+  padding: 5px 5px 5px 5px;
+  }
+  #quantity{
+  padding: 5px 5px 5px 5px;}

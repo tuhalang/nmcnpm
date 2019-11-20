@@ -1,0 +1,30 @@
+@charset "UTF-8";
+    body{
+        display:block;
+        overflow: scroll;
+    }
+    #left{
+        float:left;
+    min-width:20% auto;
+    background-color:rgb(244,244,244);
+      min-height:900px;
+    }
+    
+    #content{
+    float:left;
+   min-width:75%;
+
+   position:static;
+     display:inline-block;
+     padding-left:20px;
+margin-left:5px;
+margin-right:5px;
+    min-height:900px auto;
+      background-color:rgb(244,244,244);
+    }
+  .form-control{
+  width:60%;
+  }
+  .btn-info{
+  width:60%;
+  }
