@@ -27,9 +27,8 @@ public class SHA256 implements IMethod {
 	}
 
 	@Override
-	public String decrypt(String encodedText) {
-		// TODO Auto-generated method stub
-		return null;
+	public String decrypt(String encodedText) throws Exception{
+		throw new Exception("Method is not supported!");
 	}
 
 }
