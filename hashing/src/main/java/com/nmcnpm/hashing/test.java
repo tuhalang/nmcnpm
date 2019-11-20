@@ -6,7 +6,10 @@ package com.nmcnpm.hashing;
  */
 public class test {
     public static void main(String[] args) throws Exception {
-        System.out.println(DataHashing.getInstance().getMethod().encrypt("jdbc:mysql://localhost:3306/nmcnpm"));
-        System.out.println(DataHashing.getInstance().getMethod().decrypt("SDbD+JW025uUpbYFcDeZbwmxZvMSF7WgINzsSqwEzGnkswFuS8ZgekZn+Q0GIjQL"));
+        Hashing dataHashing = DataHashing.getInstance();
+        String encoded = DataHashing.getInstance().getMethod().encrypt("jdbc:mysql://localhost:3306/nmcnpm");
+        String decoded = DataHashing.getInstance().getMethod().decrypt(encoded);
+        System.out.println(encoded);
+        System.out.println(decoded);
     }
 }

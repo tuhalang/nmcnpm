@@ -64,7 +64,7 @@ public class SignUpController extends HttpServlet {
                     customerService.save(customer);
                     
                     // TODO 
-                    MailSMTP mail = new MailSMTP("", customer.getEmail(), "", "ĐĂNG KÍ TÀI KHOẢN THÀNH CÔNG !");
+                    MailSMTP mail = new MailSMTP("tuhalang007@gmail.com", customer.getEmail(), "Cảm ơn bạn đã đăng kí tài khoản!", "ĐĂNG KÍ TÀI KHOẢN THÀNH CÔNG !");
                     MailSystem.execute(mail);
 
                     req.setAttribute("info", "register is successful! please login!");

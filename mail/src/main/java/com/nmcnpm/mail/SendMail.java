@@ -31,7 +31,7 @@ public abstract class SendMail {
             session = Session.getInstance(prop, new Authenticator() {
                 @Override
                 protected PasswordAuthentication getPasswordAuthentication() {
-                    return new PasswordAuthentication(prop.getProperty("username"), prop.getProperty("password"));
+                    return new PasswordAuthentication(prop.getProperty("mail.username"), prop.getProperty("mail.password"));
                 }
             });
 
