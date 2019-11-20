@@ -1,39 +1,33 @@
 package com.nmcnpm.mail;
 
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
+import java.util.concurrent.ArrayBlockingQueue;
+import java.util.concurrent.BlockingQueue;
+import java.util.concurrent.ThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
 
-@ SuppressWarnings("unused")
 public class MailSystem {
-	private static ExecutorService executor=Executors.newSingleThreadExecutor();
-	public static void execute(ISendMail mail) {
-		Runnable task=new Runnable() {
-			
-			@Override
-			public void run() {
-				try{
-					mail.send();
-				}catch (RuntimeException e) {
-					// TODO: handle exception
-				}
-				
-			}
-		};
-		executor.execute(task);
-		
-	}
-public static void shutdown() {
-	executor.shutdown();
+    
+    private static final BlockingQueue<Runnable> blockingQueue = new ArrayBlockingQueue<>(50);
+    private static final ThreadPoolExecutor executor = new ThreadPoolExecutor(20, 40, 60000, TimeUnit.MILLISECONDS, blockingQueue);
+    
+    public static void execute(ISendMail mail) {
+        Runnable task=new Runnable() {
+
+            @Override
+            public void run() {
+                try{
+                    mail.send();
+                }catch (RuntimeException e) {
+                    e.printStackTrace();
+                }
+            }
+        };
+        executor.execute(task);
+    }
+    
+    public static void shutdown() {
+        executor.shutdown();
+    }
 }
-	public static void main(String[] args) {
-		String email="huydong.hoanam@gmail.com";
-		String content="Hbbbub";
-		String subject="ub";
-		for(int i=0;i<20;i++){
-		MailSMTP mail= new MailSMTP(email, email, content, subject);
-		MailSystem.execute(mail);
-		}
-	}
-	}
 
 
