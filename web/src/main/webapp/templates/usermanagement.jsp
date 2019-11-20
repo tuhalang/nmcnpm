@@ -34,7 +34,7 @@
 
 	<div class="breadcrumb-wrap">
 		<div class="container">
-			<div class="row">
+			<div class="row w-100">
 				<div class="col-md-12">
 					<ol class="breadcrumb">
 						<li><a href="/">Trang chủ</a></li>
@@ -46,7 +46,7 @@
 		</div>
 	</div>
 <div class="container">
-<div class="row">
+<div class="row w-100">
 
 		<div id="left">
 			<div class="menu dropdown">
