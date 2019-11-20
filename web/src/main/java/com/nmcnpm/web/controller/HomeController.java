@@ -18,14 +18,14 @@ public class HomeController extends HttpServlet {
     private int categoryId;
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        int page=1,recordsPerPage=12;
-        if (request.getParameter("page")!=null) {
-            page = Integer.parseInt(request.getParameter("page"));
-        }
-        if (request.getParameter("categoryId")!=null)
-            categoryId=Integer.parseInt(request.getParameter("categoryId"));
-        ProductDto productDto=productService.findByCategoryID(categoryId,page,recordsPerPage);
-        request.setAttribute("productDto", productDto);
+//        int page=1,recordsPerPage=12;
+//        if (request.getParameter("page")!=null) {
+//            page = Integer.parseInt(request.getParameter("page"));
+//        }
+//        if (request.getParameter("categoryId")!=null)
+//            categoryId=Integer.parseInt(request.getParameter("categoryId"));
+//        ProductDto productDto=productService.findByCategoryID(categoryId,page,recordsPerPage);
+//        request.setAttribute("productDto", productDto);
         request.getRequestDispatcher("/templates/home.jsp").forward(request,response);
     }
 }

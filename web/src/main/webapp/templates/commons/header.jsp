@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <header>
     <nav class="navbar navbar-expand-sm navbar-dark position-relative row">
@@ -20,11 +21,11 @@
                         class="fas fa-bell fa-2x float-left mr-md-2 mt-md-1"></i>Thông báo<br>của tôi</a>
             </li>
             <li class="nav-item col-sm-3 px-0">
-                <a class="nav-link px-0 font-weight-bold" href="#"><i
+                <a class="nav-link px-0 font-weight-bold" href="<c:url value="/templates/usermanagement.jsp"/>"><i
                         class="fas fa-user fa-2x float-left mr-md-2 mt-md-1"></i>Đăng nhập<br>tài khoản</a>
             </li>
             <li class="nav-item col-sm-4 px-0 item-cart">
-                <a class="nav-link px-0 font-weight-bold" href="#"><i
+                <a class="nav-link px-0 font-weight-bold" href="<c:url value="/templates/cart.jsp"/>"><i
                         class="fas fa-shopping-cart fa-2x float-left mr-md-2 mt-md-1"></i>Giỏ hàng</a>
             </li>
         </ul>
