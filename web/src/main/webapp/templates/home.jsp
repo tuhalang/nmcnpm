@@ -54,7 +54,7 @@
             </div>
         </div>
     </div>
-    <div class=" w-100">
+    <div class="row w-100">
 <%--        <ul class="pagination mx-auto justify-content-center">--%>
 <%--            <li class="page-item">--%>
 <%--                <a class="page-link" href="home?page=${currentPage-1}" aria-label="Previous">--%>

@@ -60,7 +60,7 @@ public class ProductDAO extends DataBaseDaoImpl<Product> implements IProductDAO{
         List<Product> products = query(sql, new ProductMapper(),id);
         return products;
     }
-    public List<Product> findByCategoryID(int id,int offset,int elePerPage) {
+    public List<Product> findByCategory(int id,int offset,int elePerPage) {
         String sql = "select * from product where category_id=? limit ?,?";
         List<Product> products = query(sql, new ProductMapper(),id,offset,elePerPage);
         return products;

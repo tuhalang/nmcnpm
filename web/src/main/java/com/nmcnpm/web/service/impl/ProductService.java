@@ -19,7 +19,7 @@ import javax.inject.Inject;
 public class ProductService implements IProductService{
     
     @Inject
-    private IProductDAO productDAO;
+    IProductDAO productDAO;
 
     @Override
     public ProductDto find(int currentPage, int elePerPage) {
@@ -35,7 +35,7 @@ public class ProductService implements IProductService{
         ProductDto productDto = new ProductDto();
         productDto.setCurrentPage(currentPage);
         productDto.setElePerPage(elePerPage);
-        productDto.setListOfdata(productDAO.findByCategoryID(id,currentPage-1, elePerPage));
+        productDto.setListOfdata(productDAO.findByCategory(id,currentPage-1, elePerPage));
         productDto.setTotalPages(productDAO.count()/elePerPage+1);
         return productDto;
     }
