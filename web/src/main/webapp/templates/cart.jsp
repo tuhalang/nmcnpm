@@ -30,7 +30,7 @@
 <div class="row w-100">
 <div class="col-sm-9 content-left">
 <div class="container" id="item">
-                    <div class="row" >
+                    <div class="row w-100" >
                         <div class="col-sm-2" id="img-thumb"><img style="width:100px;height:100px;" alt="" src="${pageContext.request.contextPath }/static/image/t%E1%BA%A3i%20xu%E1%BB%91ng%20(1).jpeg"></div>
 
                         <div class="col-sm-3" >
