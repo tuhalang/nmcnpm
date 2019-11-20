@@ -1,5 +1,7 @@
 package com.nmcnpm.web.controller;
 
+import com.nmcnpm.mail.MailSMTP;
+import com.nmcnpm.mail.MailSystem;
 import com.nmcnpm.web.model.Account;
 import com.nmcnpm.web.model.Customer;
 import com.nmcnpm.web.service.IAccountService;
@@ -60,6 +62,10 @@ public class SignUpController extends HttpServlet {
                 if (customerService.valid(customer) && !customerService.isExist(customer)) {
                     accountService.save(account);
                     customerService.save(customer);
+                    
+                    // TODO 
+                    MailSMTP mail = new MailSMTP("", customer.getEmail(), "", "ĐĂNG KÍ TÀI KHOẢN THÀNH CÔNG !");
+                    MailSystem.execute(mail);
 
                     req.setAttribute("info", "register is successful! please login!");
                     req.getRequestDispatcher("/templates/signin.jsp").forward(req,resp);

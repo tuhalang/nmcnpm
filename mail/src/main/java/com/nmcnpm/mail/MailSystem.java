@@ -10,7 +10,7 @@ public class MailSystem {
     private static final BlockingQueue<Runnable> blockingQueue = new ArrayBlockingQueue<>(50);
     private static final ThreadPoolExecutor executor = new ThreadPoolExecutor(20, 40, 60000, TimeUnit.MILLISECONDS, blockingQueue);
     
-    public static void execute(ISendMail mail) {
+    public static void execute(SendMail mail) {
         Runnable task=new Runnable() {
 
             @Override
