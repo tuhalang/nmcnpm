@@ -25,7 +25,7 @@ public class CategoryService implements ICategoryService{
         categoryDto.setCurrentPage(currentPage);
         categoryDto.setElePerPage(elePerPage);
         categoryDto.setTotalPages(categoryDAO.count()/elePerPage+1);
-        categoryDto.setListOfdata(categoryDAO.find(currentPage-1, elePerPage));
+        categoryDto.setListOfData(categoryDAO.find(currentPage-1, elePerPage));
         return categoryDto;
     }
     

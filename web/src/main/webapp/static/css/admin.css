@@ -1699,3 +1699,12 @@ span.input-icon {
     height:4em;
     resize:none;
 }
+
+.btn-custom{
+    cursor: pointer;
+}
+
+.modal-backdrop{
+    background-color: rgba(0,0,0,0.7) !important;
+}
+

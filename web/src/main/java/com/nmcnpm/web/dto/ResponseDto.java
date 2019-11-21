@@ -8,6 +8,6 @@ public abstract class ResponseDto<T> {
     private Long totalPages;
     private int currentPage=1;
     private int elePerPage=12;
-    private List<T> listOfdata;
+    private List<T> listOfData;
     private T singleData;
 }

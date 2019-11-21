@@ -189,7 +189,7 @@
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <div class="col-sm-9">Products</div>
-                    <div class="col-sm-3"><i class="fas fa-plus" type="button" data-toggle="modal" data-target="#modal-add-group"></i> Add Product</div>
+                    <div class="col-sm-3 btn-custom"><i class="fas fa-plus" type="button" data-toggle="modal" data-target="#modal-add-group"></i> Add</div>
                 </div>
                 <div class="modal" id="modal-add-group">
                     <div class="modal-dialog modal-dialog-centered modal-lg" type="document">
@@ -209,7 +209,7 @@
                 </div>
                 <div class="panel-body panel-group">
                     <div class="panel-group">
-                        <c:forEach items="${productDto.listOfdata}" var="product">
+                        <c:forEach items="${productDto.listOfData}" var="product">
                             <div class="panel panel-default">
                                 <div class="panel-body">
                                     <div class="col-sm-1">${product.productID}</div>
