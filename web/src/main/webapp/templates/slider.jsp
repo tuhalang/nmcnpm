@@ -51,7 +51,7 @@
 							<a
 								href="https://tiki.vn/chuong-trinh/sieu-sale-cong-nghe?src=home_v4_main_banner.s2.b42962"><img
 								class="d-block w-100"
-								src="${pageContext.request.contextPath}/static/image/91201c275b863a12466c964436a945a6.png"
+								src="${pageContext.request.contextPath}/static/image/smartphone.png"
 								alt="Second slide"></a>
 						</div>
 
@@ -66,7 +66,7 @@
 							<a
 								href="https://tiki.vn/chuong-trinh/sieu-sale-cong-nghe?src=home_v4_main_banner.s2.b42962"><img
 								class="d-block w-100"
-								src="${pageContext.request.contextPath}/static/image/91201c275b863a12466c964436a945a6.png"
+								src="${pageContext.request.contextPath}/static/image/smartphone.png"
 								alt="Second slide"></a>
 						</div>
 						<a class="carousel-control-prev" href="#carouselExampleIndicators"

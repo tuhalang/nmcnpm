@@ -6,6 +6,10 @@
   Time: 8:25 AM
   To change this template use File | Settings | File Templates.
 --%>
+<%@ page import="com.nmcnpm.web.model.Product" %>
+<%@ page import="java.util.Arrays" %>
+<%@ page import="java.util.List" %>
+<%@ page import="org.apache.taglibs.standard.Version" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -32,57 +36,72 @@
 
 <div class="container" id="main">
     <div class="row w-100">
-        <%--        <c:forEach items="${products}" var="product">--%>
-
-        <%--        </c:forEach>--%>
         <div class="col-lg-12">
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <div class="col-lg-12"><h2>Category</h2></div>
                 </div>
                 <div class="panel-body">
-                    <c:forEach items="productDto.listOfdata" var="product" varStatus="status">
-                        <div class="panel panel-default row w-100 mb-2">
-                            <div class="panel-body row w-100">
-                                <c:forEach begin="1" end="4" var="j">
-                                    <jsp:include page="cardProduct.jsp"></jsp:include>
-                                </c:forEach>
+                    <div class="row w-100">
+                        <c:forEach items="${productDto.listOfdata}" var="product" varStatus="status">
+                            <div class="col-sm-3">
+                                <div class="card" style="max-width: 15rem;">
+                                    <a href="#" class="card-link"> <img
+                                            src="${pageContext.request.contextPath}${product.image}"
+                                            class="card-img-top" alt="image" style="height: 158px;">
+                                        <div class="card-body">
+                                            <p class="card-title">${product.name}</p>
+                                            <p class="card-text">
+                                                <b>${product.price} VND</b>
+                                                <span class="sale-tag"><small>-12%</small></span>
+                                            </p>
+                                            <div class="row">
+                                                <span class="fa fa-star checked"></span>
+                                                <span class="fa fa-star checked"></span>
+                                                <span class="fa fa-star checked"></span>
+                                                <span class="fa fa-star"></span>
+                                                <span class="fa fa-star"></span>
+                                            </div>
+                                        </div>
+                                    </a>
+
+                                </div>
                             </div>
-                        </div>
-                    </c:forEach>
+                        </c:forEach>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
     <div class="row w-100">
-<%--        <ul class="pagination mx-auto justify-content-center">--%>
-<%--            <li class="page-item">--%>
-<%--                <a class="page-link" href="home?page=${currentPage-1}" aria-label="Previous">--%>
-<%--                    <span aria-hidden="true">«</span>--%>
-<%--                    <span class="sr-only">&laquo;</span>--%>
-<%--                </a>--%>
-<%--            </li>--%>
-<%--&lt;%&ndash;            <li class="page-item active"><a class="page-link" href="#">1</a></li>&ndash;%&gt;--%>
-<%--&lt;%&ndash;            <li class="page-item"><a class="page-link" href="#">2</a></li>&ndash;%&gt;--%>
-<%--&lt;%&ndash;            <li class="page-item"><a class="page-link" href="#">3</a></li>&ndash;%&gt;--%>
-<%--&lt;%&ndash;            <li class="page-item"><a class="page-link" href="#">4</a></li>&ndash;%&gt;--%>
-<%--            <c:forEach begin="1" end="${productDto.totalPages}" var="i">--%>
-<%--                <c:choose>--%>
-<%--                    <c:when test="${productDto.currentPage eq i}">--%>
-<%--                        <li class="page-item active"><a class="page-link" href="#">${i}</a></li>--%>
-<%--                    </c:when>--%>
-<%--                    <c:otherwise>--%>
-<%--                        <li class="page-item"><a class="page-link" href="home?page=${i}">${i}</a></li>--%>
-<%--                    </c:otherwise>--%>
-<%--                </c:choose>--%>
-<%--            </c:forEach>--%>
-<%--            <li class="page-item">--%>
-<%--                <a class="page-link" href="home?page=${productDto.currentPage+1}" aria-label="Next">--%>
-<%--                    <span aria-hidden="true">»</span>--%>
-<%--                    <span class="sr-only">&raquo;</span>--%>
-<%--                </a>--%>
-<%--            </li>--%>
-<%--        </ul>--%>
+        <ul class="pagination mx-auto justify-content-center">
+            <li class="page-item">
+                <a class="page-link" href="home?page=${currentPage-1}" aria-label="Previous">
+                    <span aria-hidden="true">«</span>
+                    <span class="sr-only">&laquo;</span>
+                </a>
+            </li>
+            <%--&lt;%&ndash;            <li class="page-item active"><a class="page-link" href="#">1</a></li>&ndash;%&gt;--%>
+            <%--&lt;%&ndash;            <li class="page-item"><a class="page-link" href="#">2</a></li>&ndash;%&gt;--%>
+            <%--&lt;%&ndash;            <li class="page-item"><a class="page-link" href="#">3</a></li>&ndash;%&gt;--%>
+            <%--&lt;%&ndash;            <li class="page-item"><a class="page-link" href="#">4</a></li>&ndash;%&gt;--%>
+            <c:forEach begin="1" end="${productDto.totalPages}" var="i">
+                <c:choose>
+                    <c:when test="${productDto.currentPage eq i}">
+                        <li class="page-item active"><a class="page-link" href="#">${i}</a></li>
+                    </c:when>
+                    <c:otherwise>
+                        <li class="page-item"><a class="page-link" href="home?page=${i}">${i}</a></li>
+                    </c:otherwise>
+                </c:choose>
+            </c:forEach>
+            <li class="page-item">
+                <a class="page-link" href="home?page=${productDto.currentPage+1}" aria-label="Next">
+                    <span aria-hidden="true">»</span>
+                    <span class="sr-only">&raquo;</span>
+                </a>
+            </li>
+        </ul>
     </div>
 </div>
 
