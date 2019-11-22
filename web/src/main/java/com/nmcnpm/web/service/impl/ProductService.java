@@ -39,5 +39,8 @@ public class ProductService implements IProductService{
         productDto.setTotalPages(productDAO.count()/elePerPage+1);
         return productDto;
     }
-    
+    @Override
+    public List<Product> findByKey(String key){
+        return productDAO.findByProductKey(key);
+    }
 }

@@ -32,10 +32,18 @@
     </error-page>
     <servlet>
         <servlet-name>index_</servlet-name>
-        <servlet-class>com.nmcnpm.web.controller.HomeController</servlet-class>
+        <servlet-class>com.nmcnpm.web.controller.web.HomeController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>index_</servlet-name>
         <url-pattern>/home</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>autocomplete_home</servlet-name>
+        <servlet-class>com.nmcnpm.web.controller.web.ResultSearch</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>autocomplete_home</servlet-name>
+        <url-pattern>/autocomplete_home</url-pattern>
     </servlet-mapping>
 </web-app>

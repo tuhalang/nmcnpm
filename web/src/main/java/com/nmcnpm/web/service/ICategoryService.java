@@ -6,6 +6,7 @@
 package com.nmcnpm.web.service;
 
 import com.nmcnpm.web.dto.CategoryDto;
+import com.nmcnpm.web.model.Category;
 
 /**
  *
@@ -13,4 +14,5 @@ import com.nmcnpm.web.dto.CategoryDto;
  */
 public interface ICategoryService {
     CategoryDto find(int currentPage, int elePerPage);
+    Category findById(long id);
 }

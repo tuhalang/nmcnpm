@@ -39,7 +39,7 @@
         <div class="col-lg-12">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <div class="col-lg-12"><h2>Category</h2></div>
+                    <div class="col-lg-12"><h2>${category.name}</h2></div>
                 </div>
                 <div class="panel-body">
                     <div class="row w-100">
@@ -47,7 +47,7 @@
                             <div class="col-sm-3">
                                 <div class="card" style="max-width: 15rem;">
                                     <a href="#" class="card-link"> <img
-                                            src="${pageContext.request.contextPath}${product.image}"
+                                            src="${product.image}"
                                             class="card-img-top" alt="image" style="height: 158px;">
                                         <div class="card-body">
                                             <p class="card-title">${product.name}</p>
@@ -73,7 +73,7 @@
             </div>
         </div>
     </div>
-    <div class="row w-100">
+    <div class="row w-100 mt-4">
         <ul class="pagination mx-auto justify-content-center">
             <li class="page-item">
                 <a class="page-link" href="home?page=${currentPage-1}" aria-label="Previous">

@@ -5,7 +5,10 @@
  */
 package com.nmcnpm.web.service;
 
+import com.nmcnpm.web.dto.CategoryDto;
 import com.nmcnpm.web.dto.ProductDto;
+import com.nmcnpm.web.model.Product;
+
 import java.util.List;
 
 /**
@@ -16,4 +19,5 @@ public interface IProductService {
     
     ProductDto find(int currentPage, int elePerPage);
     ProductDto findByCategoryID(int id,int currentPage,int elePerPage);
+    List<Product> findByKey(String key);
 }
