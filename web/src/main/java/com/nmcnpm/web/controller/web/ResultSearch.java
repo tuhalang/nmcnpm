@@ -24,7 +24,7 @@ public class ResultSearch extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String key="";
         if (request.getParameter("key")!=null) key=request.getParameter("key").toString();
-        List<Product> products=productService.findByKey("key");
+        List<Product> products=productService.findByKey(key);
         ObjectMapper mapper=new JsonMapper();
         String s=mapper.writeValueAsString(products);
         response.setContentType("text/plain");

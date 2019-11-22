@@ -48,9 +48,9 @@
                                 <div class="card" style="max-width: 15rem;">
                                     <a href="#" class="card-link"> <img
                                             src="${product.image}"
-                                            class="card-img-top" alt="image" style="height: 158px;">
+                                            class="card-img-top" alt="image" style="height:200px;width:fit-content;">
                                         <div class="card-body">
-                                            <p class="card-title">${product.name}</p>
+                                            <p class="card-title" style="font-size: 0.8em;line-height: 1.2;">${product.name}</p>
                                             <p class="card-text">
                                                 <b>${product.price} VND</b>
                                                 <span class="sale-tag"><small>-12%</small></span>
@@ -59,8 +59,8 @@
                                                 <span class="fa fa-star checked"></span>
                                                 <span class="fa fa-star checked"></span>
                                                 <span class="fa fa-star checked"></span>
-                                                <span class="fa fa-star"></span>
-                                                <span class="fa fa-star"></span>
+                                                <span class="far fa-star"></span>
+                                                <span class="far fa-star"></span>
                                             </div>
                                         </div>
                                     </a>
@@ -76,7 +76,7 @@
     <div class="row w-100 mt-4">
         <ul class="pagination mx-auto justify-content-center">
             <li class="page-item">
-                <a class="page-link" href="home?page=${currentPage-1}" aria-label="Previous">
+                <a class="page-link" href="home?page=1" aria-label="Previous">
                     <span aria-hidden="true">«</span>
                     <span class="sr-only">&laquo;</span>
                 </a>
@@ -96,7 +96,7 @@
                 </c:choose>
             </c:forEach>
             <li class="page-item">
-                <a class="page-link" href="home?page=${productDto.currentPage+1}" aria-label="Next">
+                <a class="page-link" href="home?page=${productDto.totalPages}" aria-label="Next">
                     <span aria-hidden="true">»</span>
                     <span class="sr-only">&raquo;</span>
                 </a>

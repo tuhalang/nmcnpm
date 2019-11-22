@@ -25,4 +25,5 @@ public interface IProductDAO extends IBaseDao<Product>{
     List<Product> findByProductDetailID(long id);
     List<Product> findByProductKey(String key);
     Long count();
+    Long countByCategoryId(long id);
 }

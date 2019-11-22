@@ -71,12 +71,16 @@ public class ProductDAO extends DataBaseDaoImpl<Product> implements IProductDAO{
         return products;
     }
     public List<Product> findByProductKey(String key) {
-        String sql = "select * from product where name like '%"+key+"%'";
+        String sql = "select * from product where name like '%"+key+"%' limit 10";
         List<Product> products = query(sql, new ProductMapper());
         return products;
     }
     public Long count(){
         String sql = "select count(1) from product";
         return count(sql);
+    }
+    public Long countByCategoryId(long id){
+        String sql = "select count(1) from product where category_id=?";
+        return count(sql,id);
     }
 }

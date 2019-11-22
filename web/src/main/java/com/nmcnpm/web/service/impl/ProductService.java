@@ -36,7 +36,7 @@ public class ProductService implements IProductService{
         productDto.setCurrentPage(currentPage);
         productDto.setElePerPage(elePerPage);
         productDto.setListOfdata(productDAO.findByCategory(id,currentPage-1, elePerPage));
-        productDto.setTotalPages(productDAO.count()/elePerPage+1);
+        productDto.setTotalPages(productDAO.countByCategoryId(id)/elePerPage+1);
         return productDto;
     }
     @Override
