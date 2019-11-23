@@ -1708,3 +1708,14 @@ span.input-icon {
     background-color: rgba(0,0,0,0.7) !important;
 }
 
+.input-text{
+    margin-top: 5px;
+}
+
+.btn-up-down{
+    display: block;
+    cursor: pointer;
+    margin: 15px;
+    font-size: 25px;
+    border: 1px solid #edeeed;
+}

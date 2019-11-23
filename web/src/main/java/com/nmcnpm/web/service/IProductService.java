@@ -6,7 +6,7 @@
 package com.nmcnpm.web.service;
 
 import com.nmcnpm.web.dto.ProductDto;
-import java.util.List;
+import com.nmcnpm.web.model.Product;
 
 /**
  *
@@ -15,4 +15,6 @@ import java.util.List;
 public interface IProductService {
     
     ProductDto find(int currentPage, int elePerPage);
+    boolean valid(Product product);
+    boolean save(Product product);
 }

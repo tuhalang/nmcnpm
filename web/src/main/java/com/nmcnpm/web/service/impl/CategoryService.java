@@ -7,7 +7,9 @@ package com.nmcnpm.web.service.impl;
 
 import com.nmcnpm.web.dao.ICategoryDAO;
 import com.nmcnpm.web.dto.CategoryDto;
+import com.nmcnpm.web.model.Category;
 import com.nmcnpm.web.service.ICategoryService;
+import java.util.List;
 import javax.inject.Inject;
 
 /**
@@ -27,6 +29,11 @@ public class CategoryService implements ICategoryService{
         categoryDto.setTotalPages(categoryDAO.count()/elePerPage+1);
         categoryDto.setListOfData(categoryDAO.find(currentPage-1, elePerPage));
         return categoryDto;
+    }
+
+    @Override
+    public List<Category> findAll() {
+        return categoryDAO.findAll();
     }
     
 }

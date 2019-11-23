@@ -6,6 +6,8 @@
 package com.nmcnpm.web.service;
 
 import com.nmcnpm.web.dto.CategoryDto;
+import com.nmcnpm.web.model.Category;
+import java.util.List;
 
 /**
  *
@@ -13,4 +15,5 @@ import com.nmcnpm.web.dto.CategoryDto;
  */
 public interface ICategoryService {
     CategoryDto find(int currentPage, int elePerPage);
+    List<Category> findAll();
 }

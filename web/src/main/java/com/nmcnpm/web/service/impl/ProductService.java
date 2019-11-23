@@ -9,7 +9,6 @@ import com.nmcnpm.web.dao.IProductDAO;
 import com.nmcnpm.web.dto.ProductDto;
 import com.nmcnpm.web.model.Product;
 import com.nmcnpm.web.service.IProductService;
-import java.util.List;
 import javax.inject.Inject;
 
 /**
@@ -29,6 +28,23 @@ public class ProductService implements IProductService{
         productDto.setListOfData(productDAO.find(currentPage-1, elePerPage));
         productDto.setTotalPages(productDAO.count()/elePerPage+1);
         return productDto;
+    }
+
+    @Override
+    public boolean valid(Product product) {
+        return true;
+    }
+
+    @Override
+    public boolean save(Product product) {
+        try{
+            productDAO.insert(product);
+            return true;
+        }catch(Exception e){
+            e.printStackTrace();
+            return false;
+        }
+        
     }
     
 }
