@@ -46,4 +46,12 @@
         <servlet-name>autocomplete_home</servlet-name>
         <url-pattern>/autocomplete_home</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>show_product</servlet-name>
+        <servlet-class>com.nmcnpm.web.controller.web.ShowResultSearch</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>show_product</servlet-name>
+        <url-pattern>/show_result</url-pattern>
+    </servlet-mapping>
 </web-app>

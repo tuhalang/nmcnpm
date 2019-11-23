@@ -40,7 +40,11 @@ public class ProductService implements IProductService{
         return productDto;
     }
     @Override
-    public List<Product> findByKey(String key){
-        return productDAO.findByProductKey(key);
+    public List<Product> findByKey(List<String> key,long amount){
+        return productDAO.findByProductKey(key,amount);
+    }
+    @Override
+    public Product findById(long id){
+        return productDAO.findById(id);
     }
 }

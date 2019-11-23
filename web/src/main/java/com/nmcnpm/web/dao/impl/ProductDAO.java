@@ -7,6 +7,7 @@ import com.nmcnpm.web.mapprow.ProductMapper;
 import com.nmcnpm.web.model.OrderedProduct;
 import com.nmcnpm.web.model.Product;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ProductDAO extends DataBaseDaoImpl<Product> implements IProductDAO{
@@ -70,9 +71,11 @@ public class ProductDAO extends DataBaseDaoImpl<Product> implements IProductDAO{
         List<Product> products = query(sql, new ProductMapper(),id);
         return products;
     }
-    public List<Product> findByProductKey(String key) {
-        String sql = "select * from product where name like '%"+key+"%' limit 10";
-        List<Product> products = query(sql, new ProductMapper());
+    public List<Product> findByProductKey(List<String> key,long amount) {
+        String parameters=String.join("|",key);
+        String sql = "select * from product where lower(name) regexp '"+parameters+"' limit ?";
+//        String sql = "SELECT * FROM nmcnpm.product where MATCH (name) AGAINST ('?' IN BOOLEAN MODE) limit 5";
+        List<Product> products = query(sql, new ProductMapper(),amount);
         return products;
     }
     public Long count(){

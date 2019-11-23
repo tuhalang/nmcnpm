@@ -28,7 +28,7 @@
             </li>
             <li class="nav-item col-sm-3 px-0">
                 <a class="nav-link px-0 font-weight-bold" href="<c:url value="/templates/usermanagement.jsp"/>"><i
-                        class="fas fa-user fa-2x float-left mr-md-2 mt-md-1"></i><span>Đăng nhập<br>tài khoản</span>Thui</a>
+                        class="fas fa-user fa-2x float-left mr-md-2 mt-md-1"></i><span>Đăng nhập<br>tài khoản</span></a>
             </li>
             <li class="nav-item col-sm-4 px-0 item-cart">
                 <a class="nav-link px-0 font-weight-bold" href="<c:url value="/templates/cart.jsp"/>"><i

@@ -19,5 +19,6 @@ public interface IProductService {
     
     ProductDto find(int currentPage, int elePerPage);
     ProductDto findByCategoryID(int id,int currentPage,int elePerPage);
-    List<Product> findByKey(String key);
+    List<Product> findByKey(List<String> key,long amount);
+    Product findById(long id);
 }
