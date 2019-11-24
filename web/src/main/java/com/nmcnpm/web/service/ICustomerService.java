@@ -10,4 +10,6 @@ public interface ICustomerService {
     boolean valid(Customer customer);
     boolean isExist(Customer customer);
     boolean save(Customer customer);
+    boolean update(Customer customer);
+    Customer findByID(Customer customer);
 }

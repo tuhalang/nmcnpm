@@ -140,8 +140,8 @@
 								<a href="" class="btn btn-default btn-custom1">Sửa</a>
 							</div>
 							<div class="information">
-								<h6>Nguyễn Thị Hiền</h6>
-								<p class="end">đội 5, thôn thuỵ ứng, Xã Hòa Bình, Huyện Thường Tín, Hà Nội<br>Việt Nam<br>Điện thoại: 0972169984</p>
+								<h6>${customer.name}</h6>
+								<p class="end">${customer.address}<br>Việt Nam<br>Điện thoại: ${customer.phone}4</p>
 							</div>
 						</div>
 					</div>

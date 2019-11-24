@@ -47,4 +47,25 @@ public class CustomerService implements ICustomerService {
             return false;
         }
     }
+
+    @Override
+    public boolean update(Customer customer) {
+        try{
+            customerDAO.update(customer);
+            return true;
+        }catch (Exception e){
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    @Override
+    public Customer findByID(Customer customer) {
+        try{
+            return customerDAO.findById(customer.getCustomerID());
+        }catch (Exception e){
+            e.printStackTrace();
+            return null;
+        }
+    }
 }

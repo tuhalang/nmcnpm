@@ -11,7 +11,7 @@
     <title>Title</title>
 </head>
 <body>
-<form id="form-address" method="post" action="confirm_address">
+<form id="form-address" method="post" action="${pageContext.request.contextPath}/confirm_address">
     <button type="submit" >Tiến hành đặt hàng</button>
 </form>
 </body>

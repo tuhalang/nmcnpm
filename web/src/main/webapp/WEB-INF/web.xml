@@ -62,4 +62,12 @@
         <servlet-name>confirm_address</servlet-name>
         <url-pattern>/confirm_address</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>update_address</servlet-name>
+        <servlet-class>com.nmcnpm.web.controller.web.UpdateAddressController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>update_address</servlet-name>
+        <url-pattern>/update_address</url-pattern>
+    </servlet-mapping>
 </web-app>
