@@ -62,10 +62,7 @@
 														<!-- Name, Estimate Time, Fee -->
 														<!-- // normal orders -->
 														<div class="shipping-method-option">
-															<div class="shipping-method-option__leadtime">
-																Giao vào Thứ tư, 20/11                            </div>
 															<div class="shipping-method-option__info">
-
 																<span class="shipping-method-option__info__free">
 																Miễn phí                                        </span>
 																<span class="shipping-method-option__info__name">
@@ -98,7 +95,6 @@
 												<div class="col-lg-11 col-md-11 col-sm-11 col-xs-12 pad-right-10">
 													<label for="cod" class="control-label is-large">
 														Thanh toán tiền mặt khi nhận hàng        </label>
-
 												</div>
 
 											</div>
@@ -120,7 +116,7 @@
 								</div>
 								<div class="form-group row end">
 									<div class="col-lg-6">
-										<button type="button" id="btn-placeorder" class="btn btn-block btn-default btn-checkout" admicro-data-event="100118" admicro-data-auto="1" admicro-data-order="false">ĐẶT MUA</button>
+										<button type="submit" id="btn-placeorder" class="btn btn-block btn-default btn-checkout" admicro-data-event="100118" admicro-data-auto="1" admicro-data-order="false">ĐẶT MUA</button>
 										<p class="note">(Xin vui lòng kiểm tra lại đơn hàng trước khi Đặt Mua)</p>
 									</div>
 								</div>
@@ -141,7 +137,7 @@
 							</div>
 							<div class="information">
 								<h6>${customer.name}</h6>
-								<p class="end">${customer.address}<br>Việt Nam<br>Điện thoại: ${customer.phone}4</p>
+								<p class="end">${customer.address}<br>Việt Nam<br>Điện thoại: ${customer.phone}</p>
 							</div>
 						</div>
 					</div>
@@ -151,26 +147,29 @@
 							<div class="panel-body">
 								<div class="order">
 									<span class="title">Đơn Hàng</span>
-									<span class="title"> (1 sản phẩm)</span>
+									<span class="title"> (${orderDtos.size()} sản phẩm)</span>
 
 									<a href="/checkout/cart/" class="btn btn-default btn-custom1">Sửa</a>
 								</div>
-								<div class="product">
-									<div class="item">
-										<p class="title">
-											<strong>1 x</strong><a href="" target="_blank">Chuột Chơi Game Không Dây Logitech G903 WIRELESS CHARGING 12000DPI LED 11 Phím - Hàng Chính Hãng</a>
-										</p>
+								<c:set var="amount" value="${0}" />
+								<c:forEach items="${orderDtos}" var="orderDto" varStatus="status">
+									<c:set var="amount" value="${amount + orderDto.product.price * orderDto.quantity}" />
+									<div class="product">
+										<div class="item">
+											<p class="title">
+												<strong>${orderDto.quantity} x</strong><a href="" target="_blank">${orderDto.product.name}</a>
+											</p>
 
 
-										<p class="price text-right">
-											<span>2.852.000đ </span>
-										</p>
+											<p class="price text-right">
+												<span>${orderDto.product.price * orderDto.quantity}đ </span>
+											</p>
+										</div>
 									</div>
-								</div>
-
+								</c:forEach>
 								<p class="list-info-price">
 									<b>Tạm tính</b>
-									<span>2.852.000đ</span>
+									<span>${amount}đ</span>
 								</p>
 								<p class="list-info-price">
 									<b>Phí vận chuyển</b>
@@ -179,7 +178,7 @@
 
 								<p class="total2">
 									Thành tiền:
-									<span>2.852.000đ </span>
+									<span>${amount}đ </span>
 								</p>
 								<p class="text-right">
 									<i>(Đã bao gồm VAT nếu có)</i>
