@@ -30,6 +30,7 @@
                 <a class="nav-link px-0 font-weight-bold" href="<c:url value="/templates/usermanagement.jsp"/>"><i
                         class="fas fa-user fa-2x float-left mr-md-2 mt-md-1"></i><span>Đăng nhập<br>tài khoản</span></a>
             </li>
+
             <li class="nav-item col-sm-4 px-0 item-cart">
                 <a class="nav-link px-0 font-weight-bold" href="<c:url value="/templates/cart.jsp"/>"><i
                         class="fas fa-shopping-cart fa-2x float-left mr-md-2 mt-md-1"></i>Giỏ hàng</a>
