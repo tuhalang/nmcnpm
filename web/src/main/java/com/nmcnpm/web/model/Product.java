@@ -10,7 +10,7 @@ import java.util.Date;
 public class Product extends BaseModel{
 	private Long productID;
 	private String name;
-	private float price;
+	private Long price;
 	private String description;
 	private Long categoryID;
 	private String image;
@@ -21,7 +21,7 @@ public class Product extends BaseModel{
         private boolean status;
 
 
-	public Product(Long productID, String name, float price, String description, Long categoryID, String image, String thumbImage, String descriptionDetail, Long productDetailID, Long quantity, boolean status) {
+	public Product(Long productID, String name, Long price, String description, Long categoryID, String image, String thumbImage, String descriptionDetail, Long productDetailID, Long quantity, boolean status) {
 		this.productID = productID;
 		this.name = name;
 		this.price = price;
@@ -36,7 +36,7 @@ public class Product extends BaseModel{
                 this.status = status;
 	}
 
-	public Product(Date createdAt, Date lastModifiedAt, Long productID, String name, float price, String description, Long categoryID, String image, String thumbImage, String descriptionDetail, Long productDetailID, Long quantity, boolean status) {
+	public Product(Date createdAt, Date lastModifiedAt, Long productID, String name, Long price, String description, Long categoryID, String image, String thumbImage, String descriptionDetail, Long productDetailID, Long quantity, boolean status) {
 		super(createdAt, lastModifiedAt);
 		this.productID = productID;
 		this.name = name;
@@ -54,7 +54,7 @@ public class Product extends BaseModel{
 	public Product(){
 		this.productID = 1L;
 		this.name = "";
-		this.price = 0;
+		this.price = 0L;
 		this.description = "";
 		this.categoryID = 1L;
 		this.image = "";

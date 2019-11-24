@@ -70,4 +70,12 @@
         <servlet-name>update_address</servlet-name>
         <url-pattern>/update_address</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>confirm_order</servlet-name>
+        <servlet-class>com.nmcnpm.web.controller.web.ConfirmOrderController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>confirm_order</servlet-name>
+        <url-pattern>/confirm_order</url-pattern>
+    </servlet-mapping>
 </web-app>

@@ -39,7 +39,7 @@
 				<div class="col-lg-8 has-padding">
 					<div class="panel panel-default payment">
 						<div class="panel-body">
-							<form class="form-hozirontal hide-block" role="form" id="form-payment" action="" method="post">
+							<form class="form-hozirontal hide-block" role="form" id="form-payment" action="${pageContext.request.contextPath}/confirm_order" method="post">
 								<h3 class="step-title">1. Chọn hình thức giao hàng</h3>
 								<div class="panel panel-default">
 									<div class="panel-body">

@@ -5,6 +5,7 @@ import com.nmcnpm.web.dto.OrderDto;
 import com.nmcnpm.web.dto.ProductDto;
 import com.nmcnpm.web.model.Customer;
 import com.nmcnpm.web.service.ICustomerService;
+import com.nmcnpm.web.service.IProductService;
 import com.nmcnpm.web.utils.SessionUtils;
 
 import javax.inject.Inject;
@@ -21,7 +22,7 @@ public class ConfirmAddressController  extends HttpServlet {
     @Inject
     ICustomerService customerService;
     @Inject
-    IProductDAO productDAO;
+    IProductService productService;
     SessionUtils sessionUtils = new SessionUtils();
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -31,9 +32,11 @@ public class ConfirmAddressController  extends HttpServlet {
         List<OrderDto> orderDtos = new ArrayList<>();
         OrderDto orderDto = new OrderDto();
         orderDto.setQuantity(7L);
-        orderDto.setProduct(productDAO.findById(29L));
+        orderDto.setProduct(productService.findById(29L));
         orderDtos.add(orderDto);
-        orderDto.setProduct(productDAO.findById(30));
+        orderDto = new OrderDto();
+        orderDto.setQuantity(6L);
+        orderDto.setProduct(productService.findById(31L));
         orderDtos.add(orderDto);
         System.out.println(orderDtos);
 
