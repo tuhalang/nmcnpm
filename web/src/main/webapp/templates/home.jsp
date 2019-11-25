@@ -50,7 +50,7 @@
                                             src="${product.image}"
                                             class="card-img-top" alt="image" style="height:200px;width:fit-content;">
                                         <div class="card-body">
-                                            <p class="card-title" style="font-size: 0.8em;line-height: 1.2;">${product.name}</p>
+                                            <p class="card-title" style="font-size: 0.8em;line-height: 1.2;height: 2.5em;overflow: hidden;">${product.name}</p>
                                             <p class="card-text">
                                                 <b>${product.price} VND</b>
                                                 <span class="sale-tag"><small>-12%</small></span>

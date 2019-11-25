@@ -5,17 +5,17 @@
         <!-- Brand -->
         <a class="navbar-brand" href="#">Logo</a>
         <!-- search -->
-        <form class="form-inline" action="/action_page.php" id="form_search">
+        <div id="form_search" class="form-inline">
             <div class="row w-100">
                 <input class="form-control mr-sm-2" type="text" id="input-search-product" oninput="autoComplete()"
                        placeholder="Tìm sản phẩm, danh mục, thương hiệu mong muốn ..." autocomplete="off">
-                <button class="btn btn-success" type="submit" id="btn-search-product"><i
+                <button class="btn btn-success" id="btn-search-product"><i
                         class="fas fa-search mr-md-2"></i><span>Tìm kiếm</span></button>
             </div>
             <div class="row w-100" style="position: relative;">
                 <div class="col-sm-10 dropdown-menu" id="result-search"></div>
             </div>
-        </form>
+        </div>
         <!-- Links -->
         <ul class="navbar-nav">
             <li class="nav-item col-sm-3 px-0 ml-md-5">

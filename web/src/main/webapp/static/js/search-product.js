@@ -13,14 +13,14 @@ function autoComplete(e) {
                     e1.className = "row w-100 dropdown-item overflow-hidden";
                     e1.style.overflow = "hidden";
                     e1.innerHTML = listProduct[i].name;
-                    var e2=document.createElement("p");
-                    var id=listProduct[i].productID;
-                    e2.innerHTML=id;
-                    e2.style.display="none";
+                    var e2 = document.createElement("p");
+                    var id = listProduct[i].productID;
+                    e2.innerHTML = id;
+                    e2.style.display = "none";
                     e1.append(e2);
-                    e1.addEventListener("click",function () {
+                    e1.addEventListener("click", function () {
                         var anchorId = $(this).children().text();
-                        show_result_search(anchorId,c);
+                        show_result_search(anchorId, c);
                     })
                     $("#result-search").append(e1);
                 }
@@ -40,13 +40,24 @@ $(document).click(function (e) {
     }
 });
 
-function show_result_search(id,key) {
+function show_result_search(id, key) {
     $("#result-search").empty();
     $("#result-search").removeClass("show");
     var c = $("#input-search-product").val();
-    var s = "show_result?key=" + key+"&head="+id;
-    window.location.replace("http://localhost:8080/web_war/"+s);
+    var s = "show_result?key=" + key + "&head=" + id;
+    if (key !== "")
+        window.location.replace("http://localhost:8080/web_war/" + s);
 }
-$("#btn-search-product").click(function () {
-    show_result_search(0,$("#input-search-product").val());
+
+document.getElementById("btn-search-product").addEventListener("click", function (ev) {
+    if ($("#input-search-product").val() != "") {
+        show_result_search(0, $("#input-search-product").val());
+    } else {
+        window.location.replace("http://localhost:8080/web_war/home?page=1&categoryId=1");
+    }
 })
+$("#input-search-product").keyup(function(event) {
+    if (event.keyCode === 13) {
+        $("#btn-search-product").click();
+    }
+});
