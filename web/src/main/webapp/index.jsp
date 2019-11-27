@@ -11,8 +11,9 @@
     <title>Title</title>
 </head>
 <body>
-    <form action="${pageContext.request.contextPath}/home" method="get">
-        <input type="submit" value="abc">
-    </form>
+<%--    <form action="${pageContext.request.contextPath}/home" method="get">--%>
+<%--        <input type="submit" value="abc">--%>
+<%--    </form>--%>
+<jsp:forward page="home"></jsp:forward>
 </body>
 </html>
