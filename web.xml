@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://java.sun.com/xml/ns/javaee"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+         version="3.0">
+    <display-name>Tiki</display-name>
+    <welcome-file-list>
+        <welcome-file>index.jsp</welcome-file>
+    </welcome-file-list>
+    <jsp-config>
+        <jsp-property-group>
+            <url-pattern>*.jsp</url-pattern>
+            <scripting-invalid>true</scripting-invalid>
+        </jsp-property-group>
+        <jsp-property-group>
+            <url-pattern>*.tag</url-pattern>
+            <scripting-invalid>true</scripting-invalid>
+        </jsp-property-group>
+    </jsp-config>
+
+  <error-page>
+        <error-code>500</error-code>
+        <location>/templates/notfound.jsp</location>
+    </error-page>
+    
+  <error-page>
+        <error-code>404</error-code>
+        <location>/templates/notfound.jsp</location>
+    </error-page>
+  <error-page>
+        <error-code>401</error-code>
+        <location>/templates/accessdenied.jsp</location>
+    </error-page>
+    <servlet>
+        <servlet-name>index_</servlet-name>
+        <servlet-class>com.nmcnpm.web.controller.web.HomeController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>index_</servlet-name>
+        <url-pattern>/home</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>autocomplete_home</servlet-name>
+        <servlet-class>com.nmcnpm.web.controller.web.ResultSearch</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>autocomplete_home</servlet-name>
+        <url-pattern>/autocomplete_home</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>cart_</servlet-name>
+        <servlet-class>com.nmcnpm.web.controller.web.ShoppingCartController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>cart_</servlet-name>
+        <url-pattern>/viewCart</url-pattern>
+        <url-pattern>/addItemCart</url-pattern>
+        <url-pattern>/updateItemCart</url-pattern>
+        <url-pattern>/removeItemCart</url-pattern>
+    </servlet-mapping>
+    <servlet>
+    <servlet-name>accountMaga</servlet-name>
+    <servlet-class>com.nmcnpm.web.controller.web.AccountManagmentController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+    <servlet-name>accountMaga</servlet-name>
+    <url-pattern>/accountInfo</url-pattern>
+    <url-pattern>/updateInfo</url-pattern>
+    </servlet-mapping>
+   
+</web-app>
