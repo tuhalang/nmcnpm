@@ -6,10 +6,6 @@
   Time: 8:25 AM
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page import="com.nmcnpm.web.model.Product" %>
-<%@ page import="java.util.Arrays" %>
-<%@ page import="java.util.List" %>
-<%@ page import="org.apache.taglibs.standard.Version" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -76,27 +72,23 @@
     <div class="row w-100 mt-4">
         <ul class="pagination mx-auto justify-content-center">
             <li class="page-item">
-                <a class="page-link" href="home?page=1" aria-label="Previous">
+                <a class="page-link" href="home?page=1&categoryId=${category.categoryID}" aria-label="Previous">
                     <span aria-hidden="true">«</span>
                     <span class="sr-only">&laquo;</span>
                 </a>
             </li>
-            <%--&lt;%&ndash;            <li class="page-item active"><a class="page-link" href="#">1</a></li>&ndash;%&gt;--%>
-            <%--&lt;%&ndash;            <li class="page-item"><a class="page-link" href="#">2</a></li>&ndash;%&gt;--%>
-            <%--&lt;%&ndash;            <li class="page-item"><a class="page-link" href="#">3</a></li>&ndash;%&gt;--%>
-            <%--&lt;%&ndash;            <li class="page-item"><a class="page-link" href="#">4</a></li>&ndash;%&gt;--%>
             <c:forEach begin="1" end="${productDto.totalPages}" var="i">
                 <c:choose>
                     <c:when test="${productDto.currentPage eq i}">
                         <li class="page-item active"><a class="page-link" href="#">${i}</a></li>
                     </c:when>
                     <c:otherwise>
-                        <li class="page-item"><a class="page-link" href="home?page=${i}">${i}</a></li>
+                        <li class="page-item"><a class="page-link" href="home?page=${i}&categoryId=${category.categoryID}">${i}</a></li>
                     </c:otherwise>
                 </c:choose>
             </c:forEach>
             <li class="page-item">
-                <a class="page-link" href="home?page=${productDto.totalPages}" aria-label="Next">
+                <a class="page-link" href="home?page=${productDto.totalPages}&categoryId=${category.categoryID}" aria-label="Next">
                     <span aria-hidden="true">»</span>
                     <span class="sr-only">&raquo;</span>
                 </a>

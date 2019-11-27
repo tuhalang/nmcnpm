@@ -1,14 +1,14 @@
-function autoComplete(e) {
+function autoComplete() {
     var c = $("#input-search-product").val();
     if (c.charAt(c.length - 1) != " ") {
         $("#result-search").empty();
-        var xhr = new XMLHttpRequest();
-        xhr.onreadystatechange = function () {
-            if (xhr.readyState == 4) {
-                var data = xhr.responseText;
-                var listProduct = JSON.parse(data);
-                var i;
-                for (i = 0; i < listProduct.length; ++i) {
+        $.ajax({
+            url: window.location.pathname.substring(0, window.location.pathname.indexOf("/", 2)) + "/autocomplete_home?key=" + $("#input-search-product").val(),
+            contentType: 'application/json;charset=utf-8',
+            dataType: 'json',
+            type: 'GET',
+            success: function (listProduct) {
+                for (var i = 0; i < listProduct.length; ++i) {
                     var e1 = document.createElement("div");
                     e1.className = "row w-100 dropdown-item overflow-hidden";
                     e1.style.overflow = "hidden";
@@ -26,11 +26,11 @@ function autoComplete(e) {
                 }
                 if (listProduct.length !== 0) $("#result-search").addClass("show");
                 else $("#result-search").removeClass("show");
+            },
+            error: function (x, e) {
+                console.log(e)
             }
-        }
-        var s = "autocomplete_home?key=" + $("#input-search-product").val();
-        xhr.open('GET', s, true);
-        xhr.send(null);
+        });
     }
 };
 $(document).click(function (e) {
@@ -56,7 +56,7 @@ document.getElementById("btn-search-product").addEventListener("click", function
         window.location.replace("http://localhost:8080/web_war/home?page=1&categoryId=1");
     }
 })
-$("#input-search-product").keyup(function(event) {
+$("#input-search-product").keyup(function (event) {
     if (event.keyCode === 13) {
         $("#btn-search-product").click();
     }

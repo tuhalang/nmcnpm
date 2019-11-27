@@ -16,7 +16,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-@WebServlet(name = "ResultSearch")
+//@WebServlet(name = "ResultSearch")
 public class ResultSearch extends HttpServlet {
 
     @Inject

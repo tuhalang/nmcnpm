@@ -36,6 +36,18 @@
 <jsp:include page="../commons/header.jsp"></jsp:include>
 
 <div class="container" id="main">
+    <div class="breadcrumb-wrap row w-100">
+        <div class="container mt-2">
+            <div class="row w-100">
+                <div class="col-lg-12">
+                    <ol class="breadcrumb">
+                        <li><a href="home?key=1">Trang chủ/</a></li>
+                        <li class="active"></li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="row w-100">
         <div class="col-lg-12">
             <div class="panel panel-default">

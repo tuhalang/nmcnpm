@@ -7,19 +7,21 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<!DOCTYPE html>
 <html>
 <head>
     <title>Cart</title>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/cart.css" type="text/css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/static/bootstrap-4.0.0/css/bootstrap.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/static/fontawesome-5.11.2/css/all.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/footer.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/header.css">
+    <link rel="stylesheet" href="<c:url value="/static/css/card.css"/>">
+    <link rel="stylesheet" href="<c:url value="/static/css/cart.css"/>">
+    <link rel="stylesheet" href="<c:url value="/static/bootstrap-4.0.0/css/bootstrap.css"/>">
+    <link rel="stylesheet" href="<c:url value="/static/fontawesome-5.11.2/css/all.css"/>">
+    <link rel="stylesheet" href="<c:url value="/static/css/footer.css"/>">
+    <link rel="stylesheet" href="<c:url value="/static/css/header.css"/>">
     <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
 
-    <script src="${pageContext.request.contextPath}/static/jquery-3.4.1/jquery-3.4.1.min.js"></script>
+    <script src="<c:url value="/static/jquery-3.4.1/jquery-3.4.1.min.js"/>"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-    <script src="${pageContext.request.contextPath}/static/bootstrap-4.0.0/js/bootstrap.min.js"></script>
+    <script src="<c:url value="/static/bootstrap-4.0.0/js/bootstrap.min.js"/>"></script>
     <style type="text/css">
 
     </style>
@@ -32,7 +34,7 @@
             <div class="row w-100">
                 <div class="col-lg-12">
                     <ol class="breadcrumb">
-                        <li><a href="/">Trang chủ/</a></li>
+                        <li><a href="home?key=1">Trang chủ/</a></li>
                         <li class="active">Giỏ hàng</li>
                     </ol>
                 </div>
