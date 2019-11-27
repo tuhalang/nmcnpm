@@ -54,4 +54,28 @@
         <servlet-name>show_product</servlet-name>
         <url-pattern>/show_result</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>confirm_address</servlet-name>
+        <servlet-class>com.nmcnpm.web.controller.web.ConfirmAddressController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>confirm_address</servlet-name>
+        <url-pattern>/confirm_address</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>update_address</servlet-name>
+        <servlet-class>com.nmcnpm.web.controller.web.UpdateAddressController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>update_address</servlet-name>
+        <url-pattern>/update_address</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>confirm_order</servlet-name>
+        <servlet-class>com.nmcnpm.web.controller.web.ConfirmOrderController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>confirm_order</servlet-name>
+        <url-pattern>/confirm_order</url-pattern>
+    </servlet-mapping>
 </web-app>

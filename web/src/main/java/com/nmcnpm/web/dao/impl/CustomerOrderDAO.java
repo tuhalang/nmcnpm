@@ -1,17 +1,19 @@
 package com.nmcnpm.web.dao.impl;
 
 import com.nmcnpm.database.dao.impl.DataBaseDaoImpl;
+import com.nmcnpm.web.dao.ICustomerOrderDAO;
 import com.nmcnpm.web.mapprow.CustomerMapper;
 import com.nmcnpm.web.mapprow.CustomerOrderMapper;
 import com.nmcnpm.web.model.CustomerOrder;
 
 import java.util.List;
 
-public class CustomerOrderDAO extends DataBaseDaoImpl {
-    public void insert(CustomerOrder customerOrder) {
-        String sql = "insert into customer_order( amount, confirm_number, created_at, last_modified_at) value(?,?,CURRENT_TIMESTAMP(),CURRENT_TIMESTAMP())";
-        Long id = insert(sql, customerOrder.getAmount(), customerOrder.getConfirmNumber());
+public class CustomerOrderDAO extends DataBaseDaoImpl implements ICustomerOrderDAO {
+    public Long insert(CustomerOrder customerOrder, Long customerID) {
+        String sql = "insert into customer_order(customer_id, amount, confirm_number, created_at, last_modified_at) value(?,?,?,CURRENT_TIMESTAMP(),CURRENT_TIMESTAMP())";
+        Long id = insert(sql, customerID, customerOrder.getAmount(), customerOrder.getConfirmNumber());
         customerOrder.setOrderID(id);
+        return id;
     }
 
     public void update(CustomerOrder customerOrder) {
