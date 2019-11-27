@@ -45,9 +45,12 @@ public class ProductDetailDAO  extends DataBaseDaoImpl {
         return productDetail;
     }
 
-    public List<ProductDetail> findByProductDetailID(long id) {
+    public ProductDetail findByProductDetailID(long id) {
         String sql = "select * from product_detail where product_detail_id=?";
         List<ProductDetail> productDetail = query(sql, new ProductDetailMapper(),id);
-        return productDetail;
+        if(productDetail.isEmpty()){
+            return null;
+        }
+        return productDetail.get(0);
     }
 }
