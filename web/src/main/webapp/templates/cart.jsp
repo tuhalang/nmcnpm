@@ -77,16 +77,14 @@
                                 <div class="input-group">
                                     <div class="input-group-prepend">
                                         <button class="btn btn-outline-secondary" type="button"
-                                                onclick="location.href='<c:url
-                                                        value="/shopping_cart?action=update&productID=${item.product.productID}&quantity=${item.quantity+1}"/>';return false;">
+                                                onclick="inc(${item.product.productID},${item.quantity+1})">
                                             <i class="fas fa-plus"></i>
                                         </button>
                                         <input type="text" style="width:40px;" class="form-control"
-                                               value="${item.quantity}" name="quantity" onchange="location.href='<c:url
+                                               value="${item.quantity}" id="quantity_" onchange="location.href='<c:url
                                                 value="/shopping_cart?action=update&productID=${item.product.productID}&quantity=${item.quantity}"/>';return false;">
                                         <button class="btn btn-outline-secondary" type="button"
-                                                onclick="location.href='<c:url
-                                                        value="/shopping_cart?action=update&productID=${item.product.productID}&quantity=${item.quantity-1}"/>';return false;">
+                                                onclick="dsc(${item.product.productID},${item.quantity-1})">
                                             <i class="fas fa-minus"></i>
                                         </button>
 
@@ -149,5 +147,39 @@
 </div>
 
 <jsp:include page="commons/footer.jsp"></jsp:include>
+<script>
+    function dsc(a,b) {
+        var i=document.getElementById("quantity_").value;
+        if (parseInt(i)>1) document.getElementById("quantity_").value=parseInt(i)-1;
+        $.ajax({
+            url: window.location.pathname.substring(0, window.location.pathname.indexOf("/", 2)) + "/shopping_cart?action=update&productID="+a+"&quantity="+b,
+            contentType: 'application/json;charset=utf-8',
+            dataType: 'json',
+            type: 'GET',
+            success: function (response) {
+            },
+            error: function (x, e) {
+                console.log(e)
+            }
+        });
+        location.reload(false);
+    };
+    function inc(a,b) {
+        var i=document.getElementById("quantity_").value;
+        if (parseInt(i)>1) document.getElementById("quantity_").value=parseInt(i)-1;
+        $.ajax({
+            url: window.location.pathname.substring(0, window.location.pathname.indexOf("/", 2)) + "/shopping_cart?action=update&productID="+a+"&quantity="+b,
+            contentType: 'application/json;charset=utf-8',
+            dataType: 'json',
+            type: 'GET',
+            success: function (response) {
+            },
+            error: function (x, e) {
+                console.log(e)
+            }
+        });
+        location.reload(false);
+    };
+</script>
 </body>
 </html>
