@@ -63,7 +63,7 @@
                             Thiết Bị Số</a>
                     </li>
                     <li class="dropdown-submenu">
-                        <a class="dropdown-item" href="#"><i class="fas fa-laptop"></i>Laptop - Thiết Bị IT</a>
+                        <a class="dropdown-item" href="home?categoryId=5"><i class="fas fa-laptop"></i>Laptop - Thiết Bị IT</a>
                     </li>
                 </ul>
             </li>
