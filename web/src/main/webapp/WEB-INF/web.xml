@@ -18,15 +18,16 @@
         </jsp-property-group>
     </jsp-config>
 
-    <error-page>
+  <error-page>
         <error-code>500</error-code>
         <location>/templates/notfound.jsp</location>
     </error-page>
-    <error-page>
+    
+  <error-page>
         <error-code>404</error-code>
         <location>/templates/notfound.jsp</location>
     </error-page>
-    <error-page>
+  <error-page>
         <error-code>401</error-code>
         <location>/templates/accessdenied.jsp</location>
     </error-page>
@@ -47,20 +48,24 @@
         <url-pattern>/autocomplete_home</url-pattern>
     </servlet-mapping>
     <servlet>
-        <servlet-name>show_product</servlet-name>
-        <servlet-class>com.nmcnpm.web.controller.web.ShowResultSearch</servlet-class>
+        <servlet-name>cart_</servlet-name>
+        <servlet-class>com.nmcnpm.web.controller.web.ShoppingCartController</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>show_product</servlet-name>
-        <url-pattern>/show_result</url-pattern>
+        <servlet-name>cart_</servlet-name>
+        <url-pattern>/viewCart</url-pattern>
+        <url-pattern>/addItemCart</url-pattern>
+        <url-pattern>/updateItemCart</url-pattern>
+        <url-pattern>/removeItemCart</url-pattern>
     </servlet-mapping>
     <servlet>
-        <servlet-name>confirm_address</servlet-name>
-        <servlet-class>com.nmcnpm.web.controller.web.ConfirmAddressController</servlet-class>
+    <servlet-name>accountMaga</servlet-name>
+    <servlet-class>com.nmcnpm.web.controller.web.AccountManagmentController</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>confirm_address</servlet-name>
-        <url-pattern>/confirm_address</url-pattern>
+    <servlet-name>accountMaga</servlet-name>
+    <url-pattern>/accountInfo</url-pattern>
+    <url-pattern>/updateInfo</url-pattern>
     </servlet-mapping>
     <servlet>
         <servlet-name>update_address</servlet-name>
