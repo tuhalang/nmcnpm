@@ -76,10 +76,10 @@
                         <div class="col-sm-4" id="quantity">
                             <div class="input-group">
                                 <div class="input-group-prepend">
-                                    <button class="btn btn-outline-secondary" type="button"><i class="fas fa-plus"></i>
+                                    <button class="btn btn-outline-secondary border-none" id="inc" style="border-radius:0;border:1px solid rgba(0,0,0,0.2);" type="button"><i class="fas fa-plus"></i>
                                     </button>
-                                    <input type="text" style="width:40px;" class="form-control" value=1 name="quantity">
-                                    <button class="btn btn-outline-secondary" type="button"><i class="fas fa-minus"></i>
+                                    <input type="text" style="width:40px;border-radius:0;border:1px solid rgba(0,0,0,0.2);" class="form-control" value="1" id="quantity_">
+                                    <button class="btn btn-outline-secondary border-none" id="dsc" style="border-radius: 0;border:1px solid rgba(0,0,0,0.2);" type="button"><i class="fas fa-minus"></i>
                                     </button>
 
                                 </div>
@@ -115,5 +115,15 @@
 </div>
 
 <jsp:include page="commons/footer.jsp"></jsp:include>
+<script>
+    document.getElementById("dsc").addEventListener("click",function (ev) {
+        var i=document.getElementById("quantity_").value;
+        if (parseInt(i)>1) document.getElementById("quantity_").value=parseInt(i)-1;
+    });
+    document.getElementById("inc").addEventListener("click",function (ev) {
+       var i=document.getElementById("quantity_").value;
+       document.getElementById("quantity_").value=parseInt(i)+1;
+    });
+</script>
 </body>
 </html>
