@@ -1,6 +1,7 @@
 package com.nmcnpm.web.dao.impl;
 
 import com.nmcnpm.database.dao.impl.DataBaseDaoImpl;
+import com.nmcnpm.web.dao.IProductDetailDAO;
 import com.nmcnpm.web.mapprow.ProductDetailMapper;
 import com.nmcnpm.web.mapprow.ProductMapper;
 import com.nmcnpm.web.model.Product;
@@ -8,7 +9,7 @@ import com.nmcnpm.web.model.ProductDetail;
 
 import java.util.List;
 
-public class ProductDetailDAO  extends DataBaseDaoImpl {
+public class ProductDetailDAO  extends DataBaseDaoImpl<ProductDetail> implements IProductDetailDAO {
     public void insert(ProductDetail productDetail) {
         String sql = "insert into product_detail( information, image1, image2, image3, image4, image5," +
                 " accessories, guarantee, created_at, last_modified_at) value(?,?,?,?,?,?,?,?,CURRENT_TIMESTAMP(),CURRENT_TIMESTAMP())";

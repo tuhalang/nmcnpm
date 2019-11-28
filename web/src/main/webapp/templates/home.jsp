@@ -29,7 +29,6 @@
 </head>
 <body>
 <jsp:include page="commons/header.jsp"></jsp:include>
-
 <div class="container" id="main">
     <div class="row w-100">
         <div class="col-lg-12">
@@ -41,7 +40,8 @@
                     <div class="row w-100">
                         <c:forEach items="${productDto.listOfdata}" var="product" varStatus="status">
                             <div class="col-sm-3">
-                                <div class="card" style="max-width: 15rem;">
+                                <div class="card" style="max-width: 15rem;" onclick="abc(${product.productID})">
+                                    <p style="display: none;" id="pID">${product.productID}</p>
                                     <a href="#" class="card-link"> <img
                                             src="${product.image}"
                                             class="card-img-top" alt="image" style="height:200px;width:fit-content;">
@@ -98,5 +98,14 @@
 </div>
 
 <jsp:include page="commons/footer.jsp"></jsp:include>
+<script>
+    $(".card").click(function (e) {
+        console.log(e);
+        <%--window.location.replace("http://localhost:8080/web_war/detail?productID=" + ${product.productID});--%>
+    })
+    function abc(id) {
+        window.location.replace("http://localhost:8080/web_war/detail?productID=" +id);
+    }
+</script>
 </body>
 </html>

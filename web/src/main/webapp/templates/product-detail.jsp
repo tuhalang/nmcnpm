@@ -38,7 +38,7 @@
                 <div class="col-lg-12">
                     <ol class="breadcrumb">
                         <li><a href="home?key=1">Trang chủ/</a></li>
-                        <li class="active">Tên sản phẩm</li>
+                        <li class="active">Chi tiết sản phẩm</li>
                     </ol>
                 </div>
             </div>
@@ -47,30 +47,30 @@
     <div class="row w-100">
         <div class="col-lg-5">
             <img class="img-fluid"
-                 src="https://salt.tikicdn.com/cache/w1200/ts/product/07/1f/8c/7f37ff6ee1521785b7c71c9c45c04c91.jpg">
+                 src="${product.image}">
         </div>
         <div class="col-lg-7">
             <div class="panel panel-default">
                 <div class="panel-heading overflow-hidden" style="border-bottom:1px solid rgba(0,0,0,0.4);">
-                    <h2>Thiết bị cảm biến ánh sáng</h2>
+                    <h2>${product.name}</h2>
                 </div>
                 <div class="panel-body">
                     <div class="row w-100" style="border-bottom:1px solid rgba(0,0,0,0.3); padding:20px;">
-                        <div class="row w-100">Giá:<span style="color: red;">123.400 đ</span></div>
-                        <div class="row w-100">Tiết kiệm :12%</div>
-                        <div class="row w-100">Giá thị trường: <span style="color: red;">150.000 đ</span></div>
+                        <div class="row w-100">Giá:<span style="color: red;">${product.price} đ</span></div>
+<%--                        <div class="row w-100">Tiết kiệm :12%</div>--%>
+<%--                        <div class="row w-100">Giá thị trường: <span style="color: red;">150.000 đ</span></div>--%>
                         <span class="fa fa-star checked"></span>
                         <span class="fa fa-star checked"></span>
                         <span class="fa fa-star checked"></span>
                         <span class="far fa-star"></span>
                         <span class="far fa-star"></span>
                     </div>
-                    <div class="row w-100" style="border-bottom:1px solid rgba(0,0,0,0.3); padding:20px;">
-                        <ul id="description" class="list-unstyled">
-                            <li>Dung lượng: 5200mAh</li>
-                            <li>Voltage: 11.1V</li>
-                        </ul>
-                    </div>
+<%--                    <div class="row w-100" style="border-bottom:1px solid rgba(0,0,0,0.3); padding:20px;">--%>
+<%--                        <ul id="description" class="list-unstyled">--%>
+<%--                            <li>Dung lượng: 5200mAh</li>--%>
+<%--                            <li>Voltage: 11.1V</li>--%>
+<%--                        </ul>--%>
+<%--                    </div>--%>
                     <p style="font-size:0.7em;"s>Số lượng</p>
                     <div class="row w-100">
                         <div class="col-sm-4" id="quantity">
@@ -100,6 +100,9 @@
             <div class="panel-heading" style="border-bottom:1px solid rgba(0,0,0,0.4);">
                 <h2>Thông tin chi tiết sản phẩm</h2>
             </div>
+            <div class="panel-body">
+                ${productDetail.information}
+            </div>
         </div>
     </div>
     <div class="row w-100">
@@ -108,7 +111,7 @@
                 <h2>Mô tả sản phẩm</h2>
             </div>
             <div class="panel-body">
-                <p>Dell Inspiron M4040, Dell Inspiron M4110, Dell Inspiron M411R, Dell Inspiron M5010, Dell Inspiron M5040, Dell Inspiron M511R, Dell Inspiron N4010, Dell Inspiron N4050, Dell Inspiron N4120, Dell Inspiron N5050, Dell Vostro 1450, Dell Vostro 3450, Dell Vostro 3550, Dell Vostro 3750</p>
+                <p>${product.descriptionDetail}</p>
             </div>
         </div>
     </div>

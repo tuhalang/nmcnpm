@@ -78,4 +78,12 @@
         <servlet-name>confirm_order</servlet-name>
         <url-pattern>/confirm_order</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>product_detail</servlet-name>
+        <servlet-class>com.nmcnpm.web.controller.web.ProductDetailController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>product_detail</servlet-name>
+        <url-pattern>/detail</url-pattern>
+    </servlet-mapping>
 </web-app>
