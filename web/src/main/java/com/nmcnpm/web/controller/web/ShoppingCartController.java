@@ -59,7 +59,7 @@ public class ShoppingCartController extends HttpServlet {
 			request.getRequestDispatcher("/templates/cart.jsp").forward(request, response);
 
 		} else if (userPath.equals("/addItemCart")) {
-			ShoppingItems cart = (ShoppingItems) session.getAttribute("cart");
+			//ShoppingItems cart = (ShoppingItems) session.getAttribute("cart");
 			
 			if (cart == null) {
 				cart = new ShoppingItems();
@@ -76,7 +76,7 @@ public class ShoppingCartController extends HttpServlet {
 			System.out.println(view);
 			
 			session.setAttribute("cart", cart);
-			request.getRequestDispatcher(view).forward(request, response);
+			//request.getRequestDispatcher(view).forward(request, response);
 		} else if (userPath.equals("/updateItemCart")) {
 			ShoppingItems cart = (ShoppingItems) session.getAttribute("cart");
 			String productid = request.getParameter("productid");
