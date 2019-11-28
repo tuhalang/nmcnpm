@@ -41,93 +41,97 @@
         </div>
     </div>
     <c:choose>
-<c:when test="${cart.numberOfItems >0}">
-Bạn có  ${cart.numberOfItems} sản phẩm
-</c:when>
-      <c:otherwise>
-        Bạn chưa có sản phẩm nào 
-    </c:otherwise>
-</c:choose>
+        <c:when test="${cart.numberOfItems >0}">
+            Bạn có  ${cart.numberOfItems} sản phẩm
+        </c:when>
+        <c:otherwise>
+            Bạn chưa có sản phẩm nào
+        </c:otherwise>
+    </c:choose>
     <div class="row main w-100">
         <div class="row w-100 mt-4">
             <div class="col-sm-9 content-left">
-            <c:forEach var="item" items="${cart.items}" varStatus="iter">
-            <c:set var="product" value="${item.product}">
-            </c:set>
-             <div class="container" id="item">
-                    <div class="row w-100 row-bordered mb-2">
-                        <div class="col-sm-2" id="img-thumb"><img style="width:100px;height:100px;" alt=""
-                                                                  src="${product.thumbImage}">
-                        </div>
-
-                        <div class="col-sm-6">
-                            <div class="row w-100">
-                                <a id="linkSp" href="#" style="color: blue; ">${product.name} </a>
+                <c:forEach var="item" items="${cart.items}" varStatus="iter">
+                    <c:set var="product" value="${item.product}">
+                    </c:set>
+                    <div class="container" id="item">
+                        <div class="row w-100 row-bordered mb-2">
+                            <div class="col-sm-2" id="img-thumb"><img style="width:100px;height:100px;" alt=""
+                                                                      src="${product.thumbImage}">
                             </div>
-                   <a href="<c:url value="/removeItemCart?productid=${item.product.productID}"/>">Xoá</a>
-                        </div>
 
-                        <div class="col-sm-2 price">
-                            <p><strong>${product.price} đ</strong></p>
-                        </div>
+                            <div class="col-sm-6">
+                                <div class="row w-100">
+                                    <a id="linkSp" href="#" style="color: blue; ">${product.name} </a>
+                                </div>
+                                <a href="<c:url value="/shopping_cart?action=remove&productID=${item.product.productID}"/>">Xoá</a>
+                            </div>
 
-                        <div class="col-sm-2" id="quantity">
-                            <p>Số lượng</p>
+                            <div class="col-sm-2 price">
+                                <p><strong>${product.price} đ</strong></p>
+                            </div>
 
-                            <div class="input-group">
-                                <div class="input-group-prepend">
-                                    <button class="btn btn-outline-secondary" type="button"onclick="location.href='<c:url value="/updateItemCart?productid=${item.product.productID}&quantity=${item.quantity+1}"/>';return false;"><i class="fas fa-plus"></i>
-                                    </button>
-                                    <input type="text" style="width:40px;" class="form-control" value="${item.quantity}" name="quantity" onchange="location.href='<c:url value="/updateItemCart?productid=${item.product.productID}&quantity=${item.quantity}"/>';return false;">
-                                    <button class="btn btn-outline-secondary" type="button" onclick="location.href='<c:url value="/updateItemCart?productid=${item.product.productID}&quantity=${item.quantity-1}"/>';return false;"> <i class="fas fa-minus"></i>
-                                    </button>
+                            <div class="col-sm-2" id="quantity">
+                                <p>Số lượng</p>
 
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <button class="btn btn-outline-secondary" type="button"
+                                                onclick="location.href='<c:url
+                                                        value="/shopping_cart?action=update&productID=${item.product.productID}&quantity=${item.quantity+1}"/>';return false;">
+                                            <i class="fas fa-plus"></i>
+                                        </button>
+                                        <input type="text" style="width:40px;" class="form-control"
+                                               value="${item.quantity}" name="quantity" onchange="location.href='<c:url
+                                                value="/shopping_cart?action=update&productID=${item.product.productID}&quantity=${item.quantity}"/>';return false;">
+                                        <button class="btn btn-outline-secondary" type="button"
+                                                onclick="location.href='<c:url
+                                                        value="/shopping_cart?action=update&productID=${item.product.productID}&quantity=${item.quantity-1}"/>';return false;">
+                                            <i class="fas fa-minus"></i>
+                                        </button>
+
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-          
-          
-          
-            
-            </c:forEach>
-            
-          
-            
-               
-          
-          
+
+
+                </c:forEach>
+
+
             </div>
 
             <div class="content-right col-sm-3">
                 <div class="tinh-tien">
                     <div class="row w-100">
-                        <div class="tam-tinh" >
+                        <div class="tam-tinh">
                             <p class="list-info-price"><span>Tạm tính:</span> <strong>
-                            <c:choose>
-                            <c:when test="${cart.amount==0|| cart.amount==null}"> 0 <span>đ</span></c:when>
-                            <c:otherwise>
-                             ${cart.amount} <span>VND</span>
-                            </c:otherwise>
-                            </c:choose>
-                           </strong></p>
-                        </div></div>
-                        <div class="row w-100">
+                                <c:choose>
+                                    <c:when test="${cart.amount==0|| cart.amount==null}"> 0 <span>đ</span></c:when>
+                                    <c:otherwise>
+                                        ${cart.amount} <span>VND</span>
+                                    </c:otherwise>
+                                </c:choose>
+                            </strong></p>
+                        </div>
+                    </div>
+                    <div class="row w-100">
                         <div class="total2 each-row">
                             <div class="each-row"><span> Thành tiền: </span></div>
                             <div class="amount each-row" style="color:red;">
                                 <c:choose>
-                            <c:when test="${cart.amount==0 || cart.amount==null}">0       đ</c:when>
-                            <c:otherwise>
-                             ${cart.amount} đ
-                            </c:otherwise>
-                            </c:choose>
-                           
+                                    <c:when test="${cart.amount==0 || cart.amount==null}">0 đ</c:when>
+                                    <c:otherwise>
+                                        ${cart.amount} đ
+                                    </c:otherwise>
+                                </c:choose>
+
                                 <p><small>(Đã bao gồm VAT nếu có)</small></p>
                             </div>
                         </div>
-                        </div><div class="row w-100">
+                    </div>
+                    <div class="row w-100">
                         <button type="button" class="btn btn-large btn-block btn-danger btn-checkout"
                                 onclick="location.href='<c:url value="/templates/order-2.jsp"/>';return false;">Tiến
                             hành

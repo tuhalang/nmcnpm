@@ -41,7 +41,7 @@
     </servlet-mapping>
     <servlet>
         <servlet-name>autocomplete_home</servlet-name>
-        <servlet-class>com.nmcnpm.web.controller.web.ResultSearch</servlet-class>
+        <servlet-class>com.nmcnpm.web.controller.web.ResultSearchController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>autocomplete_home</servlet-name>
@@ -53,10 +53,15 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>cart_</servlet-name>
-        <url-pattern>/viewCart</url-pattern>
-        <url-pattern>/addItemCart</url-pattern>
-        <url-pattern>/updateItemCart</url-pattern>
-        <url-pattern>/removeItemCart</url-pattern>
+        <url-pattern>/shopping_cart</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>cart_controller</servlet-name>
+        <servlet-class>com.nmcnpm.web.controller.web.CartController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>cart_controller</servlet-name>
+        <url-pattern>/call_cart</url-pattern>
     </servlet-mapping>
     <servlet>
     <servlet-name>accountMaga</servlet-name>

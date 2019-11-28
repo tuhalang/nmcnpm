@@ -32,7 +32,7 @@
             </li>
 
             <li class="nav-item col-sm-4 px-0 item-cart">
-                <a class="nav-link px-0 font-weight-bold" href="<c:url value="/templates/cart.jsp"/>"><i
+                <a class="nav-link px-0 font-weight-bold" href="<c:url value="/call_cart"/>"><i
                         class="fas fa-shopping-cart fa-2x float-left mr-md-2 mt-md-1"></i>Giỏ hàng</a>
             </li>
         </ul>

@@ -1,3 +1,6 @@
+<%@ page import="java.util.List" %>
+<%@ page import="com.nmcnpm.web.model.ItemCart" %>
+<%@ page import="com.nmcnpm.web.model.ShoppingItems" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
@@ -86,7 +89,7 @@
                             </div>
                         </div>
                         <div class="col-sm-8">
-                            <button type="submit" class="btn btn-primary">
+                            <button type="button" class="btn btn-primary" onclick="select(${product.productID})">
                                 <i class="fas fa-cart-plus"></i> Chọn mua
                             </button>
                         </div>
@@ -127,6 +130,21 @@
        var i=document.getElementById("quantity_").value;
        document.getElementById("quantity_").value=parseInt(i)+1;
     });
+    function select(a) {
+        $.ajax({
+            url: window.location.pathname.substring(0, window.location.pathname.indexOf("/", 2)) + "/shopping_cart?action=add&productID="+a,
+            contentType: 'application/json;charset=utf-8',
+            dataType: 'json',
+            type: 'GET',
+            success: function (response) {
+                if (response=="1") alert("Thêm thành công")
+                else alert("Thêm thất bại");
+            },
+            error: function (x, e) {
+                console.log(e)
+            }
+        });
+    }
 </script>
 </body>
 </html>
