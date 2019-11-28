@@ -44,5 +44,22 @@ public class ProductDetailService implements IProductDetailService{
     public ProductDetail findById(Long productDetailId) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
+    @Override
+    public boolean isExist(Long productDetailId) {
+        return productDetailDAO.isExist(productDetailId);
+    }
+
+    @Override
+    public boolean update(ProductDetail productDetail) {
+        try{
+            productDetailDAO.update(productDetail);
+            return true;
+        }catch(Exception e){
+            e.printStackTrace();
+            return false;
+        }
+        
+    }
     
 }

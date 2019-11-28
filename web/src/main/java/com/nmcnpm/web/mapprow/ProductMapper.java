@@ -19,6 +19,8 @@ public class ProductMapper implements IRowMapper<Product>{
 			product.setProductDetailID(result.getLong("product_detail_id"));
 			product.setImage(result.getString("image"));
 			product.setThumbImage(result.getString("thumb_image"));
+                        product.setQuantity(result.getLong("quantity"));
+                        product.setStatus(result.getBoolean("status"));
 			product.setDescriptionDetail(result.getString("description_detail"));
 			product.setCreatedAt(result.getDate("created_at"));
 			product.setLastModifiedAt(result.getDate("last_modified_at"));

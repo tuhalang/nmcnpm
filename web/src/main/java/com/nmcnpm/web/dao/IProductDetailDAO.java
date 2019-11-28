@@ -19,5 +19,6 @@ public interface IProductDetailDAO extends IBaseDao<ProductDetail>{
     void delete(ProductDetail productDetail);
     List<ProductDetail> findAll();
     List<ProductDetail> find(int start, int limit);
-    List<ProductDetail> findByProductDetailID(long id);
+    ProductDetail findByProductDetailID(long id);
+    boolean isExist(Long productDetailId);
 }

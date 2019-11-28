@@ -197,12 +197,12 @@
                                     <div class="modal-header"><h2><strong>Create New Product</strong></h2></div>
                                     <div class="modal-body">
                                         <form id="input-add-group" method="post" action="${pageContext.request.contextPath}/admin/product">
-                                            
+
                                             <div class="btn-up-down">
                                                 <i class="fa fa-angle-double-right" type="button" data-toggle="collapse" data-target="#input-product" aria-hidden="true"></i>
                                                 <span>Enter Product</span>
                                             </div>
-                                                
+
                                             <div id="input-product" class="collapse">
                                                 <input type="text" name="name" class="form-control input-text" required="required" placeholder="Enter name product">
                                                 <input type="text" name="description" class="form-control input-text" required="required" placeholder="Enter description">
@@ -214,12 +214,12 @@
                                                     <option value="1">Choose Category</option>
                                                 </select>
                                             </div>
-                                            
+
                                             <div class="btn-up-down">
                                                 <i class="fa fa-angle-double-right" type="button" data-toggle="collapse" data-target="#input-product-detail" aria-hidden="true"></i>
                                                 <span>Enter Product Detail</span>
                                             </div>
-                                                
+
                                             <div id="input-product-detail" class="collapse">
                                                 <input type="text" name="accessories" class="form-control input-text" required="required"  placeholder="Enter Accessories">
                                                 <input type="text" name="guarantee" class="form-control input-text" required="required"  placeholder="Enter Guarantee">
@@ -230,41 +230,116 @@
                                                 <input type="text" name="image5" class="form-control input-text" required="required"  placeholder="Enter Link Image5">
                                                 <input type="text" name="information" class="form-control input-text"  placeholder="Enter Infomation">
                                             </div>
-                                            
-                                            
-                                            <!-- TODO
-                                                - search category
-                                                - embed enter product detail
-                                            -->
+
+
+                                          
                                             <div class="modal-footer">
-                                                <button class="btn btn-primary" id="btn-add-group">Add</button>
+                                                <button type="submit" class="btn btn-primary" id="btn-add-group">Add</button>
                                                 <button class="btn btn-primary" data-dismiss="modal">Close</button>
                                             </div>
                                         </form>
                                     </div>
-<!--                                    <div class="modal-footer">
-                                        <button class="btn btn-primary" id="btn-add-group">Add</button>
-                                        <button class="btn btn-primary" data-dismiss="modal">Close</button>
-                                    </div>-->
+                                    
                                 </div>
                             </div>
                         </div>
                         <div class="panel-body panel-group">
                             <div class="panel-group">
+                                <div class="panel panel-default">
+                                    <div class="panel-body">
+                                        <div class="col-sm-1"><strong>ID</strong></div>
+                                        <div class="group-product-name col-sm-5"><strong>Name</strong></div>
+                                        <div class="col-sm-2">
+                                            <strong>Price</strong>
+                                        </div>
+                                        <div class="col-sm-2"><strong>Quantity</strong></div>
+                                        <div class="col-sm-1">
+                                            <strong>Status</strong>
+                                        </div>
+                                        <div class="col-sm-1"><strong>Detail</strong></i></div>
+                                    </div>
+                                </div>
+
                                 <c:forEach items="${productDto.listOfData}" var="product">
                                     <div class="panel panel-default">
                                         <div class="panel-body">
                                             <div class="col-sm-1">${product.productID}</div>
-                                            <div class="group-product-name col-sm-2">${product.name}</div>
-                                            <div class="col-sm-2">${product.price}</div>
+                                            <div class="group-product-name col-sm-5">${product.name}</div>
+                                            <div class="col-sm-2">
+                                                ${product.price}
+                                            </div>
                                             <div class="col-sm-2">${product.quantity}</div>
-                                            <div class="col-sm-2">${product.status}</div>
-                                            <div class="col-sm-1"><i class="fa fa-eye"></i></div>
-                                            <div class="col-sm-1"><i class="fas fa-tools"></i></div>
-                                            <div class="col-sm-1"><i class="fas fa-plus-circle"></i></div>
+                                            <div class="col-sm-1">
+                                                <c:choose>
+                                                    <c:when test = "${product.status}">
+                                                        <button class="btn btn-light"><i class="fa fa-check" aria-hidden="true"></i></button>
+                                                    </c:when>
+                                                    <c:otherwise>
+                                                        <button class="btn btn-light"><i class="fa fa-ban" aria-hidden="true"></i></button>
+                                                    </c:otherwise>
+                                                </c:choose>
+                                            </div>
+                                            <div class="col-sm-1">
+                                                <a href="${pageContext.request.contextPath}/admin/product?productId=${product.productID}" class="btn btn-light"><i class="fa fa-eye" aria-hidden="true"></i></a>
+                                            </div>
                                         </div>
                                     </div>
                                 </c:forEach>
+
+                                <!-- pagination -->
+                                <div class="container"
+                                     <nav aria-label="pagination">
+                                        <ul class="pagination">
+                                            <c:if test="${productDto.currentPage == 1}">
+                                                <li class="page-item disabled">
+                                                    <a class="page-link" href="#" tabindex="-1">Previous</a>
+                                                </li>
+                                                <li class="page-item active">
+                                                    <a class="page-link" href="${pageContext.request.contextPath}/admin/product?currentPage=1">1 <span class="sr-only">(current)</span></a>
+                                                </li>
+                                                <c:if test="${productDto.totalPages > 1}">
+                                                    <li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/admin/product?currentPage=2">2</a></li>
+                                                </c:if>
+                                                <c:if test="${productDto.totalPages > 2}">
+                                                    <li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/admin/product?currentPage=3">3</a></li>
+                                                </c:if>
+                                                <c:if test="${productDto.totalPages > 3}">
+                                                    <li class="page-item">
+                                                        <a class="page-link" href="${pageContext.request.contextPath}/admin/product?currentPage=2">Next</a>
+                                                    </li>
+                                                </c:if>
+                                                <c:if test="${productDto.totalPages == 1}">
+                                                    <li class="page-item disabled">
+                                                        <a class="page-link" href="#">Next</a>
+                                                    </li>
+                                                </c:if>
+                                            </c:if>
+
+                                            <c:if test="${productDto.currentPage > 1}">
+                                                <li class="page-item">
+                                                    <a class="page-link" href="${pageContext.request.contextPath}/admin/product?currentPage=${productDto.currentPage-1}" tabindex="-1">Previous</a>
+                                                </li>
+                                                <li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/admin/product?currentPage=${productDto.currentPage-1}">${productDto.currentPage-1}</a></li>
+                                                <li class="page-item active">
+                                                    <a class="page-link" href="${pageContext.request.contextPath}/admin/product?currentPage=${productDto.currentPage}">${productDto.currentPage} <span class="sr-only">(current)</span></a>
+                                                </li>
+                                                <c:if test="${productDto.totalPages > productDto.currentPage}">
+                                                    <li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/admin/product?currentPage=${productDto.currentPage+1}">${productDto.currentPage+1}</a></li>
+                                                </c:if>
+                                                <c:if test="${productDto.totalPages > productDto.currentPage}">
+                                                    <li class="page-item">
+                                                        <a class="page-link" href="${pageContext.request.contextPath}/admin/product?currentPage=${productDto.currentPage+1}">Next</a>
+                                                    </li>
+                                                </c:if>
+                                                <c:if test="${productDto.totalPages <= productDto.currentPage}">
+                                                    <li class="page-item disabled">
+                                                        <a class="page-link" href="#">Next</a>
+                                                    </li>
+                                                </c:if>
+                                            </c:if>                                          
+                                        </ul>
+                                    </nav>
+                                </div>
 
                                 <div class="panel panel-default">
                                     <%--<%@ include file="pagination.jsp"%>--%>
@@ -287,23 +362,24 @@
         <script src="<c:url value="/static/jquery-3.4.1/custom.js"/>"></script>
         <script src="<c:url value="/static/bootstrap-4.0.0/js/bootstrap.min.js"/>"></script>
         <script>
-            $('#btn-new-product').click(function (){
+            $('#btn-new-product').click(function () {
                 $.ajax({
-                    url: window.location.pathname.substring(0, window.location.pathname.indexOf("/",2))+'/api/category',
-                    contentType:'application/json;charset=utf-8',
+                    url: window.location.pathname.substring(0, window.location.pathname.indexOf("/", 2)) + '/admin/api/categories',
+                    contentType: 'application/json;charset=utf-8',
                     dataType: 'json',
                     type: 'GET',
-                    success: function(response) {
-                      $('#category-options').empty();
-                      response.forEach((c,i) => {
-                          $("#category-options").append("<option value='"+c['categoryID']+"' >"+c['name']+"</option>");
-                      })
+                    success: function (response) {
+                        $('#category-options').empty();
+                        response.forEach((c, i) => {
+                            $("#category-options").append("<option value='" + c['categoryID'] + "' >" + c['name'] + "</option>");
+                        })
                     },
-                    error: function(x, e) {
+                    error: function (x, e) {
                         console.log(e)
                     }
                 });
             });
+
         </script>
     </body>
 

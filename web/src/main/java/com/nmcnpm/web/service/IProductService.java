@@ -14,7 +14,12 @@ import com.nmcnpm.web.model.Product;
  */
 public interface IProductService {
     
-    ProductDto find(int currentPage, int elePerPage);
+    Product find(int currentPage, int elePerPage);
+    Product findById(Long productId);
+    void findById(Long productId, ProductDto productDto);
+    void find(int currentPage, int elePerPage, ProductDto productDto);
     boolean valid(Product product);
     boolean save(Product product);
+    boolean isExist(Long productId);
+    boolean update(Product product);
 }

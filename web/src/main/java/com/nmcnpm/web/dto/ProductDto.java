@@ -6,11 +6,14 @@
 package com.nmcnpm.web.dto;
 
 import com.nmcnpm.web.model.Product;
+import com.nmcnpm.web.model.ProductDetail;
+import lombok.Data;
 
 /**
  *
  * @author tuhalang
  */
+@Data
 public class ProductDto extends ResponseDto<Product>{
-     
+     private ProductDetail productDetail;
 }

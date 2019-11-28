@@ -1719,3 +1719,18 @@ span.input-icon {
     font-size: 25px;
     border: 1px solid #edeeed;
 }
+
+.demo {
+    width: 100%;
+    text-align: center;
+}
+.demo > div {
+    width: fit-content;
+    margin: 50px auto;
+}
+
+.label-custom{
+    padding: 10px;
+    padding-right: 20px;
+    padding-left: 50px;
+}
