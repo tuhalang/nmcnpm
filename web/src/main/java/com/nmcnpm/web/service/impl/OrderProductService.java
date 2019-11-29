@@ -18,8 +18,8 @@ public class OrderProductService<IOrderProduct> implements IOrderProductService{
             OrderedProduct orderedProduct = new OrderedProduct();
             for (OrderDto orderDto: orderDtos) {
                 orderedProduct.setOrderID(id);
-                orderedProduct.setProductID(orderDto.getProduct().getProductID());
-                orderedProduct.setQuantity(orderDto.getQuantity());
+//                orderedProduct.setProductID(orderDto.getProduct().getProductID());
+//                orderedProduct.setQuantity(orderDto.getQuantity());
                 orderedProductDAO.insert(orderedProduct);
             }
             return true;

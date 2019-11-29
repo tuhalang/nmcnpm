@@ -4,6 +4,7 @@ import com.nmcnpm.web.dao.IProductDAO;
 import com.nmcnpm.web.dto.OrderDto;
 import com.nmcnpm.web.dto.ProductDto;
 import com.nmcnpm.web.model.Customer;
+import com.nmcnpm.web.model.OrderedProduct;
 import com.nmcnpm.web.service.ICustomerService;
 import com.nmcnpm.web.service.IProductService;
 import com.nmcnpm.web.utils.SessionUtils;
@@ -29,18 +30,28 @@ public class ConfirmAddressController  extends HttpServlet {
         Customer customer = new Customer();
         customer.setCustomerID(1L);
         customer = customerService.findByID(customer);
-        List<OrderDto> orderDtos = new ArrayList<>();
-        OrderDto orderDto = new OrderDto();
-        orderDto.setQuantity(7L);
-        orderDto.setProduct(productService.findById(29L));
-        orderDtos.add(orderDto);
-        orderDto = new OrderDto();
-        orderDto.setQuantity(6L);
-        orderDto.setProduct(productService.findById(31L));
-        orderDtos.add(orderDto);
-        System.out.println(orderDtos);
-
-        sessionUtils.putValue(request, "orderDtos", orderDtos);
+        /**
+         * Sử dụng cookie để lưu trữ giỏ hàng
+         * cách sử dụng:
+         * +) Lưu thêm vào giỏ hàng: cookieUtils.newCookie(productId, quantity)
+         * trong đó productId được coi là tên của cookie còn quantity là giá trị.
+         * +) Lấy tất các các mặt hàng trong giỏ: cookieUtils.getAllValues()
+         * hàm này sẽ trả về một map tương ứng với <key, value> = <productId, quantity>
+         * +) Xóa mặt hàng: cookieUtils.removeCookie()
+         * +) cập nhật số lương: cookieUtils.updateData()
+         */
+        
+//        OrderDto orderDto = new OrderDto();
+//        
+//        List<OrderedProduct> orderedProducts = new ArrayList<>();
+//        OrderedProduct orderProduct = new OrderedProduct();
+//        orderProduct.setQuantity(7L);
+//        orderProduct.setProductID(29L);
+//        orderedProducts.add(orderProduct);
+//        
+//        orderDto.setListOfdata(orderedProducts);
+//
+//        sessionUtils.putValue(request, "orderDtos", orderDto);
         sessionUtils.putValue(request, "customer", customer);
 
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("/templates/order-2.jsp");
