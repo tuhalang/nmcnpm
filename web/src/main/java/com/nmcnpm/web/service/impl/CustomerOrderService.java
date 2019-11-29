@@ -2,10 +2,7 @@ package com.nmcnpm.web.service.impl;
 
 import com.nmcnpm.web.dao.ICustomerOrderDAO;
 import com.nmcnpm.web.dto.OrderDto;
-import com.nmcnpm.web.model.Customer;
-import com.nmcnpm.web.model.CustomerOrder;
-import com.nmcnpm.web.model.OrderStatus;
-import com.nmcnpm.web.model.PaymentMethod;
+import com.nmcnpm.web.model.*;
 import com.nmcnpm.web.service.ICustomerOrderService;
 import com.nmcnpm.web.service.ICustomerService;
 
@@ -17,13 +14,13 @@ public class CustomerOrderService implements ICustomerOrderService {
     ICustomerOrderDAO customerOrderDAO;
 
     @Override
-    public Long save(List<OrderDto> orderDtos, Customer customer) {
+    public Long save(List<OrderedProduct> order, Customer customer) {
         try{
             CustomerOrder customerOrder = new CustomerOrder();
             Long tmp = 0L;
-//            for (OrderDto orderDto : orderDtos) {
-//                tmp += orderDto.getProduct().getPrice();
-//            }
+            for (OrderedProduct orderedProduct : order) {
+                tmp += orderedProduct.getProduct().getPrice();
+            }
             customerOrder.setAmount(tmp);
             customerOrder.setPaymentMethod(PaymentMethod.COD);
             customerOrder.setOrderStatus(OrderStatus.RECEIVED);

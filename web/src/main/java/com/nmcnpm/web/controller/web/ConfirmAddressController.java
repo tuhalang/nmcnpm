@@ -7,6 +7,7 @@ import com.nmcnpm.web.model.Customer;
 import com.nmcnpm.web.model.OrderedProduct;
 import com.nmcnpm.web.service.ICustomerService;
 import com.nmcnpm.web.service.IProductService;
+import com.nmcnpm.web.utils.CookieUtils;
 import com.nmcnpm.web.utils.SessionUtils;
 
 import javax.inject.Inject;
@@ -18,6 +19,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class ConfirmAddressController  extends HttpServlet {
     @Inject
@@ -25,6 +27,7 @@ public class ConfirmAddressController  extends HttpServlet {
     @Inject
     IProductService productService;
     SessionUtils sessionUtils = new SessionUtils();
+    CookieUtils cookieUtils = new CookieUtils();
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Customer customer = new Customer();
@@ -40,18 +43,8 @@ public class ConfirmAddressController  extends HttpServlet {
          * +) Xóa mặt hàng: cookieUtils.removeCookie()
          * +) cập nhật số lương: cookieUtils.updateData()
          */
-        
-//        OrderDto orderDto = new OrderDto();
-//        
-//        List<OrderedProduct> orderedProducts = new ArrayList<>();
-//        OrderedProduct orderProduct = new OrderedProduct();
-//        orderProduct.setQuantity(7L);
-//        orderProduct.setProductID(29L);
-//        orderedProducts.add(orderProduct);
-//        
-//        orderDto.setListOfdata(orderedProducts);
-//
-//        sessionUtils.putValue(request, "orderDtos", orderDto);
+
+
         sessionUtils.putValue(request, "customer", customer);
 
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("/templates/order-2.jsp");
