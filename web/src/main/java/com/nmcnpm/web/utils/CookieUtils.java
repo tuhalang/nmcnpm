@@ -40,7 +40,7 @@ public class CookieUtils {
         return null;
     }
 
-    public HashMap<String, String> removeValue(HttpServletRequest request) {
+    public HashMap<String, String> getAllValues(HttpServletRequest request) {
         HashMap<String, String> map = new HashMap<String, String>();
         Cookie[] cks = request.getCookies();
         for (Cookie ck : cks) {
