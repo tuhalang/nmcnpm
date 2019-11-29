@@ -22,6 +22,15 @@ public class ProductController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         //=========================================//
+        Long productId = -1l;
+        Long producDetailtId = -1l;
+
+        try {
+            productId = Long.parseLong(request.getParameter("productId"));
+            producDetailtId = Long.parseLong(request.getParameter("productDetailId"));
+        } catch (Exception e) {
+
+        }
 
         String name = request.getParameter("name");
         String description = request.getParameter("description");
@@ -61,10 +70,25 @@ public class ProductController extends HttpServlet {
         productDetail.setInformation(infomation);
 
         //========================================//
-        if (productService.valid(product) && productDetailService.valid(productDetail)) {
-            productDetailService.save(productDetail);
-            product.setProductDetailID(productDetail.getProductDetailID());
-            productService.save(product);
+        if (productId != -1 && producDetailtId != -1) {
+            if (productService.isExist(product.getProductID()) && productDetailService.isExist(productDetail.getProductDetailID())
+                    && productService.valid(product) && productDetailService.valid(productDetail)) {
+                productDetailService.update(productDetail);
+                product.setProductDetailID(productDetail.getProductDetailID());
+                productService.update(product);
+
+                ProductDto productDto = new ProductDto();
+                productService.findById(productId, productDto);
+
+                request.setAttribute("product", productDto);
+                request.getRequestDispatcher("/WEB-INF/admin_theme/product_detail.jsp").forward(request, response);
+            }
+        } else {
+            if (productService.valid(product) && productDetailService.valid(productDetail)) {
+                productDetailService.save(productDetail);
+                product.setProductDetailID(productDetail.getProductDetailID());
+                productService.save(product);
+            }
         }
 
         doGet(request, response);
@@ -75,10 +99,10 @@ public class ProductController extends HttpServlet {
 
         if (request.getParameter("productId") != null) {
             Long productId = Long.parseLong(request.getParameter("productId"));
-            
+
             ProductDto productDto = new ProductDto();
             productService.findById(productId, productDto);
-            
+
             request.setAttribute("product", productDto);
             request.getRequestDispatcher("/WEB-INF/admin_theme/product_detail.jsp").forward(request, response);
         } else {
@@ -143,16 +167,15 @@ public class ProductController extends HttpServlet {
         productDetail.setInformation(infomation);
 
         //========================================//
-        if (productService.isExist(product.getProductID()) && productDetailService.isExist(productDetail.getProductDetailID()) 
+        if (productService.isExist(product.getProductID()) && productDetailService.isExist(productDetail.getProductDetailID())
                 && productService.valid(product) && productDetailService.valid(productDetail)) {
             productDetailService.update(productDetail);
             product.setProductDetailID(productDetail.getProductDetailID());
             productService.update(product);
-            
-            
+
             ProductDto productDto = new ProductDto();
             productService.findById(productId, productDto);
-            
+
             request.setAttribute("product", productDto);
             request.getRequestDispatcher("/WEB-INF/admin_theme/product_detail.jsp").forward(request, response);
         }

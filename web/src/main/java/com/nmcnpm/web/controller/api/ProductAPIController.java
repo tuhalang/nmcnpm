@@ -7,7 +7,9 @@ package com.nmcnpm.web.controller.api;
 
 import com.nmcnpm.web.model.Product;
 import com.nmcnpm.web.service.IProductService;
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import javax.inject.Inject;
 import javax.servlet.ServletException;
@@ -20,7 +22,7 @@ import javax.servlet.http.HttpServletResponse;
  * @author tuhalang
  */
 public class ProductAPIController extends HttpServlet {
-    
+
     @Inject
     private IProductService productService;
 
@@ -50,17 +52,26 @@ public class ProductAPIController extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
     }
-    
-    
+
     @Override
-    protected  void doDelete(HttpServletRequest request, HttpServletResponse response)
+    protected void doDelete(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        Long productId = Long.parseLong(request.getParameter("productId"));
+        
+        BufferedReader br = new BufferedReader(new InputStreamReader(request.getInputStream()));
+
+        String json = "";
+        if (br != null) {
+            json = br.readLine();
+        }
+        
+        Long productId = Long.parseLong(json.substring(json.indexOf("=")+1));
+        
         Product product = productService.findById(productId);
-        if(product != null){
-            product.setStatus(false);
+        if (product != null) {
+            product.setStatus(!product.isStatus());
             productService.update(product);
             response.setStatus(HttpServletResponse.SC_OK);
+            response.getWriter().print("ok");
         }
     }
 

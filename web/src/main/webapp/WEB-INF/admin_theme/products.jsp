@@ -272,10 +272,10 @@
                                             <div class="col-sm-1">
                                                 <c:choose>
                                                     <c:when test = "${product.status}">
-                                                        <button class="btn btn-light"><i class="fa fa-check" aria-hidden="true"></i></button>
+                                                        <button onclick="changeStatus(${product.productID})" class="btn btn-light"><i class="fa fa-check" aria-hidden="true"></i></button>
                                                     </c:when>
                                                     <c:otherwise>
-                                                        <button class="btn btn-light"><i class="fa fa-ban" aria-hidden="true"></i></button>
+                                                        <button onclick="changeStatus(${product.productID})" class="btn btn-light"><i class="fa fa-ban" aria-hidden="true"></i></button>
                                                     </c:otherwise>
                                                 </c:choose>
                                             </div>
@@ -379,6 +379,26 @@
                     }
                 });
             });
+            
+            function changeStatus(productId){
+                $.ajax({
+                    url: window.location.pathname.substring(0, window.location.pathname.indexOf("/", 2)) + '/admin/api/products',
+                    contentType: 'application/json;charset=utf-8',
+                    dataType: 'text',
+                    data: {
+                        productId: productId
+                    },
+                    type: 'DELETE',
+                    success: function (response) {
+                        if(response == 'ok'){
+                            location.reload();
+                        }
+                    },
+                    error: function (x, e) {
+                        alert(e);
+                    }
+                });
+            }
 
         </script>
     </body>

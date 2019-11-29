@@ -175,7 +175,7 @@
 
             <div class="row">
                 <div class="col-lg-12">
-                    <form id="input-add-group" method="put" action="#">
+                    <form id="input-add-group" method="POST" action="${pageContext.request.contextPath}/admin/product">
 
                         <div class="btn-up-down">
                             <i class="fa fa-angle-double-right" type="button" data-toggle="collapse" data-target="#input-product" aria-hidden="true"></i>
@@ -319,7 +319,7 @@
         <script src="<c:url value="/static/bootstrap-4.0.0/js/bootstrap.min.js"/>"></script>
         <script>
             $.ajax({
-                url: window.location.pathname.substring(0, window.location.pathname.indexOf("/", 2)) + '/admin/api/category',
+                url: window.location.pathname.substring(0, window.location.pathname.indexOf("/", 2)) + '/admin/api/categories',
                 contentType: 'application/json;charset=utf-8',
                 dataType: 'json',
                 type: 'GET',

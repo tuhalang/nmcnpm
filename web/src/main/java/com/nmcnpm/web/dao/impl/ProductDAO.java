@@ -12,18 +12,19 @@ public class ProductDAO extends DataBaseDaoImpl<Product> implements IProductDAO 
     @Override
     public void insert(Product product) {
         String sql = "insert into product(name, price, description, category_id, image, thumb_image,"
-                + " description_detail, product_detail_id, created_at, last_modified_at) value(?,?,?,?,?,?,?,?,CURRENT_TIMESTAMP(),CURRENT_TIMESTAMP())";
+                + " description_detail, product_detail_id, status, quantity, created_at, last_modified_at) value(?,?,?,?,?,?,?,?,?,?CURRENT_TIMESTAMP(),CURRENT_TIMESTAMP())";
         Long id = insert(sql, product.getName(), product.getPrice(), product.getDescription(), product.getCategoryID(),
-                product.getImage(), product.getThumbImage(), product.getDescriptionDetail(), product.getProductDetailID());
+                product.getImage(), product.getThumbImage(), product.getDescriptionDetail(), product.getProductDetailID(), product.isStatus(), product.getQuantity());
         product.setProductID(id);
     }
 
     @Override
     public void update(Product product) {
         String sql = "update product set name=?,price =?, description=?, category_id=?, image=?, thumb_image=?,"
-                + " description_detail=?, product_detail_id=?, last_modified_at=CURRENT_TIMESTAMP() where product_id=?";
+                + " description_detail=?, status=?, quantity=?, last_modified_at=CURRENT_TIMESTAMP() where product_id=?";
         update(sql, product.getName(), product.getPrice(), product.getDescription(), product.getCategoryID(),
-                product.getImage(), product.getThumbImage(), product.getDescriptionDetail(), product.getProductDetailID(), product.getProductID());
+                product.getImage(), product.getThumbImage(), product.getDescriptionDetail(),
+                product.isStatus(), product.getQuantity(), product.getProductID());
 
     }
 
