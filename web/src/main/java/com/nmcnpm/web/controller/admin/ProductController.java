@@ -157,22 +157,4 @@ public class ProductController extends HttpServlet {
             request.getRequestDispatcher("/WEB-INF/admin_theme/product_detail.jsp").forward(request, response);
         }
     }
-
-    @Override
-    protected void doDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        
-        Long productId = Long.parseLong(request.getParameter("productId"));
-        Product product = productService.findById(productId);
-        if(product != null){
-            product.setStatus(false);
-            productService.update(product);
-            request.setAttribute("product", productDto);
-            request.getRequestDispatcher("/WEB-INF/admin_theme/product_detail.jsp").forward(request, response);
-        }
-        
-    }
-    
-    
-    
-    
 }
