@@ -17,7 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 //@WebServlet(name = "ResultSearch")
-public class ResultSearch extends HttpServlet {
+public class ResultSearchController extends HttpServlet {
 
     @Inject
     IProductService productService;
