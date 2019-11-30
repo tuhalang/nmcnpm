@@ -124,7 +124,7 @@
 <script>
     
     /**
-     * decrement quantity product
+     * decrease quantity product
      * */
     document.getElementById("dsc").addEventListener("click",function (ev) {
         var i=document.getElementById("quantity_").value;
@@ -132,7 +132,7 @@
     });
     
     /**
-     * increment quantity product
+     * increase quantity product
      * */
     document.getElementById("inc").addEventListener("click",function (ev) {
        var i=document.getElementById("quantity_").value;
@@ -143,14 +143,17 @@
      * add product to cart 
      * */
     function addToCart(productId) {
+        const quantity = document.getElementById("quantity_").value;
         $.ajax({
-            url: window.location.pathname.substring(0, window.location.pathname.indexOf("/", 2)) + "/shopping_cart",
+            url: window.location.pathname.substring(0, window.location.pathname.indexOf("/", 2)) + "/api/cart",
             contentType: 'application/json;charset=utf-8',
             dataType: 'json',
             data: {
-                
+                action: 1,
+                productId: productId,
+                quantity: quantity
             },
-            type: 'POST',
+            type: 'get',
             success: function (response) {
                 if (response=="1") alert("Thêm thành công")
                 else alert("Thêm thất bại");

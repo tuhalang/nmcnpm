@@ -53,6 +53,7 @@ public class CookieUtils {
 
     public void removeCookie(HttpServletResponse response, String name) {
         Cookie ck = new Cookie(name, ""); 
+        //ck.setPath("/");
         ck.setMaxAge(0); 
         response.addCookie(ck); 
     }
