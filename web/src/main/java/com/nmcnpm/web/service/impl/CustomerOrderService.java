@@ -19,8 +19,9 @@ public class CustomerOrderService implements ICustomerOrderService {
             CustomerOrder customerOrder = new CustomerOrder();
             Long tmp = 0L;
             for (OrderedProduct orderedProduct : order) {
-                tmp += orderedProduct.getProduct().getPrice();
+                tmp += orderedProduct.getProduct().getPrice() * orderedProduct.getQuantity();
             }
+            customer.setCustomerID(customer.getCustomerID());
             customerOrder.setAmount(tmp);
             customerOrder.setPaymentMethod(PaymentMethod.COD);
             customerOrder.setOrderStatus(OrderStatus.RECEIVED);

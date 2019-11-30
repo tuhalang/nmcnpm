@@ -18,19 +18,20 @@
         </jsp-property-group>
     </jsp-config>
 
-  <error-page>
+    <error-page>
         <error-code>500</error-code>
         <location>/templates/notfound.jsp</location>
     </error-page>
-    
-  <error-page>
+
+    <error-page>
         <error-code>404</error-code>
         <location>/templates/notfound.jsp</location>
     </error-page>
-  <error-page>
+    <error-page>
         <error-code>401</error-code>
         <location>/templates/accessdenied.jsp</location>
     </error-page>
+
     <servlet>
         <servlet-name>index_</servlet-name>
         <servlet-class>com.nmcnpm.web.controller.web.HomeController</servlet-class>
@@ -39,6 +40,7 @@
         <servlet-name>index_</servlet-name>
         <url-pattern>/home</url-pattern>
     </servlet-mapping>
+
     <servlet>
         <servlet-name>autocomplete_home</servlet-name>
         <servlet-class>com.nmcnpm.web.controller.web.ResultSearchController</servlet-class>
@@ -47,6 +49,7 @@
         <servlet-name>autocomplete_home</servlet-name>
         <url-pattern>/autocomplete_home</url-pattern>
     </servlet-mapping>
+
     <servlet>
         <servlet-name>cart_</servlet-name>
         <servlet-class>com.nmcnpm.web.controller.web.ShoppingCartController</servlet-class>
@@ -55,6 +58,7 @@
         <servlet-name>cart_</servlet-name>
         <url-pattern>/shopping_cart</url-pattern>
     </servlet-mapping>
+
     <servlet>
         <servlet-name>cart_controller</servlet-name>
         <servlet-class>com.nmcnpm.web.controller.web.CartController</servlet-class>
@@ -63,15 +67,17 @@
         <servlet-name>cart_controller</servlet-name>
         <url-pattern>/call_cart</url-pattern>
     </servlet-mapping>
+
     <servlet>
-    <servlet-name>accountMaga</servlet-name>
-    <servlet-class>com.nmcnpm.web.controller.web.AccountManagmentController</servlet-class>
+        <servlet-name>accountMaga</servlet-name>
+        <servlet-class>com.nmcnpm.web.controller.web.AccountManagmentController</servlet-class>
     </servlet>
     <servlet-mapping>
-    <servlet-name>accountMaga</servlet-name>
-    <url-pattern>/accountInfo</url-pattern>
-    <url-pattern>/updateInfo</url-pattern>
+        <servlet-name>accountMaga</servlet-name>
+        <url-pattern>/accountInfo</url-pattern>
+        <url-pattern>/updateInfo</url-pattern>
     </servlet-mapping>
+
     <servlet>
         <servlet-name>update_address</servlet-name>
         <servlet-class>com.nmcnpm.web.controller.web.UpdateAddressController</servlet-class>
@@ -80,6 +86,7 @@
         <servlet-name>update_address</servlet-name>
         <url-pattern>/update_address</url-pattern>
     </servlet-mapping>
+
     <servlet>
         <servlet-name>confirm_order</servlet-name>
         <servlet-class>com.nmcnpm.web.controller.web.ConfirmOrderController</servlet-class>
@@ -88,6 +95,7 @@
         <servlet-name>confirm_order</servlet-name>
         <url-pattern>/confirm_order</url-pattern>
     </servlet-mapping>
+
     <servlet>
         <servlet-name>product_detail</servlet-name>
         <servlet-class>com.nmcnpm.web.controller.web.ProductDetailController</servlet-class>
@@ -103,5 +111,23 @@
     <servlet-mapping>
         <servlet-name>show-result</servlet-name>
         <url-pattern>/show_result</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>confirm_address</servlet-name>
+        <servlet-class>com.nmcnpm.web.controller.web.ConfirmAddressController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>confirm_address</servlet-name>
+        <url-pattern>/confirm_address</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>order</servlet-name>
+        <servlet-class>com.nmcnpm.web.controller.web.OrderController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>order</servlet-name>
+        <url-pattern>/order</url-pattern>
     </servlet-mapping>
 </web-app>

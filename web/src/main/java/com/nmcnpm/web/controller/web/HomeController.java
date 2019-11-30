@@ -37,4 +37,7 @@ public class HomeController extends HttpServlet {
         request.setAttribute("category",categoryService.findById(categoryId));
         request.getRequestDispatcher("/templates/home.jsp").forward(request,response);
     }
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        doGet(request, response);
+    }
 }
