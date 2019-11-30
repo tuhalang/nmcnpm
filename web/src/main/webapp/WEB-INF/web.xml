@@ -122,4 +122,12 @@
         <servlet-name>order</servlet-name>
         <url-pattern>/order</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>showProduct</servlet-name>
+        <servlet-class>com.nmcnpm.web.controller.web.ShowResultSearchController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>showProduct</servlet-name>
+        <url-pattern>/show_result</url-pattern>
+    </servlet-mapping>
 </web-app>
