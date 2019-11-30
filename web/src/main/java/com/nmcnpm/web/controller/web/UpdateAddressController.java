@@ -16,7 +16,7 @@ import java.io.IOException;
 public class UpdateAddressController extends HttpServlet {
     @Inject
     ICustomerService customerService;
-    SessionUtils sessionUtils = new SessionUtils();
+    SessionUtils sessionUtils = SessionUtils.getInstance();
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");

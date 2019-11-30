@@ -7,6 +7,7 @@ import com.nmcnpm.web.model.Customer;
 import com.nmcnpm.web.model.OrderedProduct;
 import com.nmcnpm.web.service.ICustomerService;
 import com.nmcnpm.web.service.IProductService;
+import com.nmcnpm.web.utils.CookieUtils;
 import com.nmcnpm.web.utils.SessionUtils;
 
 import javax.inject.Inject;
@@ -18,40 +19,31 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
-public class ConfirmAddressController  extends HttpServlet {
+public class ConfirmAddressController extends HttpServlet {
+
     @Inject
     ICustomerService customerService;
     @Inject
     IProductService productService;
-    SessionUtils sessionUtils = new SessionUtils();
+    CookieUtils cookieUtils = CookieUtils.getInstance();
+    SessionUtils sessionUtils = SessionUtils.getInstance();
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Customer customer = new Customer();
         customer.setCustomerID(1L);
         customer = customerService.findByID(customer);
         /**
-         * Sử dụng cookie để lưu trữ giỏ hàng
-         * cách sử dụng:
-         * +) Lưu thêm vào giỏ hàng: cookieUtils.newCookie(productId, quantity)
-         * trong đó productId được coi là tên của cookie còn quantity là giá trị.
-         * +) Lấy tất các các mặt hàng trong giỏ: cookieUtils.getAllValues()
-         * hàm này sẽ trả về một map tương ứng với <key, value> = <productId, quantity>
-         * +) Xóa mặt hàng: cookieUtils.removeCookie()
-         * +) cập nhật số lương: cookieUtils.updateData()
+         * Sử dụng cookie để lưu trữ giỏ hàng cách sử dụng: +) Lưu thêm vào giỏ
+         * hàng: cookieUtils.newCookie(productId, quantity) trong đó productId
+         * được coi là tên của cookie còn quantity là giá trị. +) Lấy tất các
+         * các mặt hàng trong giỏ: cookieUtils.getAllValues() hàm này sẽ trả về
+         * một map tương ứng với <key, value> = <productId, quantity>
+         * +) Xóa mặt hàng: cookieUtils.removeCookie() +) cập nhật số lương:
+         * cookieUtils.updateData()
          */
-        
-//        OrderDto orderDto = new OrderDto();
-//        
-//        List<OrderedProduct> orderedProducts = new ArrayList<>();
-//        OrderedProduct orderProduct = new OrderedProduct();
-//        orderProduct.setQuantity(7L);
-//        orderProduct.setProductID(29L);
-//        orderedProducts.add(orderProduct);
-//        
-//        orderDto.setListOfdata(orderedProducts);
-//
-//        sessionUtils.putValue(request, "orderDtos", orderDto);
+
         sessionUtils.putValue(request, "customer", customer);
 
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("/templates/order-2.jsp");

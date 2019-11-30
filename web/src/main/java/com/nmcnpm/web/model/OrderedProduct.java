@@ -12,6 +12,7 @@ public class OrderedProduct extends BaseModel{
 	private Long orderID;
 	private Long productID;
 	private Long quantity;
+	private Product product;
 
 	public OrderedProduct(Long orderID, Long productID, Long quantity) {
 		this.orderID = orderID;

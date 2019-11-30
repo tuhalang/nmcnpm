@@ -48,7 +48,9 @@ public class CookieUtils {
         HashMap<String, String> map = new HashMap<String, String>();
         Cookie[] cks = request.getCookies();
         for (Cookie ck : cks) {
-            map.put(ck.getName(), ck.getValue());
+            if(ck.getName().matches("^[0-9]{0,}$") && ck.getValue().matches("^[0-9]{0,}$")) {
+                map.put(ck.getName(), ck.getValue());
+            }
         }
         return map;
     }

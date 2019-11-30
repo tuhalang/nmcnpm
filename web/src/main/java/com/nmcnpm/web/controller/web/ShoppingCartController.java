@@ -44,7 +44,7 @@ public class ShoppingCartController extends HttpServlet {
             }
             try {
                 Product product = productService.findById(productID);
-                cart.addItem(product);
+                cart.addItem(product,Long.parseLong(quantity));
                 cart.calculateAmount();
                 session.setAttribute("cart", cart);
             } catch (Exception e) {

@@ -39,7 +39,7 @@
 				<div class="col-lg-8 has-padding">
 					<div class="panel panel-default payment">
 						<div class="panel-body">
-							<form class="form-hozirontal hide-block" role="form" id="form-payment" action="${pageContext.request.contextPath}/confirm_order" method="post">
+							<form class="form-hozirontal hide-block" role="form" id="form-payment" action="${pageContext.request.contextPath}/order" method="post">
 								<h3 class="step-title">1. Chọn hình thức giao hàng</h3>
 								<div class="panel panel-default">
 									<div class="panel-body">
@@ -98,19 +98,6 @@
 												</div>
 
 											</div>
-											<div class="form-group row row-style-3  ">
-												<div class="col-lg-1 col-md-1 col-sm-1 col-xs-2">
-													<label class="icheck-wrap">
-														<div class="iradio_square-blue" style="position: relative;"><input type="radio" name="selected_payment_method" value="cybersource" id="cybersource" class="icheck js-icheck-3 payment-method" style="position: absolute; top: -20%; left: -20%; display: block; width: 140%; height: 140%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"><ins class="iCheck-helper" style="position: absolute; top: -20%; left: -20%; display: block; width: 140%; height: 140%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins></div>
-													</label>
-												</div>
-
-												<div class="col-lg-11 col-md-11 col-sm-11 col-xs-12 pad-right-10">
-													<label for="cybersource" class="control-label is-large">
-														Thanh toán bằng thẻ quốc tế Visa, Master, JCB        </label>
-
-												</div>
-											</div>
 										</div>
 									</div>
 								</div>
@@ -147,12 +134,12 @@
 							<div class="panel-body">
 								<div class="order">
 									<span class="title">Đơn Hàng</span>
-									<span class="title"> (${orderDtos.size()} sản phẩm)</span>
+									<span class="title"> (${orderDtos.listOfdata.size()} sản phẩm)</span>
 
 									<a href="/checkout/cart/" class="btn btn-default btn-custom1">Sửa</a>
 								</div>
 								<c:set var="amount" value="${0}" />
-								<c:forEach items="${orderDtos}" var="orderDto" varStatus="status">
+								<c:forEach items="${orderDtos.listOfdata}" var="orderDto" varStatus="status">
 									<c:set var="amount" value="${amount + orderDto.product.price * orderDto.quantity}" />
 									<div class="product">
 										<div class="item">

@@ -13,13 +13,10 @@ public class OrderProductService<IOrderProduct> implements IOrderProductService{
     IOrderedProductDAO orderedProductDAO;
 
     @Override
-    public boolean save(Long id, List<OrderDto> orderDtos) {
+    public boolean save(Long id, List<OrderedProduct> orderedProducts) {
         try{
-            OrderedProduct orderedProduct = new OrderedProduct();
-            for (OrderDto orderDto: orderDtos) {
+            for (OrderedProduct orderedProduct: orderedProducts) {
                 orderedProduct.setOrderID(id);
-//                orderedProduct.setProductID(orderDto.getProduct().getProductID());
-//                orderedProduct.setQuantity(orderDto.getQuantity());
                 orderedProductDAO.insert(orderedProduct);
             }
             return true;

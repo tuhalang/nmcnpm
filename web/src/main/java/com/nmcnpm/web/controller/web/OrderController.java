@@ -1,11 +1,9 @@
 package com.nmcnpm.web.controller.web;
 
-import com.nmcnpm.web.dao.IOrderedProductDAO;
 import com.nmcnpm.web.dto.OrderDto;
 import com.nmcnpm.web.model.Customer;
 import com.nmcnpm.web.model.OrderedProduct;
 import com.nmcnpm.web.service.ICustomerOrderService;
-import com.nmcnpm.web.service.ICustomerService;
 import com.nmcnpm.web.service.IOrderProductService;
 import com.nmcnpm.web.service.IProductService;
 import com.nmcnpm.web.utils.CookieUtils;
@@ -22,7 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-public class ConfirmOrderController extends HttpServlet {
+public class OrderController extends HttpServlet {
 
     @Inject
     IOrderProductService orderProductService;
@@ -35,28 +33,31 @@ public class ConfirmOrderController extends HttpServlet {
     SessionUtils sessionUtils = SessionUtils.getInstance();
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        cookieUtils.newCookie(response, "29", "7");
-
-        OrderDto orderDto = new OrderDto();
         Map<String, String> card = cookieUtils.getAllValues(request);
         List<OrderedProduct> orderedProducts = new ArrayList<>();
 
         for (Map.Entry<String, String> entry : card.entrySet()) {
-            Long id = Long.parseLong(entry.getKey());
-            Long quantity = Long.parseLong(entry.getValue());
             OrderedProduct orderProduct = new OrderedProduct();
-            orderProduct.setQuantity(quantity);
-            orderProduct.setProductID(id);
-            orderProduct.setProduct(productService.findById(id));
+            orderProduct.setQuantity(Long.parseLong(entry.getValue()));
+            orderProduct.setProductID(Long.parseLong(entry.getKey()));
+            orderProduct.setProduct(productService.findById(Long.parseLong(entry.getKey())));
             orderedProducts.add(orderProduct);
         }
 
-        orderDto.setListOfdata(orderedProducts);
+        Customer customer = (Customer) sessionUtils.getValue(request, "customer");
 
-        request.setAttribute("orderDtos", orderDto);
+        Long id = customerOrderService.save(orderedProducts, customer);
+        if (id > -1){
+            orderProductService.save(id, orderedProducts);
+        }
 
-        RequestDispatcher requestDispatcher = request.getRequestDispatcher("/templates/order-3.jsp");
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher("/home");
         requestDispatcher.forward(request, response);
+
+    }
+
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        doPost(request, response);
 
     }
 }
