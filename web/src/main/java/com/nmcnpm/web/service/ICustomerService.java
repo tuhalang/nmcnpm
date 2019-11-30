@@ -1,5 +1,6 @@
 package com.nmcnpm.web.service;
 
+import com.nmcnpm.web.dto.CustomerDto;
 import com.nmcnpm.web.model.Customer;
 
 /**
@@ -10,4 +11,5 @@ public interface ICustomerService {
     boolean valid(Customer customer);
     boolean isExist(Customer customer);
     boolean save(Customer customer);
+    CustomerDto find(int currentPage, int elePerPage);
 }

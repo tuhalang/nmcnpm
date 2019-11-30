@@ -20,4 +20,5 @@ public interface ICustomerDAO extends IBaseDao<Customer> {
     List<Customer> findLikeName(String name);
     List<Customer> findLikeAddress(String address);
     List<Customer> findLikeCityRegion(String cityRegion);
+    Long count();
 }

@@ -73,4 +73,10 @@ public class CustomerDAO extends DataBaseDaoImpl<Customer> implements ICustomerD
         List<Customer> customers = query(sql, new CustomerMapper(), "%"+cityRegion+"%");
         return customers;
     }
+
+    @Override
+    public Long count() {
+        String sql = "select count(1) from customer";
+        return count(sql);
+    }
 }

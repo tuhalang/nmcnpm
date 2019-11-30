@@ -1,6 +1,7 @@
 package com.nmcnpm.web.service.impl;
 
 import com.nmcnpm.web.dao.ICustomerDAO;
+import com.nmcnpm.web.dto.CustomerDto;
 import com.nmcnpm.web.model.Customer;
 import com.nmcnpm.web.service.ICustomerService;
 
@@ -46,5 +47,15 @@ public class CustomerService implements ICustomerService {
             e.printStackTrace();
             return false;
         }
+    }
+
+    @Override
+    public CustomerDto find(int currentPage, int elePerPage) {
+        CustomerDto customerDto = new CustomerDto();
+        customerDto.setCurrentPage(currentPage);
+        customerDto.setElePerPage(elePerPage);
+        customerDto.setTotalPages(customerDAO.count()/elePerPage+1);
+        customerDto.setListOfData(customerDAO.find((currentPage-1)*elePerPage, elePerPage));
+        return customerDto;
     }
 }

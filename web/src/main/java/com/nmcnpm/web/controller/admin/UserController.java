@@ -1,10 +1,13 @@
 package com.nmcnpm.web.controller.admin;
 
+import com.nmcnpm.web.dto.CustomerDto;
+import com.nmcnpm.web.service.ICustomerService;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import javax.inject.Inject;
 
 /**
  * @author tuhalang
@@ -12,13 +15,23 @@ import java.io.IOException;
  */
 public class UserController extends HttpServlet {
 
-    public UserController() {
-        super();
-    }
+    @Inject
+    ICustomerService customerService;
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.getRequestDispatcher("/WEB-INF/admin_theme/management.jsp").forward(request,response);
+        int currentPage = 1;
+        int elePerPage = 12;
+        try{
+            currentPage = Integer.parseInt(request.getParameter("currentPage"));
+            elePerPage = Integer.parseInt(request.getParameter("elePerPage"));
+        }catch(Exception x){
+            
+        }
+        CustomerDto customerDto = customerService.find(currentPage, elePerPage);
+        
+        request.setAttribute("customerDto", customerDto);
+        request.getRequestDispatcher("/WEB-INF/admin_theme/customer.jsp").forward(request,response);
     }
 
     @Override
