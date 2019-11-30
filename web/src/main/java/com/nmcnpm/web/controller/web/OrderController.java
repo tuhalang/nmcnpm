@@ -55,4 +55,9 @@ public class OrderController extends HttpServlet {
         requestDispatcher.forward(request, response);
 
     }
+
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        doPost(request, response);
+
+    }
 }
