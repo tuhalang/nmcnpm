@@ -33,14 +33,14 @@ public class OrderController extends HttpServlet {
     SessionUtils sessionUtils = new SessionUtils();
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
         Map<String, String> card = cookieUtils.getAllValues(request);
         List<OrderedProduct> orderedProducts = new ArrayList<>();
 
         for (Map.Entry<String, String> entry : card.entrySet()) {
             OrderedProduct orderProduct = new OrderedProduct();
             orderProduct.setQuantity(Long.parseLong(entry.getValue()));
-            orderProduct.setProductID(productService.findById(Long.parseLong(entry.getKey())).getProductID());
+            orderProduct.setProductID(Long.parseLong(entry.getKey()));
+            orderProduct.setProduct(productService.findById(Long.parseLong(entry.getKey())));
             orderedProducts.add(orderProduct);
         }
 
@@ -51,7 +51,8 @@ public class OrderController extends HttpServlet {
             orderProductService.save(id, orderedProducts);
         }
 
-        RequestDispatcher requestDispatcher = request.getRequestDispatcher("/templates/home.jsp");
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher("/home");
         requestDispatcher.forward(request, response);
+
     }
 }

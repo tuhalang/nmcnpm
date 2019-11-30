@@ -130,12 +130,15 @@
                         </div>
                     </div>
                     <div class="row w-100">
-                        <button type="button" class="btn btn-large btn-block btn-danger btn-checkout"
-                                onclick="location.href='<c:url value="/templates/order-2.jsp"/>';return false;">Tiến
+                        <form action="${pageContext.request.contextPath}/confirm_address" method="post">
+                        <button type="submit" class="btn btn-large btn-block btn-danger btn-checkout"
+<%--                                onclick="location.href='<c:url value="/confirm_address"/>';--%>
+                                return false;">Tiến
                             hành
                             đặt
                             hàng
                         </button>
+                        </form>
                     </div>
 
                 </div>

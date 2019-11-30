@@ -42,35 +42,21 @@ public class ConfirmOrderController extends HttpServlet {
         List<OrderedProduct> orderedProducts = new ArrayList<>();
 
         for (Map.Entry<String, String> entry : card.entrySet()) {
-            System.out.println(entry.getKey() + " " + entry.getValue());
-
+            Long id = Long.parseLong(entry.getKey());
+            Long quantity = Long.parseLong(entry.getValue());
+            OrderedProduct orderProduct = new OrderedProduct();
+            orderProduct.setQuantity(quantity);
+            orderProduct.setProductID(id);
+            orderProduct.setProduct(productService.findById(id));
+            orderedProducts.add(orderProduct);
         }
 
-//        for (Map.Entry<String, String> entry : card.entrySet()) {
-//            Long id = Long.parseLong(entry.getKey());
-//            Long quantity = Long.parseLong(entry.getValue());
-//            System.out.println(id + " " + quantity);
-//            OrderedProduct orderProduct = new OrderedProduct();
-//            orderProduct.setQuantity(quantity);
-//            orderProduct.setProduct(productService.findById(id));
-//            orderedProducts.add(orderProduct);
-//        }
-
         orderDto.setListOfdata(orderedProducts);
+
+        request.setAttribute("orderDtos", orderDto);
 
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("/templates/order-3.jsp");
         requestDispatcher.forward(request, response);
 
-
-
-
-//        request.setAttribute( "orderDto", orderDto);
-//        Customer customer = (Customer) sessionUtils.getValue(request, "customer");
-//        List<OrderDto> orderDtos = (List<OrderDto>) sessionUtils.getValue(request, "orderDtos");
-//
-//        Long id = customerOrderService.save(orderDtos, customer);
-//        if (id > -1){
-//            orderProductService.save(id, orderDtos);
-//        }
     }
 }
