@@ -104,7 +104,7 @@
         <%--window.location.replace("http://localhost:8080/web_war/detail?productID=" + ${product.productID});--%>
     })
     function abc(id) {
-        window.location.replace("http://localhost:8080/web_war/detail?productID=" +id);
+        window.location.replace(window.location.pathname.substring(0, window.location.pathname.indexOf("/", 2))+ "/detail?productID=" +id);
     }
 </script>
 </body>
