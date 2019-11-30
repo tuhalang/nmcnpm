@@ -194,54 +194,120 @@
                         <div class="modal" id="modal-add-group">
                             <div class="modal-dialog modal-dialog-centered modal-lg" type="document">
                                 <div class="modal-content">
-                                    <div class="modal-header"><h2>Create new category</h2></div>
+                                    <div class="modal-header"><h2><strong>Create new category</strong></h2></div>
                                     <div class="modal-body">
-                                        <form id="input-add-group">
+                                        <form method="post" action="${pageContext.request.contextPath}/admin/category">
                                             <input type="text" name="name" class="form-control" aria-describedby="nameHelp" placeholder="Enter name category">
                                             <br>
                                             <input type="text" name="image" class="form-control" aria-describedby="nameHelp" placeholder="Enter link image">
+                                            <div class="modal-footer">
+                                                <button type="submit" class="btn btn-primary" id="btn-add-group">Create</button>
+                                                <button class="btn btn-primary" data-dismiss="modal">Cancel</button>
+                                            </div>
                                         </form>
                                     </div>
-                                    <div class="modal-footer">
-                                        <button class="btn btn-primary" id="btn-add-group">Create</button>
-                                        <button class="btn btn-primary" data-dismiss="modal">Cancel</button>
-                                    </div>
+
                                 </div>
                             </div>
                         </div>
-<!--                        <div class="modal" id="modal-add-group" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                            <div class="modal-dialog" role="document">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
-                                    </div>
-                                    <div class="modal-body">
-                                        ...
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                        <button type="button" class="btn btn-primary">Save changes</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>-->
+
                         <div class="panel-body panel-group">
                             <div class="panel-group">
+                                <div class="panel panel-default">
+                                    <div class="panel-body">
+                                        <div class="col-sm-1"><strong>ID</strong></div>
+                                        <div class="col-sm-2"><strong>Name</strong></div>
+                                        <div class="col-sm-8"><strong>Image</strong></div>
+                                        <div class="col-sm-1"><strong>Edit</strong></div>
+                                    </div>
+                                </div>
                                 <c:forEach items="${categoryDto.listOfData}" var="category">
                                     <div class="panel panel-default">
                                         <div class="panel-body">
-                                            <div class="col-sm-2"> ${category.categoryID}</div>
-                                            <div class="group-product-name col-sm-4"> ${category.name}</div>
-                                            <div class="col-sm-2"> ${category.quantity}</div>
-                                            <div class="col-sm-1"><i class="fas fa-plus-circle"> Add</i></div>
-                                            <div class="col-sm-2"><i class="fas fa-tools">  Rename</i></div>
-                                            <div class="col-sm-1"><i class="fas fa-trash"> Delete</i></div>
+                                            <div class="col-sm-1"> ${category.categoryID}</div>
+                                            <div class="col-sm-2"> ${category.name}</div>
+                                            <div class="col-sm-8"> ${category.image}</div>
+                                            <div class="col-sm-1">
+                                                <button onclick="edit(${category.categoryID})" class="btn btn-light" data-toggle="modal" data-backdrop="static" data-keyboard="false" data-target="#modal-edit"><i class="fas fa-tools"></i></button>
+                                            </div>
                                         </div>
                                     </div>
                                 </c:forEach>
+                                <div class="modal" id="modal-edit">
+                                    <div class="modal-dialog modal-dialog-centered modal-lg" type="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header"><h2><strong>Edit category</strong></h2></div>
+                                            <div class="modal-body">
+                                                <form method="post" action="${pageContext.request.contextPath}/admin/category">
+                                                    <input id="categoryId" type="text" name="categoryId" class="form-control" aria-describedby="nameHelp" placeholder="Enter name category" readonly="true">
+                                                    <br>
+                                                    <input id="categoryName" type="text" name="name" class="form-control" aria-describedby="nameHelp" placeholder="Enter name category">
+                                                    <br>
+                                                    <input id="categoryImage" type="text" name="image" class="form-control" aria-describedby="nameHelp" placeholder="Enter link image">
+                                                    <div class="modal-footer">
+                                                        <button type="submit" class="btn btn-primary" id="btn-add-group">Update</button>
+                                                        <button class="btn btn-primary" data-dismiss="modal">Cancel</button>
+                                                    </div>
+                                                </form>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- pagination -->
+                                <div class="container"
+                                     <nav aria-label="pagination">
+                                        <ul class="pagination">
+                                            <c:if test="${categoryDto.currentPage == 1}">
+                                                <li class="page-item disabled">
+                                                    <a class="page-link" href="#" tabindex="-1">Previous</a>
+                                                </li>
+                                                <li class="page-item active">
+                                                    <a class="page-link" href="${pageContext.request.contextPath}/admin/category?currentPage=1">1 <span class="sr-only">(current)</span></a>
+                                                </li>
+                                                <c:if test="${categoryDto.totalPages > 1}">
+                                                    <li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/admin/category?currentPage=2">2</a></li>
+                                                    </c:if>
+                                                    <c:if test="${categoryDto.totalPages > 2}">
+                                                    <li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/admin/category?currentPage=3">3</a></li>
+                                                    </c:if>
+                                                    <c:if test="${categoryDto.totalPages > 1}">
+                                                    <li class="page-item">
+                                                        <a class="page-link" href="${pageContext.request.contextPath}/admin/category?currentPage=2">Next</a>
+                                                    </li>
+                                                </c:if>
+                                                <c:if test="${categoryDto.totalPages == 1}">
+                                                    <li class="page-item disabled">
+                                                        <a class="page-link" href="#">Next</a>
+                                                    </li>
+                                                </c:if>
+                                            </c:if>
+
+                                            <c:if test="${categoryDto.currentPage > 1}">
+                                                <li class="page-item">
+                                                    <a class="page-link" href="${pageContext.request.contextPath}/admin/category?currentPage=${categoryDto.currentPage-1}" tabindex="-1">Previous</a>
+                                                </li>
+                                                <li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/admin/category?currentPage=${categoryDto.currentPage-1}">${categoryDto.currentPage-1}</a></li>
+                                                <li class="page-item active">
+                                                    <a class="page-link" href="${pageContext.request.contextPath}/admin/category?currentPage=${categoryDto.currentPage}">${categoryDto.currentPage} <span class="sr-only">(current)</span></a>
+                                                </li>
+                                                <c:if test="${categoryDto.totalPages > categoryDto.currentPage}">
+                                                    <li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/admin/category?currentPage=${categoryDto.currentPage+1}">${categoryDto.currentPage+1}</a></li>
+                                                    </c:if>
+                                                    <c:if test="${categoryDto.totalPages > categoryDto.currentPage}">
+                                                    <li class="page-item">
+                                                        <a class="page-link" href="${pageContext.request.contextPath}/admin/category?currentPage=${categoryDto.currentPage+1}">Next</a>
+                                                    </li>
+                                                </c:if>
+                                                <c:if test="${categoryDto.totalPages <= categoryDto.currentPage}">
+                                                    <li class="page-item disabled">
+                                                        <a class="page-link" href="#">Next</a>
+                                                    </li>
+                                                </c:if>
+                                            </c:if>                                          
+                                        </ul>
+                                    </nav>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -258,6 +324,30 @@
         <script src="<c:url value="/static/jquery-3.4.1/bootstrap-datepicker.js"/>"></script>
         <script src="<c:url value="/static/jquery-3.4.1/custom.js"/>"></script>
         <script src="<c:url value="/static/bootstrap-4.0.0/js/bootstrap.min.js"/>"></script>
+
+        <script>
+
+                                                    function edit(categoryId) {
+                                                        $.ajax({
+                                                            url: window.location.pathname.substring(0, window.location.pathname.indexOf("/", 2)) + '/admin/api/categories',
+                                                            contentType: 'application/json;charset=utf-8',
+                                                            dataType: 'json',
+                                                            data: {
+                                                                categoryId: categoryId
+                                                            },
+                                                            type: 'get',
+                                                            success: function (response) {
+                                                                console.log(response);
+                                                                $('#categoryId').val(response['categoryID']);
+                                                                $('#categoryName').val(response['name']);
+                                                                $('#categoryImage').val(response['image']);
+                                                            },
+                                                            error: function (x, e) {
+                                                                alert(e);
+                                                            }
+                                                        })
+                                                    }
+        </script>
     </body>
 
 </html>

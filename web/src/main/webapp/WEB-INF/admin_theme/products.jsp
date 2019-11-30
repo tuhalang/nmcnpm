@@ -234,8 +234,8 @@
 
                                           
                                             <div class="modal-footer">
-                                                <button type="submit" class="btn btn-primary" id="btn-add-group">Add</button>
-                                                <button class="btn btn-primary" data-dismiss="modal">Close</button>
+                                                <button type="submit" class="btn btn-primary" id="btn-add-group">Create</button>
+                                                <button class="btn btn-primary" data-dismiss="modal">Cancel</button>
                                             </div>
                                         </form>
                                     </div>
@@ -303,7 +303,7 @@
                                                 <c:if test="${productDto.totalPages > 2}">
                                                     <li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/admin/product?currentPage=3">3</a></li>
                                                 </c:if>
-                                                <c:if test="${productDto.totalPages > 3}">
+                                                <c:if test="${productDto.totalPages > 1}">
                                                     <li class="page-item">
                                                         <a class="page-link" href="${pageContext.request.contextPath}/admin/product?currentPage=2">Next</a>
                                                     </li>

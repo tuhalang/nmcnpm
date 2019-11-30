@@ -1,6 +1,7 @@
 package com.nmcnpm.web.controller.admin;
 
 import com.nmcnpm.web.dto.CategoryDto;
+import com.nmcnpm.web.model.Category;
 import com.nmcnpm.web.service.ICategoryService;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -18,8 +19,28 @@ public class CategoryController extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        
-        
+        if(request.getParameter("categoryId")!=null){
+            Long categoryId = Long.parseLong(request.getParameter("categoryId"));
+            String name = request.getParameter("name");
+            String image = request.getParameter("image");
+            Category category = new Category();
+            category.setCategoryID(categoryId);
+            category.setName(name);
+            category.setImage(image);
+            if(categoryService.isExist(categoryId) && categoryService.valid(category)){
+                categoryService.update(category);
+            }
+        }else{
+            String name = request.getParameter("name");
+            String image = request.getParameter("image");
+            Category category = new Category();
+            category.setName(name);
+            category.setImage(image);
+            if(categoryService.valid(category)){
+                categoryService.save(category);
+            }
+        }
+        doGet(request, response);
     }
 
     @Override

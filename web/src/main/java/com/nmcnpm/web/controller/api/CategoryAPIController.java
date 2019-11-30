@@ -25,7 +25,7 @@ public class CategoryAPIController extends HttpServlet {
 
     @Inject
     CategoryService categoryService;
-    
+
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
@@ -38,14 +38,27 @@ public class CategoryAPIController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        List<Category> categories = categoryService.findAll();
-        
-        response.setContentType("application/json;charset=UTF-8");
-        response.setCharacterEncoding("UTF-8");
-        
-        PrintWriter out = response.getWriter();
-        out.print(JsonUtils.objectToJson(categories));
-        out.flush();   
+        if (request.getParameter("categoryId") != null) {
+            Long categoryId = Long.parseLong(request.getParameter("categoryId"));
+            Category category = categoryService.findById(categoryId);
+            
+            response.setContentType("application/json;charset=UTF-8");
+            response.setCharacterEncoding("UTF-8");
+
+            PrintWriter out = response.getWriter();
+            out.print(JsonUtils.objectToJson(category));
+            out.flush();
+        } else {
+            List<Category> categories = categoryService.findAll();
+
+            response.setContentType("application/json;charset=UTF-8");
+            response.setCharacterEncoding("UTF-8");
+
+            PrintWriter out = response.getWriter();
+            out.print(JsonUtils.objectToJson(categories));
+            out.flush();
+        }
+
     }
 
     /**

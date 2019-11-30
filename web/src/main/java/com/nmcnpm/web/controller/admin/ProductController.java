@@ -71,27 +71,28 @@ public class ProductController extends HttpServlet {
 
         //========================================//
         if (productId != -1 && producDetailtId != -1) {
+            product.setProductID(productId);
+            product.setStatus(true);
+            productDetail.setProductDetailID(producDetailtId);
             if (productService.isExist(product.getProductID()) && productDetailService.isExist(productDetail.getProductDetailID())
                     && productService.valid(product) && productDetailService.valid(productDetail)) {
                 productDetailService.update(productDetail);
                 product.setProductDetailID(productDetail.getProductDetailID());
                 productService.update(product);
 
-                ProductDto productDto = new ProductDto();
-                productService.findById(productId, productDto);
-
-                request.setAttribute("product", productDto);
-                request.getRequestDispatcher("/WEB-INF/admin_theme/product_detail.jsp").forward(request, response);
+                String contextPath = request.getContextPath();
+                response.sendRedirect(contextPath+"/admin/product?productId="+productId);
             }
         } else {
+            
             if (productService.valid(product) && productDetailService.valid(productDetail)) {
                 productDetailService.save(productDetail);
                 product.setProductDetailID(productDetail.getProductDetailID());
                 productService.save(product);
             }
+            
+            doGet(request, response);
         }
-
-        doGet(request, response);
     }
 
     @Override
@@ -122,62 +123,4 @@ public class ProductController extends HttpServlet {
         }
     }
 
-    @Override
-    protected void doPut(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        //=========================================//
-        Long productId = Long.parseLong(request.getParameter("productId"));
-        String name = request.getParameter("name");
-        String description = request.getParameter("description");
-        String descriptionDetail = request.getParameter("description_detail");
-        String image = request.getParameter("image");
-        Float price = Float.parseFloat(request.getParameter("price"));
-        Long quantity = Long.parseLong(request.getParameter("quantity"));
-        Long categoryId = Long.parseLong(request.getParameter("category"));
-
-        Product product = new Product();
-        product.setProductID(productId);
-        product.setName(name);
-        product.setDescription(description);
-        product.setDescriptionDetail(descriptionDetail);
-        product.setImage(image);
-        product.setPrice(price);
-        product.setQuantity(quantity);
-        product.setCategoryID(categoryId);
-
-        //=========================================//
-        Long producDetailtId = Long.parseLong(request.getParameter("productDetailId"));
-        String accessories = request.getParameter("accessories");
-        String guarantee = request.getParameter("guarantee");
-        String image1 = request.getParameter("image1");
-        String image2 = request.getParameter("image2");
-        String image3 = request.getParameter("image3");
-        String image4 = request.getParameter("image4");
-        String image5 = request.getParameter("image5");
-        String infomation = request.getParameter("information");
-
-        ProductDetail productDetail = new ProductDetail();
-        productDetail.setProductDetailID(producDetailtId);
-        productDetail.setAccessories(accessories);
-        productDetail.setGuarantee(guarantee);
-        productDetail.setImage1(image1);
-        productDetail.setImage2(image2);
-        productDetail.setImage3(image3);
-        productDetail.setImage4(image4);
-        productDetail.setImage5(image5);
-        productDetail.setInformation(infomation);
-
-        //========================================//
-        if (productService.isExist(product.getProductID()) && productDetailService.isExist(productDetail.getProductDetailID())
-                && productService.valid(product) && productDetailService.valid(productDetail)) {
-            productDetailService.update(productDetail);
-            product.setProductDetailID(productDetail.getProductDetailID());
-            productService.update(product);
-
-            ProductDto productDto = new ProductDto();
-            productService.findById(productId, productDto);
-
-            request.setAttribute("product", productDto);
-            request.getRequestDispatcher("/WEB-INF/admin_theme/product_detail.jsp").forward(request, response);
-        }
-    }
 }

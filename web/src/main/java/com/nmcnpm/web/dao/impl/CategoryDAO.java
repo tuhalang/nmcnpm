@@ -2,9 +2,7 @@ package com.nmcnpm.web.dao.impl;
 
 import com.nmcnpm.database.dao.impl.DataBaseDaoImpl;
 import com.nmcnpm.web.dao.ICategoryDAO;
-import com.nmcnpm.web.mapprow.AccountMapper;
 import com.nmcnpm.web.mapprow.CategoryMapper;
-import com.nmcnpm.web.model.Account;
 import com.nmcnpm.web.model.Category;
 
 import java.util.List;
@@ -51,5 +49,15 @@ public class CategoryDAO extends DataBaseDaoImpl<Category> implements ICategoryD
     public Long count() {
         String sql = "select count(1) from category";
         return count(sql);
+    }
+
+    @Override
+    public boolean isExist(Long categoryId) {
+        String sql = "select count(1) from category where category_id=? limit 1";
+        long count = count(sql, categoryId);
+        if (count > 0) {
+            return true;
+        }
+        return false;
     }
 }

@@ -16,4 +16,9 @@ import java.util.List;
 public interface ICategoryService {
     CategoryDto find(int currentPage, int elePerPage);
     List<Category> findAll();
+    Category findById(Long categoryId);
+    boolean isExist(Long categoryId);
+    boolean valid(Category category);
+    boolean save(Category category);
+    boolean update(Category category);
 }

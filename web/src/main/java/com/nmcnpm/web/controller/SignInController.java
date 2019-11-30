@@ -52,9 +52,13 @@ public class SignInController extends HttpServlet {
 
             Role role = account.getRoles().get(0);
             if(role.getRoleName().equals(RoleName.ROLE_ADMIN)){
-                req.getRequestDispatcher("/WEB-INF/admin_theme/dashboard.jsp").forward(req,resp);
+                String contextPath = req.getContextPath();
+                resp.sendRedirect(contextPath+"/admin");
+                //req.getRequestDispatcher("/WEB-INF/admin_theme/dashboard.jsp").forward(req,resp);
             } else if(role.getRoleName().equals(RoleName.ROLE_USER)){
-                req.getRequestDispatcher("/templates/home.jsp").forward(req,resp);
+                String contextPath = req.getContextPath();
+                resp.sendRedirect(contextPath);
+                //req.getRequestDispatcher("/templates/home.jsp").forward(req,resp);
             } else {
                 req.setAttribute("error", "oops!");
                 req.getRequestDispatcher("/templates/signin.jsp").forward(req,resp);

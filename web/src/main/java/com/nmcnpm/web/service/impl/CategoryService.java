@@ -27,13 +27,50 @@ public class CategoryService implements ICategoryService{
         categoryDto.setCurrentPage(currentPage);
         categoryDto.setElePerPage(elePerPage);
         categoryDto.setTotalPages(categoryDAO.count()/elePerPage+1);
-        categoryDto.setListOfData(categoryDAO.find(currentPage-1, elePerPage));
+        categoryDto.setListOfData(categoryDAO.find((currentPage-1)*elePerPage, elePerPage));
         return categoryDto;
     }
 
     @Override
     public List<Category> findAll() {
         return categoryDAO.findAll();
+    }
+
+    @Override
+    public Category findById(Long categoryId) {
+        return categoryDAO.findById(categoryId);
+    }
+
+    @Override
+    public boolean isExist(Long categoryId) {
+        return categoryDAO.isExist(categoryId);
+    }
+
+    @Override
+    public boolean valid(Category category) {
+        return true;
+    }
+
+    @Override
+    public boolean save(Category category) {
+        try{
+            categoryDAO.insert(category);
+            return true;
+        }catch(Exception e){
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    @Override
+    public boolean update(Category category) {
+        try{
+            categoryDAO.update(category);
+            return true;
+        }catch(Exception e){
+            e.printStackTrace();
+            return false;
+        }
     }
     
 }
