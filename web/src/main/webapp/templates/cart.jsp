@@ -33,7 +33,7 @@
             <div class="row w-100">
                 <div class="col-lg-12">
                     <ol class="breadcrumb">
-                        <li><a href="/">Trang chủ/</a></li>
+                        <li><a href="${pageContext.request.contextPath}">Trang chủ/</a></li>
                         <li class="active">Giỏ hàng</li>
                     </ol>
                 </div>
@@ -64,7 +64,8 @@
                                 <div class="row w-100">
                                     <a id="linkSp" href="#" style="color: blue; ">${product.name} </a>
                                 </div>
-                                <a href="<c:url value="/shopping_cart?action=remove&productID=${item.product.productID}"/>">Xoá</a>
+                                <br>
+                                <btn class="btn btn-success" onclick="deleteProduct(${item.product.productID})">Xoá</btn>
                             </div>
 
                             <div class="col-sm-2 price">
@@ -169,6 +170,20 @@
         if (parseInt(i)>1) document.getElementById("quantity_").value=parseInt(i)-1;
         $.ajax({
             url: window.location.pathname.substring(0, window.location.pathname.indexOf("/", 2)) + "/shopping_cart?action=update&productID="+a+"&quantity="+b,
+            contentType: 'application/json;charset=utf-8',
+            dataType: 'json',
+            type: 'GET',
+            success: function (response) {
+            },
+            error: function (x, e) {
+                console.log(e)
+            }
+        });
+        location.reload(false);
+    };
+    function deleteProduct(a) {
+        $.ajax({
+            url: window.location.pathname.substring(0, window.location.pathname.indexOf("/", 2)) + "/shopping_cart?action=remove&productID="+a,
             contentType: 'application/json;charset=utf-8',
             dataType: 'json',
             type: 'GET',

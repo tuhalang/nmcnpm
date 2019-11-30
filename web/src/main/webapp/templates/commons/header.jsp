@@ -71,16 +71,6 @@
                 <a class="nav-link h6" href="#"><i class="fas fa-map-marker-alt"></i>
                     Bạn muốn giao hàng tới đâu?</a>
             </li>
-            <li class="nav-item dropdown mr-md-4 ">
-                <a class="nav-link dropdown-toggle h6" href="#" id="navbar_drop" data-toggle="dropdown">
-                    Sản phẩm đã xem
-                </a>
-                <div class="dropdown-menu">
-                    <a class="dropdown-item" href="#">Link 1</a>
-                    <a class="dropdown-item" href="#">Link 2</a>
-                    <a class="dropdown-item" href="#">Link 3</a>
-                </div>
-            </li>
         </ul>
     </nav>
     <script src="<c:url value="/static/js/search-product.js"/>"></script>

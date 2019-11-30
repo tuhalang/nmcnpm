@@ -99,10 +99,6 @@
 
 <jsp:include page="commons/footer.jsp"></jsp:include>
 <script>
-    $(".card").click(function (e) {
-        console.log(e);
-        <%--window.location.replace("http://localhost:8080/web_war/detail?productID=" + ${product.productID});--%>
-    })
     function abc(id) {
         window.location.replace("http://localhost:8080/web_war/detail?productID=" +id);
     }

@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import com.mysql.cj.jdbc.result.CachedResultSetMetaDataImpl;
 
 public class ShoppingItems {
-    Float amount;
+    Long amount;
     Long numberOfItems;
     ArrayList<ItemCart> items;
 
@@ -18,7 +18,7 @@ public class ShoppingItems {
         items = new ArrayList<>();
     }
 
-    public synchronized void addItem(Product product) {
+    public synchronized void addItem(Product product,long quantity) {
         boolean newItem = true;
         for (ItemCart item : items) {
             System.out.println("buy" + item.getProduct().getProductID());
@@ -29,7 +29,7 @@ public class ShoppingItems {
             }
         }
         if (newItem) {
-            ItemCart item = new ItemCart(product, 1L);
+            ItemCart item = new ItemCart(product, quantity);
             items.add(item);
         }
     }
@@ -70,10 +70,10 @@ public class ShoppingItems {
 
         for (ItemCart item : items) {
             if (item.getProduct().getProductID() == productid) {
+                amount -=item.getProduct().getPrice();
                 items.remove(item);
                 break;
             }
-
         }
     }
 
@@ -90,7 +90,7 @@ public class ShoppingItems {
     }
 
     public synchronized void calculateAmount() {
-        amount = 0F;
+        amount = 0L;
         for (ItemCart item : items) {
             amount += item.getQuantity() * item.getProduct().getPrice();
         }
@@ -98,18 +98,18 @@ public class ShoppingItems {
     }
 
     public synchronized void changeAmount(String subamount) {
-        Float sub = 0F;
-        sub = Float.parseFloat(subamount);
+        Long sub = 0L;
+        sub = Long.parseLong(subamount);
         amount += sub;
     }
 
-    public synchronized Float getAmount() {
+    public synchronized Long getAmount() {
         return amount;
     }
 
     public synchronized void clear() {
         items.clear();
-        amount = 0F;
+        amount = 0L;
         numberOfItems = 0L;
     }
 

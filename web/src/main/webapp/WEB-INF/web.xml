@@ -96,4 +96,12 @@
         <servlet-name>product_detail</servlet-name>
         <url-pattern>/detail</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>show-result</servlet-name>
+        <servlet-class>com.nmcnpm.web.controller.web.ShowResultSearchController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>show-result</servlet-name>
+        <url-pattern>/show_result</url-pattern>
+    </servlet-mapping>
 </web-app>

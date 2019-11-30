@@ -132,7 +132,7 @@
     });
     function select(a) {
         $.ajax({
-            url: window.location.pathname.substring(0, window.location.pathname.indexOf("/", 2)) + "/shopping_cart?action=add&productID="+a,
+            url: window.location.pathname.substring(0, window.location.pathname.indexOf("/", 2)) + "/shopping_cart?action=add&productID="+a+"&quantity="+document.getElementById("quantity_").value,
             contentType: 'application/json;charset=utf-8',
             dataType: 'json',
             type: 'GET',
