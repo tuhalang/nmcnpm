@@ -17,6 +17,10 @@ import javax.servlet.http.HttpServletResponse;
 public class CookieUtils {
 
     private static CookieUtils cookieUtils = null;
+    
+    private CookieUtils(){
+        
+    }
 
     public static CookieUtils getInstance() {
         if (cookieUtils == null) {

@@ -8,6 +8,10 @@ import javax.servlet.http.HttpServletRequest;
  */
 public class SessionUtils {
     private static SessionUtils sessionUtils = null;
+    
+    private SessionUtils(){
+        
+    }
 
     public static SessionUtils getInstance() {
         if (sessionUtils == null) {
