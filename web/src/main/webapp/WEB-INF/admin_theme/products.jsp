@@ -201,7 +201,7 @@
                                         <form id="input-add-group" method="post" action="${pageContext.request.contextPath}/admin/product">
                                             
                                             <!--Div hiển thị form để nhập dữ liệu-->
-                                            <div>
+                                            <div id="input_product">
                                                 <div class="btn-up-down">
                                                     <i class="fa fa-angle-double-right" type="button" data-toggle="collapse" data-target="#input-product" aria-hidden="true"></i>
                                                     <span>Enter Product</span>
@@ -245,9 +245,26 @@
                                             <div class="modal-footer">
                                                 <!--Khi bấm button review thì đóng ẩn div để nhập dữ liệu mà hiển thị div để review-->
 <!--                                                Sau khi bấm thì nút review đổi tên thành nút back để quay lại div nhập dữ liệu-->
-                                                <button class="btn btn-primary">Review</button>
+                                                <input class="btn btn-primary" id="review" type="button" value="Review"></input>
+
                                                 <button type="submit" class="btn btn-primary" id="btn-add-group">Create</button>
                                                 <button class="btn btn-primary" data-dismiss="modal">Cancel</button>
+                                                 <script language="javascript">
+                                                 document.getElementById("review").onclick = function () {
+		                                    if(document.getElementById("review").value=="Review"){
+                                                          document.getElementById("input_product").style.display = 'none';
+				                      document.getElementById("review-product").style.display = 'block';
+				                      document.getElementById("review").value="Back";
+		                                      }
+			                           else{
+                                                          document.getElementById("input_product").style.display = 'block';
+				                      document.getElementById("review-product").style.display = 'none';
+				                      document.getElementById("review").value="Review";
+                                                        };
+			                           }
+			
+ 
+                                               </script>
                                             </div>
                                         </form>
                                     </div>
