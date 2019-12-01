@@ -8,34 +8,64 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
-    <head>
-        <title>Cart</title>
-        <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/cart.css" type="text/css">
-        <link rel="stylesheet" href="${pageContext.request.contextPath}/static/bootstrap-4.0.0/css/bootstrap.css">
-        <link rel="stylesheet" href="${pageContext.request.contextPath}/static/fontawesome-5.11.2/css/all.css">
-        <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/footer.css">
-        <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/header.css">
-        <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
 
-        <script src="${pageContext.request.contextPath}/static/jquery-3.4.1/jquery-3.4.1.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-        <script src="${pageContext.request.contextPath}/static/bootstrap-4.0.0/js/bootstrap.min.js"></script>
-        <style type="text/css">
+<head>
+    <title>Cart</title>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/cart.css" type="text/css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/static/bootstrap-4.0.0/css/bootstrap.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/static/fontawesome-5.11.2/css/all.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/footer.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/header.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
 
-        </style>
-    </head>
-    <body>
+    <script src="${pageContext.request.contextPath}/static/jquery-3.4.1/jquery-3.4.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="${pageContext.request.contextPath}/static/bootstrap-4.0.0/js/bootstrap.min.js"></script>
+    <style type="text/css">
 
-        <jsp:include page="commons/header.jsp"></jsp:include>
-            <div class="container">
-                <div class="breadcrumb-wrap row w-100">
-                    <div class="container mt-2">
-                        <div class="row w-100">
-                            <div class="col-lg-12">
-                                <ol class="breadcrumb">
-                                    <li><a href="/">Trang chủ/</a></li>
-                                    <li class="active">Giỏ hàng</li>
-                                </ol>
+    </style>
+</head>
+<body>
+
+<jsp:include page="commons/header.jsp"></jsp:include>
+<div class="container">
+    <div class="breadcrumb-wrap row w-100">
+        <div class="container mt-2">
+            <div class="row w-100">
+                <div class="col-lg-12">
+                    <ol class="breadcrumb">
+                        <li><a href="/">Trang chủ/</a></li>
+                        <li class="active">Giỏ hàng</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+    <c:choose>
+        <c:when test="${cart.numberOfItems >0}">
+            Bạn có  ${cart.numberOfItems} sản phẩm
+        </c:when>
+        <c:otherwise>
+            Bạn chưa có sản phẩm nào
+        </c:otherwise>
+    </c:choose>
+    <div class="row main w-100">
+        <div class="row w-100 mt-4">
+            <div class="col-sm-9 content-left">
+                <c:forEach var="item" items="${cart.items}" varStatus="iter">
+                    <c:set var="product" value="${item.product}">
+                    </c:set>
+                    <div class="container" id="item">
+                        <div class="row w-100 row-bordered mb-2">
+                            <div class="col-sm-2" id="img-thumb"><img style="width:100px;height:100px;" alt=""
+                                                                      src="${product.thumbImage}">
+                            </div>
+
+                            <div class="col-sm-6">
+                                <div class="row w-100">
+                                    <a id="linkSp" href="#" style="color: blue; ">${product.name} </a>
+                                </div>
+                                <btn class="btn btn-success" onclick="deleteProduct(${item.product.productID})">Xoá</btn>
                             </div>
                         </div>
                     </div>
@@ -176,6 +206,7 @@
                 if (parseInt(i) > 1)
                     document.getElementById("quantity_" + productId).value = parseInt(i) - 1;
             }
+
             const quantity = document.getElementById("quantity_" + productId).value;
             $.ajax({
                 url: window.location.pathname.substring(0, window.location.pathname.indexOf("/", 2)) + "/api/cart",

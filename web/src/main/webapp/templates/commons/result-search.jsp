@@ -59,7 +59,7 @@
                         <c:choose>
                             <c:when test="${head!=null}">
                                 <div class="col-sm-3">
-                                    <div class="card" style="max-width: 15rem;">
+                                    <div class="card" style="max-width: 15rem;" onclick="abc(${head.productID})">
                                         <a href="#" class="card-link"> <img
                                                 src="${head.image}"
                                                 class="card-img-top" alt="image"
@@ -89,7 +89,7 @@
                             <c:choose>
                                 <c:when test="${(head !=null && head.productID!=product.productID)||(head==null)}">
                                     <div class="col-sm-3">
-                                        <div class="card" style="max-width: 15rem;">
+                                        <div class="card" style="max-width: 15rem;" onclick="abc(${product.productID})">
                                             <a href="#" class="card-link"> <img
                                                     src="${product.image}"
                                                     class="card-img-top" alt="image"
@@ -130,5 +130,10 @@
 </div>
 
 <jsp:include page="../commons/footer.jsp"></jsp:include>
+<script>
+    function abc(id) {
+        window.location.replace(window.location.pathname.substring(0, window.location.pathname.indexOf("/", 2))+ "/detail?productID=" +id);
+    }
+</script>
 </body>
 </html>

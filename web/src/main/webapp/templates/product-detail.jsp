@@ -40,7 +40,7 @@
             <div class="row w-100">
                 <div class="col-lg-12">
                     <ol class="breadcrumb">
-                        <li><a href="home?key=1">Trang chủ/</a></li>
+                        <li><a href="home?page=1&categoryId=0">Trang chủ/</a></li>
                         <li class="active">Chi tiết sản phẩm</li>
                     </ol>
                 </div>
