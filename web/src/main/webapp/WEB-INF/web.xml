@@ -50,14 +50,14 @@
         <servlet-name>autocomplete_home</servlet-name>
         <url-pattern>/autocomplete_home</url-pattern>
     </servlet-mapping>
-    <servlet>
-        <servlet-name>cart_</servlet-name>
-        <servlet-class>com.nmcnpm.web.controller.web.ShoppingCartController</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>cart_</servlet-name>
-        <url-pattern>/shopping_cart</url-pattern>
-    </servlet-mapping>
+<!--    <servlet>-->
+<!--        <servlet-name>cart_</servlet-name>-->
+<!--        <servlet-class>com.nmcnpm.web.controller.web.ShoppingCartController</servlet-class>-->
+<!--    </servlet>-->
+<!--    <servlet-mapping>-->
+<!--        <servlet-name>cart_</servlet-name>-->
+<!--        <url-pattern>/shopping_cart</url-pattern>-->
+<!--    </servlet-mapping>-->
     <servlet>
         <servlet-name>cart_controller</servlet-name>
         <servlet-class>com.nmcnpm.web.controller.web.CartController</servlet-class>
@@ -122,5 +122,21 @@
     <servlet-mapping>
         <servlet-name>showProduct</servlet-name>
         <url-pattern>/show_result</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>signup</servlet-name>
+        <servlet-class>com.nmcnpm.web.controller.web.SignUpController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>signup</servlet-name>
+        <url-pattern>/signup</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>signin</servlet-name>
+        <servlet-class>com.nmcnpm.web.controller.web.SignInController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>signin</servlet-name>
+        <url-pattern>/signin</url-pattern>
     </servlet-mapping>
 </web-app>
