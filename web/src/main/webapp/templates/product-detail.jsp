@@ -89,7 +89,7 @@
                             </div>
                         </div>
                         <div class="col-sm-8">
-                            <button type="button" class="btn btn-primary" onclick="select(${product.productID})">
+                            <button type="button" class="btn btn-primary" onclick="addToCart(${product.productID})">
                                 <i class="fas fa-cart-plus"></i> Chọn mua
                             </button>
                         </div>
@@ -122,20 +122,39 @@
 
 <jsp:include page="commons/footer.jsp"></jsp:include>
 <script>
+    
+    /**
+     * decrease quantity product
+     * */
     document.getElementById("dsc").addEventListener("click",function (ev) {
         var i=document.getElementById("quantity_").value;
         if (parseInt(i)>1) document.getElementById("quantity_").value=parseInt(i)-1;
     });
+    
+    /**
+     * increase quantity product
+     * */
     document.getElementById("inc").addEventListener("click",function (ev) {
        var i=document.getElementById("quantity_").value;
        document.getElementById("quantity_").value=parseInt(i)+1;
     });
-    function select(a) {
+    
+    /**
+     * add product to cart 
+     * */
+    function addToCart(productId) {
+        const quantity = document.getElementById("quantity_").value;
         $.ajax({
-            url: window.location.pathname.substring(0, window.location.pathname.indexOf("/", 2)) + "/shopping_cart?action=add&productID="+a,
+            url: window.location.pathname.substring(0, window.location.pathname.indexOf("/", 2)) + "/api/cart",
             contentType: 'application/json;charset=utf-8',
-            dataType: 'json',
-            type: 'GET',
+            dataType: 'text',
+            headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+            data: {
+                action: 1,
+                productId: productId,
+                quantity: quantity
+            },
+            type: 'get',
             success: function (response) {
                 if (response=="1") alert("Thêm thành công")
                 else alert("Thêm thất bại");

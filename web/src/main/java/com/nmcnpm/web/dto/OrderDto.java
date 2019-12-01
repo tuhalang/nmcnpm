@@ -5,5 +5,5 @@ import lombok.Data;
 
 @Data
 public class OrderDto extends ResponseDto<OrderedProduct>{
-
+    private Long totalMoney;
 }

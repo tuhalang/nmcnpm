@@ -5,6 +5,7 @@ import com.nmcnpm.web.model.Category;
 import com.nmcnpm.web.model.Product;
 import com.nmcnpm.web.service.ICategoryService;
 import com.nmcnpm.web.service.IProductService;
+import com.nmcnpm.web.utils.CookieUtils;
 
 import javax.inject.Inject;
 import javax.servlet.ServletException;
@@ -13,9 +14,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import javax.servlet.http.Cookie;
 
-//
-//@WebServlet(name = "/")
+
 public class HomeController extends HttpServlet {
 
     @Inject
@@ -32,6 +33,7 @@ public class HomeController extends HttpServlet {
         }
         if (request.getParameter("categoryId")!=null)
             categoryId=Integer.parseInt(request.getParameter("categoryId"));
+
         else categoryId=0;
         if (categoryId!=0) {
             ProductDto productDto = productService.findByCategoryID(categoryId, page, recordsPerPage);
@@ -44,6 +46,7 @@ public class HomeController extends HttpServlet {
             Category category=new Category(0L,"All product","",0L);
             request.setAttribute("category",category);
         }
+
         request.getRequestDispatcher("/templates/home.jsp").forward(request,response);
     }
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

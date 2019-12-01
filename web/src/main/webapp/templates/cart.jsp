@@ -8,6 +8,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
+
 <head>
     <title>Cart</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/cart.css" type="text/css">
@@ -66,137 +67,165 @@
                                 </div>
                                 <btn class="btn btn-success" onclick="deleteProduct(${item.product.productID})">Xoá</btn>
                             </div>
+                        </div>
+                    </div>
+                </div>
+            <c:choose>
+                <c:when test="${orderDto.listOfdata.size() >0}">
+                    Bạn có  ${orderDto.listOfdata.size()} sản phẩm
+                </c:when>
+                <c:otherwise>
+                    Bạn chưa có sản phẩm nào
+                </c:otherwise>
+            </c:choose>
+            <div class="row main w-100">
+                <div class="row w-100 mt-4">
+                    <div class="col-sm-9 content-left">
+                        <c:forEach var="item" items="${orderDto.listOfdata}" varStatus="iter">
+                            <c:set var="product" value="${item.product}">
+                            </c:set>
+                            <div class="container" id="item">
+                                <div class="row w-100 row-bordered mb-2">
+                                    <div class="col-sm-2" id="img-thumb"><img style="width:100px;height:100px;" alt=""
+                                                                              src="${product.thumbImage}">
+                                    </div>
 
-                            <div class="col-sm-2 price">
-                                <p><strong>${product.price} đ</strong></p>
-                            </div>
+                                    <div class="col-sm-5">
+                                        <div class="row w-100">
+                                            <a id="linkSp" href="#" style="color: blue; ">${product.name} </a>
+                                        </div>
+                                        <button onclick="removeOnCart(${product.productID})" type="button" class="btn btn-danger">Xóa</button>
+                                    </div>
 
-                            <div class="col-sm-2" id="quantity">
-                                <p>Số lượng</p>
+                                    <div class="col-sm-3 price">
+                                        <p><strong>${product.price} VND</strong></p>
+                                    </div>
 
-                                <div class="input-group">
-                                    <div class="input-group-prepend">
-                                        <button class="btn btn-outline-secondary" type="button"
-                                                onclick="inc(${item.product.productID},${item.quantity+1})">
-                                            <i class="fas fa-plus"></i>
-                                        </button>
-                                        <input type="text" style="width:40px;" class="form-control"
-                                               value="${item.quantity}" id="quantity_" onchange="location.href='<c:url
-                                                value="/shopping_cart?action=update&productID=${item.product.productID}&quantity=${item.quantity}"/>';return false;">
-                                        <button class="btn btn-outline-secondary" type="button"
-                                                onclick="dsc(${item.product.productID},${item.quantity-1})">
-                                            <i class="fas fa-minus"></i>
-                                        </button>
+                                    <div class="col-sm-2" id="quantity">
+                                        <p>Số lượng</p>
 
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <button onclick="changeQuantity(1, ${product.productID})" class="btn btn-outline-secondary" type="button">
+                                                    <i class="fas fa-plus"></i>
+                                                </button>
+                                                <input type="text" style="width:40px;" class="form-control"
+                                                       value="${item.quantity}" id="quantity_${product.productID}">
+                                                <button onclick="changeQuantity(0, ${product.productID})" class="btn btn-outline-secondary" type="button">
+                                                    <i class="fas fa-minus"></i>
+                                                </button>
+
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
+
+
+                        </c:forEach>
+
+
                     </div>
 
-
-                </c:forEach>
-
-
-            </div>
-
-            <div class="content-right col-sm-3">
-                <div class="tinh-tien">
-                    <div class="row w-100">
-                        <div class="tam-tinh">
-                            <p class="list-info-price"><span>Tạm tính:</span> <strong>
-                                <c:choose>
-                                    <c:when test="${cart.amount==0|| cart.amount==null}"> 0 <span>đ</span></c:when>
-                                    <c:otherwise>
-                                        ${cart.amount} <span>VND</span>
-                                    </c:otherwise>
-                                </c:choose>
-                            </strong></p>
-                        </div>
-                    </div>
-                    <div class="row w-100">
-                        <div class="total2 each-row">
-                            <div class="each-row"><span> Thành tiền: </span></div>
-                            <div class="amount each-row" style="color:red;">
-                                <c:choose>
-                                    <c:when test="${cart.amount==0 || cart.amount==null}">0 đ</c:when>
-                                    <c:otherwise>
-                                        ${cart.amount} đ
-                                    </c:otherwise>
-                                </c:choose>
-
-                                <p><small>(Đã bao gồm VAT nếu có)</small></p>
+                    <div class="content-right col-sm-3">
+                        <div class="tinh-tien">
+                            <div class="row w-100">
+                                <div class="tam-tinh">
+                                    <p class="list-info-price"><span>Tạm tính:</span> <strong>
+                                            ${orderDto.totalMoney} <span>VND</span>
+                                        </strong></p>
+                                </div>
                             </div>
+                            <div class="row w-100">
+                                <div class="total2 each-row">
+                                    <div class="each-row"><span> Thành tiền: </span></div>
+                                    <div class="amount each-row" style="color:red;">
+                                        ${orderDto.totalMoney} VND
+
+                                        <p><small>(Đã bao gồm VAT nếu có)</small></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row w-100">
+                                <form action="${pageContext.request.contextPath}/confirm_address" method="post">
+                                    <button type="submit" class="btn btn-large btn-block btn-danger btn-checkout"
+                                            <%--                                onclick="location.href='<c:url value="/confirm_address"/>';--%>
+                                            return false;">Tiến
+                                            hành
+                                            đặt
+                                            hàng
+                                </button>
+                            </form>
                         </div>
-                    </div>
-                    <div class="row w-100">
-                        <form action="${pageContext.request.contextPath}/confirm_address" method="post">
-                        <button type="submit" class="btn btn-large btn-block btn-danger btn-checkout"
-<%--                                onclick="location.href='<c:url value="/confirm_address"/>';--%>
-                                return false;">Tiến
-                            hành
-                            đặt
-                            hàng
-                        </button>
-                        </form>
+
                     </div>
 
                 </div>
-
             </div>
+
         </div>
-
     </div>
-</div>
 
-<jsp:include page="commons/footer.jsp"></jsp:include>
-<script>
-    function dsc(a,b) {
-        var i=document.getElementById("quantity_").value;
-        if (parseInt(i)>1) document.getElementById("quantity_").value=parseInt(i)-1;
-        $.ajax({
-            url: window.location.pathname.substring(0, window.location.pathname.indexOf("/", 2)) + "/shopping_cart?action=update&productID="+a+"&quantity="+b,
-            contentType: 'application/json;charset=utf-8',
-            dataType: 'json',
-            type: 'GET',
-            success: function (response) {
-            },
-            error: function (x, e) {
-                console.log(e)
+    <jsp:include page="commons/footer.jsp"></jsp:include>
+    <script>
+        /**
+         * remove product on cart
+         * */
+        function removeOnCart(productId) {
+            $.ajax({
+                url: window.location.pathname.substring(0, window.location.pathname.indexOf("/", 2)) + "/api/cart",
+                contentType: 'application/json;charset=utf-8',
+                dataType: 'json',
+                data: {
+                    action: 0,
+                    productId: productId,
+                },
+                type: 'get',
+                success: function (response) {
+                    location.reload();
+                },
+                error: function (x, e) {
+                    console.log(e)
+                }
+            });
+        }
+
+        /**
+         * function to change quantity of product
+         * @param {int} type
+         * @param {long} productId  
+         * type = 1: increase
+         * type = 0: decrease
+         * */
+        function changeQuantity(type, productId) {
+            if (type == 1) {
+                let i = document.getElementById("quantity_" + productId).value;
+                document.getElementById("quantity_" + productId).value = parseInt(i) + 1;
+            } else if (type == 0) {
+                var i = document.getElementById("quantity_" + productId).value;
+                if (parseInt(i) > 1)
+                    document.getElementById("quantity_" + productId).value = parseInt(i) - 1;
             }
-        });
-        location.reload(false);
-    };
-    function inc(a,b) {
-        var i=document.getElementById("quantity_").value;
-        if (parseInt(i)>1) document.getElementById("quantity_").value=parseInt(i)-1;
-        $.ajax({
-            url: window.location.pathname.substring(0, window.location.pathname.indexOf("/", 2)) + "/shopping_cart?action=update&productID="+a+"&quantity="+b,
-            contentType: 'application/json;charset=utf-8',
-            dataType: 'json',
-            type: 'GET',
-            success: function (response) {
-            },
-            error: function (x, e) {
-                console.log(e)
-            }
-        });
-        location.reload(false);
-    };
-    function deleteProduct(a) {
-        $.ajax({
-            url: window.location.pathname.substring(0, window.location.pathname.indexOf("/", 2)) + "/shopping_cart?action=remove&productID="+a,
-            contentType: 'application/json;charset=utf-8',
-            dataType: 'json',
-            type: 'GET',
-            success: function (response) {
-            },
-            error: function (x, e) {
-                console.log(e)
-            }
-        });
-        location.reload(false);
-    };
-</script>
+
+            const quantity = document.getElementById("quantity_" + productId).value;
+            $.ajax({
+                url: window.location.pathname.substring(0, window.location.pathname.indexOf("/", 2)) + "/api/cart",
+                contentType: 'application/json;charset=utf-8',
+                dataType: 'json',
+                data: {
+                    action: 1,
+                    productId: productId,
+                    quantity: quantity
+                },
+                type: 'get',
+                success: function (response) {
+                    location.reload();
+                },
+                error: function (x, e) {
+                    console.log(e)
+                }
+            });
+        }
+    </script>
 </body>
 </html>
