@@ -8,6 +8,7 @@ package com.nmcnpm.web.controller.web.api;
 import com.nmcnpm.web.utils.CookieUtils;
 import java.io.IOException;
 import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -40,17 +41,19 @@ public class CartApiController extends HttpServlet {
         if(action == 1){
             String quantity = request.getParameter("quantity");
         
-            cookieUtils.newCookie(response, productId, quantity);
+            //response.addCookie(new Cookie(productId, quantity));
+            
+            cookieUtils.newCookie(response, productId, quantity, request.getContextPath());
 
-            response.setStatus(HttpServletResponse.SC_OK);
+            response.setContentType("text/html");
             response.getWriter().print("1");
-            response.flushBuffer();
+            response.getWriter().flush();
             
         }else if(action == 0){
-            cookieUtils.removeCookie(response, productId);
-            response.setStatus(HttpServletResponse.SC_OK);
+            cookieUtils.removeCookie(response, productId, request.getContextPath());
+            //response.setStatus(HttpServletResponse.SC_OK);
             response.getWriter().print("1");
-            response.flushBuffer();
+            //response.getWriter().flush();
         }
         
     }

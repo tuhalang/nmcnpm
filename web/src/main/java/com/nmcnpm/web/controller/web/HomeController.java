@@ -4,6 +4,7 @@ import com.nmcnpm.web.dto.ProductDto;
 import com.nmcnpm.web.model.Product;
 import com.nmcnpm.web.service.ICategoryService;
 import com.nmcnpm.web.service.IProductService;
+import com.nmcnpm.web.utils.CookieUtils;
 
 import javax.inject.Inject;
 import javax.servlet.ServletException;
@@ -12,6 +13,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import javax.servlet.http.Cookie;
 
 //
 //@WebServlet(name = "/")
@@ -32,6 +34,8 @@ public class HomeController extends HttpServlet {
         if (request.getParameter("categoryId")!=null)
             categoryId=Integer.parseInt(request.getParameter("categoryId"));
         else categoryId=1;
+        
+        
         ProductDto productDto=productService.findByCategoryID(categoryId,page,recordsPerPage);
         request.setAttribute("productDto", productDto);
         request.setAttribute("category",categoryService.findById(categoryId));

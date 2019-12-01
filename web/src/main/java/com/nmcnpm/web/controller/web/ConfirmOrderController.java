@@ -34,7 +34,6 @@ public class ConfirmOrderController extends HttpServlet {
     SessionUtils sessionUtils = new SessionUtils();
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        cookieUtils.newCookie(response,"29", "7");
 
 
         OrderDto orderDto = new OrderDto();

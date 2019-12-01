@@ -147,7 +147,8 @@
         $.ajax({
             url: window.location.pathname.substring(0, window.location.pathname.indexOf("/", 2)) + "/api/cart",
             contentType: 'application/json;charset=utf-8',
-            dataType: 'json',
+            dataType: 'text',
+            headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
             data: {
                 action: 1,
                 productId: productId,

@@ -25,8 +25,10 @@ public class CookieUtils {
         return cookieUtils;
     }
 
-    public void newCookie(HttpServletResponse response, String name, String value) {
+    public void newCookie(HttpServletResponse response, String name, String value, String path) {
         Cookie ck = new Cookie(name, value);
+        ck.setMaxAge(-1);
+        ck.setPath(path);
         response.addCookie(ck);
     }
 
@@ -51,14 +53,14 @@ public class CookieUtils {
         return map;
     }
 
-    public void removeCookie(HttpServletResponse response, String name) {
+    public void removeCookie(HttpServletResponse response, String name, String path) {
         Cookie ck = new Cookie(name, ""); 
-        //ck.setPath("/");
+        ck.setPath(path);
         ck.setMaxAge(0); 
         response.addCookie(ck); 
     }
     
-    public void updateData(HttpServletResponse response, String name, String newValue){
-        newCookie(response, name, newValue);
+    public void updateData(HttpServletResponse response, String name, String newValue, String path){
+        newCookie(response, name, newValue, path);
     }
 }
