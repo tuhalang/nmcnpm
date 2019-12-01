@@ -7,8 +7,10 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Lazy-Products</title>
+        <title>Kipalog - Widgets</title>
+        <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Kipalog User Management</title>
         <link rel="stylesheet" href="<c:url value="/static/css/bootstrap.min.css"/>">
         <link rel="stylesheet" href="<c:url value="/static/fontawesome-5.11.2/css/all.css"/>">
         <link rel="stylesheet" href="<c:url value="/static/css/admin.css"/>">
@@ -115,8 +117,8 @@
             </form>
             <ul class="nav menu">
                 <li><a href="${pageContext.request.contextPath}/admin"><em class="fas fa-tachometer-alt">&nbsp;</em> Dashboard</a></li>
-                <li><a href="${pageContext.request.contextPath}/admin/order"><em class="fa fa-calendar">&nbsp;</em> Order</a></li>
-                <li class="active"><a href="${pageContext.request.contextPath}/admin/product"><em class="fab fa-product-hunt">&nbsp;</em> Product</a></li>
+                <li class="active"><a href="${pageContext.request.contextPath}/admin/order"><em class="fa fa-calendar">&nbsp;</em> Order</a></li>
+                <li><a href="${pageContext.request.contextPath}/admin/product"><em class="fab fa-product-hunt">&nbsp;</em> Products</a></li>
                 <li><a href="${pageContext.request.contextPath}/admin/user"><em class="fa fa-toggle-off">&nbsp;</em> User Management</a></li>
                 <li><a href="${pageContext.request.contextPath}/admin/category"><em class="fa fa-clone">&nbsp;</em> Category</a></li>
                 <li class="parent ">
@@ -141,7 +143,7 @@
                         </li>
                     </ul>
                 </li>
-                <li><a href="${pageContext.request.contextPath}/logout"><em class="fa fa-power-off">&nbsp;</em> Logout</a></li>
+                <li><a href="login.jsp"><em class="fa fa-power-off">&nbsp;</em> Logout</a></li>
             </ul>
         </div>
         <!--/.sidebar-->
@@ -168,143 +170,117 @@
                             <em class="fa fa-home"></em>
                         </a>
                     </li>
-                    <li class="active">Products / Details / ${product.singleData.productID}</li>
+                    <li class="active">Order</li>
                 </ol>
             </div>
             <!--/.row-->
 
             <div class="row">
                 <div class="col-lg-12">
-                    <form id="input-add-group" method="POST" action="${pageContext.request.contextPath}/admin/product">
-
-                        <div class="btn-up-down">
-                            <i class="fa fa-angle-double-right" type="button" data-toggle="collapse" data-target="#input-product" aria-hidden="true"></i>
-                            <span>Product</span>
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <form id="search-product">
+                                <input placeholder="Search">
+                            </form>
+                            <div class="show-products"></div>
                         </div>
-
-                        <div id="input-product" class="collapse">
-                            <div class="form-group row">
-                                <label class="col-sm-2 col-form-label label-custom">ProductID</label>
-                                <div class="col-sm-10">
-                                    <input type="text" name="productId" class="form-control" required="required" value="${product.singleData.productID}" readonly>
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label class="col-sm-2 col-form-label label-custom">Name</label>
-                                <div class="col-sm-10">
-                                    <input type="text" name="name" class="form-control" required="required" value="${product.singleData.name}">
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label class="col-sm-2 col-form-label label-custom">Description</label>
-                                <div class="col-sm-10">
-                                    <input type="text" name="description" class="form-control" required="required" value="${product.singleData.description}">
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label class="col-sm-2 col-form-label label-custom">Description Detail</label>
-                                <div class="col-sm-10">
-                                    <textarea type="text" name="description_detail" class="form-control" required="required" rows="3">${product.singleData.descriptionDetail}</textarea>
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label class="col-sm-2 col-form-label label-custom">Image</label>
-                                <div class="col-sm-10">
-                                    <input type="text" name="image" class="form-control" required="required" value="${product.singleData.image}">
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label class="col-sm-2 col-form-label label-custom">Price</label>
-                                <div class="col-sm-10">
-                                    <input type="text" name="price" class="form-control" required="required" value="${product.singleData.price}">
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label class="col-sm-2 col-form-label label-custom">Quantity</label>
-                                <div class="col-sm-10">
-                                    <input type="text" name="quantity" class="form-control" required="required" value="${product.singleData.quantity}">
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label class="col-sm-2 col-form-label label-custom">Category</label>
-                                <div class="col-sm-10">
-                                    <select id="category-options" name="category" class="form-control">
-                                        <option value="${product.singleData.categoryID}">Choose Category</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="btn-up-down">
-                            <i class="fa fa-angle-double-right" type="button" data-toggle="collapse" data-target="#input-product-detail" aria-hidden="true"></i>
-                            <span>Product Detail</span>
-                        </div>
-
-                        <div id="input-product-detail" class="collapse">
-                            <div class="form-group row">
-                                <label class="col-sm-2 col-form-label label-custom">ProductDetailID</label>
-                                <div class="col-sm-10">
-                                    <input type="text" name="productDetailId" class="form-control" required="required" value="${product.singleData.productDetailID}" readonly>
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label class="col-sm-2 col-form-label label-custom">Accessories</label>
-                                <div class="col-sm-10">
-                                    <input type="text" name="accessories" class="form-control" required="required" value="${product.productDetail.accessories}">
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label class="col-sm-2 col-form-label label-custom">Guarantee</label>
-                                <div class="col-sm-10">
-                                    <input type="text" name="guarantee" class="form-control" required="required" value="${product.productDetail.guarantee}">
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label class="col-sm-2 col-form-label label-custom">Image1</label>
-                                <div class="col-sm-10">
-                                    <input type="text" name="image1" class="form-control" required="required" value="${product.productDetail.image1}">
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label class="col-sm-2 col-form-label label-custom">Image2</label>
-                                <div class="col-sm-10">
-                                    <input type="text" name="image2" class="form-control" required="required" value="${product.productDetail.image2}">
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label class="col-sm-2 col-form-label label-custom">Image3</label>
-                                <div class="col-sm-10">
-                                    <input type="text" name="image3" class="form-control" required="required" value="${product.productDetail.image3}">
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label class="col-sm-2 col-form-label label-custom">Image4</label>
-                                <div class="col-sm-10">
-                                    <input type="text" name="image4" class="form-control" required="required" value="${product.productDetail.image4}">
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label class="col-sm-2 col-form-label label-custom">Image5</label>
-                                <div class="col-sm-10">
-                                    <input type="text" name="image5" class="form-control" required="required" value="${product.productDetail.image5}">
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label class="col-sm-2 col-form-label label-custom">Information</label>
-                                <div class="col-sm-10">
-                                    <input type="text" name="information" class="form-control" required="required" value="${product.productDetail.information}">
-                                </div>
-                            </div>
-                        </div>
-
-
-
-                        <div class="modal-footer">
-                            <button type="submit" class="btn btn-primary" id="btn-add-group">Update</button>
-                        </div>
-                    </form>
+                    </div>
                 </div>
             </div>
+
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="panel panel-default">
+                        <div class="panel-body panel-group">
+                            <div class="panel-group">
+                                <div class="panel panel-default">
+                                    <div class="panel-body">
+                                        <div class="col-sm-1"><strong>ID</strong></div>
+                                        <div class="col-sm-2"><strong>Amount</strong></div>
+                                        <div class="col-sm-4"><strong>Address</strong></div>
+                                        <div class="col-sm-2"><strong>Created At</strong></div>
+                                        <div class="col-sm-1"><strong>Status</strong></i></div>
+                                        <div class="col-sm-2"><strong>Payment Method</strong></i></div>
+                                    </div>
+                                </div>
+                                <c:forEach items="${orderDto.listOfData}" var="order">
+                                    <div class="panel panel-default">
+                                        <div class="panel-body">
+                                            <div class="col-sm-1"><strong>${order.orderID}</strong></div>
+                                            <div class="col-sm-2"><strong>${order.amount}</strong></div>
+                                            <div class="col-sm-4"><strong>${order.customer.address}</strong></div>
+                                            <div class="col-sm-2"><strong>${order.createdAt}</strong></div>
+                                            <div class="col-sm-1"><strong>${order.status}</strong></i></div>
+                                            <div class="col-sm-2"><strong>${order.paymentMethod}</strong></i></div>
+                                        </div>
+                                    </div>
+                                </c:forEach>
+
+
+                                <!-- pagination -->
+                                <!--                                <div class="container"
+                                                                     <nav aria-label="pagination">
+                                                                        <ul class="pagination">
+                                <c:if test="${productDto.currentPage == 1}">
+                                    <li class="page-item disabled">
+                                        <a class="page-link" href="#" tabindex="-1">Previous</a>
+                                    </li>
+                                    <li class="page-item active">
+                                        <a class="page-link" href="${pageContext.request.contextPath}/admin/product?currentPage=1">1 <span class="sr-only">(current)</span></a>
+                                    </li>
+                                    <c:if test="${productDto.totalPages > 1}">
+                                        <li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/admin/product?currentPage=2">2</a></li>
+                                    </c:if>
+                                    <c:if test="${productDto.totalPages > 2}">
+                                        <li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/admin/product?currentPage=3">3</a></li>
+                                    </c:if>
+                                    <c:if test="${productDto.totalPages > 1}">
+                                        <li class="page-item">
+                                            <a class="page-link" href="${pageContext.request.contextPath}/admin/product?currentPage=2">Next</a>
+                                        </li>
+                                    </c:if>
+                                    <c:if test="${productDto.totalPages == 1}">
+                                        <li class="page-item disabled">
+                                            <a class="page-link" href="#">Next</a>
+                                        </li>
+                                    </c:if>
+                                </c:if>
+
+                                <c:if test="${productDto.currentPage > 1}">
+                                    <li class="page-item">
+                                        <a class="page-link" href="${pageContext.request.contextPath}/admin/product?currentPage=${productDto.currentPage-1}" tabindex="-1">Previous</a>
+                                    </li>
+                                    <li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/admin/product?currentPage=${productDto.currentPage-1}">${productDto.currentPage-1}</a></li>
+                                    <li class="page-item active">
+                                        <a class="page-link" href="${pageContext.request.contextPath}/admin/product?currentPage=${productDto.currentPage}">${productDto.currentPage} <span class="sr-only">(current)</span></a>
+                                    </li>
+                                    <c:if test="${productDto.totalPages > productDto.currentPage}">
+                                        <li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/admin/product?currentPage=${productDto.currentPage+1}">${productDto.currentPage+1}</a></li>
+                                    </c:if>
+                                    <c:if test="${productDto.totalPages > productDto.currentPage}">
+                                        <li class="page-item">
+                                            <a class="page-link" href="${pageContext.request.contextPath}/admin/product?currentPage=${productDto.currentPage+1}">Next</a>
+                                        </li>
+                                    </c:if>
+                                    <c:if test="${productDto.totalPages <= productDto.currentPage}">
+                                        <li class="page-item disabled">
+                                            <a class="page-link" href="#">Next</a>
+                                        </li>
+                                    </c:if>
+                                </c:if>                                          
+                            </ul>
+                        </nav>
+                    </div>-->
+
+                                <div class="panel panel-default">
+                                    <%--<%@ include file="pagination.jsp"%>--%>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--/.row-->
         </div>
         <!--/.main-->
 
@@ -317,24 +293,7 @@
         <script src="<c:url value="/static/jquery-3.4.1/bootstrap-datepicker.js"/>"></script>
         <script src="<c:url value="/static/jquery-3.4.1/custom.js"/>"></script>
         <script src="<c:url value="/static/bootstrap-4.0.0/js/bootstrap.min.js"/>"></script>
-        <script>
-            $.ajax({
-                url: window.location.pathname.substring(0, window.location.pathname.indexOf("/", 2)) + '/admin/api/categories',
-                contentType: 'application/json;charset=utf-8',
-                dataType: 'json',
-                type: 'GET',
-                success: function (response) {
-                    $('#category-options').empty();
-                    response.forEach((c, i) => {
-                        $("#category-options").append("<option value='" + c['categoryID'] + "' >" + c['name'] + "</option>");
-                    })
-                    $('#category-options').val(${product.singleData.categoryID});
-                },
-                error: function (x, e) {
-                    console.log(e)
-                }
-            });
-        </script>
+
     </body>
 
 </html>

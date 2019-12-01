@@ -3,13 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.nmcnpm.web.controller.api;
+package com.nmcnpm.web.controller.admin;
 
-import com.nmcnpm.web.model.Product;
-import com.nmcnpm.web.service.IProductService;
-import java.io.BufferedReader;
+import com.nmcnpm.web.dto.OrderDto;
+import com.nmcnpm.web.service.IOrderService;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import javax.inject.Inject;
 import javax.servlet.ServletException;
@@ -21,11 +19,11 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author tuhalang
  */
-public class ProductAPIController extends HttpServlet {
+public class OrderController extends HttpServlet {
 
     @Inject
-    private IProductService productService;
-
+    IOrderService orderService;
+    
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
@@ -38,6 +36,17 @@ public class ProductAPIController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        int currentPage = 1;
+        int elePerPage = 12;
+        try{
+            currentPage = Integer.parseInt(request.getParameter("currentPage"));
+            elePerPage = Integer.parseInt(request.getParameter("elePerPage"));
+        }catch(Exception x){
+            
+        }
+        OrderDto orderDto = orderService.find(currentPage, elePerPage);
+        request.setAttribute("orderDto", orderDto);
+        request.getRequestDispatcher("/WEB-INF/admin_theme/order.jsp").forward(request, response);
     }
 
     /**
@@ -51,30 +60,7 @@ public class ProductAPIController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-    }
-
-    @Override
-    protected void doDelete(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
         
-        BufferedReader br = new BufferedReader(new InputStreamReader(request.getInputStream()));
-        
-        String json = "";
-        if (br != null) {
-            json = br.readLine();
-        }
-        
-        br.close();
-        
-        Long productId = Long.parseLong(json.substring(json.indexOf("=")+1));
-        
-        Product product = productService.findById(productId);
-        if (product != null) {
-            product.setStatus(!product.isStatus());
-            productService.update(product);
-            response.setStatus(HttpServletResponse.SC_OK);
-            response.getWriter().print("ok");
-        }
     }
 
     /**

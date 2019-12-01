@@ -3,17 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.nmcnpm.web.dto;
+package com.nmcnpm.web.service;
 
-import com.nmcnpm.web.model.Account;
-import com.nmcnpm.web.model.Customer;
-import lombok.Data;
+import com.nmcnpm.web.dto.OrderDto;
 
 /**
  *
  * @author tuhalang
  */
-@Data
-public class CustomerDto extends ResponseDto<Customer>{
-    private Account account;
+public interface IOrderService {
+    OrderDto find(int currentPage, int elePerPage);
 }
