@@ -38,8 +38,8 @@ public class AccountDAO extends DataBaseDaoImpl<Account> implements IAccountDAO{
 	}
 
 	public Account findByUsernameAndPassword(String username, String password) {
-		String sql = "select * from account where username=? and password=?";
-		List<Account> accounts = query(sql,new AccountMapper(), username, password);
+		String sql = "select * from account where username='"+username+"' and password='"+password+"'";
+		List<Account> accounts = query(sql,new AccountMapper());
 		if(accounts.isEmpty())
 			return null;
 		return accounts.get(0);

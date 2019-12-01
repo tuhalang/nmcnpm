@@ -39,7 +39,7 @@ public class SignInController extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         resp.setContentType("text/html");
-        BufferedReader rd = new BufferedReader(new InputStreamReader(req.getInputStream(),"UTF-8"));
+        BufferedReader rd = new BufferedReader(new InputStreamReader(req.getInputStream()));
         String line=rd.readLine();
         String decode=decodeString(line.split("=")[1]);
         String[] list=decode.split("&");
@@ -74,6 +74,9 @@ public class SignInController extends HttpServlet {
         }
     }
     public String decodeString(String encodedString) {
+        encodedString=encodedString.replaceAll("%3D","=");
+        encodedString=encodedString.replaceAll("%2B","+");
+        encodedString=encodedString.replaceAll("%2F","/");
         byte[] bytes = Base64.getDecoder().decode(encodedString);
         return new String(bytes);
     }

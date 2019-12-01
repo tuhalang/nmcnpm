@@ -48,6 +48,7 @@ document.getElementById("btn-create").addEventListener("click",function () {
     }
 })
 document.getElementById("login").addEventListener("click",function () {
+    console.log(btoa("txtUsername="+document.getElementById("login-username").value+"&txtPassword="+document.getElementById("login-pass").value));
     $.ajax({
         url: window.location.pathname.substring(0, window.location.pathname.indexOf("/", 2)) + "/signin",
         contentType: 'application/json;charset=utf-8',
@@ -59,10 +60,10 @@ document.getElementById("login").addEventListener("click",function () {
         type: 'post',
         success: function (response) {
             if (response=="1") {
-                window.location.replace(window.location.pathname.substring(0, window.location.pathname.indexOf("/", 2))+"username="+document.getElementById("login-username").value);
+                window.location.replace(window.location.pathname.substring(0, window.location.pathname.indexOf("/", 2)));
             }
             else if (response=="2")
-                window.location.replace(window.location.pathname.substring(0, window.location.pathname.indexOf("/", 2))+"/WEB-INF/admin_theme/dashboard.jsp");
+                window.location.replace(window.location.pathname.substring(0, window.location.pathname.indexOf("/", 2))+"/admin");
             else alert("oops!");
         },
         error: function (x, e) {

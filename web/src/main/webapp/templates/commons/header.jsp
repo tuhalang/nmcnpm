@@ -1,3 +1,4 @@
+<%@ page import="com.nmcnpm.web.model.Account" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <header>
@@ -28,7 +29,16 @@
             </li>
             <li class="nav-item col-sm-3 px-0" data-toggle="modal" data-target="#exampleModal">
                 <a class="nav-link px-0 font-weight-bold"><i
-                        class="fas fa-user fa-2x float-left mr-md-2 mt-md-1"></i><span>Đăng nhập<br>tài khoản</span></a>
+                        class="fas fa-user fa-2x float-left mr-md-2 mt-md-1"></i><span>
+                        <c:choose>
+                            <c:when test="${USER!=null}">
+                                ${USER.username}
+                            </c:when>
+                            <c:otherwise>
+                                Đăng nhập
+                            </c:otherwise>
+                        </c:choose>
+                        <br>tài khoản</span></a>
             </li>
             <div class="modal bd-example-modal-lg" id="exampleModal" style="color:black !important;">
                 <div class="modal-dialog modal-lg modal-dialog-centered" type="document" style="min-width:900px;">
@@ -55,38 +65,39 @@
                                     </ul>
                                     <div class="tab-content" id="form-signup">
                                         <div role="tabpanel" class="tab-pane fade show active" id="profile">
-                                            <form class="form-group mt-4">
-                                                <div class="row w-100">
-                                                    <div class="col-sm-3">Username</div>
-                                                    <input type="text" class="form-control col-sm-9" id="login-username"
-                                                           placeholder="Nhập email hoặc Số điện thoại">
-                                                </div>
-                                                <div class="row w-100 mt-3">
-                                                    <div class="col-sm-3">Password</div>
-                                                    <input type="password" class="form-control col-sm-9" id="login-pass"
-                                                           placeholder="Password">
-                                                </div>
-                                                <div class="row w-100 mt-3" style="font-size: 0.8em;">
-                                                    <div class="col-sm-3"></div>
-                                                    <span class="col-sm-9">Quên mật khẩu? Nhấn vào <a href="#"
-                                                                                                      style="color: deepskyblue !important;">đây</a></span>
-                                                </div>
-                                                <div class="row w-100 mt-3" style="font-size: 0.8em;">
-                                                    <div class="col-sm-3"></div>
-                                                    <button class="btn btn-warning col-sm-9" id="login">Đăng nhập</button>
-                                                </div>
-                                            </form>
+                                            <div class="row w-100 mt-4">
+                                                <div class="col-sm-3">Username</div>
+                                                <input type="text" class="form-control col-sm-9" id="login-username"
+                                                       placeholder="Nhập email hoặc Số điện thoại">
+                                            </div>
+                                            <div class="row w-100 mt-3">
+                                                <div class="col-sm-3">Password</div>
+                                                <input type="password" class="form-control col-sm-9" id="login-pass"
+                                                       placeholder="Password">
+                                            </div>
+                                            <div class="row w-100 mt-3" style="font-size: 0.8em;">
+                                                <div class="col-sm-3"></div>
+                                                <span class="col-sm-9">Quên mật khẩu? Nhấn vào <a href="#"
+                                                                                                  style="color: deepskyblue !important;">đây</a></span>
+                                            </div>
+                                            <div class="row w-100 mt-3" style="font-size: 0.8em;">
+                                                <div class="col-sm-3"></div>
+                                                <button class="btn btn-warning col-sm-9" id="login">Đăng nhập
+                                                </button>
+                                            </div>
                                         </div>
                                         <div role="tabpanel" class="tab-pane fade" id="buzz">
                                             <div class="row w-100 mt-3">
                                                 <div class="col-sm-3">Tài khoản</div>
                                                 <input type="text" class="form-control col-sm-9"
-                                                       placeholder="Nhập họ tên" id="username" oninput="resetInputValue(this)">
+                                                       placeholder="Nhập họ tên" id="username"
+                                                       oninput="resetInputValue(this)">
                                             </div>
                                             <div class="row w-100 mt-3">
                                                 <div class="col-sm-3">Họ tên</div>
                                                 <input type="text" class="form-control col-sm-9"
-                                                       placeholder="Nhập họ tên" id="fullname" oninput="resetInputValue(this)">
+                                                       placeholder="Nhập họ tên" id="fullname"
+                                                       oninput="resetInputValue(this)">
                                             </div>
                                             <div class="row w-100 mt-3">
                                                 <div class="col-sm-3">SDT</div>
@@ -96,7 +107,8 @@
                                             <div class="row w-100 mt-3">
                                                 <div class="col-sm-3">Email</div>
                                                 <input type="email" class="form-control col-sm-9"
-                                                       placeholder="Nhập email" id="email-account" oninput="resetInputValue(this)">
+                                                       placeholder="Nhập email" id="email-account"
+                                                       oninput="resetInputValue(this)">
                                             </div>
                                             <div class="row w-100 mt-3">
                                                 <div class="col-sm-3">Mật khẩu</div>
@@ -110,7 +122,8 @@
                                             </div>
                                             <div class="row w-100 mt-3" style="font-size: 0.8em;">
                                                 <div class="col-sm-3"></div>
-                                                <button class="btn btn-warning col-sm-9" id="btn-create">Tạo tài khoản</button>
+                                                <button class="btn btn-warning col-sm-9" id="btn-create">Tạo tài khoản
+                                                </button>
                                             </div>
                                             <div class="row w-100 mt-3" style="font-size: 0.8em;">
                                                 <div class="col-sm-3"></div>
