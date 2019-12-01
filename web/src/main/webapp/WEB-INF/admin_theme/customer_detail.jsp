@@ -116,8 +116,8 @@
             <ul class="nav menu">
                 <li><a href="${pageContext.request.contextPath}/admin"><em class="fas fa-tachometer-alt">&nbsp;</em> Dashboard</a></li>
                 <li><a href="widgets.jsp"><em class="fa fa-calendar">&nbsp;</em> Widgets</a></li>
-                <li class="active"><a href="${pageContext.request.contextPath}/admin/product"><em class="fab fa-product-hunt">&nbsp;</em> Product</a></li>
-                <li><a href="${pageContext.request.contextPath}/admin/user"><em class="fa fa-toggle-off">&nbsp;</em> User Management</a></li>
+                <li><a href="${pageContext.request.contextPath}/admin/product"><em class="fab fa-product-hunt">&nbsp;</em> Product</a></li>
+                <li class="active"><a href="${pageContext.request.contextPath}/admin/user"><em class="fa fa-toggle-off">&nbsp;</em> User Management</a></li>
                 <li><a href="${pageContext.request.contextPath}/admin/category"><em class="fa fa-clone">&nbsp;</em> Category</a></li>
                 <li class="parent ">
                     <a data-toggle="collapse" href="#sub-item-1">
@@ -168,140 +168,82 @@
                             <em class="fa fa-home"></em>
                         </a>
                     </li>
-                    <li class="active">Products / Details / ${product.singleData.productID}</li>
+                    <li class="active">Customer / Details / ${customer.customerID}</li>
                 </ol>
             </div>
             <!--/.row-->
 
             <div class="row">
                 <div class="col-lg-12">
-                    <form id="input-add-group" method="POST" action="${pageContext.request.contextPath}/admin/product">
-
-                        <div class="btn-up-down">
-                            <i class="fa fa-angle-double-right" type="button" data-toggle="collapse" data-target="#input-product" aria-hidden="true"></i>
-                            <span>Product</span>
+                    <form method="POST" action="${pageContext.request.contextPath}/admin/user">
+                        <div>
+                            <br>
                         </div>
-
-                        <div id="input-product" class="collapse">
+                        <div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label label-custom">ProductID</label>
+                                <label class="col-sm-2 col-form-label label-custom">CustomerID</label>
                                 <div class="col-sm-10">
-                                    <input type="text" name="productId" class="form-control" required="required" value="${product.singleData.productID}" readonly>
+                                    <input type="text" name="customerId" class="form-control" required="required" value="${customer.customerID}" readonly>
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label class="col-sm-2 col-form-label label-custom">Name</label>
                                 <div class="col-sm-10">
-                                    <input type="text" name="name" class="form-control" required="required" value="${product.singleData.name}">
+                                    <input type="text" name="name" class="form-control" required="required" value="${customer.name}" readonly>
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label label-custom">Description</label>
+                                <label class="col-sm-2 col-form-label label-custom">Address</label>
                                 <div class="col-sm-10">
-                                    <input type="text" name="description" class="form-control" required="required" value="${product.singleData.description}">
+                                    <input type="text" name="address" class="form-control" required="required" value="${customer.address}" readonly>
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label label-custom">Description Detail</label>
+                                <label class="col-sm-2 col-form-label label-custom">City</label>
                                 <div class="col-sm-10">
-                                    <textarea type="text" name="description_detail" class="form-control" required="required" rows="3">${product.singleData.descriptionDetail}</textarea>
+                                    <textarea type="text" name="cityRegion" class="form-control" required="required" rows="3" readonly>${customer.cityRegion}</textarea>
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label label-custom">Image</label>
+                                <label class="col-sm-2 col-form-label label-custom">Email</label>
                                 <div class="col-sm-10">
-                                    <input type="text" name="image" class="form-control" required="required" value="${product.singleData.image}">
+                                    <input type="text" name="image" class="form-control" required="required" value="${customer.email}" readonly>
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label label-custom">Price</label>
+                                <label class="col-sm-2 col-form-label label-custom">Phone</label>
                                 <div class="col-sm-10">
-                                    <input type="text" name="price" class="form-control" required="required" value="${product.singleData.price}">
+                                    <input type="text" name="price" class="form-control" required="required" value="${customer.phone}" readonly>
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label label-custom">Quantity</label>
+                                <label class="col-sm-2 col-form-label label-custom">AccountID</label>
                                 <div class="col-sm-10">
-                                    <input type="text" name="quantity" class="form-control" required="required" value="${product.singleData.quantity}">
+                                    <input type="text" name="quantity" class="form-control" required="required" value="${customer.accountID}" readonly>
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label label-custom">Category</label>
+                                <label class="col-sm-2 col-form-label label-custom">Username</label>
                                 <div class="col-sm-10">
-                                    <select id="category-options" name="category" class="form-control">
-                                        <option value="${product.singleData.categoryID}">Choose Category</option>
-                                    </select>
+                                    <input type="text" name="quantity" class="form-control" required="required" value="${customer.account.username}" readonly>
                                 </div>
                             </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label label-custom">Created At</label>
+                                <div class="col-sm-10">
+                                    <input type="text" name="quantity" class="form-control" required="required" value="${customer.account.createdAt}" readonly>
+                                </div>
+                            </div>
+                           
                         </div>
 
-                        <div class="btn-up-down">
-                            <i class="fa fa-angle-double-right" type="button" data-toggle="collapse" data-target="#input-product-detail" aria-hidden="true"></i>
-                            <span>Product Detail</span>
-                        </div>
-
-                        <div id="input-product-detail" class="collapse">
-                            <div class="form-group row">
-                                <label class="col-sm-2 col-form-label label-custom">ProductDetailID</label>
-                                <div class="col-sm-10">
-                                    <input type="text" name="productDetailId" class="form-control" required="required" value="${product.singleData.productDetailID}" readonly>
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label class="col-sm-2 col-form-label label-custom">Accessories</label>
-                                <div class="col-sm-10">
-                                    <input type="text" name="accessories" class="form-control" required="required" value="${product.productDetail.accessories}">
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label class="col-sm-2 col-form-label label-custom">Guarantee</label>
-                                <div class="col-sm-10">
-                                    <input type="text" name="guarantee" class="form-control" required="required" value="${product.productDetail.guarantee}">
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label class="col-sm-2 col-form-label label-custom">Image1</label>
-                                <div class="col-sm-10">
-                                    <input type="text" name="image1" class="form-control" required="required" value="${product.productDetail.image1}">
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label class="col-sm-2 col-form-label label-custom">Image2</label>
-                                <div class="col-sm-10">
-                                    <input type="text" name="image2" class="form-control" required="required" value="${product.productDetail.image2}">
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label class="col-sm-2 col-form-label label-custom">Image3</label>
-                                <div class="col-sm-10">
-                                    <input type="text" name="image3" class="form-control" required="required" value="${product.productDetail.image3}">
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label class="col-sm-2 col-form-label label-custom">Image4</label>
-                                <div class="col-sm-10">
-                                    <input type="text" name="image4" class="form-control" required="required" value="${product.productDetail.image4}">
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label class="col-sm-2 col-form-label label-custom">Image5</label>
-                                <div class="col-sm-10">
-                                    <input type="text" name="image5" class="form-control" required="required" value="${product.productDetail.image5}">
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label class="col-sm-2 col-form-label label-custom">Information</label>
-                                <div class="col-sm-10">
-                                    <input type="text" name="information" class="form-control" required="required" value="${product.productDetail.information}">
-                                </div>
-                            </div>
-                        </div>
+                        
 
 
 
-                        <div class="modal-footer">
+<!--                        <div class="modal-footer">
                             <button type="submit" class="btn btn-primary" id="btn-add-group">Update</button>
-                        </div>
+                        </div>-->
                     </form>
                 </div>
             </div>
@@ -318,22 +260,7 @@
         <script src="<c:url value="/static/jquery-3.4.1/custom.js"/>"></script>
         <script src="<c:url value="/static/bootstrap-4.0.0/js/bootstrap.min.js"/>"></script>
         <script>
-            $.ajax({
-                url: window.location.pathname.substring(0, window.location.pathname.indexOf("/", 2)) + '/admin/api/categories',
-                contentType: 'application/json;charset=utf-8',
-                dataType: 'json',
-                type: 'GET',
-                success: function (response) {
-                    $('#category-options').empty();
-                    response.forEach((c, i) => {
-                        $("#category-options").append("<option value='" + c['categoryID'] + "' >" + c['name'] + "</option>");
-                    })
-                    $('#category-options').val(${product.singleData.categoryID});
-                },
-                error: function (x, e) {
-                    console.log(e)
-                }
-            });
+            
         </script>
     </body>
 

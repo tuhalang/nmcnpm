@@ -5,12 +5,15 @@
  */
 package com.nmcnpm.web.dto;
 
+import com.nmcnpm.web.model.Account;
 import com.nmcnpm.web.model.Customer;
+import lombok.Data;
 
 /**
  *
  * @author tuhalang
  */
+@Data
 public class CustomerDto extends ResponseDto<Customer>{
-    
+    private Account account;
 }

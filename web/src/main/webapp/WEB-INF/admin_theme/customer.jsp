@@ -139,7 +139,7 @@
                         </li>
                     </ul>
                 </li>
-                <li><a href="login.jsp"><em class="fa fa-power-off">&nbsp;</em> Logout</a></li>
+                <li><a href="${pageContext.request.contextPath}/logout"><em class="fa fa-power-off">&nbsp;</em> Logout</a></li>
             </ul>
         </div>
         <!--/.sidebar-->
@@ -199,46 +199,91 @@
                                         <div class="col-sm-1"><strong>Detail</strong></i></div>
                                     </div>
                                 </div>
-                            
+
 
                                 <c:forEach items="${customerDto.listOfData}" var="customer">
                                     <div class="panel panel-default">
                                         <div class="panel-body">
-                                            <div class="col-sm-1">${customer.productID}</div>
-                                            <div class="group-product-name col-sm-5">${customer.name}</div>
+                                            <div class="col-sm-1">${customer.customerID}</div>
+                                            <div class="col-sm-2">${customer.name}</div>
                                             <div class="col-sm-3">${customer.email}</div>
                                             <div class="col-sm-2">${customer.phone}</div>
                                             <div class="col-sm-2">${customer.cityRegion}</div>
                                             <div class="col-sm-1">
                                                 <c:choose>
-                                                    <c:when test = "${customer.status}">
-                                                        <button onclick="changeStatus(${customer.productID})" class="btn btn-light"><i class="fa fa-check" aria-hidden="true"></i></button>
+                                                    <c:when test = "${customer.account.status}">
+                                                        <button onclick="changeStatus(${customer.accountID})" class="btn btn-light"><i class="fa fa-check" aria-hidden="true"></i></button>
                                                         </c:when>
                                                         <c:otherwise>
-                                                        <button onclick="changeStatus(${customer.productID})" class="btn btn-light"><i class="fa fa-ban" aria-hidden="true"></i></button>
+                                                        <button onclick="changeStatus(${customer.accountID})" class="btn btn-light"><i class="fa fa-ban" aria-hidden="true"></i></button>
                                                         </c:otherwise>
                                                     </c:choose>
                                             </div>
                                             <div class="col-sm-1">
-                                                <a href="${pageContext.request.contextPath}/admin/customer?customerId=${customer.customerID}" class="btn btn-light"><i class="fa fa-eye" aria-hidden="true"></i></a>
+                                                <a href="${pageContext.request.contextPath}/admin/user?customerId=${customer.customerID}" class="btn btn-light"><i class="fa fa-eye" aria-hidden="true"></i></a>
                                             </div>
                                         </div>
                                     </div>
                                 </c:forEach>
+                                <!-- pagination -->
+                                <div class="container"
+                                     <nav aria-label="pagination">
+                                        <ul class="pagination">
+                                            <c:if test="${customerDto.currentPage == 1}">
+                                                <li class="page-item disabled">
+                                                    <a class="page-link" href="#" tabindex="-1">Previous</a>
+                                                </li>
+                                                <li class="page-item active">
+                                                    <a class="page-link" href="${pageContext.request.contextPath}/admin/user?currentPage=1">1 <span class="sr-only">(current)</span></a>
+                                                </li>
+                                                <c:if test="${customerDto.totalPages > 1}">
+                                                    <li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/admin/user?currentPage=2">2</a></li>
+                                                    </c:if>
+                                                    <c:if test="${customerDto.totalPages > 2}">
+                                                    <li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/admin/user?currentPage=3">3</a></li>
+                                                    </c:if>
+                                                    <c:if test="${customerDto.totalPages > 1}">
+                                                    <li class="page-item">
+                                                        <a class="page-link" href="${pageContext.request.contextPath}/admin/user?currentPage=2">Next</a>
+                                                    </li>
+                                                </c:if>
+                                                <c:if test="${customerDto.totalPages == 1}">
+                                                    <li class="page-item disabled">
+                                                        <a class="page-link" href="#">Next</a>
+                                                    </li>
+                                                </c:if>
+                                            </c:if>
+
+                                            <c:if test="${customerDto.currentPage > 1}">
+                                                <li class="page-item">
+                                                    <a class="page-link" href="${pageContext.request.contextPath}/admin/user?currentPage=${customerDto.currentPage-1}" tabindex="-1">Previous</a>
+                                                </li>
+                                                <li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/admin/user?currentPage=${customerDto.currentPage-1}">${customerDto.currentPage-1}</a></li>
+                                                <li class="page-item active">
+                                                    <a class="page-link" href="${pageContext.request.contextPath}/admin/user?currentPage=${customerDto.currentPage}">${customerDto.currentPage} <span class="sr-only">(current)</span></a>
+                                                </li>
+                                                <c:if test="${customerDto.totalPages > customerDto.currentPage}">
+                                                    <li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/admin/user?currentPage=${customerDto.currentPage+1}">${customerDto.currentPage+1}</a></li>
+                                                    </c:if>
+                                                    <c:if test="${customerDto.totalPages > customerDto.currentPage}">
+                                                    <li class="page-item">
+                                                        <a class="page-link" href="${pageContext.request.contextPath}/admin/user?currentPage=${customerDto.currentPage+1}">Next</a>
+                                                    </li>
+                                                </c:if>
+                                                <c:if test="${customerDto.totalPages <= customerDto.currentPage}">
+                                                    <li class="page-item disabled">
+                                                        <a class="page-link" href="#">Next</a>
+                                                    </li>
+                                                </c:if>
+                                            </c:if>                                          
+                                        </ul>
+                                    </nav>
+                                </div>
                             </div>
                         </div>
                         <!-- /.panel-->
                     </div>
-                    <!-- pagination -->
-                    <div class="pagination-container col-lg-12">
-                        <div id="pagination">
-                            <a id="laquo" href="#">&laquo;</a>
-                            <a id="dec" href="#">&lt;</a>
-                            <a class="page active" href="#">1</a>
-                            <a id="inc" href="#">&gt;</a>
-                            <a id="raquo" href="#">&raquo;</a>
-                        </div>
-                    </div>
+
                     <!-- /.col-->
                     <div class="col-sm-12">
                         <br>
@@ -256,6 +301,27 @@
             <script src="<c:url value="/static/jquery-3.4.1/bootstrap-datepicker.js"/>"></script>
             <script src="<c:url value="/static/jquery-3.4.1/custom.js"/>"></script>
             <script src="<c:url value="/static/bootstrap-4.0.0/js/bootstrap.min.js"/>"></script>
+            <script>
+                function changeStatus(accountId) {
+                    $.ajax({
+                        url: window.location.pathname.substring(0, window.location.pathname.indexOf("/", 2)) + '/admin/api/account',
+                        contentType: 'application/json;charset=utf-8',
+                        dataType: 'text',
+                        data: {
+                            accountId: accountId
+                        },
+                        type: 'DELETE',
+                        success: function (response) {
+                            if (response == 'ok') {
+                                location.reload();
+                            }
+                        },
+                        error: function (x, e) {
+                            alert(e);
+                        }
+                    });
+                }
+            </script>
     </body>
 
 </html>

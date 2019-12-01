@@ -1,9 +1,12 @@
 package com.nmcnpm.web.service.impl;
 
+import com.nmcnpm.web.dao.IAccountDAO;
 import com.nmcnpm.web.dao.ICustomerDAO;
 import com.nmcnpm.web.dto.CustomerDto;
 import com.nmcnpm.web.model.Customer;
 import com.nmcnpm.web.service.ICustomerService;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.inject.Inject;
 
@@ -15,6 +18,9 @@ public class CustomerService implements ICustomerService {
 
     @Inject
     private ICustomerDAO customerDAO;
+    
+    @Inject
+    private IAccountDAO accountDAO;
 
     @Override
     public boolean valid(Customer customer) {
@@ -56,6 +62,19 @@ public class CustomerService implements ICustomerService {
         customerDto.setElePerPage(elePerPage);
         customerDto.setTotalPages(customerDAO.count()/elePerPage+1);
         customerDto.setListOfData(customerDAO.find((currentPage-1)*elePerPage, elePerPage));
+        List<Customer> customers = new ArrayList<>();
+        for(Customer customer : customerDto.getListOfData()){
+            customer.setAccount(accountDAO.findById(customer.getAccountID()));
+            customers.add(customer);
+        }
+        customerDto.setListOfData(customers);
         return customerDto;
+    }
+
+    @Override
+    public Customer findById(Long customerId) {
+        Customer customer = customerDAO.findById(customerId);
+        customer.setAccount(accountDAO.findById(customer.getAccountID()));
+        return customer;
     }
 }

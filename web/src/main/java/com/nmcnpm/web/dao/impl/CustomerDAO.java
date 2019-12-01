@@ -2,7 +2,6 @@ package com.nmcnpm.web.dao.impl;
 
 import com.nmcnpm.database.dao.impl.DataBaseDaoImpl;
 import com.nmcnpm.web.dao.ICustomerDAO;
-import com.nmcnpm.web.mapprow.AccountMapper;
 import com.nmcnpm.web.mapprow.CustomerMapper;
 import com.nmcnpm.web.model.Customer;
 
@@ -10,8 +9,8 @@ import java.util.List;
 
 public class CustomerDAO extends DataBaseDaoImpl<Customer> implements ICustomerDAO {
     public void insert(Customer customer) {
-        String sql = "insert into customer( address, city_region, email, name, phone, created_at, last_modified_at) value(?,?,?,?,?,CURRENT_TIMESTAMP(),CURRENT_TIMESTAMP())";
-        Long id = insert(sql, customer.getAddress(), customer.getCityRegion(), customer.getEmail(), customer.getName(), customer.getPhone());
+        String sql = "insert into customer( address, city_region, email, name, phone, account_id created_at, last_modified_at) value(?,?,?,?,?,?,CURRENT_TIMESTAMP(),CURRENT_TIMESTAMP())";
+        Long id = insert(sql, customer.getAddress(), customer.getCityRegion(), customer.getEmail(), customer.getName(), customer.getPhone(), customer.getAccountID());
         customer.setCustomerID(id);
     }
 

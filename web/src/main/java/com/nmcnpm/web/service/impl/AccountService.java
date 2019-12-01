@@ -68,4 +68,20 @@ public class AccountService implements IAccountService {
         password = PasswordHashing.getInstance().getMethod().encrypt(password);
         return accountDAO.findByUsernameAndPassword(username, password);
     }
+
+    @Override
+    public Account findById(Long accountId) {
+        return accountDAO.findById(accountId);
+    }
+
+    @Override
+    public boolean update(Account account) {
+        try{
+            accountDAO.update(account);
+            return true;
+        }catch(Exception e){
+            e.printStackTrace();
+            return false;
+        }
+    }
 }

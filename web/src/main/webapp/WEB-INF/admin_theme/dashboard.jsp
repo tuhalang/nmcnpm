@@ -143,7 +143,7 @@
                     </li>
                 </ul>
             </li>
-            <li><a href="login.jsp"><em class="fa fa-power-off">&nbsp;</em> Logout</a></li>
+            <li><a href="${pageContext.request.contextPath}/logout"><em class="fa fa-power-off">&nbsp;</em> Logout</a></li>
         </ul>
     </div>>
     <!--/.sidebar-->

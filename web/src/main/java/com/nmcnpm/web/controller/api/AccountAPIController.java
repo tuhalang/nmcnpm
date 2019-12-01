@@ -5,12 +5,11 @@
  */
 package com.nmcnpm.web.controller.api;
 
-import com.nmcnpm.web.model.Product;
-import com.nmcnpm.web.service.IProductService;
+import com.nmcnpm.web.model.Account;
+import com.nmcnpm.web.service.IAccountService;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.io.PrintWriter;
 import javax.inject.Inject;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -21,11 +20,12 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author tuhalang
  */
-public class ProductAPIController extends HttpServlet {
+public class AccountAPIController extends HttpServlet {
 
+    
     @Inject
-    private IProductService productService;
-
+    IAccountService accountService;
+    
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
@@ -54,8 +54,7 @@ public class ProductAPIController extends HttpServlet {
     }
 
     @Override
-    protected void doDelete(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+    protected void doDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         
         BufferedReader br = new BufferedReader(new InputStreamReader(request.getInputStream()));
         
@@ -66,16 +65,18 @@ public class ProductAPIController extends HttpServlet {
         
         br.close();
         
-        Long productId = Long.parseLong(json.substring(json.indexOf("=")+1));
-        
-        Product product = productService.findById(productId);
-        if (product != null) {
-            product.setStatus(!product.isStatus());
-            productService.update(product);
+        Long accountId = Long.parseLong(json.substring(json.indexOf("=")+1));
+        Account account = accountService.findById(accountId);
+        if(account != null){
+            account.setStatus(!account.getStatus());
+            accountService.update(account);
             response.setStatus(HttpServletResponse.SC_OK);
             response.getWriter().print("ok");
         }
     }
+    
+    
+    
 
     /**
      * Returns a short description of the servlet.

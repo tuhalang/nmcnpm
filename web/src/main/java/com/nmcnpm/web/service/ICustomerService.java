@@ -12,4 +12,5 @@ public interface ICustomerService {
     boolean isExist(Customer customer);
     boolean save(Customer customer);
     CustomerDto find(int currentPage, int elePerPage);
+    Customer findById(Long customerId);
 }
