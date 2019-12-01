@@ -11,7 +11,7 @@
 <head>
     <title>Title</title>
     <link rel="stylesheet"
-          href="${pageContext.request.contextPath}/static/bootstrap/css/card.css"
+          href="${pageContext.request.contextPath}/static/css/card.css"
           type="text/css">
     <style>
         #main{
