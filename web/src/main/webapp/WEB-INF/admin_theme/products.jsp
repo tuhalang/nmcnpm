@@ -195,51 +195,63 @@
                             <div class="modal-dialog modal-dialog-centered modal-lg" type="document">
                                 <div class="modal-content">
                                     <div class="modal-header"><h2><strong>Create New Product</strong></h2></div>
+
+                                    
                                     <div class="modal-body">
                                         <form id="input-add-group" method="post" action="${pageContext.request.contextPath}/admin/product">
+                                            
+                                            <!--Div hiển thị form để nhập dữ liệu-->
+                                            <div>
+                                                <div class="btn-up-down">
+                                                    <i class="fa fa-angle-double-right" type="button" data-toggle="collapse" data-target="#input-product" aria-hidden="true"></i>
+                                                    <span>Enter Product</span>
+                                                </div>
 
-                                            <div class="btn-up-down">
-                                                <i class="fa fa-angle-double-right" type="button" data-toggle="collapse" data-target="#input-product" aria-hidden="true"></i>
-                                                <span>Enter Product</span>
+                                                <div id="input-product" class="collapse">
+                                                    <input type="text" name="name" class="form-control input-text" required="required" placeholder="Enter name product">
+                                                    <input type="text" name="description" class="form-control input-text" required="required" placeholder="Enter description">
+                                                    <textarea class="form-control input-text" name="description_detail" required="required" placeholder="Enter description detail" rows="3"></textarea>
+                                                    <input type="text" name="image" class="form-control input-text" required="required" placeholder="Enter link image">
+                                                    <input type="text" name="price" class="form-control input-text" required="required"  placeholder="Enter price (VND)">
+                                                    <input type="text" name="quantity" class="form-control input-text" required="required"  placeholder="Enter quantity">
+                                                    <select id="category-options" name="category" class="form-control input-text">
+                                                        <option value="1">Choose Category</option>
+                                                    </select>
+                                                </div>
+
+                                                <div class="btn-up-down">
+                                                    <i class="fa fa-angle-double-right" type="button" data-toggle="collapse" data-target="#input-product-detail" aria-hidden="true"></i>
+                                                    <span>Enter Product Detail</span>
+                                                </div>
+
+                                                <div id="input-product-detail" class="collapse">
+                                                    <input type="text" name="accessories" class="form-control input-text" required="required"  placeholder="Enter Accessories">
+                                                    <input type="text" name="guarantee" class="form-control input-text" required="required"  placeholder="Enter Guarantee">
+                                                    <input type="text" name="image1" class="form-control input-text" required="required"  placeholder="Enter Link Image1">
+                                                    <input type="text" name="image2" class="form-control input-text" required="required"  placeholder="Enter Link Image2">
+                                                    <input type="text" name="image3" class="form-control input-text" required="required"  placeholder="Enter Link Image3">
+                                                    <input type="text" name="image4" class="form-control input-text" required="required"  placeholder="Enter Link Image4">
+                                                    <input type="text" name="image5" class="form-control input-text" required="required"  placeholder="Enter Link Image5">
+                                                    <input type="text" name="information" class="form-control input-text"  placeholder="Enter Infomation">
+                                                </div>
+                                            </div>
+                                            
+                                            <!--div review sản phẩm(hiển thị sản phẩm như xem chi tiết ở web) lấy dữ liệu được nhập từ div input-->
+                                            <div>
+<!--                                                code in here-->
                                             </div>
 
-                                            <div id="input-product" class="collapse">
-                                                <input type="text" name="name" class="form-control input-text" required="required" placeholder="Enter name product">
-                                                <input type="text" name="description" class="form-control input-text" required="required" placeholder="Enter description">
-                                                <textarea class="form-control input-text" name="description_detail" required="required" placeholder="Enter description detail" rows="3"></textarea>
-                                                <input type="text" name="image" class="form-control input-text" required="required" placeholder="Enter link image">
-                                                <input type="text" name="price" class="form-control input-text" required="required"  placeholder="Enter price (VND)">
-                                                <input type="text" name="quantity" class="form-control input-text" required="required"  placeholder="Enter quantity">
-                                                <select id="category-options" name="category" class="form-control input-text">
-                                                    <option value="1">Choose Category</option>
-                                                </select>
-                                            </div>
 
-                                            <div class="btn-up-down">
-                                                <i class="fa fa-angle-double-right" type="button" data-toggle="collapse" data-target="#input-product-detail" aria-hidden="true"></i>
-                                                <span>Enter Product Detail</span>
-                                            </div>
-
-                                            <div id="input-product-detail" class="collapse">
-                                                <input type="text" name="accessories" class="form-control input-text" required="required"  placeholder="Enter Accessories">
-                                                <input type="text" name="guarantee" class="form-control input-text" required="required"  placeholder="Enter Guarantee">
-                                                <input type="text" name="image1" class="form-control input-text" required="required"  placeholder="Enter Link Image1">
-                                                <input type="text" name="image2" class="form-control input-text" required="required"  placeholder="Enter Link Image2">
-                                                <input type="text" name="image3" class="form-control input-text" required="required"  placeholder="Enter Link Image3">
-                                                <input type="text" name="image4" class="form-control input-text" required="required"  placeholder="Enter Link Image4">
-                                                <input type="text" name="image5" class="form-control input-text" required="required"  placeholder="Enter Link Image5">
-                                                <input type="text" name="information" class="form-control input-text"  placeholder="Enter Infomation">
-                                            </div>
-
-
-                                          
                                             <div class="modal-footer">
+                                                <!--Khi bấm button review thì đóng ẩn div để nhập dữ liệu mà hiển thị div để review-->
+<!--                                                Sau khi bấm thì nút review đổi tên thành nút back để quay lại div nhập dữ liệu-->
+                                                <button class="btn btn-primary">Review</button>
                                                 <button type="submit" class="btn btn-primary" id="btn-add-group">Create</button>
                                                 <button class="btn btn-primary" data-dismiss="modal">Cancel</button>
                                             </div>
                                         </form>
                                     </div>
-                                    
+
                                 </div>
                             </div>
                         </div>
@@ -273,11 +285,11 @@
                                                 <c:choose>
                                                     <c:when test = "${product.status}">
                                                         <button onclick="changeStatus(${product.productID})" class="btn btn-light"><i class="fa fa-check" aria-hidden="true"></i></button>
-                                                    </c:when>
-                                                    <c:otherwise>
+                                                        </c:when>
+                                                        <c:otherwise>
                                                         <button onclick="changeStatus(${product.productID})" class="btn btn-light"><i class="fa fa-ban" aria-hidden="true"></i></button>
-                                                    </c:otherwise>
-                                                </c:choose>
+                                                        </c:otherwise>
+                                                    </c:choose>
                                             </div>
                                             <div class="col-sm-1">
                                                 <a href="${pageContext.request.contextPath}/admin/product?productId=${product.productID}" class="btn btn-light"><i class="fa fa-eye" aria-hidden="true"></i></a>
@@ -299,11 +311,11 @@
                                                 </li>
                                                 <c:if test="${productDto.totalPages > 1}">
                                                     <li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/admin/product?currentPage=2">2</a></li>
-                                                </c:if>
-                                                <c:if test="${productDto.totalPages > 2}">
+                                                    </c:if>
+                                                    <c:if test="${productDto.totalPages > 2}">
                                                     <li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/admin/product?currentPage=3">3</a></li>
-                                                </c:if>
-                                                <c:if test="${productDto.totalPages > 1}">
+                                                    </c:if>
+                                                    <c:if test="${productDto.totalPages > 1}">
                                                     <li class="page-item">
                                                         <a class="page-link" href="${pageContext.request.contextPath}/admin/product?currentPage=2">Next</a>
                                                     </li>
@@ -325,8 +337,8 @@
                                                 </li>
                                                 <c:if test="${productDto.totalPages > productDto.currentPage}">
                                                     <li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/admin/product?currentPage=${productDto.currentPage+1}">${productDto.currentPage+1}</a></li>
-                                                </c:if>
-                                                <c:if test="${productDto.totalPages > productDto.currentPage}">
+                                                    </c:if>
+                                                    <c:if test="${productDto.totalPages > productDto.currentPage}">
                                                     <li class="page-item">
                                                         <a class="page-link" href="${pageContext.request.contextPath}/admin/product?currentPage=${productDto.currentPage+1}">Next</a>
                                                     </li>
@@ -362,43 +374,43 @@
         <script src="<c:url value="/static/jquery-3.4.1/custom.js"/>"></script>
         <script src="<c:url value="/static/bootstrap-4.0.0/js/bootstrap.min.js"/>"></script>
         <script>
-            $('#btn-new-product').click(function () {
-                $.ajax({
-                    url: window.location.pathname.substring(0, window.location.pathname.indexOf("/", 2)) + '/admin/api/categories',
-                    contentType: 'application/json;charset=utf-8',
-                    dataType: 'json',
-                    type: 'GET',
-                    success: function (response) {
-                        $('#category-options').empty();
-                        response.forEach((c, i) => {
-                            $("#category-options").append("<option value='" + c['categoryID'] + "' >" + c['name'] + "</option>");
-                        })
-                    },
-                    error: function (x, e) {
-                        console.log(e)
-                    }
-                });
-            });
-            
-            function changeStatus(productId){
-                $.ajax({
-                    url: window.location.pathname.substring(0, window.location.pathname.indexOf("/", 2)) + '/admin/api/products',
-                    contentType: 'application/json;charset=utf-8',
-                    dataType: 'text',
-                    data: {
-                        productId: productId
-                    },
-                    type: 'DELETE',
-                    success: function (response) {
-                        if(response == 'ok'){
-                            location.reload();
-                        }
-                    },
-                    error: function (x, e) {
-                        alert(e);
-                    }
-                });
-            }
+                                                            $('#btn-new-product').click(function () {
+                                                                $.ajax({
+                                                                    url: window.location.pathname.substring(0, window.location.pathname.indexOf("/", 2)) + '/admin/api/categories',
+                                                                    contentType: 'application/json;charset=utf-8',
+                                                                    dataType: 'json',
+                                                                    type: 'GET',
+                                                                    success: function (response) {
+                                                                        $('#category-options').empty();
+                                                                        response.forEach((c, i) => {
+                                                                            $("#category-options").append("<option value='" + c['categoryID'] + "' >" + c['name'] + "</option>");
+                                                                        })
+                                                                    },
+                                                                    error: function (x, e) {
+                                                                        console.log(e)
+                                                                    }
+                                                                });
+                                                            });
+
+                                                            function changeStatus(productId) {
+                                                                $.ajax({
+                                                                    url: window.location.pathname.substring(0, window.location.pathname.indexOf("/", 2)) + '/admin/api/products',
+                                                                    contentType: 'application/json;charset=utf-8',
+                                                                    dataType: 'text',
+                                                                    data: {
+                                                                        productId: productId
+                                                                    },
+                                                                    type: 'DELETE',
+                                                                    success: function (response) {
+                                                                        if (response == 'ok') {
+                                                                            location.reload();
+                                                                        }
+                                                                    },
+                                                                    error: function (x, e) {
+                                                                        alert(e);
+                                                                    }
+                                                                });
+                                                            }
 
         </script>
     </body>
