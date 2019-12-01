@@ -17,6 +17,10 @@
         <servlet-name>AccountAPIController</servlet-name>
         <servlet-class>com.nmcnpm.web.controller.api.AccountAPIController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>OrderController</servlet-name>
+        <servlet-class>com.nmcnpm.web.controller.admin.OrderController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>CategoryAPIController</servlet-name>
         <url-pattern>/admin/api/categories</url-pattern>
@@ -28,6 +32,10 @@
     <servlet-mapping>
         <servlet-name>AccountAPIController</servlet-name>
         <url-pattern>/admin/api/account</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>OrderController</servlet-name>
+        <url-pattern>/admin/order</url-pattern>
     </servlet-mapping>
     <welcome-file-list>
         <welcome-file>index.jsp</welcome-file>

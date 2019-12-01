@@ -1,17 +1,15 @@
 package com.nmcnpm.web.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
 
 import java.util.Date;
+import lombok.Data;
 
 @Data
 public class OrderedProduct extends BaseModel{
 	private Long orderID;
 	private Long productID;
 	private Long quantity;
+        private Product product;
 
 	public OrderedProduct(Long orderID, Long productID, Long quantity) {
 		this.orderID = orderID;
