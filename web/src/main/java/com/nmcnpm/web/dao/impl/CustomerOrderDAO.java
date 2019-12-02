@@ -7,7 +7,6 @@ import com.nmcnpm.web.mapprow.CustomerOrderMapper;
 import com.nmcnpm.web.model.CustomerOrder;
 
 import java.util.List;
-
 public class CustomerOrderDAO extends DataBaseDaoImpl<CustomerOrder> implements ICustomerOrderDAO{
     
     @Override
@@ -16,11 +15,21 @@ public class CustomerOrderDAO extends DataBaseDaoImpl<CustomerOrder> implements 
         Long id = insert(sql, customerOrder.getAmount(), customerOrder.getConfirmNumber());
         customerOrder.setOrderID(id);
     }
-
+    @Override
+    public Long insert(CustomerOrder customerOrder, Long customerID) {
+        String sql = "insert into customer_order(customer_id, amount, confirm_number, created_at, last_modified_at) value(?,?,?,CURRENT_TIMESTAMP(),CURRENT_TIMESTAMP())";
+        Long id = insert(sql, customerID, customerOrder.getAmount(), customerOrder.getConfirmNumber());
+        customerOrder.setOrderID(id);
+        return id;
+    }
     @Override
     public void update(CustomerOrder customerOrder) {
         String sql = "update customer_order set amount=?, confirm_number=?, last_modified_at=CURRENT_TIMESTAMP() where order_id=?";
-        update(sql, customerOrder.getAmount(), customerOrder.getConfirmNumber(), customerOrder.getOrderID());
+        try {
+            update(sql, customerOrder.getAmount(), customerOrder.getConfirmNumber(), customerOrder.getOrderID());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
     }
 

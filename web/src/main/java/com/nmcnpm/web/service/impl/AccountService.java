@@ -24,10 +24,10 @@ public class AccountService implements IAccountService {
 
     @Override
     public boolean valid(Account account) {
-        if(!account.getUsername().matches("^[a-zA-Z0-9._-]{5,}$")){
+        if (!account.getUsername().matches("^[a-zA-Z0-9._-]{5,}$")) {
             return false;
         }
-        if(!account.getPassword().matches("^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\\S+$).{8,}$")){
+        if (!account.getPassword().matches("^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=\\S+$).{8,20}$")) {
             return false;
         }
         return true;
@@ -40,14 +40,14 @@ public class AccountService implements IAccountService {
 
     @Override
     public boolean save(Account account) {
-        try{
+        try {
             account.setPassword(PasswordHashing.getInstance().getMethod().encrypt(account.getPassword()));
             account.setStatus(true);
             accountDAO.insert(account);
             Role role = (Role) roleDAO.findByRoleName(RoleName.ROLE_USER.toString());
             accountDAO.setRole(account.getAccountID(), role.getRoleID());
             return true;
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
             return false;
         }
@@ -57,10 +57,10 @@ public class AccountService implements IAccountService {
     public Account authentication(String username, String password) {
         password = PasswordHashing.getInstance().getMethod().encrypt(password);
         Account account = accountDAO.findByUsernameAndPassword(username, password);
-        if(account != null){
+        if (account != null) {
             account.setRoles(roleDAO.findRolesByAccountId(account.getAccountID()));
         }
-        return  account;
+        return account;
     }
 
     @Override
@@ -76,10 +76,10 @@ public class AccountService implements IAccountService {
 
     @Override
     public boolean update(Account account) {
-        try{
+        try {
             accountDAO.update(account);
             return true;
-        }catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
             return false;
         }

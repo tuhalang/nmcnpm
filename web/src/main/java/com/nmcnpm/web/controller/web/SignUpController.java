@@ -1,5 +1,9 @@
-package com.nmcnpm.web.controller;
+package com.nmcnpm.web.controller.web;
 
+import com.fasterxml.jackson.databind.util.JSONPObject;
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import com.nmcnpm.mail.MailSMTP;
 import com.nmcnpm.mail.MailSystem;
 import com.nmcnpm.web.model.Account;
@@ -12,7 +16,10 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.Base64;
 
 /**
  * @author tuhalang
@@ -38,13 +45,18 @@ public class SignUpController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        String username = req.getParameter("txtUsername");
-        String password = req.getParameter("txtPassword");
-        String re_pass = req.getParameter("txtRePass");
-        String name = req.getParameter("txtName");
-        String phone = req.getParameter("txtPhone");
-        String email = req.getParameter("txtEmail");
-        String address = req.getParameter("txtAddress");
+        resp.setContentType("text/html");
+        BufferedReader rd = new BufferedReader(new InputStreamReader(req.getInputStream(),"UTF-8"));
+        String line=rd.readLine();
+        String decode=decodeString(line.split("=")[1]);
+        String[] list=decode.split("&");
+        String username = list[0].split("=")[1];
+        String password = list[1].split("=")[1];
+        String re_pass = list[2].split("=")[1];
+        String name = list[3].split("=")[1];
+        String phone = list[4].split("=")[1];
+        String email = list[5].split("=")[1];
+        String address = list[6].split("=")[1];
 
         if (password.equals(re_pass)) {
             Account account = new Account();
@@ -62,26 +74,32 @@ public class SignUpController extends HttpServlet {
                 if (customerService.valid(customer) && !customerService.isExist(customer)) {
                     accountService.save(account);
                     customerService.save(customer);
-                    
-                    // TODO 
+
                     MailSMTP mail = new MailSMTP("tuhalang007@gmail.com", customer.getEmail(), "Cảm ơn bạn đã đăng kí tài khoản!", "ĐĂNG KÍ TÀI KHOẢN THÀNH CÔNG !");
                     MailSystem.execute(mail);
 
-                    req.setAttribute("info", "register is successful! please login!");
-                    req.getRequestDispatcher("/templates/signin.jsp").forward(req,resp);
+                    resp.getWriter().print("1");
+                    resp.getWriter().flush();
                 } else {
-                    req.setAttribute("error", "customer is not valid!");
+                    resp.getWriter().print("customer is not valid!");
+                    resp.getWriter().flush();
                     System.out.println("customer not valid!");
                 }
 
             } else {
-                req.setAttribute("error", "account is not valid!");
+                resp.getWriter().print("account is not valid!");
+                resp.getWriter().flush();
                 System.out.println("account not valid!");
             }
         } else {
-            req.setAttribute("error", "password is not valid!");
+            resp.getWriter().print("password is not valid!");
+            resp.getWriter().flush();
             System.out.println("password not valid!");
         }
 
+    }
+    public String decodeString(String encodedString) {
+        byte[] bytes = Base64.getDecoder().decode(encodedString);
+        return new String(bytes);
     }
 }

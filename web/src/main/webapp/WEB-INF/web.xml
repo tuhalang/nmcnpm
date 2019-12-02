@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app version="3.0" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
+<web-app version="3.0" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
     <display-name>Tiki</display-name>
     <filter>
         <filter-name>servletFilter</filter-name>
@@ -62,27 +63,10 @@
         <error-code>401</error-code>
         <location>/templates/accessdenied.jsp</location>
     </error-page>
-    <!--    servlet mapping++++++++++++++++++++++++++++++++++++++++++++++ -->
-    <servlet>
-        <servlet-name>signup</servlet-name>
-        <servlet-class>com.nmcnpm.web.controller.SignUpController</servlet-class>
-    </servlet>
     <servlet>
         <servlet-name>CategoryAPIController</servlet-name>
         <servlet-class>com.nmcnpm.web.controller.api.CategoryAPIController</servlet-class>
     </servlet>
-    <servlet-mapping>
-        <servlet-name>signup</servlet-name>
-        <url-pattern>/signup</url-pattern>
-    </servlet-mapping>
-    <servlet>
-        <servlet-name>signin</servlet-name>
-        <servlet-class>com.nmcnpm.web.controller.SignInController</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>signin</servlet-name>
-        <url-pattern>/signin</url-pattern>
-    </servlet-mapping>
     <servlet>
         <servlet-name>logout</servlet-name>
         <servlet-class>com.nmcnpm.web.controller.LogoutController</servlet-class>
@@ -124,4 +108,117 @@
         <url-pattern>/admin/user</url-pattern>
     </servlet-mapping>
     <!--    end servlet mapping++++++++++++++++++++++-->
+    <servlet>
+        <servlet-name>index_</servlet-name>
+        <servlet-class>com.nmcnpm.web.controller.web.HomeController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CartApiController</servlet-name>
+        <servlet-class>com.nmcnpm.web.controller.web.api.CartApiController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>CartApiController</servlet-name>
+        <url-pattern>/api/cart</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>index_</servlet-name>
+        <url-pattern>/home</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>autocomplete_home</servlet-name>
+        <servlet-class>com.nmcnpm.web.controller.web.ResultSearchController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>autocomplete_home</servlet-name>
+        <url-pattern>/autocomplete_home</url-pattern>
+    </servlet-mapping>
+    <!--    <servlet>-->
+    <!--        <servlet-name>cart_</servlet-name>-->
+    <!--        <servlet-class>com.nmcnpm.web.controller.web.ShoppingCartController</servlet-class>-->
+    <!--    </servlet>-->
+    <!--    <servlet-mapping>-->
+    <!--        <servlet-name>cart_</servlet-name>-->
+    <!--        <url-pattern>/shopping_cart</url-pattern>-->
+    <!--    </servlet-mapping>-->
+    <servlet>
+        <servlet-name>cart_controller</servlet-name>
+        <servlet-class>com.nmcnpm.web.controller.web.CartController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>cart_controller</servlet-name>
+        <url-pattern>/call_cart</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>accountMaga</servlet-name>
+        <servlet-class>com.nmcnpm.web.controller.web.AccountManagmentController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>accountMaga</servlet-name>
+        <url-pattern>/accountInfo</url-pattern>
+        <url-pattern>/updateInfo</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>update_address</servlet-name>
+        <servlet-class>com.nmcnpm.web.controller.web.UpdateAddressController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>update_address</servlet-name>
+        <url-pattern>/update_address</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>confirm_order</servlet-name>
+        <servlet-class>com.nmcnpm.web.controller.web.ConfirmOrderController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>confirm_order</servlet-name>
+        <url-pattern>/confirm_order</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>product_detail</servlet-name>
+        <servlet-class>com.nmcnpm.web.controller.web.ProductDetailController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>product_detail</servlet-name>
+        <url-pattern>/detail</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>confirm_address</servlet-name>
+        <servlet-class>com.nmcnpm.web.controller.web.ConfirmAddressController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>confirm_address</servlet-name>
+        <url-pattern>/confirm_address</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>order</servlet-name>
+        <servlet-class>com.nmcnpm.web.controller.web.OrderController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>order</servlet-name>
+        <url-pattern>/order</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>showProduct</servlet-name>
+        <servlet-class>com.nmcnpm.web.controller.web.ShowResultSearchController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>showProduct</servlet-name>
+        <url-pattern>/show_result</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>signup</servlet-name>
+        <servlet-class>com.nmcnpm.web.controller.web.SignUpController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>signup</servlet-name>
+        <url-pattern>/signup</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>signin</servlet-name>
+        <servlet-class>com.nmcnpm.web.controller.web.SignInController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>signin</servlet-name>
+        <url-pattern>/signin</url-pattern>
+    </servlet-mapping>
 </web-app>

@@ -9,14 +9,18 @@ import java.util.List;
 
 public class CustomerDAO extends DataBaseDaoImpl<Customer> implements ICustomerDAO {
     public void insert(Customer customer) {
-        String sql = "insert into customer( address, city_region, email, name, phone, account_id created_at, last_modified_at) value(?,?,?,?,?,?,CURRENT_TIMESTAMP(),CURRENT_TIMESTAMP())";
+        String sql = "insert into customer( address, city_region, email, name, phone, account_id, created_at, last_modified_at) value(?,?,?,?,?,?,CURRENT_TIMESTAMP(),CURRENT_TIMESTAMP())";
         Long id = insert(sql, customer.getAddress(), customer.getCityRegion(), customer.getEmail(), customer.getName(), customer.getPhone(), customer.getAccountID());
         customer.setCustomerID(id);
     }
 
-    public void update(Customer customer){
+    public void update(Customer customer) {
         String sql = "update customer set address=?, city_region=?, email=?, name=?, phone=?, last_modified_at=CURRENT_TIMESTAMP() where customer_id=?";
-        update(sql, customer.getAddress(), customer.getCityRegion(), customer.getEmail(), customer.getName(), customer.getPhone(), customer.getCustomerID());
+        try {
+            update(sql, customer.getAddress(), customer.getCityRegion(), customer.getEmail(), customer.getName(), customer.getPhone(), customer.getCustomerID());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
     }
 
@@ -29,7 +33,7 @@ public class CustomerDAO extends DataBaseDaoImpl<Customer> implements ICustomerD
     public boolean isExist(Customer customer) {
         String sql = "select count(1) from customer where email=? or phone=? limit 1";
         long count = count(sql, customer.getEmail(), customer.getPhone());
-        if(count > 0)
+        if (count > 0)
             return true;
         return false;
     }
@@ -42,34 +46,34 @@ public class CustomerDAO extends DataBaseDaoImpl<Customer> implements ICustomerD
 
     public Customer findById(long id) {
         String sql = "select * from customer where customer_id=?";
-        List<Customer> customers = query(sql,new CustomerMapper(), id);
-        if(customers.isEmpty())
+        List<Customer> customers = query(sql, new CustomerMapper(), id);
+        if (customers.isEmpty())
             return null;
         return customers.get(0);
     }
 
     public List<Customer> find(int start, int limit) {
         String sql = "select * from customer limit ?,?";
-        List<Customer> customers = query(sql,new CustomerMapper(), start, limit);
+        List<Customer> customers = query(sql, new CustomerMapper(), start, limit);
         return customers;
     }
 
 
     public List<Customer> findLikeName(String name) {
         String sql = "select * from customer where name like ?";
-        List<Customer> customers = query(sql, new CustomerMapper(), "%"+name+"%");
+        List<Customer> customers = query(sql, new CustomerMapper(), "%" + name + "%");
         return customers;
     }
 
     public List<Customer> findLikeAddress(String address) {
         String sql = "select * from customer where address like ?";
-        List<Customer> customers = query(sql, new CustomerMapper(), "%"+address+"%");
+        List<Customer> customers = query(sql, new CustomerMapper(), "%" + address + "%");
         return customers;
     }
 
     public List<Customer> findLikeCityRegion(String cityRegion) {
         String sql = "select * from customer where city_region like ?";
-        List<Customer> customers = query(sql, new CustomerMapper(), "%"+cityRegion+"%");
+        List<Customer> customers = query(sql, new CustomerMapper(), "%" + cityRegion + "%");
         return customers;
     }
 

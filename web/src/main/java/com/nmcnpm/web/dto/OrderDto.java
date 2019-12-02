@@ -5,12 +5,17 @@
  */
 package com.nmcnpm.web.dto;
 
-import com.nmcnpm.web.model.CustomerOrder;
-
 /**
  *
  * @author tuhalang
  */
-public class OrderDto extends ResponseDto<CustomerOrder>{
-    
+
+import com.nmcnpm.web.model.CustomerOrder;
+import com.nmcnpm.web.model.OrderedProduct;
+import lombok.Data;
+
+@Data
+public class OrderDto extends ResponseDto<OrderedProduct>{
+    private Long totalMoney;
+
 }

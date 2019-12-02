@@ -13,4 +13,6 @@ public interface ICustomerService {
     boolean save(Customer customer);
     CustomerDto find(int currentPage, int elePerPage);
     Customer findById(Long customerId);
+    boolean update(Customer customer);
+    Customer findByID(Customer customer);
 }

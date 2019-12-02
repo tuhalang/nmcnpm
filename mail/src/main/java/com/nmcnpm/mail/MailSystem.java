@@ -9,7 +9,6 @@ public class MailSystem {
     
     private static final BlockingQueue<Runnable> blockingQueue = new ArrayBlockingQueue<>(50);
     private static final ThreadPoolExecutor executor = new ThreadPoolExecutor(20, 40, 60000, TimeUnit.MILLISECONDS, blockingQueue);
-    
     public static void execute(SendMail mail) {
         Runnable task=new Runnable() {
 
@@ -24,10 +23,8 @@ public class MailSystem {
         };
         executor.execute(task);
     }
-    
     public static void shutdown() {
         executor.shutdown();
     }
 }
-
 

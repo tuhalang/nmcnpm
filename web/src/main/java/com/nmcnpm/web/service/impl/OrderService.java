@@ -8,6 +8,7 @@ package com.nmcnpm.web.service.impl;
 import com.nmcnpm.web.dao.ICustomerOrderDAO;
 import com.nmcnpm.web.dao.IOrderedProductDAO;
 import com.nmcnpm.web.dao.IProductDAO;
+import com.nmcnpm.web.dto.OrderCustomerDto;
 import com.nmcnpm.web.dto.OrderDto;
 import com.nmcnpm.web.model.CustomerOrder;
 import com.nmcnpm.web.model.OrderedProduct;
@@ -33,7 +34,7 @@ public class OrderService implements IOrderService{
     
 
     @Override
-    public OrderDto find(int currentPage, int elePerPage) {
+    public OrderCustomerDto find(int currentPage, int elePerPage) {
         List<CustomerOrder> orders = new ArrayList<>();
         for(CustomerOrder order : customerOrderDAO.find((currentPage-1)*elePerPage, elePerPage)){
             order.setOrderedProducts(orderedProductDAO.findByCustomerOrderID(order.getOrderID()));
@@ -44,11 +45,11 @@ public class OrderService implements IOrderService{
             order.setAmount(amount);
             orders.add(order);
         }
-        OrderDto orderDto = new OrderDto();
+        OrderCustomerDto orderDto = new OrderCustomerDto();
         orderDto.setCurrentPage(currentPage);
         orderDto.setElePerPage(elePerPage);
         orderDto.setListOfData(orders);
         return orderDto;
     }
-    
+
 }

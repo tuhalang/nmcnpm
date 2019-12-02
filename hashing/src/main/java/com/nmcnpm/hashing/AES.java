@@ -15,7 +15,6 @@ public class AES implements IMethod {
 	private byte[] key;
 	private static AES aes=null;
 	private AES() {
-
 		byte[] array = new byte[15];
 		new Random().nextBytes(array);
 		String myKey = new String(array, Charset.forName("UTF-8"));
@@ -32,7 +31,6 @@ public class AES implements IMethod {
 		catch (UnsupportedEncodingException e) {
 			e.printStackTrace();
 		}
-
 	}
 	public synchronized static AES getInstance() {
 		if (aes==null) {

@@ -41,6 +41,4 @@ public class MailSMTP extends SendMail {
         }
 
     }
-;
-
 }

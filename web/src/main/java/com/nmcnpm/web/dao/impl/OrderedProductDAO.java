@@ -6,6 +6,7 @@ import com.nmcnpm.web.mapprow.CustomerMapper;
 import com.nmcnpm.web.mapprow.OrderedProductMapper;
 import com.nmcnpm.web.model.CustomerOrder;
 import com.nmcnpm.web.model.OrderedProduct;
+import com.nmcnpm.web.service.IOrderProductService;
 
 import java.util.List;
 
@@ -20,7 +21,11 @@ public class OrderedProductDAO extends DataBaseDaoImpl<OrderedProduct> implement
     @Override
     public void update(OrderedProduct orderedProduct) {
         String sql = "update order_product set product_id=?, quantity=?, last_modified_at=CURRENT_TIMESTAMP() where order_id=?";
-        update(sql, orderedProduct.getProductID(), orderedProduct.getQuantity(), orderedProduct.getOrderID());
+        try {
+            update(sql, orderedProduct.getProductID(), orderedProduct.getQuantity(), orderedProduct.getOrderID());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
     }
 

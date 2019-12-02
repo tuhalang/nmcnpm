@@ -1,0 +1,28 @@
+@charset "UTF-8";
+body {
+    display: block;
+    overflow: scroll;
+}
+
+#left {
+    float: left;
+    background-color: rgba(244, 244, 244,0.8);
+    min-height: 900px;
+}
+
+#content {
+    float: left;
+    position: static;
+    display: inline-block;
+    padding-left: 20px;
+    min-height: 900px;
+    background-color: rgba(244, 244, 244,0.8);
+}
+
+.form-control {
+    width: 60%;
+}
+
+.btn-info {
+    width: 60%;
+}

@@ -10,6 +10,7 @@ import com.nmcnpm.web.dao.IProductDetailDAO;
 import com.nmcnpm.web.dto.ProductDto;
 import com.nmcnpm.web.model.Product;
 import com.nmcnpm.web.service.IProductService;
+import java.util.List;
 import javax.inject.Inject;
 
 /**
@@ -72,13 +73,34 @@ public class ProductService implements IProductService{
     }
 
     @Override
-    public Product find(int currentPage, int elePerPage) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
     public Product findById(Long productId) {
         return productDAO.findById(productId);
     }
-    
+
+    @Override
+    public ProductDto find(int currentPage, int elePerPage) {
+        ProductDto productDto = new ProductDto();
+        productDto.setCurrentPage(currentPage);
+        productDto.setElePerPage(elePerPage);
+        productDto.setListOfData(productDAO.find(currentPage-1, elePerPage));
+        productDto.setTotalPages(productDAO.count()/elePerPage+1);
+        return productDto;
+    }
+    @Override
+    public ProductDto findByCategoryID(Long id,int currentPage,int elePerPage){
+        ProductDto productDto = new ProductDto();
+        productDto.setCurrentPage(currentPage);
+        productDto.setElePerPage(elePerPage);
+        productDto.setListOfData(productDAO.findByCategory(id,currentPage-1, elePerPage));
+        productDto.setTotalPages(productDAO.countByCategoryId(id)/elePerPage+1);
+        return productDto;
+    }
+    @Override
+    public List<Product> findByKey(List<String> key,long amount){
+        return productDAO.findByProductKey(key,amount);
+    }
+    @Override
+    public Product findById(long id){
+        return productDAO.findById(id);
+    }
 }

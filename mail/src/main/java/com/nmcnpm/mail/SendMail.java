@@ -11,7 +11,6 @@ public abstract class SendMail {
     
     protected String emailFrom;
     protected String emailTo;
-    
     public SendMail(String emailFrom, String emailTo){
         this.emailFrom = emailFrom;
         this.emailTo = emailTo;

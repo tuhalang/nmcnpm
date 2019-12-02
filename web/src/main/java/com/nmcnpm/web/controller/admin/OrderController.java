@@ -5,6 +5,7 @@
  */
 package com.nmcnpm.web.controller.admin;
 
+import com.nmcnpm.web.dto.OrderCustomerDto;
 import com.nmcnpm.web.dto.OrderDto;
 import com.nmcnpm.web.service.IOrderService;
 import java.io.IOException;
@@ -44,7 +45,7 @@ public class OrderController extends HttpServlet {
         }catch(Exception x){
             
         }
-        OrderDto orderDto = orderService.find(currentPage, elePerPage);
+        OrderCustomerDto orderDto = orderService.find(currentPage, elePerPage);
         request.setAttribute("orderDto", orderDto);
         request.getRequestDispatcher("/WEB-INF/admin_theme/order.jsp").forward(request, response);
     }

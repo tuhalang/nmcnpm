@@ -18,8 +18,12 @@ public class AccountDAO extends DataBaseDaoImpl<Account> implements IAccountDAO{
 	
 	public void update(Account account) {
 		String sql = "update account set username=?, password=?, status=?, last_modified_at=CURRENT_TIMESTAMP() where account_id=?";
-		update(sql, account.getUsername(), account.getPassword(), account.getStatus(), account.getAccountID());
-		
+		try {
+			update(sql, account.getUsername(), account.getPassword(), account.getStatus(), account.getAccountID());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
 	}
 	
 	public void delete(Account account) {

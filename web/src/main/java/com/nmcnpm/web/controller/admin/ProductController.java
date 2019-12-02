@@ -36,7 +36,7 @@ public class ProductController extends HttpServlet {
         String description = request.getParameter("description");
         String descriptionDetail = request.getParameter("description_detail");
         String image = request.getParameter("image");
-        Float price = Float.parseFloat(request.getParameter("price"));
+        Long price = Long.parseLong(request.getParameter("price"));
         Long quantity = Long.parseLong(request.getParameter("quantity"));
         Long categoryId = Long.parseLong(request.getParameter("category"));
 

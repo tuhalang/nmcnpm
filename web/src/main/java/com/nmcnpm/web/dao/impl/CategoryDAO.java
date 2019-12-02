@@ -16,7 +16,11 @@ public class CategoryDAO extends DataBaseDaoImpl<Category> implements ICategoryD
 
     public void update(Category category) {
         String sql = "update category set image=?, name=?, last_modified_at=CURRENT_TIMESTAMP() where category_id=?";
-        update(sql, category.getImage(), category.getName(), category.getCategoryID());
+        try {
+            update(sql, category.getImage(), category.getName(), category.getCategoryID());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
     }
 

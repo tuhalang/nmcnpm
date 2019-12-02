@@ -4,8 +4,7 @@ header {
 }
 
 .navbar{
-	width: 1240px!important;
-	height: 50px!important;
+	width: 100vw !important;
 	margin-right: auto;
 	margin-left: auto;
 	color: #fff!important;
@@ -95,4 +94,24 @@ li { list-style: none; }
 
 .row .col .submenu{
 	font-size: 5px!important;
+}
+.signin_,.signup_{
+    font-size: 1em;
+}
+.scrollable-menu {
+    height: auto;
+    max-height: 6em;
+    width: 70px !important;
+    overflow-x: hidden;
+}
+#form-signup{
+    font-size: 0.8em;
+}
+#form-signup input{
+    font-size: 1em;
+}
+@media only screen and (max-width: 968px) {
+    #btn-search-product span{
+        visibility: hidden;
+    }
 }

@@ -40,7 +40,6 @@ public class ProductDAO extends DataBaseDaoImpl<Product> implements IProductDAO 
         List<Product> products = query(sql, new ProductMapper());
         return products;
     }
-
     @Override
     public Product findById(long id) {
         String sql = "select * from product where product_id=?";
@@ -57,7 +56,7 @@ public class ProductDAO extends DataBaseDaoImpl<Product> implements IProductDAO 
         List<Product> products = query(sql, new ProductMapper(), start, limit);
         return products;
     }
-
+    @Override
     public List<Product> findByCategoryID(long id) {
         String sql = "select * from product where category_id=?";
         List<Product> products = query(sql, new ProductMapper(), id);
@@ -76,7 +75,25 @@ public class ProductDAO extends DataBaseDaoImpl<Product> implements IProductDAO 
         String sql = "select count(1) from product";
         return count(sql);
     }
-
+    @Override
+    public List<Product> findByCategory(Long id,int offset,int elePerPage) {
+        String sql = "select * from product where category_id=? limit ?,?";
+        List<Product> products = query(sql, new ProductMapper(),id,offset,elePerPage);
+        return products;
+    }
+    @Override
+    public List<Product> findByProductKey(List<String> key,long amount) {
+        String parameters=String.join("|",key);
+        String sql = "select * from product where lower(name) regexp '"+parameters+"' limit ?";
+//        String sql = "SELECT * FROM nmcnpm.product where MATCH (name) AGAINST ('?' IN BOOLEAN MODE) limit 5";
+        List<Product> products = query(sql, new ProductMapper(),amount);
+        return products;
+    }
+    @Override
+    public Long countByCategoryId(long id){
+        String sql = "select count(1) from product where category_id=?";
+        return count(sql,id);
+    }
     @Override
     public boolean isExist(Long productId) {
         String sql = "select count(1) from product where product_id=? limit 1";

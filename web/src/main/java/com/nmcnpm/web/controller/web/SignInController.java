@@ -1,9 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package com.nmcnpm.web.controller;
+package com.nmcnpm.web.controller.web;
 
 import com.nmcnpm.web.model.Account;
 import com.nmcnpm.web.model.Role;
@@ -11,7 +6,10 @@ import com.nmcnpm.web.model.RoleName;
 import com.nmcnpm.web.service.IAccountService;
 import com.nmcnpm.web.utils.SessionUtils;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.Base64;
 import javax.inject.Inject;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -40,8 +38,13 @@ public class SignInController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        String username = req.getParameter("txtUsername");
-        String password = req.getParameter("txtPassword");
+        resp.setContentType("text/html");
+        BufferedReader rd = new BufferedReader(new InputStreamReader(req.getInputStream()));
+        String line=rd.readLine();
+        String decode=decodeString(line.split("=")[1]);
+        String[] list=decode.split("&");
+        String username = list[0].split("=")[1];
+        String password = list[1].split("=")[1];
 
         Account account = accountService.authentication(username,password);
         if(account != null && account.getStatus()){
@@ -53,22 +56,28 @@ public class SignInController extends HttpServlet {
             Role role = account.getRoles().get(0);
             if(role.getRoleName().equals(RoleName.ROLE_ADMIN)){
                 String contextPath = req.getContextPath();
-                resp.sendRedirect(contextPath+"/admin");
+                resp.getWriter().print("2");
+                resp.getWriter().flush();
                 //req.getRequestDispatcher("/WEB-INF/admin_theme/dashboard.jsp").forward(req,resp);
             } else if(role.getRoleName().equals(RoleName.ROLE_USER)){
                 String contextPath = req.getContextPath();
-                resp.sendRedirect(contextPath);
+                resp.getWriter().print("1");
+                resp.getWriter().flush();
                 //req.getRequestDispatcher("/templates/home.jsp").forward(req,resp);
             } else {
-                req.setAttribute("error", "oops!");
-                req.getRequestDispatcher("/templates/signin.jsp").forward(req,resp);
+                resp.getWriter().print("3");
+                resp.getWriter().flush();
             }
         } else {
-            req.setAttribute("error", "oops!");
-            req.getRequestDispatcher("/templates/signin.jsp").forward(req,resp);
+            resp.getWriter().print("3");
+            resp.getWriter().flush();
         }
-
-
     }
-
+    public String decodeString(String encodedString) {
+        encodedString=encodedString.replaceAll("%3D","=");
+        encodedString=encodedString.replaceAll("%2B","+");
+        encodedString=encodedString.replaceAll("%2F","/");
+        byte[] bytes = Base64.getDecoder().decode(encodedString);
+        return new String(bytes);
+    }
 }

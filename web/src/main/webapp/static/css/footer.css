@@ -1,7 +1,6 @@
 @charset "UTF-8";
 body{
     font-family: 'Roboto', sans-serif;
-    height:80vh;
 }
 a{
     color:black !important;

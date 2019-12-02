@@ -18,7 +18,11 @@ public class RoleDAO extends DataBaseDaoImpl<Role> implements IRoleDAO {
 
     public void update(Role role) {
         String sql = "update role set role_name=? , last_modified_at=CURRENT_TIMESTAMP() where role_id=?";
-        update(sql, role.getRoleName(), role.getRoleID());
+        try {
+            update(sql, role.getRoleName(), role.getRoleID());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public void delete(Role role) {

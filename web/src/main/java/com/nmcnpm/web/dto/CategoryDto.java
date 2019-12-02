@@ -6,11 +6,16 @@
 package com.nmcnpm.web.dto;
 
 import com.nmcnpm.web.model.Category;
+import lombok.Getter;
+import lombok.Setter;
+
 
 /**
  *
  * @author tuhalang
  */
+
+@Getter
+@Setter
 public class CategoryDto extends ResponseDto<Category>{
-    
 }

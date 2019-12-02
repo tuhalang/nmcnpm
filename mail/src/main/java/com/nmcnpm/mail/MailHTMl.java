@@ -40,6 +40,4 @@ public class MailHTMl extends SendMail {
         }
 
     }
-;
-
 }

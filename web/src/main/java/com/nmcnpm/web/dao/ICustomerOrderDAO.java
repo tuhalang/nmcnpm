@@ -5,22 +5,27 @@
  */
 package com.nmcnpm.web.dao;
 
-import com.nmcnpm.database.dao.IBaseDao;
 import com.nmcnpm.web.model.CustomerOrder;
+
 import java.util.List;
 
 /**
- *
  * @author tuhalang
  */
-public interface ICustomerOrderDAO extends IBaseDao<CustomerOrder>{
-    
+
+public interface ICustomerOrderDAO {
     void insert(CustomerOrder customerOrder);
+
     void update(CustomerOrder customerOrder);
+
     void delete(CustomerOrder customerOrder);
+
     List<CustomerOrder> findAll();
+
     CustomerOrder findByOrderId(long id);
+
     List<CustomerOrder> find(int start, int limit);
+
     List<CustomerOrder> findByConfirmNumber(long id);
-    
+    Long insert(CustomerOrder customerOrder, Long customerID);
 }

@@ -22,5 +22,5 @@ public interface IOrderedProductDAO extends IBaseDao<OrderedProduct>{
     List<OrderedProduct> find(int start, int limit);
     List<OrderedProduct> findByProductID(long id);
     List<OrderedProduct> findByCustomerOrderID(long id);
-    
+
 }
