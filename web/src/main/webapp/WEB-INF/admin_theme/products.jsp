@@ -225,19 +225,29 @@
                                                 </div>
 
                                                 <div id="input-product-detail" class="collapse">
-                                                    <input type="text" name="accessories" class="form-control input-text" required="required"  placeholder="Enter Accessories">
-                                                    <input type="text" name="guarantee" class="form-control input-text" required="required"  placeholder="Enter Guarantee">
-                                                    <input type="text" name="image1" class="form-control input-text" required="required"  placeholder="Enter Link Image1">
-                                                    <input type="text" name="image2" class="form-control input-text" required="required"  placeholder="Enter Link Image2">
-                                                    <input type="text" name="image3" class="form-control input-text" required="required"  placeholder="Enter Link Image3">
-                                                    <input type="text" name="image4" class="form-control input-text" required="required"  placeholder="Enter Link Image4">
-                                                    <input type="text" name="image5" class="form-control input-text" required="required"  placeholder="Enter Link Image5">
-                                                    <input type="text" name="information" class="form-control input-text"  placeholder="Enter Infomation">
+                                                    <input type="text" id="accessories1" name="accessories" class="form-control input-text" required="required"  placeholder="Enter Accessories">
+                                                    <input type="text" id="guarantee1"name="guarantee" class="form-control input-text" required="required"  placeholder="Enter Guarantee">
+                                                    <input type="text" id="image_1"name="image1" class="form-control input-text" required="required"  placeholder="Enter Link Image1">
+                                                    <input type="text" id="image_2"name="image2" class="form-control input-text" required="required"  placeholder="Enter Link Image2">
+                                                    <input type="text" id="image_3"name="image3" class="form-control input-text" required="required"  placeholder="Enter Link Image3">
+                                                    <input type="text" id="image_4"name="image4" class="form-control input-text" required="required"  placeholder="Enter Link Image4">
+                                                    <input type="text" id="image_5"name="image5" class="form-control input-text" required="required"  placeholder="Enter Link Image5">
+                                                    <input type="text" id="infor" name="information" class="form-control input-text"  placeholder="Enter Infomation">
                                                 </div>
                                             </div>
                                             
                                             <!--div review sản phẩm(hiển thị sản phẩm như xem chi tiết ở web) lấy dữ liệu được nhập từ div input-->
-                                            <div>
+                                            <div id="review-product">
+                                                    <input type="text" id="accessories2" name="accessories" class="form-control input-text" required="required"  placeholder="Enter Accessories">
+                                                    <input type="text" id="guarantee2"name="guarantee" class="form-control input-text" required="required"  placeholder="Enter Guarantee">
+                                                    <input type="text" id="image1_2"name="image1" class="form-control input-text" required="required"  placeholder="Enter Link Image1">
+                                                    <input type="text" id="image2_2"name="image2" class="form-control input-text" required="required"  placeholder="Enter Link Image2">
+                                                    <input type="text" id="image3_2"name="image3" class="form-control input-text" required="required"  placeholder="Enter Link Image3">
+                                                    <input type="text" id="image4_2"name="image4" class="form-control input-text" required="required"  placeholder="Enter Link Image4">
+                                                    <input type="text" id="image5_2"name="image5" class="form-control input-text" required="required"  placeholder="Enter Link Image5">
+                                                    <input type="text" id="infor1" name="information" class="form-control input-text"  placeholder="Enter Infomation">
+                                                
+                                            
 <!--                                                code in here-->
                                             </div>
 
@@ -245,26 +255,44 @@
                                             <div class="modal-footer">
                                                 <!--Khi bấm button review thì đóng ẩn div để nhập dữ liệu mà hiển thị div để review-->
 <!--                                                Sau khi bấm thì nút review đổi tên thành nút back để quay lại div nhập dữ liệu-->
-                                                <input class="btn btn-primary" id="review" type="button" value="Review"></input>
-
+                                                <input class="btn btn-primary" id="review" type="button" onclick="laygiatri()" value="Review"></input>
                                                 <button type="submit" class="btn btn-primary" id="btn-add-group">Create</button>
                                                 <button class="btn btn-primary" data-dismiss="modal">Cancel</button>
                                                  <script language="javascript">
-                                                 document.getElementById("review").onclick = function () {
-		                                    if(document.getElementById("review").value=="Review"){
-                                                          document.getElementById("input_product").style.display = 'none';
-				                      document.getElementById("review-product").style.display = 'block';
-				                      document.getElementById("review").value="Back";
-		                                      }
-			                           else{
-                                                          document.getElementById("input_product").style.display = 'block';
-				                      document.getElementById("review-product").style.display = 'none';
-				                      document.getElementById("review").value="Review";
-                                                        };
-			                           }
+		                			function laygiatri(){
+								var acc=document.getElementById("accessories1").value;
+								document.getElementById("accessories2").value= acc;
+								var gua=document.getElementById("guarantee1").value;
+								document.getElementById("guarantee2").value= gua;
+								var im1=document.getElementById("image_1").value;
+								document.getElementById("image1_2").value= im1;
+								var im2=document.getElementById("image_2").value;
+								document.getElementById("image2_2").value= im2;
+								var im3=document.getElementById("image_3").value;
+								document.getElementById("image3_2").value= im3;
+				                                var im4=document.getElementById("image_4").value;
+				                                document.getElementById("image4_2").value= im4;
+				                                var im5=document.getElementById("image_5").value;
+				                                document.getElementById("image5_2").value= im5;
+				                                var infor=document.getElementById("infor").value;
+				                                document.getElementById("infor1").value= infor;
+		                                                if(document.getElementById("review").value=="Review"){
+                                                                     document.getElementById("input_product").style.display = 'none';
+				                                     document.getElementById("review-product").style.display = 'block';
+				                                     document.getElementById("review").value="Back";
+				
+				
+				
+		                                                 }
+			                                         else{
+                                                                      document.getElementById("input_product").style.display = 'block';
+				                                      document.getElementById("review-product").style.display = 'none';
+				                                      document.getElementById("review").value="Review";
+                                                                      };
+			                                          }
 			
  
-                                               </script>
+                                                  </script>
                                             </div>
                                         </form>
                                     </div>
