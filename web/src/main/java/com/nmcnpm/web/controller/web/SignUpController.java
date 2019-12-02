@@ -99,6 +99,9 @@ public class SignUpController extends HttpServlet {
 
     }
     public String decodeString(String encodedString) {
+        encodedString=encodedString.replaceAll("%3D","=");
+        encodedString=encodedString.replaceAll("%2B","+");
+        encodedString=encodedString.replaceAll("%2F","/");
         byte[] bytes = Base64.getDecoder().decode(encodedString);
         return new String(bytes);
     }
