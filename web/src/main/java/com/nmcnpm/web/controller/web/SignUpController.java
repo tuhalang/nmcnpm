@@ -1,15 +1,14 @@
 package com.nmcnpm.web.controller.web;
 
-import com.fasterxml.jackson.databind.util.JSONPObject;
-import com.google.gson.Gson;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
 import com.nmcnpm.mail.MailSMTP;
 import com.nmcnpm.mail.MailSystem;
 import com.nmcnpm.web.model.Account;
 import com.nmcnpm.web.model.Customer;
+import com.nmcnpm.web.model.Role;
+import com.nmcnpm.web.model.RoleName;
 import com.nmcnpm.web.service.IAccountService;
 import com.nmcnpm.web.service.ICustomerService;
+import com.nmcnpm.web.service.IRoleService;
 
 import javax.inject.Inject;
 import javax.servlet.ServletException;
@@ -32,6 +31,9 @@ public class SignUpController extends HttpServlet {
 
     @Inject
     IAccountService accountService;
+    
+    @Inject
+    IRoleService roleService;
 
     public SignUpController() {
         super();
@@ -74,6 +76,8 @@ public class SignUpController extends HttpServlet {
                 if (customerService.valid(customer) && !customerService.isExist(customer)) {
                     accountService.save(account);
                     customerService.save(customer);
+                    Role role = roleService.findByRoleName(RoleName.ROLE_USER.toString());
+                    accountService.setRole(account.getAccountID(), role.getRoleID());
 
                     MailSMTP mail = new MailSMTP("tuhalang007@gmail.com", customer.getEmail(), "Cảm ơn bạn đã đăng kí tài khoản!", "ĐĂNG KÍ TÀI KHOẢN THÀNH CÔNG !");
                     MailSystem.execute(mail);

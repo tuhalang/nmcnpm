@@ -14,4 +14,5 @@ public interface IAccountService {
     Account findByUsernameAndPassword(String username, String password);
     Account findById(Long accountId);
     boolean update(Account account);
+    boolean setRole(Long accountId, Long roleId);
 }

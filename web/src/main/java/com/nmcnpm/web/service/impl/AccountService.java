@@ -84,4 +84,15 @@ public class AccountService implements IAccountService {
             return false;
         }
     }
+
+    @Override
+    public boolean setRole(Long accountId, Long roleId) {
+        try{
+            accountDAO.setRole(accountId, roleId);
+            return true;
+        }catch(Exception e){
+            e.printStackTrace();
+            return false;
+        }
+    }
 }

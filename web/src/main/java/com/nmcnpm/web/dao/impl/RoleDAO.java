@@ -2,9 +2,7 @@ package com.nmcnpm.web.dao.impl;
 
 import com.nmcnpm.database.dao.impl.DataBaseDaoImpl;
 import com.nmcnpm.web.dao.IRoleDAO;
-import com.nmcnpm.web.mapprow.ProductDetailMapper;
 import com.nmcnpm.web.mapprow.RoleMapper;
-import com.nmcnpm.web.model.ProductDetail;
 import com.nmcnpm.web.model.Role;
 
 import java.util.List;
@@ -42,16 +40,22 @@ public class RoleDAO extends DataBaseDaoImpl<Role> implements IRoleDAO {
         return roles;
     }
 
-    public List<Role> findByID(long id) {
+    public Role findByID(long id) {
         String sql = "select * from role where role_id=?";
         List<Role> roles = query(sql, new RoleMapper(),id);
-        return roles;
+        if(roles.size()>0){
+            return roles.get(0);
+        }
+        return null;
     }
 
-    public List<Role> findByRoleName(String name) {
+    public Role findByRoleName(String name) {
         String sql = "select * from role where role_name like ?";
         List<Role> roles = query(sql, new RoleMapper(),"%"+name+"%");
-        return roles;
+        if(roles.size()>0){
+            return roles.get(0);
+        }
+        return null;
     }
 
     public List<Role> findRolesByAccountId(Long id){
