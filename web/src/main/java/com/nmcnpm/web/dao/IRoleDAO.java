@@ -15,7 +15,7 @@ public interface IRoleDAO extends IBaseDao<Role> {
     void delete(Role role);
     List<Role> findAll();
     List<Role> find(int start, int limit);
-    List<Role> findByID(long id);
-    List<Role> findByRoleName(String name);
+    Role findByID(long id);
+    Role findByRoleName(String name);
     List<Role> findRolesByAccountId(Long id);
 }
