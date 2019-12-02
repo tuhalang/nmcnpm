@@ -1,9 +1,11 @@
 package com.nmcnpm.web.controller.web;
 
 import com.nmcnpm.web.dto.OrderDto;
+import com.nmcnpm.web.model.Account;
 import com.nmcnpm.web.model.Customer;
 import com.nmcnpm.web.model.OrderedProduct;
 import com.nmcnpm.web.service.ICustomerOrderService;
+import com.nmcnpm.web.service.ICustomerService;
 import com.nmcnpm.web.service.IOrderProductService;
 import com.nmcnpm.web.service.IProductService;
 import com.nmcnpm.web.utils.CookieUtils;
@@ -28,12 +30,12 @@ public class OrderController extends HttpServlet {
     ICustomerOrderService customerOrderService;
     @Inject
     IProductService productService;
+    @Inject
+    ICustomerService customerService;
 
-    CookieUtils cookieUtils = new CookieUtils();
-    SessionUtils sessionUtils = new SessionUtils();
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        Map<String, String> card = cookieUtils.getAllValues(request);
+        Map<String, String> card = CookieUtils.getInstance().getAllValues(request);
         List<OrderedProduct> orderedProducts = new ArrayList<>();
 
         for (Map.Entry<String, String> entry : card.entrySet()) {
@@ -43,12 +45,15 @@ public class OrderController extends HttpServlet {
             orderProduct.setProduct(productService.findById(Long.parseLong(entry.getKey())));
             orderedProducts.add(orderProduct);
         }
-
-        Customer customer = (Customer) sessionUtils.getValue(request, "customer");
-
+        Account account = (Account) SessionUtils.getInstance().getValue(request, "USER");
+        Long accountID = account.getAccountID();
+        Customer customer = customerService.findByAccountId(accountID);
         Long id = customerOrderService.save(orderedProducts, customer);
         if (id > -1){
             orderProductService.save(id, orderedProducts);
+        }
+        for (Map.Entry<String, String> entry : card.entrySet()) {
+            CookieUtils.getInstance().removeCookie(response, entry.getKey(), entry.getValue());
         }
 
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("/home");

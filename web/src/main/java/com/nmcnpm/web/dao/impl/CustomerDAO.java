@@ -52,6 +52,14 @@ public class CustomerDAO extends DataBaseDaoImpl<Customer> implements ICustomerD
         return customers.get(0);
     }
 
+    public Customer findByAccountId(long id) {
+        String sql = "select * from customer where account_id=?";
+        List<Customer> customers = query(sql, new CustomerMapper(), id);
+        if (customers.isEmpty())
+            return null;
+        return customers.get(0);
+    }
+
     public List<Customer> find(int start, int limit) {
         String sql = "select * from customer limit ?,?";
         List<Customer> customers = query(sql, new CustomerMapper(), start, limit);

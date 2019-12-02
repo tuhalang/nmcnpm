@@ -10,10 +10,11 @@ import com.nmcnpm.web.model.Account;
 
 public class AccountDAO extends DataBaseDaoImpl<Account> implements IAccountDAO{
 
-	public void insert(Account account) {
+	public Long insert(Account account) {
 		String sql = "insert into account( username, password, status, created_at, last_modified_at) value(?,?,?,CURRENT_TIMESTAMP(),CURRENT_TIMESTAMP())";
 		Long id = insert(sql, account.getUsername(), account.getPassword(), account.getStatus());
 		account.setAccountID(id);
+		return id;
 	}
 	
 	public void update(Account account) {

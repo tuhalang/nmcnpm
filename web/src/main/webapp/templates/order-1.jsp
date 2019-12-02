@@ -143,5 +143,29 @@
         </div>
     </div>
 </div>
+<script>
+    document.getElementById("login").addEventListener("click",function () {
+        console.log(btoa("txtUsername="+document.getElementById("login-username").value+"&txtPassword="+document.getElementById("login-pass").value));
+        $.ajax({
+            url: window.location.pathname.substring(0, window.location.pathname.indexOf("/", 2)) + "/signin",
+            contentType: 'application/json;charset=utf-8',
+            dataType: 'text',
+            headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+            data: {
+                data:btoa("txtUsername="+document.getElementById("login-username").value+"&txtPassword="+document.getElementById("login-pass").value)
+            },
+            type: 'post',
+            success: function (response) {
+                if (response=="1") {
+                    window.location.replace(window.location.pathname.substring(0, window.location.pathname.indexOf("/", 2) + "templates/order-2.jsp"));
+                }
+                else alert("oops!");
+            },
+            error: function (x, e) {
+                console.log(e)
+            }
+        });
+    })
+</script>
 </body>
 </html>

@@ -9,7 +9,7 @@ import com.nmcnpm.web.model.Account;
 public interface IAccountService {
     boolean valid(Account account);
     boolean isExist(Account account);
-    boolean save(Account account);
+    Long save(Account account);
     Account authentication(String username, String password);
     Account findByUsernameAndPassword(String username, String password);
     Account findById(Long accountId);

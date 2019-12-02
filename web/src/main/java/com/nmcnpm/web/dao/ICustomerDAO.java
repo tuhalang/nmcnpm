@@ -16,6 +16,7 @@ public interface ICustomerDAO extends IBaseDao<Customer> {
     boolean isExist(Customer customer);
     List<Customer> findAll();
     Customer findById(long id);
+    Customer findByAccountId(long id);
     List<Customer> find(int start, int limit);
     List<Customer> findLikeName(String name);
     List<Customer> findLikeAddress(String address);

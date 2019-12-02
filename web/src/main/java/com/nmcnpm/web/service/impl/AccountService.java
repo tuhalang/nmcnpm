@@ -39,17 +39,18 @@ public class AccountService implements IAccountService {
     }
 
     @Override
-    public boolean save(Account account) {
+    public Long save(Account account) {
         try {
+            Long id = 0L;
             account.setPassword(PasswordHashing.getInstance().getMethod().encrypt(account.getPassword()));
             account.setStatus(true);
-            accountDAO.insert(account);
+            id = accountDAO.insert(account);
             Role role = (Role) roleDAO.findByRoleName(RoleName.ROLE_USER.toString());
             accountDAO.setRole(account.getAccountID(), role.getRoleID());
-            return true;
+            return id;
         } catch (Exception e) {
             e.printStackTrace();
-            return false;
+            return -1L;
         }
     }
 

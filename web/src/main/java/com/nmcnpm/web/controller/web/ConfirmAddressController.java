@@ -3,6 +3,7 @@ package com.nmcnpm.web.controller.web;
 import com.nmcnpm.web.dao.IProductDAO;
 import com.nmcnpm.web.dto.OrderDto;
 import com.nmcnpm.web.dto.ProductDto;
+import com.nmcnpm.web.model.Account;
 import com.nmcnpm.web.model.Customer;
 import com.nmcnpm.web.model.OrderedProduct;
 import com.nmcnpm.web.service.ICustomerService;
@@ -26,13 +27,10 @@ public class ConfirmAddressController  extends HttpServlet {
     ICustomerService customerService;
     @Inject
     IProductService productService;
-    SessionUtils sessionUtils = new SessionUtils();
-    CookieUtils cookieUtils = new CookieUtils();
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        Customer customer = new Customer();
-        customer.setCustomerID(1L);
-        customer = customerService.findByID(customer);
+        Account account = (Account) SessionUtils.getInstance().getValue(request, "USER");
+
         /**
          * Sử dụng cookie để lưu trữ giỏ hàng
          * cách sử dụng:
@@ -43,11 +41,20 @@ public class ConfirmAddressController  extends HttpServlet {
          * +) Xóa mặt hàng: cookieUtils.removeCookie()
          * +) cập nhật số lương: cookieUtils.updateData()
          */
+        if(account == null){
+            RequestDispatcher requestDispatcher = request.getRequestDispatcher("/templates/order-1.jsp");
+            requestDispatcher.forward(request, response);
+        }else {
+            Long accountID = account.getAccountID();
+            Customer customer = customerService.findByAccountId(accountID);
+            request.setAttribute("customer", customer);
+            RequestDispatcher requestDispatcher = request.getRequestDispatcher("/templates/order-2.jsp");
+            requestDispatcher.forward(request, response);
+        }
 
 
-        sessionUtils.putValue(request, "customer", customer);
-
-        RequestDispatcher requestDispatcher = request.getRequestDispatcher("/templates/order-2.jsp");
-        requestDispatcher.forward(request, response);
+    }
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        doPost(request, response);
     }
 }

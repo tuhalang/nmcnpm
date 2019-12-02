@@ -74,10 +74,12 @@ public class SignUpController extends HttpServlet {
             if (accountService.valid(account) && !accountService.isExist(account)) {
 
                 if (customerService.valid(customer) && !customerService.isExist(customer)) {
-                    accountService.save(account);
+                    Long id = accountService.save(account);
+                    customer.setAccountID(id);
                     customerService.save(customer);
-                    Role role = roleService.findByRoleName(RoleName.ROLE_USER.toString());
-                    accountService.setRole(account.getAccountID(), role.getRoleID());
+//                    trong setAccountID có set role rồi mà -.-
+//                    Role role = roleService.findByRoleName(RoleName.ROLE_USER.toString());
+//                    accountService.setRole(account.getAccountID(), role.getRoleID());
 
                     MailSMTP mail = new MailSMTP("tuhalang007@gmail.com", customer.getEmail(), "Cảm ơn bạn đã đăng kí tài khoản!", "ĐĂNG KÍ TÀI KHOẢN THÀNH CÔNG !");
                     MailSystem.execute(mail);

@@ -16,7 +16,7 @@ import java.util.List;
  */
 public interface IAccountDAO extends IBaseDao<Account>{
     
-    void insert(Account account);
+    Long insert(Account account);
     void update(Account account);
     void delete(Account account);
     List<Account> findAll();

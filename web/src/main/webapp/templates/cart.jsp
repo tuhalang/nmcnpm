@@ -54,7 +54,8 @@
                 <c:forEach var="item" items="${cart.items}" varStatus="iter">
                 <c:set var="product" value="${item.product}">
                 </c:set>
-                <div class="container" id="item">
+
+                <div class="container" id="item" onclick="abc(${item.product.productID})">
                     <div class="row w-100 row-bordered mb-2">
                         <div class="col-sm-2" id="img-thumb"><img style="width:100px;height:100px;" alt=""
                                                                   src="${product.thumbImage}">
@@ -66,6 +67,7 @@
                             </div>
                             <btn class="btn btn-success" onclick="deleteProduct(${item.product.productID})">Xoá</btn>
                         </div>
+
                     </div>
                 </div>
                 </c:forEach>
@@ -148,13 +150,27 @@
                             </div>
                             <div class="row w-100">
                                 <form action="${pageContext.request.contextPath}/confirm_address" method="post">
-                                    <button type="submit" class="btn btn-large btn-block btn-danger btn-checkout"
-                                        <%--                                onclick="location.href='<c:url value="/confirm_address"/>';--%>
-                                            return false;">Tiến
-                                    hành
-                                    đặt
-                                    hàng
-                                    </button>
+                                    <c:choose>
+                                        <c:when test="${orderDto.listOfData.size() >0}">
+                                            <button type="submit" class="btn btn-large btn-block btn-danger btn-checkout" id="dat-hang"
+                                                <%--                                onclick="location.href='<c:url value="/confirm_address"/>';--%>
+                                                    return false;">Tiến
+                                            hành
+                                            đặt
+                                            hàng
+                                            </button>
+                                        </c:when>
+                                        <c:otherwise>
+                                            <button type="submit" class="btn btn-large btn-block btn-danger btn-checkout" id="dat-hang" disabled
+                                                <%--                                onclick="location.href='<c:url value="/confirm_address"/>';--%>
+                                                    return false;">Tiến
+                                            hành
+                                            đặt
+                                            hàng
+                                            </button>
+                                        </c:otherwise>
+                                    </c:choose>
+
                                 </form>
                             </div>
 
@@ -224,6 +240,10 @@
                     }
                 });
             }
+            function abc(id) {
+                window.location.replace(window.location.pathname.substring(0, window.location.pathname.indexOf("/", 2))+ "/detail?productID=" +id);
+            }
         </script>
+
 </body>
 </html>

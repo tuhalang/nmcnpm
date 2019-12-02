@@ -41,7 +41,7 @@ public class CartController extends HttpServlet {
             Product product = productService.findById(id);
             orderProduct.setProduct(product);
             orders.add(orderProduct);
-            totalMoney += product.getPrice();
+            totalMoney += product.getPrice() * quantity;
         }
         
         orderDto.setListOfData(orders);

@@ -79,6 +79,13 @@ public class CustomerService implements ICustomerService {
     }
 
     @Override
+    public Customer findByAccountId(Long accountId) {
+        Customer customer = customerDAO.findByAccountId(accountId);
+        customer.setAccount(accountDAO.findById(customer.getAccountID()));
+        return customer;
+    }
+
+    @Override
     public boolean update(Customer customer) {
         try {
             customerDAO.update(customer);
