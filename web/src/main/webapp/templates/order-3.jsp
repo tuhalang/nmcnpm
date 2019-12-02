@@ -136,7 +136,7 @@
 									<span class="title">Đơn Hàng</span>
 									<span class="title"> (${orderDtos.listOfData.size()} sản phẩm)</span>
 
-									<a href="/checkout/cart/" class="btn btn-default btn-custom1">Sửa</a>
+									<a href="${pageContext.request.contextPath}/call_cart" class="btn btn-default btn-custom1">Sửa</a>
 								</div>
 								<c:set var="amount" value="${0}" />
 								<c:forEach items="${orderDtos.listOfData}" var="orderDto" varStatus="status">

@@ -4,7 +4,7 @@
 <header>
     <nav class="navbar navbar-expand-sm navbar-dark position-relative row">
         <!-- Brand -->
-        <a class="navbar-brand" href="#">Logo</a>
+        <a class="navbar-brand" href="${pageContext.request.contextPath}/home">Logo</a>
         <!-- search -->
         <div id="form_search" class="form-inline">
             <div class="row w-100">
@@ -117,7 +117,7 @@
                                             </div>
                                             <div class="row w-100 mt-3">
                                                 <div class="col-sm-3">Địa chỉ</div>
-                                                <input type="password" class="form-control col-sm-9" id="address"
+                                                <input type="text" class="form-control col-sm-9" id="address"
                                                        placeholder="Địa chỉ" oninput="resetInputValue(this)">
                                             </div>
                                             <div class="row w-100 mt-3" style="font-size: 0.8em;">

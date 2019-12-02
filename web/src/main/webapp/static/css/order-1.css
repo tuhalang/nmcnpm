@@ -1,0 +1,228 @@
+
+
+
+
+
+
+.dropdown-submenu a::after {
+  transform: rotate(-90deg);
+  right: 3px;
+  top: 40%;
+}
+
+.dropdown-submenu:hover .dropdown-menu,
+.dropdown-submenu:focus .dropdown-menu {
+  display: block;
+  margin-top: -1px;
+  margin-left: -1px;
+  top: 0px;
+  left: 100%;
+  min-height: 100%;
+}
+
+.dropdown-menu {
+  min-height: 200%;
+}
+
+#bootstrap-edits .add-to-ul{
+    position: relative;
+    width: 200%;
+    top: 0;
+}
+
+#bootstrap-edits .add-to-dropdown-div{
+  min-height: 100%;
+}
+
+a { text-decoration: none; }
+ 
+li { list-style: none; }
+
+.modal-body .row{
+	width: 950px;
+}
+
+.modal-body .row .col .submenu{
+	font-size: 5px!important;
+}
+.signin_,.signup_{
+    font-size: 1em;
+}
+.scrollable-menu {
+    height: auto;
+    max-height: 6em;
+    width: 70px !important;
+    overflow-x: hidden;
+}
+#form-signup{
+    font-size: 0.8em;
+}
+#form-signup input{
+    font-size: 1em;
+}
+@media only screen and (max-width: 968px) {
+    #btn-search-product span{
+        visibility: hidden;
+    }
+}
+
+*{
+    box-sizing: border-box;
+}
+
+.shipping-header{
+    padding-bottom: 15px;
+    padding-top: 25px;
+    box-shadow: 0 1px 2px rgba(0,0,0,.2);
+}
+.cont{
+    width: 1000px;
+    margin: 0px auto;
+
+}
+.progressbar {
+    counter-reset: step;
+}
+.progressbar .li {
+    list-style-type: none;
+    width: 25%;
+    float: left;
+    font-size: 12px;
+    font-weight: bold;
+    position: relative;
+    text-align: center;
+    text-transform: uppercase;
+    color: #7d7d7d;
+}
+.progressbar .li:before {
+    width: 30px;
+    height: 30px;
+    content: counter(step);
+    counter-increment: step;
+    line-height: 30px;
+    border: 2px solid #7d7d7d;
+    display: block;
+    text-align: center;
+    margin: 0 auto 10px auto;
+    border-radius: 50%;
+    background-color: white;
+}
+.progressbar .li:after {
+    width: 100%;
+    height: 2px;
+    content: '';
+    position: absolute;
+    background-color: #7d7d7d;
+    top: 15px;
+    left: -50%;
+    z-index: -1;
+}
+.progressbar .li:first-child:after {
+    content: none;
+}
+.progressbar .li.active {
+    color: #3399ff;
+}
+.progressbar .li.active:before {
+    border-color: #3399ff;
+}
+.progressbar .li.active + li:after {
+    background-color: #3399ff;
+}
+
+
+.shipping-footer {
+    font-size: 11px;
+    margin-top: 40px;
+    padding-bottom: 10px;
+    padding-top: 10px;
+    background: #f7f7f7;
+}
+
+.container {
+    width: auto!important;
+    max-width: 1170px!important;
+}
+
+.row {
+    margin-left: -15px;
+    margin-right: -15px;
+}
+
+.col-lg-12 {
+    width: 100%;
+    float: left;
+    position: relative;
+    min-height: 1px;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+.shipping-footer .terms-text {
+    float: left;
+    margin-bottom: 4px;
+}
+.shipping-footer .terms {
+    float: left;
+    margin-bottom: 0;
+}
+.shipping-footer .copyright {
+    float: left;
+    margin-top: 12px;
+    width: 100%;
+}
+.shipping-footer .terms a {
+    color: #000;
+}
+.shipping-footer .terms a:first-child {
+    padding-right: 10px;
+}
+.shipping-footer .terms a:nth-child(n+2) {
+    padding-right: 10px;
+    padding-left: 10px;
+}
+.wrap .address-form {
+    max-width: 100%;
+    border: 1px solid #ddd;
+    display: none;
+    margin-top: 0;
+    background: #f7f7f7;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    border-radius: 0 0 3px 3px;
+    margin: 10px auto 0;
+}
+.wrap .address-form>.panel-heading {
+    background: #fff;
+    font-size: 15px;
+    text-align: center;
+    font-weight: 700;
+    border: none;
+}
+.panel-default>.panel-heading {
+    color: #333;
+    background-color: #f5f5f5;
+    border-color: #ddd;
+}
+.hidden-lg {
+    display: none!important;
+}
+.panel-body{
+    width: 1200px;
+}
+.panel-heading {
+    padding: 10px 15px;
+    border-bottom: 1px solid transparent;
+    border-top-right-radius: 3px;
+    border-top-left-radius: 3px;
+}
+.wrap .address-form>.panel-body {
+    padding: 25px;
+}
+.wrap .address-form form {
+    width: 550px;
+    margin: 0 auto;
+    display: block;
+}
+.wrap .address-form .form-group {
+    margin-bottom: 7px;
+}
