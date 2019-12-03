@@ -155,7 +155,6 @@
     <servlet-mapping>
         <servlet-name>accountMaga</servlet-name>
         <url-pattern>/accountInfo</url-pattern>
-        <url-pattern>/updateInfo</url-pattern>
     </servlet-mapping>
     <servlet>
         <servlet-name>update_address</servlet-name>
