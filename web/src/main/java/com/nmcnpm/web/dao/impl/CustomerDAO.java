@@ -21,7 +21,14 @@ public class CustomerDAO extends DataBaseDaoImpl<Customer> implements ICustomerD
         } catch (Exception e) {
             e.printStackTrace();
         }
-
+    }
+    public void updateByAccountId(Customer customer){
+        String sql = "update customer set address=?, city_region=?, email=?, name=?, phone=?, last_modified_at=CURRENT_TIMESTAMP() where account_id=?";
+        try {
+            update(sql, customer.getAddress(), customer.getCityRegion(), customer.getEmail(), customer.getName(), customer.getPhone(), customer.getAccountID());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public void delete(Customer customer) {

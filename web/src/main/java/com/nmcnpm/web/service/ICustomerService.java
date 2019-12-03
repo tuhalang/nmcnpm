@@ -15,5 +15,6 @@ public interface ICustomerService {
     Customer findById(Long customerId);
     Customer findByAccountId(Long accountId);
     boolean update(Customer customer);
+    boolean updateByAccountId(Customer customer);
     Customer findByID(Customer customer);
 }

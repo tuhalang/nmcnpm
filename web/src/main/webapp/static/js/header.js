@@ -71,8 +71,8 @@ document.getElementById("login").addEventListener("click",function () {
         }
     });
 })
-function call_info(a) {
-    window.location.replace(window.location.pathname.substring(0, window.location.pathname.indexOf("/", 2))+"/accountInfo?accountID="+a);
+function call_info() {
+    window.location.replace(window.location.pathname.substring(0, window.location.pathname.indexOf("/", 2))+"/accountInfo");
 }
 function validateFullname(name) {
     if (name=="") return false;

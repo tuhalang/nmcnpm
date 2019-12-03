@@ -12,6 +12,7 @@ import java.util.List;
 public interface ICustomerDAO extends IBaseDao<Customer> {
     void insert(Customer customer);
     void update(Customer customer);
+    void updateByAccountId(Customer customer);
     void delete(Customer customer);
     boolean isExist(Customer customer);
     List<Customer> findAll();

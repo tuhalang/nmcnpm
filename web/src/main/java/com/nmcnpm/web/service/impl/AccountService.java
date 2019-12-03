@@ -78,6 +78,7 @@ public class AccountService implements IAccountService {
     @Override
     public boolean update(Account account) {
         try {
+            account.setPassword(PasswordHashing.getInstance().getMethod().encrypt(account.getPassword()));
             accountDAO.update(account);
             return true;
         } catch (Exception e) {
@@ -95,5 +96,12 @@ public class AccountService implements IAccountService {
             e.printStackTrace();
             return false;
         }
+    }
+
+    @Override
+    public boolean comparePassword(String username, String password) {
+        password = PasswordHashing.getInstance().getMethod().encrypt(password);
+        if (accountDAO.findByUsernameAndPassword(username, password) !=null) return true;
+        else return false;
     }
 }
