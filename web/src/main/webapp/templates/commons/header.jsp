@@ -33,8 +33,9 @@
                     <li class="nav-item col-sm-3 px-0" onclick="call_info(${USER.accountID})">
                         <a class="nav-link px-0 font-weight-bold"><i
                                 class="fas fa-user fa-2x float-left mr-md-2 mt-md-1"></i><span>
+                                <br>tài khoản</span>
                                 ${USER.username}
-                    <br>tài khoản</span></a>
+                    </a>
                     </li>
                 </c:when>
                 <c:otherwise>
