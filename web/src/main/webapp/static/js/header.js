@@ -71,6 +71,13 @@ document.getElementById("login").addEventListener("click",function () {
         }
     });
 })
+function sign_up(a) {
+    if (a==null){
+        alert(a);
+    }else{
+        // window.location.replace(window.location.pathname.substring(0, window.location.pathname.indexOf("/", 2))+"/accountInfo?a)
+    }
+}
 function validateFullname(name) {
     if (name=="") return false;
     return true;

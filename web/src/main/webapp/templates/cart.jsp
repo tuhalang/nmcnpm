@@ -86,8 +86,8 @@
                         <c:forEach var="item" items="${orderDto.listOfData}" varStatus="iter">
                             <c:set var="product" value="${item.product}">
                             </c:set>
-                            <div class="container" id="item">
-                                <div class="row w-100 row-bordered mb-2">
+                            <div class="container">
+                                <div class="row w-100 row-bordered mb-2" onclick="call_detail(${product.productID})">
                                     <div class="col-sm-2" id="img-thumb_"><img style="width:100px;height:100px;" alt=""
                                                                               src="${product.thumbImage}">
                                     </div>
@@ -204,6 +204,9 @@
                         console.log(e)
                     }
                 });
+            }
+            function call_detail(a){
+                window.location.replace(window.location.pathname.substring(0, window.location.pathname.indexOf("/", 2))+"/detail?productID="+a);
             }
             /**
              * function to change quantity of product

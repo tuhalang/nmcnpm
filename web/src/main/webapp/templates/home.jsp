@@ -39,7 +39,7 @@
                 <div class="panel-body">
                     <div class="row w-100">
                         <c:forEach items="${productDto.listOfData}" var="product" varStatus="status">
-                            <div class="col-sm-3">
+                            <div class="col-sm-3 mb-3">
                                 <div class="card" style="max-width: 15rem;" onclick="abc(${product.productID})">
                                     <p style="display: none;" id="pID">${product.productID}</p>
                                     <a href="#" class="card-link"> <img

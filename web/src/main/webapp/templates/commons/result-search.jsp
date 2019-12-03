@@ -58,7 +58,7 @@
                     <div class="row w-100">
                         <c:choose>
                             <c:when test="${head!=null}">
-                                <div class="col-sm-3">
+                                <div class="col-sm-3 mb-3">
                                     <div class="card" style="max-width: 15rem;" onclick="abc(${head.productID})">
                                         <a href="#" class="card-link"> <img
                                                 src="${head.image}"
@@ -88,7 +88,7 @@
                         <c:forEach items="${products}" var="product">
                             <c:choose>
                                 <c:when test="${(head !=null && head.productID!=product.productID)||(head==null)}">
-                                    <div class="col-sm-3">
+                                    <div class="col-sm-3 mb-3">
                                         <div class="card" style="max-width: 15rem;" onclick="abc(${product.productID})">
                                             <a href="#" class="card-link"> <img
                                                     src="${product.image}"

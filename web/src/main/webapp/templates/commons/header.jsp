@@ -27,7 +27,7 @@
                 <a class="nav-link px-0 font-weight-bold" href="#"><i
                         class="fas fa-bell fa-2x float-left mr-md-2 mt-md-1"></i><span>Thông báo<br>của tôi</span></a>
             </li>
-            <li class="nav-item col-sm-3 px-0" data-toggle="modal" data-target="#exampleModal">
+            <li class="nav-item col-sm-3 px-0" onclick="sign_up(${USER})">
                 <a class="nav-link px-0 font-weight-bold"><i
                         class="fas fa-user fa-2x float-left mr-md-2 mt-md-1"></i><span>
                         <c:choose>
@@ -40,6 +40,7 @@
                         </c:choose>
                         <br>tài khoản</span></a>
             </li>
+            <btn id="call_login" class="btn btn-primary btn-lg" style="display:none;" data-toggle="modal" data-target="#exampleModal"></btn>
             <div class="modal bd-example-modal-lg" id="exampleModal" style="color:black !important;">
                 <div class="modal-dialog modal-lg modal-dialog-centered" type="document" style="min-width:900px;">
                     <div class="modal-content">
