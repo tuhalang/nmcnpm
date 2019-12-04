@@ -98,22 +98,22 @@
             </div>
         </div>
     </div>
-    <div class="row w-100">
+    <div class="row w-100 mt-3">
         <div class="panel panel-default col-lg-12">
             <div class="panel-heading" style="border-bottom:1px solid rgba(0,0,0,0.4);">
                 <h2>Thông tin chi tiết sản phẩm</h2>
             </div>
-            <div class="panel-body">
+            <div class="panel-body"  style="border-bottom:1px solid rgba(0,0,0,0.1);padding:2px;">
                 ${productDetail.information}
             </div>
         </div>
     </div>
-    <div class="row w-100">
+    <div class="row w-100 mt-2">
         <div class="panel panel-default col-lg-12">
             <div class="panel-heading" style="border-bottom:1px solid rgba(0,0,0,0.4);">
                 <h2>Mô tả sản phẩm</h2>
             </div>
-            <div class="panel-body">
+            <div class="panel-body" style="border-bottom:1px solid rgba(0,0,0,0.1);">
                 <p>${product.descriptionDetail}</p>
             </div>
         </div>
