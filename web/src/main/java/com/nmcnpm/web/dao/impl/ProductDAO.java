@@ -12,7 +12,7 @@ public class ProductDAO extends DataBaseDaoImpl<Product> implements IProductDAO 
     @Override
     public void insert(Product product) {
         String sql = "insert into product(name, price, description, category_id, image, thumb_image,"
-                + " description_detail, product_detail_id, status, quantity, created_at, last_modified_at) value(?,?,?,?,?,?,?,?,?,?CURRENT_TIMESTAMP(),CURRENT_TIMESTAMP())";
+                + " description_detail, product_detail_id, status, quantity, created_at, last_modified_at) value(?,?,?,?,?,?,?,?,?,?,CURRENT_TIMESTAMP(),CURRENT_TIMESTAMP())";
         Long id = insert(sql, product.getName(), product.getPrice(), product.getDescription(), product.getCategoryID(),
                 product.getImage(), product.getThumbImage(), product.getDescriptionDetail(), product.getProductDetailID(), product.isStatus(), product.getQuantity());
         product.setProductID(id);
