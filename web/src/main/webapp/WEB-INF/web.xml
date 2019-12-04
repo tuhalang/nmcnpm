@@ -126,7 +126,7 @@
     </servlet-mapping>
     <servlet>
         <servlet-name>autocomplete_home</servlet-name>
-        <servlet-class>com.nmcnpm.web.controller.web.ResultSearchController</servlet-class>
+        <servlet-class>com.nmcnpm.web.controller.api.ResultSearchController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>autocomplete_home</servlet-name>

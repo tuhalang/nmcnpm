@@ -1,4 +1,4 @@
-package com.nmcnpm.web.controller.web;
+package com.nmcnpm.web.controller.api;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.json.JsonMapper;

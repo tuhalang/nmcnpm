@@ -194,11 +194,36 @@
     <div class="row">
         <div class="col-lg-12">
             <div class="panel panel-default">
-                <div class="panel-body">
+                <div class="panel-heading" style="height: fit-content;font-size: 1em;">
                     <form id="search-product">
-                        <input placeholder="Search">
+                        <input placeholder="Search" id="admin-input-search-product" autocomplete="off">
                     </form>
-                    <div class="show-products"></div>
+                </div>
+                <div class="panel-body" style="display: none;" id="show-products-search">
+                    <div class="panel-group">
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+                                <div class="col-sm-1">
+                                    <strong>ID</strong>
+                                </div>
+                                <div class="group-product-name col-sm-5">
+                                    <strong>Name</strong>
+                                </div>
+                                <div class="col-sm-2">
+                                    <strong>Price</strong>
+                                </div>
+                                <div class="col-sm-2">
+                                    <strong>Quantity</strong>
+                                </div>
+                                <div class="col-sm-1">
+                                    <strong>Status</strong>
+                                </div>
+                                <div class="col-sm-1">
+                                    <i><strong>Detail</strong></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -469,73 +494,74 @@
 
                         <!-- pagination -->
                         <div class="container">
-                        <nav aria-label="pagination">
-                            <ul class="pagination">
-                                <c:if test="${productDto.currentPage == 1}">
-                                    <li class="page-item disabled">
-                                        <a class="page-link" href="#" tabindex="-1">Previous</a>
-                                    </li>
-                                    <li class="page-item active">
-                                        <a class="page-link"
-                                           href="${pageContext.request.contextPath}/admin/product?currentPage=1">1 <span
-                                                class="sr-only">(current)</span></a>
-                                    </li>
-                                    <c:if test="${productDto.totalPages > 1}">
-                                        <li class="page-item"><a class="page-link"
-                                                                 href="${pageContext.request.contextPath}/admin/product?currentPage=2">2</a>
-                                        </li>
-                                    </c:if>
-                                    <c:if test="${productDto.totalPages > 2}">
-                                        <li class="page-item"><a class="page-link"
-                                                                 href="${pageContext.request.contextPath}/admin/product?currentPage=3">3</a>
-                                        </li>
-                                    </c:if>
-                                    <c:if test="${productDto.totalPages > 1}">
-                                        <li class="page-item">
-                                            <a class="page-link"
-                                               href="${pageContext.request.contextPath}/admin/product?currentPage=2">Next</a>
-                                        </li>
-                                    </c:if>
-                                    <c:if test="${productDto.totalPages == 1}">
+                            <nav aria-label="pagination">
+                                <ul class="pagination">
+                                    <c:if test="${productDto.currentPage == 1}">
                                         <li class="page-item disabled">
-                                            <a class="page-link" href="#">Next</a>
+                                            <a class="page-link" href="#" tabindex="-1">Previous</a>
                                         </li>
+                                        <li class="page-item active">
+                                            <a class="page-link"
+                                               href="${pageContext.request.contextPath}/admin/product?currentPage=1">1
+                                                <span
+                                                        class="sr-only">(current)</span></a>
+                                        </li>
+                                        <c:if test="${productDto.totalPages > 1}">
+                                            <li class="page-item"><a class="page-link"
+                                                                     href="${pageContext.request.contextPath}/admin/product?currentPage=2">2</a>
+                                            </li>
+                                        </c:if>
+                                        <c:if test="${productDto.totalPages > 2}">
+                                            <li class="page-item"><a class="page-link"
+                                                                     href="${pageContext.request.contextPath}/admin/product?currentPage=3">3</a>
+                                            </li>
+                                        </c:if>
+                                        <c:if test="${productDto.totalPages > 1}">
+                                            <li class="page-item">
+                                                <a class="page-link"
+                                                   href="${pageContext.request.contextPath}/admin/product?currentPage=2">Next</a>
+                                            </li>
+                                        </c:if>
+                                        <c:if test="${productDto.totalPages == 1}">
+                                            <li class="page-item disabled">
+                                                <a class="page-link" href="#">Next</a>
+                                            </li>
+                                        </c:if>
                                     </c:if>
-                                </c:if>
 
-                                <c:if test="${productDto.currentPage > 1}">
-                                    <li class="page-item">
-                                        <a class="page-link"
-                                           href="${pageContext.request.contextPath}/admin/product?currentPage=${productDto.currentPage-1}"
-                                           tabindex="-1">Previous</a>
-                                    </li>
-                                    <li class="page-item"><a class="page-link"
-                                                             href="${pageContext.request.contextPath}/admin/product?currentPage=${productDto.currentPage-1}">${productDto.currentPage-1}</a>
-                                    </li>
-                                    <li class="page-item active">
-                                        <a class="page-link"
-                                           href="${pageContext.request.contextPath}/admin/product?currentPage=${productDto.currentPage}">${productDto.currentPage}
-                                            <span class="sr-only">(current)</span></a>
-                                    </li>
-                                    <c:if test="${productDto.totalPages > productDto.currentPage}">
-                                        <li class="page-item"><a class="page-link"
-                                                                 href="${pageContext.request.contextPath}/admin/product?currentPage=${productDto.currentPage+1}">${productDto.currentPage+1}</a>
-                                        </li>
-                                    </c:if>
-                                    <c:if test="${productDto.totalPages > productDto.currentPage}">
+                                    <c:if test="${productDto.currentPage > 1}">
                                         <li class="page-item">
                                             <a class="page-link"
-                                               href="${pageContext.request.contextPath}/admin/product?currentPage=${productDto.currentPage+1}">Next</a>
+                                               href="${pageContext.request.contextPath}/admin/product?currentPage=${productDto.currentPage-1}"
+                                               tabindex="-1">Previous</a>
                                         </li>
-                                    </c:if>
-                                    <c:if test="${productDto.totalPages <= productDto.currentPage}">
-                                        <li class="page-item disabled">
-                                            <a class="page-link" href="#">Next</a>
+                                        <li class="page-item"><a class="page-link"
+                                                                 href="${pageContext.request.contextPath}/admin/product?currentPage=${productDto.currentPage-1}">${productDto.currentPage-1}</a>
                                         </li>
+                                        <li class="page-item active">
+                                            <a class="page-link"
+                                               href="${pageContext.request.contextPath}/admin/product?currentPage=${productDto.currentPage}">${productDto.currentPage}
+                                                <span class="sr-only">(current)</span></a>
+                                        </li>
+                                        <c:if test="${productDto.totalPages > productDto.currentPage}">
+                                            <li class="page-item"><a class="page-link"
+                                                                     href="${pageContext.request.contextPath}/admin/product?currentPage=${productDto.currentPage+1}">${productDto.currentPage+1}</a>
+                                            </li>
+                                        </c:if>
+                                        <c:if test="${productDto.totalPages > productDto.currentPage}">
+                                            <li class="page-item">
+                                                <a class="page-link"
+                                                   href="${pageContext.request.contextPath}/admin/product?currentPage=${productDto.currentPage+1}">Next</a>
+                                            </li>
+                                        </c:if>
+                                        <c:if test="${productDto.totalPages <= productDto.currentPage}">
+                                            <li class="page-item disabled">
+                                                <a class="page-link" href="#">Next</a>
+                                            </li>
+                                        </c:if>
                                     </c:if>
-                                </c:if>
-                            </ul>
-                        </nav>
+                                </ul>
+                            </nav>
                         </div>
                     </div>
 
@@ -563,6 +589,8 @@
 <script src="<c:url value="/static/jquery-3.4.1/custom.js"/>"></script>
 <script
         src="<c:url value="/static/bootstrap-4.0.0/js/bootstrap.min.js"/>"></script>
+<script
+        src="<c:url value="/static/js/admin-products.js"/>"></script>
 <script>
     $('#btn-new-product').click(function () {
         $.ajax({
