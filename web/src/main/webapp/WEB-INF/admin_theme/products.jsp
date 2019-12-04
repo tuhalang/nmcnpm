@@ -315,28 +315,34 @@
 																<p style="font-size: 0.7em;">Số lượng</p>
 																<div class="row w-100">
 																	<div class="col-sm-4" id="quantity">
-																		<div class="input-group">
-																			<div class="input-group-prepend">
+																		<div class="input-group" >
+						
+																				<div class="input-group-btn" >
 																				<button
 																					class="btn btn-outline-secondary border-none"
 																					id="inc"
-																					style="border-radius: 0; border: 1px solid rgba(0, 0, 0, 0.2);"
+																					style="height:40px;border-radius: 0; border: 1px solid rgba(0, 0, 0, 0.2);"
 																					type="button">
 																					<i class="fas fa-plus"></i>
-																				</button>
+																				</button></div>
+																				<div class="input-group-btn" >
 																				<input type="text"
-																					style="width: 40px; border-radius: 0; border: 1px solid rgba(0, 0, 0, 0.2);"
+																					style="width: 40px;height:40px; border-radius: 0; border: 1px solid rgba(0, 0, 0, 0.2);"
 																					class="form-control" value="1" id="quantity_">
-																				<button
+																					</div>
+																				<div class="input-group-btn" >
+																				<button 
 																					class="btn btn-outline-secondary border-none"
 																					id="dsc"
-																					style="border-radius: 0; border: 1px solid rgba(0, 0, 0, 0.2);"
+																					style=" height:40px;border-radius: 0; border: 1px solid rgba(0, 0, 0, 0.2);"
 																					type="button">
 																					<i class="fas fa-minus"></i>
 																				</button>
+																				</div>
 
-																			</div>
+																		
 																		</div>
+																	
 																	</div>
 																	<div class="col-sm-8">
 																		<button type="button" class="btn btn-primary">
