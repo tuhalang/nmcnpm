@@ -237,15 +237,15 @@
                                             </div>
                                             
                                             <!--div review sản phẩm(hiển thị sản phẩm như xem chi tiết ở web) lấy dữ liệu được nhập từ div input-->
-                                            <div id="review-product">
-                                                    <input type="text" id="accessories2" name="accessories" class="form-control input-text" required="required"  placeholder="Enter Accessories">
-                                                    <input type="text" id="guarantee2"name="guarantee" class="form-control input-text" required="required"  placeholder="Enter Guarantee">
-                                                    <input type="text" id="image1_2"name="image1" class="form-control input-text" required="required"  placeholder="Enter Link Image1">
-                                                    <input type="text" id="image2_2"name="image2" class="form-control input-text" required="required"  placeholder="Enter Link Image2">
-                                                    <input type="text" id="image3_2"name="image3" class="form-control input-text" required="required"  placeholder="Enter Link Image3">
-                                                    <input type="text" id="image4_2"name="image4" class="form-control input-text" required="required"  placeholder="Enter Link Image4">
-                                                    <input type="text" id="image5_2"name="image5" class="form-control input-text" required="required"  placeholder="Enter Link Image5">
-                                                    <input type="text" id="infor1" name="information" class="form-control input-text"  placeholder="Enter Infomation">
+                                            <div id="review-product" style="display:none">
+                                                    <input type="text" id="accessories2" name="accessories" class="form-control input-text" required="required"   readonly="readonly">
+                                                    <input type="text" id="guarantee2"name="guarantee" class="form-control input-text" required="required"   readonly="readonly">
+                                                    <input type="text" id="image1_2"name="image1" class="form-control input-text" required="required"  readonly="readonly">
+                                                    <input type="text" id="image2_2"name="image2" class="form-control input-text" required="required"  readonly="readonly">
+                                                    <input type="text" id="image3_2"name="image3" class="form-control input-text" required="required"  readonly="readonly">
+                                                    <input type="text" id="image4_2"name="image4" class="form-control input-text" required="required"  readonly="readonly">
+                                                    <input type="text" id="image5_2"name="image5" class="form-control input-text" required="required"  readonly="readonly">
+                                                    <input type="text" id="infor1" name="information" class="form-control input-text" readonly="readonly">
                                                 
                                             
 <!--                                                code in here-->
