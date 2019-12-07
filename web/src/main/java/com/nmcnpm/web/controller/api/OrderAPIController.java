@@ -3,13 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.nmcnpm.web.controller.admin;
+package com.nmcnpm.web.controller.api;
 
-import com.nmcnpm.web.dto.OrderCustomerDto;
-import com.nmcnpm.web.dto.OrderDto;
-import com.nmcnpm.web.model.CustomerOrder;
 import com.nmcnpm.web.service.IOrderService;
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import javax.inject.Inject;
 import javax.servlet.ServletException;
@@ -21,7 +20,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author tuhalang
  */
-public class OrderController extends HttpServlet {
+public class OrderAPIController extends HttpServlet {
 
     @Inject
     IOrderService orderService;
@@ -38,25 +37,6 @@ public class OrderController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
-        if (request.getParameter("orderId") != null) {
-            long orderId = Long.parseLong(request.getParameter("orderId"));
-            CustomerOrder customerOrder = orderService.findById(orderId);
-            request.setAttribute("order", customerOrder);
-            request.getRequestDispatcher("/WEB-INF/admin_theme/order_detail.jsp").forward(request, response);
-        } else {
-            int currentPage = 1;
-            int elePerPage = 12;
-            try {
-                currentPage = Integer.parseInt(request.getParameter("currentPage"));
-                elePerPage = Integer.parseInt(request.getParameter("elePerPage"));
-            } catch (Exception x) {
-
-            }
-            OrderCustomerDto orderDto = orderService.find(currentPage, elePerPage);
-            request.setAttribute("orderDto", orderDto);
-            request.getRequestDispatcher("/WEB-INF/admin_theme/order.jsp").forward(request, response);
-        }
     }
 
     /**
@@ -70,7 +50,23 @@ public class OrderController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
+        BufferedReader br = new BufferedReader(new InputStreamReader(request.getInputStream()));
+        
+        String json = "";
+        if (br != null) {
+            json = br.readLine();
+        }
+        
+        br.close();
+        
+        Long orderId = Long.parseLong(json.substring(json.indexOf("=")+1));
+        if(orderService.nextStatus(orderId)){
+            response.setStatus(HttpServletResponse.SC_OK);
+            response.getWriter().print("ok");
+        }else{
+            response.setStatus(HttpServletResponse.SC_NOT_IMPLEMENTED);
+            response.getWriter().print("error");
+        }
     }
 
     /**

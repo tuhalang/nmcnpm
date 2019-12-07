@@ -19,6 +19,7 @@ public class CustomerOrderMapper implements IRowMapper<CustomerOrder>{
 			cusromerOrder.setConfirmNumber(result.getLong("confirm_number"));
 			cusromerOrder.setCreatedAt(result.getDate("created_at"));
 			cusromerOrder.setLastModifiedAt(result.getDate("last_modified_at"));
+                        cusromerOrder.setCustomerID(result.getLong("customer_id"));
 			cusromerOrder.setOrderStatus(OrderStatus.valueOf(result.getString("status")));
 			cusromerOrder.setPaymentMethod(PaymentMethod.valueOf(result.getString("payment_method")));
 			return cusromerOrder;

@@ -5,5 +5,5 @@ package com.nmcnpm.web.model;
  * @created on 11/12/19
  */
 public enum OrderStatus {
-    CONFIRMED, DELIVERING,RECEIVED
+    WAITING, CONFIRMED, DELIVERING,RECEIVED
 }

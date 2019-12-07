@@ -11,22 +11,22 @@ public class CustomerOrderDAO extends DataBaseDaoImpl<CustomerOrder> implements 
     
     @Override
     public void insert(CustomerOrder customerOrder) {
-        String sql = "insert into customer_order( amount, confirm_number, created_at, last_modified_at) value(?,?,CURRENT_TIMESTAMP(),CURRENT_TIMESTAMP())";
-        Long id = insert(sql, customerOrder.getAmount(), customerOrder.getConfirmNumber());
+        String sql = "insert into customer_order( amount, confirm_number,status, payment_method, created_at, last_modified_at) value(?,?,?,?,CURRENT_TIMESTAMP(),CURRENT_TIMESTAMP())";
+        Long id = insert(sql, customerOrder.getAmount(), customerOrder.getConfirmNumber(), customerOrder.getOrderStatus(), customerOrder.getPaymentMethod());
         customerOrder.setOrderID(id);
     }
     @Override
     public Long insert(CustomerOrder customerOrder, Long customerID) {
-        String sql = "insert into customer_order(customer_id, amount, confirm_number, created_at, last_modified_at) value(?,?,?,CURRENT_TIMESTAMP(),CURRENT_TIMESTAMP())";
-        Long id = insert(sql, customerID, customerOrder.getAmount(), customerOrder.getConfirmNumber());
+        String sql = "insert into customer_order(customer_id, amount, confirm_number, status, payment_method, created_at, last_modified_at) value(?,?,?,?,?,CURRENT_TIMESTAMP(),CURRENT_TIMESTAMP())";
+        Long id = insert(sql, customerID, customerOrder.getAmount(), customerOrder.getConfirmNumber(), customerOrder.getOrderStatus(), customerOrder.getPaymentMethod());
         customerOrder.setOrderID(id);
         return id;
     }
     @Override
     public void update(CustomerOrder customerOrder) {
-        String sql = "update customer_order set amount=?, confirm_number=?, last_modified_at=CURRENT_TIMESTAMP() where order_id=?";
+        String sql = "update customer_order set amount=?, confirm_number=?, status=?, payment_method=?, last_modified_at=CURRENT_TIMESTAMP() where order_id=?";
         try {
-            update(sql, customerOrder.getAmount(), customerOrder.getConfirmNumber(), customerOrder.getOrderID());
+            update(sql, customerOrder.getAmount(), customerOrder.getConfirmNumber(), customerOrder.getOrderStatus(), customerOrder.getPaymentMethod(), customerOrder.getOrderID());
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -57,7 +57,7 @@ public class CustomerOrderDAO extends DataBaseDaoImpl<CustomerOrder> implements 
 
     @Override
     public List<CustomerOrder> find(int start, int limit) {
-        String sql = "select * from customer_order limit ?,?";
+        String sql = "select * from customer_order order by FIELD(status, \"WAITING\", \"CONFIRM\", \"DELIVERING\", \"RECEIVED\"), created_at limit ?,?";
         List<CustomerOrder> customerOrders = query(sql,new CustomerOrderMapper(), start, limit);
         return customerOrders;
     }
@@ -67,5 +67,11 @@ public class CustomerOrderDAO extends DataBaseDaoImpl<CustomerOrder> implements 
         String sql = "select * from customer_order where confirm_number=?";
         List<CustomerOrder> customerOrders = query(sql, new CustomerOrderMapper(),id);
         return customerOrders;
+    }
+
+    @Override
+    public long count() {
+        String sql = "select count(1) from customer_order";
+        return count(sql);
     }
 }

@@ -7,6 +7,7 @@ package com.nmcnpm.web.service;
 
 import com.nmcnpm.web.dto.OrderCustomerDto;
 import com.nmcnpm.web.dto.OrderDto;
+import com.nmcnpm.web.model.CustomerOrder;
 
 /**
  *
@@ -14,4 +15,6 @@ import com.nmcnpm.web.dto.OrderDto;
  */
 public interface IOrderService {
     OrderCustomerDto find(int currentPage, int elePerPage);
+    CustomerOrder findById(long orderId);
+    boolean nextStatus(long orderId);
 }

@@ -19,6 +19,8 @@ public interface ICustomerOrderDAO {
     void update(CustomerOrder customerOrder);
 
     void delete(CustomerOrder customerOrder);
+    
+    long count();
 
     List<CustomerOrder> findAll();
 

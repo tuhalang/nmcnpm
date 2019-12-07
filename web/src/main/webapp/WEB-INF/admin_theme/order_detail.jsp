@@ -1,3 +1,9 @@
+<%-- 
+    Document   : order_detail
+    Created on : Dec 7, 2019, 9:37:49 AM
+    Author     : tuhalang
+--%>
+
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
@@ -170,7 +176,7 @@
                             <em class="fa fa-home"></em>
                         </a>
                     </li>
-                    <li class="active">Order</li>
+                    <li class="active">Order / detail / ${order.orderID}</li>
                 </ol>
             </div>
             <!--/.row-->
@@ -178,129 +184,124 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="panel panel-default">
-                        <div class="panel-body">
-                            <form id="search-product">
-                                <input placeholder="Search">
-                            </form>
-                            <div class="show-products"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="panel panel-default">
                         <div class="panel-body panel-group">
                             <div class="panel-group">
                                 <div class="panel panel-default">
+                                    <h3>Order Information</h3>
                                     <div class="panel-body">
                                         <div class="col-sm-1"><strong>ID</strong></div>
-                                        <div class="col-sm-2"><strong>Amount</strong></div>
-                                        <div class="col-sm-4"><strong>Address</strong></div>
                                         <div class="col-sm-2"><strong>Created At</strong></div>
-                                        <div class="col-sm-1"><strong>Status</strong></i></div>
+                                        <div class="col-sm-2"><strong>Last Modified At</strong></div>
+                                        <div class="col-sm-2"><strong>Status</strong></i></div>
                                         <div class="col-sm-1"><strong>Payment</strong></i></div>
-                                        <div class="col-sm-1"><strong>View</strong></i></div>
                                     </div>
-                                </div>
-                                <c:forEach items="${orderDto.listOfData}" var="order">
-                                    <div class="panel panel-default">
-                                        <div class="panel-body">
-                                            <div class="col-sm-1"><strong>${order.orderID}</strong></div>
-                                            <div class="col-sm-2"><strong>${order.amount}</strong></div>
-                                            <div class="col-sm-4"><strong>${order.customer.address}</strong></div>
-                                            <div class="col-sm-2"><strong>${order.createdAt}</strong></div>
-                                            <div class="col-sm-1"><strong>${order.orderStatus}</strong></i></div>
-                                            <div class="col-sm-1"><strong>${order.paymentMethod}</strong></i></div>
-                                            <div class="col-sm-1">
-                                                <a
-                                                    href="${pageContext.request.contextPath}/admin/order?orderId=${order.orderID}"
-                                                    class="btn btn-light"><i class="fa fa-eye"
-                                                                         aria-hidden="true"></i></a>
-                                            </div>
-                                        </div>
+                                    <div class="panel-body">
+                                        <div class="col-sm-1">${order.orderID}</div>
+                                        <div class="col-sm-2">${order.createdAt}</div>
+                                        <div class="col-sm-2">${order.lastModifiedAt}</div>
+                                        <div class="col-sm-2" style="color: red">${order.orderStatus}</div>
+                                        <div class="col-sm-1">${order.paymentMethod}</div>
                                     </div>
-                                </c:forEach>
 
-
-                                <!-- pagination -->
-                                <div class="container"
-                                     <nav aria-label="pagination">
-                                        <ul class="pagination">
-                                            <c:if test="${orderDto.currentPage == 1}">
-                                                <li class="page-item disabled">
-                                                    <a class="page-link" href="#" tabindex="-1">Previous</a>
-                                                </li>
-                                                <li class="page-item active">
-                                                    <a class="page-link" href="${pageContext.request.contextPath}/admin/order?currentPage=1">1 <span class="sr-only">(current)</span></a>
-                                                </li>
-                                                <c:if test="${orderDto.totalPages > 1}">
-                                                    <li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/admin/order?currentPage=2">2</a></li>
-                                                    </c:if>
-                                                    <c:if test="${orderDto.totalPages > 2}">
-                                                    <li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/admin/order?currentPage=3">3</a></li>
-                                                    </c:if>
-                                                    <c:if test="${orderDto.totalPages > 1}">
-                                                    <li class="page-item">
-                                                        <a class="page-link" href="${pageContext.request.contextPath}/admin/order?currentPage=2">Next</a>
-                                                    </li>
-                                                </c:if>
-                                                <c:if test="${orderDto.totalPages == 1}">
-                                                    <li class="page-item disabled">
-                                                        <a class="page-link" href="#">Next</a>
-                                                    </li>
-                                                </c:if>
-                                            </c:if>
-
-                                            <c:if test="${orderDto.currentPage > 1}">
-                                                <li class="page-item">
-                                                    <a class="page-link" href="${pageContext.request.contextPath}/admin/order?currentPage=${orderDto.currentPage-1}" tabindex="-1">Previous</a>
-                                                </li>
-                                                <li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/admin/order?currentPage=${orderDto.currentPage-1}">${orderDto.currentPage-1}</a></li>
-                                                <li class="page-item active">
-                                                    <a class="page-link" href="${pageContext.request.contextPath}/admin/order?currentPage=${orderDto.currentPage}">${orderDto.currentPage} <span class="sr-only">(current)</span></a>
-                                                </li>
-                                                <c:if test="${orderDto.totalPages > orderDto.currentPage}">
-                                                    <li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/admin/order?currentPage=${orderDto.currentPage+1}">${orderDto.currentPage+1}</a></li>
-                                                    </c:if>
-                                                    <c:if test="${orderDto.totalPages > orderDto.currentPage}">
-                                                    <li class="page-item">
-                                                        <a class="page-link" href="${pageContext.request.contextPath}/admin/order?currentPage=${orderDto.currentPage+1}">Next</a>
-                                                    </li>
-                                                </c:if>
-                                                <c:if test="${orderDto.totalPages <= orderDto.currentPage}">
-                                                    <li class="page-item disabled">
-                                                        <a class="page-link" href="#">Next</a>
-                                                    </li>
-                                                </c:if>
-                                            </c:if>                                          
-                                        </ul>
-                                    </nav>
                                 </div>
 
                                 <div class="panel panel-default">
-                                    <%--<%@ include file="pagination.jsp"%>--%>
+                                    <h3>Customer Information</h3>
+                                    <div class="panel-body">
+                                        <div class="col-sm-1"><strong>ID</strong></div>
+                                        <div class="col-sm-2"><strong>Name</strong></div>
+                                        <div class="col-sm-5"><strong>Address</strong></i></div>
+                                        <div class="col-sm-3"><strong>Email</strong></i></div>
+                                        <div class="col-sm-1"><strong>Phone</strong></i></div>
+                                    </div>
+                                    <div class="panel-body">
+                                        <div class="col-sm-1">${order.customer.customerID}</div>
+                                        <div class="col-sm-2">${order.customer.name}</div>
+                                        <div class="col-sm-5">${order.customer.address}</div>
+                                        <div class="col-sm-3">${order.customer.email}</div>
+                                        <div class="col-sm-1">${order.customer.phone}</div>
+                                    </div>
+                                </div>
+
+                                <div class="panel panel-default">
+                                    <h3>Product Information</h3>
+                                    <div class="panel-body">
+                                        <div class="col-sm-1"><strong>ID</strong></div>
+                                        <div class="col-sm-4"><strong>Name</strong></div>
+                                        <div class="col-sm-2"><strong>Price</strong></i></div>
+                                        <div class="col-sm-1"><strong>Quantity</strong></i></div>
+                                    </div>
+                                    <c:forEach items="${order.orderedProducts}" var="orderProduct">
+                                        <div class="panel-body">
+                                            <div class="col-sm-1">${orderProduct.product.productID}</div>
+                                            <div class="col-sm-4">
+                                                <a href="${pageContext.request.contextPath}/admin/product?productId=${orderProduct.product.productID}">
+                                                    ${orderProduct.product.name}
+                                                </a>
+                                            </div>
+                                            <div class="col-sm-2">${orderProduct.product.price}</div>
+                                            <div class="col-sm-1">${orderProduct.quantity}</div>
+                                        </div>
+                                    </c:forEach>
+                                    <div class="panel-body">
+                                        <div class="col-sm-5"><strong></strong></div>
+                                        <div class="col-sm-7"><h4>Total : ${order.amount}</h4></div>
+                                    </div>
+                                </div>
+                                <div class="panel panel-default">
+
+                                    <div class="panel-body">
+                                        <div class="col-sm-8"></div>
+                                        <div class="col-sm-4">
+<!--                                            <button onclick="print(${order.orderID})" type="button" class="btn btn-info">Print Order</button>-->
+
+                                            <button onclick="nextStatus(${order.orderID})" type="button" class="btn btn-info">Next Status</button>
+                                        </div>
+                                    </div>
+
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
+                <!--/.row-->
             </div>
-            <!--/.row-->
-        </div>
-        <!--/.main-->
+            <!--/.main-->
 
 
-        <script src="<c:url value="/static/jquery-3.4.1/jquery-1.11.1.min.js"/>"></script>
-        <script src="<c:url value="/static/jquery-3.4.1/chart.min.js"/>"></script>
-        <script src="<c:url value="/static/jquery-3.4.1/chart-data.js"/>"></script>
-        <script src="<c:url value="/static/jquery-3.4.1/easypiechart.js"/>"></script>
-        <script src="<c:url value="/static/jquery-3.4.1/easypiechart-data.js"/>"></script>
-        <script src="<c:url value="/static/jquery-3.4.1/bootstrap-datepicker.js"/>"></script>
-        <script src="<c:url value="/static/jquery-3.4.1/custom.js"/>"></script>
-        <script src="<c:url value="/static/bootstrap-4.0.0/js/bootstrap.min.js"/>"></script>
+            <script src="<c:url value="/static/jquery-3.4.1/jquery-1.11.1.min.js"/>"></script>
+            <script src="<c:url value="/static/jquery-3.4.1/chart.min.js"/>"></script>
+            <script src="<c:url value="/static/jquery-3.4.1/chart-data.js"/>"></script>
+            <script src="<c:url value="/static/jquery-3.4.1/easypiechart.js"/>"></script>
+            <script src="<c:url value="/static/jquery-3.4.1/easypiechart-data.js"/>"></script>
+            <script src="<c:url value="/static/jquery-3.4.1/bootstrap-datepicker.js"/>"></script>
+            <script src="<c:url value="/static/jquery-3.4.1/custom.js"/>"></script>
+            <script src="<c:url value="/static/bootstrap-4.0.0/js/bootstrap.min.js"/>"></script>
+            <script>
+                function print(orderId) {
 
+                }
+
+                function nextStatus(orderId) {
+                    $.ajax({
+                        url: window.location.pathname.substring(0, window.location.pathname.indexOf("/", 2)) + '/admin/api/orders',
+                        contentType: 'application/json;charset=utf-8',
+                        dataType: 'text',
+                        data: {
+                            orderId: orderId
+                        },
+                        type: 'POST',
+                        success: function (response) {
+                            if (response == 'ok') {
+                                location.reload();
+                            }
+                        },
+                        error: function (x, e) {
+                            alert(e);
+                        }
+                    });
+                }
+            </script>
     </body>
 
 </html>
