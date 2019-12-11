@@ -46,14 +46,14 @@ function show_result_search(id, key) {
     var c = $("#input-search-product").val();
     var s = "show_result?key=" + key + "&head=" + id;
     if (key !== "")
-        window.location.replace("http://localhost:8080/web_war/" + s);
+        window.location.replace(window.location.pathname.substring(0, window.location.pathname.indexOf("/", 2))+"/" + s);
 }
 
 document.getElementById("btn-search-product").addEventListener("click", function (ev) {
     if ($("#input-search-product").val() != "") {
         show_result_search(0, $("#input-search-product").val());
     } else {
-        window.location.replace("http://localhost:8080/web_war/home?page=1&categoryId=1");
+        window.location.replace(window.location.pathname.substring(0, window.location.pathname.indexOf("/", 2))+"/home");
     }
 })
 $("#input-search-product").keyup(function (event) {

@@ -35,17 +35,36 @@ document.getElementById("admin-input-search-product").oninput=function () {
                     e51.innerHTML=listProduct[i].quantity;
                     var e6=document.createElement("div");
                     e6.className="col-sm-1";
+                    e6.addEventListener("click",function () {
+                        //alert($(this).children("i").attr("class","fa fa-ban"));
+                        // alert($(this).parent().children(":first").text());
+                        $.ajax({
+                            url: window.location.pathname.substring(0, window.location.pathname.indexOf("/", 2)) + '/admin/api/products',
+                            contentType: 'application/json;charset=utf-8',
+                            dataType: 'text',
+                            data: {
+                                productId: $(this).parent().children(":first").text()
+                            },
+                            type: 'DELETE',
+                            success: function (response) {
+                                location.reload();
+                            },
+                            error: function (x, e) {
+                                alert(e);
+                            }
+                        });
+                    });
                     var e7=document.createElement("div");
                     e7.className="col-sm-1";
                     var e8=document.createElement("button");
                     // e8.addEventListener("click",changeStatus(listProduct[i].productID));
-                    e8.className="btn btn-light";
+                    e8.className="btn btn-light status_";
                     var e9=document.createElement("i");
                     if (listProduct[i].status) e9.className="fa fa-check";
                     else e9.className="fa fa-ban";
                     var e10=document.createElement("a");
                     e10.className="btn btn-light";
-                    e10.href="${pageContext.request.contextPath}/admin/product?productId="+listProduct[i].productID;
+                    e10.href= window.location.pathname.substring(0, window.location.pathname.indexOf("/", 2))+"/admin/product?productId="+listProduct[i].productID;
                     var e11=document.createElement("i");
                     e11.className="fa fa-eye";
                     e10.append(e11);
@@ -55,6 +74,7 @@ document.getElementById("admin-input-search-product").oninput=function () {
                     e2.append(e3);
                     e2.append(e4);
                     e2.append(e5);
+                    e2.append(e51);
                     e2.append(e6);
                     e2.append(e7);
                     e1.append(e2);
@@ -70,8 +90,28 @@ document.getElementById("admin-input-search-product").oninput=function () {
     }
 }
 $(document).click(function (e) {
+    alert((e.target).hasClass("status_"));
     if (e.target.id !== "admin-input-search-product") {
         $("#show-products-search:first-child").empty();
         $("#show-products-search").css("display","none");
     }
 });
+function changeStatus(productId) {
+    $.ajax({
+        url: window.location.pathname.substring(0, window.location.pathname.indexOf("/", 2)) + '/admin/api/products',
+        contentType: 'application/json;charset=utf-8',
+        dataType: 'text',
+        data: {
+            productId: productId
+        },
+        type: 'DELETE',
+        success: function (response) {
+            if (response == 'ok') {
+                location.reload();
+            }
+        },
+        error: function (x, e) {
+            alert(e);
+        }
+    });
+}
