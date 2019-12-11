@@ -157,7 +157,7 @@
             type: 'get',
             success: function (response) {
                 if (response=="1") alert("Thêm thành công")
-                else alert("Thêm thất bại");
+                else alert("Mặt hàng này không đủ số lượng yêu cầu");
             },
             error: function (x, e) {
                 console.log(e)

@@ -236,6 +236,7 @@
                     },
                     type: 'get',
                     success: function (response) {
+                        if (response=="0") alert("Mặt hàng này không đủ số lượng yêu cầu");
                         location.reload();
                     },
                     error: function (x, e) {

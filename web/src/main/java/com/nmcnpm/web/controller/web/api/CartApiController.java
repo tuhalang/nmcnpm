@@ -5,8 +5,11 @@
  */
 package com.nmcnpm.web.controller.web.api;
 
+import com.nmcnpm.web.model.Product;
+import com.nmcnpm.web.service.IProductService;
 import com.nmcnpm.web.utils.CookieUtils;
 import java.io.IOException;
+import javax.inject.Inject;
 import javax.servlet.ServletException;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
@@ -19,7 +22,8 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class CartApiController extends HttpServlet {
 
-    
+    @Inject
+    IProductService productService;
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
@@ -40,15 +44,20 @@ public class CartApiController extends HttpServlet {
         
         if(action == 1){
             String quantity = request.getParameter("quantity");
-        
-            //response.addCookie(new Cookie(productId, quantity));
-            
-            cookieUtils.newCookie(response, productId, quantity, request.getContextPath());
+            Product product = productService.findById(Long.parseLong(productId));
 
-            response.setContentType("text/html");
-            response.getWriter().print("1");
-            response.getWriter().flush();
-            
+            //response.addCookie(new Cookie(productId, quantity));
+            if(product.getQuantity() >= Long.parseLong(quantity)) {
+                cookieUtils.newCookie(response, productId, quantity, request.getContextPath());
+
+                response.setContentType("text/html");
+                response.getWriter().print("1");
+                response.getWriter().flush();
+            }else {
+                response.setContentType("text/html");
+                response.getWriter().print("0");
+                response.getWriter().flush();
+            }
         }else if(action == 0){
             cookieUtils.removeCookie(response, productId, request.getContextPath());
             //response.setStatus(HttpServletResponse.SC_OK);
