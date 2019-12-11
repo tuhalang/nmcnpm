@@ -72,7 +72,7 @@ document.getElementById("login").addEventListener("click",function () {
     });
 })
 function call_info() {
-    window.location.replace(window.location.pathname.substring(0, window.location.pathname.indexOf("/", 2))+"/accountInfo");
+    window.location.replace(window.location.pathname.substring(0, window.location.pathname.indexOf("/", 2))+"/user/accountInfo");
 }
 function validateFullname(name) {
     if (name=="") return false;

@@ -80,7 +80,7 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>logout</servlet-name>
-        <url-pattern>/logout</url-pattern>
+        <url-pattern>/user/logout</url-pattern>
     </servlet-mapping>
     <servlet>
         <servlet-name>admin-product</servlet-name>
@@ -161,7 +161,7 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>accountMaga</servlet-name>
-        <url-pattern>/accountInfo</url-pattern>
+        <url-pattern>/user/accountInfo</url-pattern>
     </servlet-mapping>
     <servlet>
         <servlet-name>update_address</servlet-name>

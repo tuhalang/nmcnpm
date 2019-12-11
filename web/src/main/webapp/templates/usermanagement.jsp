@@ -1,3 +1,4 @@
+<%@ page import="com.nmcnpm.web.utils.SessionUtils" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" %>
@@ -54,7 +55,9 @@
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item" href="#"><i class="fas fa-receipt"></i>
                         <span> Đơn hàng của tôi </span></a>
-
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="#" onclick="removeUserInfo()"><i class="fas fa-sign-out-alt"></i>
+                        <span> Đăng xuất </span></a>
                 </div>
             </div>
 
@@ -239,6 +242,9 @@
 
     function resetInputValue(a) {
         $(a).css("border", "1px solid #ced4da");
+    }
+    function removeUserInfo() {
+        window.location.replace(window.location.pathname.substring(0, window.location.pathname.indexOf("/", 2))+"/user/logout");
     }
 </script>
 </body>
