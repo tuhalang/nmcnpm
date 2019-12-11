@@ -153,7 +153,7 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>cart_controller</servlet-name>
-        <url-pattern>/call_cart</url-pattern>
+        <url-pattern>/cart</url-pattern>
     </servlet-mapping>
     <servlet>
         <servlet-name>accountMaga</servlet-name>
