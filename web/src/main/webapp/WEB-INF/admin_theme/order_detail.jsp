@@ -13,7 +13,7 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Kipalog - Widgets</title>
+        <title>Order-Detail</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Kipalog User Management</title>

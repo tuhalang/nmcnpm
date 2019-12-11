@@ -57,7 +57,7 @@ public class CustomerOrderDAO extends DataBaseDaoImpl<CustomerOrder> implements 
 
     @Override
     public List<CustomerOrder> find(int start, int limit) {
-        String sql = "select * from customer_order order by FIELD(status, \"WAITING\", \"CONFIRM\", \"DELIVERING\", \"RECEIVED\"), created_at limit ?,?";
+        String sql = "select * from customer_order order by FIELD(status, 'WAITING', 'CONFIRM', 'DELIVERING', 'RECEIVED'), created_at limit ?,?";
         List<CustomerOrder> customerOrders = query(sql,new CustomerOrderMapper(), start, limit);
         return customerOrders;
     }
