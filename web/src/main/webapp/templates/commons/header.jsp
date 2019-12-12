@@ -34,7 +34,7 @@
                         <a class="nav-link px-0 font-weight-bold"><i
                                 class="fas fa-user fa-2x float-left mr-md-2 mt-md-1"></i><span>
                                 ${USER.username}<br>tài khoản</span>
-                    </a>
+                        </a>
                     </li>
                 </c:when>
                 <c:otherwise>
@@ -160,30 +160,18 @@
                     DANH MỤC SẢN PHẨM
                 </a>
                 <ul class="dropdown-menu add-to-ul" aria-labelledby="navbarDropdownMenuLink">
-                    <li class="dropdown-submenu">
-                        <a class="dropdown-item" href="home?categoryId=1"><i class="fas fa-mobile-alt"></i>Điện
-                            Thoại</a>
-                    </li>
-                    <li class="dropdown-submenu">
-                        <a class="dropdown-item" href="home?categoryId=2"> <i class="fas fa-tablet"></i>Máy Tính
-                            Bảng</a>
-                    </li>
-                    <li class="dropdown-submenu">
-                        <a class="dropdown-item" href="home?categoryId=3"><i class="fas fa-tv"></i>Điện Tử - Điện
-                            Lạnh</a>
-                    </li>
-                    <li class="dropdown-submenu">
-                        <a class="dropdown-item" href="home?categoryId=9"><i class="fas fa-headphones"></i>Phụ Kiện -
-                            Thiết Bị Số</a>
-                    </li>
-                    <li class="dropdown-submenu">
-                        <a class="dropdown-item" href="home?categoryId=10"><i class="fas fa-laptop"></i>Laptop - Thiết Bị
-                            IT</a>
-                    </li>
+                    <c:forEach var="category" items="${categories}">
+                        <li class="dropdown-submenu">
+                            <a class="dropdown-item" href="${pageContext.request.contextPath}/home?categoryId=${category.categoryID}">
+                                <i class="${category.icon}"></i>${category.name}
+                            </a>
+                        </li>
+                    </c:forEach>
                 </ul>
             </li>
             <li class="nav-item mr-md-4">
-                <a class="nav-link h6" href="${pageContext.request.contextPath}/user/accountInfo"><i class="fas fa-map-marker-alt"></i>
+                <a class="nav-link h6" href="${pageContext.request.contextPath}/user/accountInfo"><i
+                        class="fas fa-map-marker-alt"></i>
                     Bạn muốn giao hàng tới đâu?</a>
             </li>
         </ul>
