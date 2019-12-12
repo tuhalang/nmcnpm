@@ -87,20 +87,17 @@ public class SignUpController extends HttpServlet {
                     resp.getWriter().print("1");
                     resp.getWriter().flush();
                 } else {
-                    resp.getWriter().print("customer is not valid!");
+                    resp.getWriter().print("customer is invalid!");
                     resp.getWriter().flush();
-                    System.out.println("customer not valid!");
                 }
 
             } else {
-                resp.getWriter().print("account is not valid!");
+                resp.getWriter().print("account is invalid!");
                 resp.getWriter().flush();
-                System.out.println("account not valid!");
             }
         } else {
-            resp.getWriter().print("password is not valid!");
+            resp.getWriter().print("password is invalid!");
             resp.getWriter().flush();
-            System.out.println("password not valid!");
         }
 
     }

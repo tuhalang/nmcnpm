@@ -2,6 +2,7 @@ package com.nmcnpm.web.controller.web;
 
 import com.nmcnpm.web.dao.IOrderedProductDAO;
 import com.nmcnpm.web.dto.OrderDto;
+import com.nmcnpm.web.model.Account;
 import com.nmcnpm.web.model.Customer;
 import com.nmcnpm.web.model.OrderedProduct;
 import com.nmcnpm.web.service.ICustomerOrderService;
@@ -29,12 +30,14 @@ public class ConfirmOrderController extends HttpServlet {
     ICustomerOrderService customerOrderService;
     @Inject
     IProductService productService;
+    @Inject
+    ICustomerService customerService;
 
     CookieUtils cookieUtils = new CookieUtils();
     SessionUtils sessionUtils = new SessionUtils();
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+        Account account = (Account) SessionUtils.getInstance().getValue(request, "USER");
 
         OrderDto orderDto = new OrderDto();
         Map<String, String> card = cookieUtils.getAllValues(request);
@@ -53,6 +56,10 @@ public class ConfirmOrderController extends HttpServlet {
         orderDto.setListOfData(orderedProducts);
 
         request.setAttribute("orderDtos", orderDto);
+
+        Long accountID = account.getAccountID();
+        Customer customer = customerService.findByAccountId(accountID);
+        request.setAttribute("customer", customer);
 
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("/templates/order-3.jsp");
         requestDispatcher.forward(request, response);

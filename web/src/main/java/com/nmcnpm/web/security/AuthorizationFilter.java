@@ -44,7 +44,7 @@ public class AuthorizationFilter implements Filter {
             Boolean isLogin = (Boolean) SessionUtils.getInstance().getValue(request, "IS_LOGIN");
             Account account = (Account) SessionUtils.getInstance().getValue(request, "USER");
 
-            if(isLogin.equals(Boolean.TRUE) && account != null){
+            if(isLogin != null && account != null){
                 Role role = account.getRoles().get(0);
                 if(role.getRoleName().equals(RoleName.ROLE_USER) || role.getRoleName().equals(RoleName.ROLE_ADMIN)){
                     filterChain.doFilter(servletRequest, servletResponse);

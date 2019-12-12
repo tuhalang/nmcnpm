@@ -80,7 +80,7 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>logout</servlet-name>
-        <url-pattern>/user/logout</url-pattern>
+        <url-pattern>/logout</url-pattern>
     </servlet-mapping>
     <servlet>
         <servlet-name>admin-product</servlet-name>
@@ -177,7 +177,7 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>confirm_order</servlet-name>
-        <url-pattern>/confirm_order</url-pattern>
+        <url-pattern>/user/confirm_order</url-pattern>
     </servlet-mapping>
     <servlet>
         <servlet-name>product_detail</servlet-name>
@@ -201,7 +201,7 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>order</servlet-name>
-        <url-pattern>/order</url-pattern>
+        <url-pattern>/user/order</url-pattern>
     </servlet-mapping>
     <servlet>
         <servlet-name>showProduct</servlet-name>

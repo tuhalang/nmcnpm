@@ -9,6 +9,7 @@ import com.nmcnpm.web.utils.SessionUtils;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.net.URLDecoder;
 import java.util.Base64;
 import javax.inject.Inject;
 import javax.servlet.ServletException;
@@ -41,7 +42,7 @@ public class SignInController extends HttpServlet {
         resp.setContentType("text/html");
         BufferedReader rd = new BufferedReader(new InputStreamReader(req.getInputStream()));
         String line=rd.readLine();
-        String decode=decodeString(line.split("=")[1]);
+        String decode= URLDecoder.decode(decodeString(line.split("=")[1]),"UTF-8");
         String[] list=decode.split("&");
         String username = list[0].split("=")[1];
         String password = list[1].split("=")[1];
