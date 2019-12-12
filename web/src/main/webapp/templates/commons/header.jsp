@@ -173,17 +173,17 @@
                             Lạnh</a>
                     </li>
                     <li class="dropdown-submenu">
-                        <a class="dropdown-item" href="home?categoryId=4"><i class="fas fa-headphones"></i>Phụ Kiện -
+                        <a class="dropdown-item" href="home?categoryId=9"><i class="fas fa-headphones"></i>Phụ Kiện -
                             Thiết Bị Số</a>
                     </li>
                     <li class="dropdown-submenu">
-                        <a class="dropdown-item" href="home?categoryId=5"><i class="fas fa-laptop"></i>Laptop - Thiết Bị
+                        <a class="dropdown-item" href="home?categoryId=10"><i class="fas fa-laptop"></i>Laptop - Thiết Bị
                             IT</a>
                     </li>
                 </ul>
             </li>
             <li class="nav-item mr-md-4">
-                <a class="nav-link h6" href="#"><i class="fas fa-map-marker-alt"></i>
+                <a class="nav-link h6" href="${pageContext.request.contextPath}/user/accountInfo"><i class="fas fa-map-marker-alt"></i>
                     Bạn muốn giao hàng tới đâu?</a>
             </li>
         </ul>

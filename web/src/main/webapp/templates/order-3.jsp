@@ -39,7 +39,7 @@
 				<div class="col-lg-8 has-padding">
 					<div class="panel panel-default payment">
 						<div class="panel-body">
-							<form class="form-hozirontal hide-block" role="form" id="form-payment" action="${pageContext.request.contextPath}/order" method="post">
+							<form class="form-hozirontal hide-block" role="form" id="form-payment" action="${pageContext.request.contextPath}/user/order" method="post">
 								<h3 class="step-title">1. Chọn hình thức giao hàng</h3>
 								<div class="panel panel-default">
 									<div class="panel-body">
@@ -120,7 +120,7 @@
 								<span class="title">
 									Địa chỉ giao hàng
 								</span>
-								<a href="" class="btn btn-default btn-custom1">Sửa</a>
+								<a href="${pageContext.request.contextPath}/user/accountInfo" class="btn btn-default btn-custom1">Sửa</a>
 							</div>
 							<div class="information">
 								<h6>${customer.name}</h6>
@@ -136,7 +136,7 @@
 									<span class="title">Đơn Hàng</span>
 									<span class="title"> (${orderDtos.listOfData.size()} sản phẩm)</span>
 
-									<a href="${pageContext.request.contextPath}/call_cart" class="btn btn-default btn-custom1">Sửa</a>
+									<a href="${pageContext.request.contextPath}/cart" class="btn btn-default btn-custom1">Sửa</a>
 								</div>
 								<c:set var="amount" value="${0}" />
 								<c:forEach items="${orderDtos.listOfData}" var="orderDto" varStatus="status">

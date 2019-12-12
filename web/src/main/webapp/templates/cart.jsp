@@ -40,14 +40,7 @@
             </div>
         </div>
     </div>
-    <c:choose>
-    <c:when test="${cart.numberOfItems >0}">
-    Bạn có  ${cart.numberOfItems} sản phẩm
-    </c:when>
-    <c:otherwise>
-    Bạn chưa có sản phẩm nào
-    </c:otherwise>
-    </c:choose>
+
     <div class="row main w-100">
         <div class="row w-100 mt-4">
             <div class="col-sm-9 content-left">
@@ -105,7 +98,6 @@
 
                                     <div class="col-sm-2" id="quantity">
                                         <p>Số lượng</p>
-
                                         <div class="input-group">
                                             <div class="input-group-prepend">
                                                 <button onclick="changeQuantity(1, ${product.productID})" class="btn btn-outline-secondary" type="button">

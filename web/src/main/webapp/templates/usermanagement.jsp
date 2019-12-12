@@ -244,7 +244,7 @@
         $(a).css("border", "1px solid #ced4da");
     }
     function removeUserInfo() {
-        window.location.replace(window.location.pathname.substring(0, window.location.pathname.indexOf("/", 2))+"/user/logout");
+        window.location.replace(window.location.pathname.substring(0, window.location.pathname.indexOf("/", 2))+"/logout");
     }
 </script>
 </body>

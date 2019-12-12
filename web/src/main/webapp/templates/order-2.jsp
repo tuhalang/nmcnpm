@@ -34,7 +34,7 @@
     <div class="container">
         <h3>2. Địa chỉ giao hàng</h3>
         <div class="row row-2">
-            <form id="form-address" method="post" action="${pageContext.request.contextPath}/confirm_order">
+            <form id="form-address" method="post" action="${pageContext.request.contextPath}/user/confirm_order">
                 <div class="container">
                     <h5>Chọn địa chỉ giao hàng có sẵn bên dưới</h5>
                 </div>
