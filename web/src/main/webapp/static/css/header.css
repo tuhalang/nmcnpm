@@ -107,7 +107,7 @@ li { list-style: none; }
     font-size: 0.8em;
 }
 #form-signup input{
-    font-size: 1em;
+    font-size: 0.5em;
 }
 #form_search{
     padding-top: 1.2em;
@@ -140,5 +140,10 @@ li { list-style: none; }
 @media all and (max-width: 640px) {
     #form_search{
         display: none;
+    }
+}
+@media (min-width: 1400px) {
+    .container{
+        max-width: 1320px;
     }
 }
