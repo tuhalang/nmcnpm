@@ -102,7 +102,7 @@
                     <img src="http://placehold.it/50/30a5ff/fff" class="img-responsive" alt="">
                 </div>
                 <div class="profile-usertitle">
-                    <div class="profile-usertitle-name">Username</div>
+                    <div class="profile-usertitle-name">${USER.username}</div>
                     <div class="profile-usertitle-status"><span class="indicator label-success"></span>Online</div>
                 </div>
                 <div class="clear"></div>
@@ -149,13 +149,15 @@
             <div class="modal-dialog modal-dialog-centered" type="document">
                 <div class="modal-content">
                     <div class="modal-header">Settings</div>
-                    <div class="modal-body">
-                        <%@ include file="account-settings.jsp" %>
-                    </div>
-                    <div class="modal-footer">
-                        <button class="btn btn-primary">Save</button>
-                        <button class="btn btn-primary" data-dismiss="modal">Close</button>
-                    </div>
+                    <form id="form-change-password" action="${pageContext.request.contextPath}/admin/api/account" method="post">
+                        <div class="modal-body">
+                            <%@ include file="account-settings.jsp" %>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-primary">Save</button>
+                            <button class="btn btn-primary" data-dismiss="modal">Close</button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
@@ -259,6 +261,8 @@
         <script src="<c:url value="/static/jquery-3.4.1/bootstrap-datepicker.js"/>"></script>
         <script src="<c:url value="/static/jquery-3.4.1/custom.js"/>"></script>
         <script src="<c:url value="/static/bootstrap-4.0.0/js/bootstrap.min.js"/>"></script>
+        <script
+    src="<c:url value="/static/js/admin-account.js"/>"></script>
         <script>
             
         </script>

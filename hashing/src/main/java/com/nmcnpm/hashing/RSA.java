@@ -17,104 +17,107 @@ import java.util.Base64;
 import javax.crypto.Cipher;
 
 public class RSA implements IMethod {
-	private static RSA rsa = null;
 
-	private RSA() {
-		try {
-			SecureRandom sr = new SecureRandom();
-			KeyPairGenerator kpg = KeyPairGenerator.getInstance("RSA");
-			kpg.initialize(2048, sr);
-			KeyPair kp = kpg.genKeyPair();
-			// PublicKey
-			PublicKey publicKey = kp.getPublic();
-			// PrivateKey
-			PrivateKey privateKey = kp.getPrivate();
+    private static RSA rsa = null;
 
-			File publicKeyFile = createKeyFile(new File("publicKey.rsa"));
-			File privateKeyFile = createKeyFile(new File("privateKey.rsa"));
+    private RSA() {
+        try {
+            SecureRandom sr = new SecureRandom();
+            KeyPairGenerator kpg = KeyPairGenerator.getInstance("RSA");
+            kpg.initialize(2048, sr);
+            KeyPair kp = kpg.genKeyPair();
+            // PublicKey
+            PublicKey publicKey = kp.getPublic();
+            // PrivateKey
+            PrivateKey privateKey = kp.getPrivate();
 
-			// Lưu Public Key
-			FileOutputStream fos = new FileOutputStream(publicKeyFile);
-			fos.write(publicKey.getEncoded());
-			fos.close();
-			// Lưu Private Key
-			fos = new FileOutputStream(privateKeyFile);
-			fos.write(privateKey.getEncoded());
-			fos.close();
+            File publicKeyFile = createKeyFile(new File("publicKey.rsa"));
+            File privateKeyFile = createKeyFile(new File("privateKey.rsa"));
 
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
+            // Lưu Public Key
+            FileOutputStream fos = new FileOutputStream(publicKeyFile);
+            fos.write(publicKey.getEncoded());
+            fos.close();
 
-	public synchronized static RSA getInstance() {
-		if (rsa == null)
-			rsa = new RSA();
-		return rsa;
-	}
+            // Lưu Private Key
+            fos = new FileOutputStream(privateKeyFile);
+            fos.write(privateKey.getEncoded());
+            fos.close();
 
-	private static File createKeyFile(File file) throws IOException {
-		if (!file.exists()) {
-			file.createNewFile();
-		} else {
-			file.delete();
-			file.createNewFile();
-		}
-		return file;
-	}
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
-	@Override
-	public String encrypt(String plainText) {
-		String strEncrypt = "";
-		try {
-			// Đọc file chứa public key
-			FileInputStream fis = new FileInputStream("publicKey.rsa");
-			byte[] b = new byte[fis.available()];
-			fis.read(b);
-			fis.close();
+    public synchronized static RSA getInstance() {
+        if (rsa == null) {
+            rsa = new RSA();
+        }
+        return rsa;
+    }
 
-			// Tạo public key
-			X509EncodedKeySpec spec = new X509EncodedKeySpec(b);
-			KeyFactory factory = KeyFactory.getInstance("RSA");
-			PublicKey pubKey = factory.generatePublic(spec);
+    private static File createKeyFile(File file) throws IOException {
+        if (!file.exists()) {
+            file.createNewFile();
+        } else {
+            file.delete();
+            file.createNewFile();
+        }
+        return file;
+    }
 
-			// Mã hoá dữ liệu
-			Cipher c = Cipher.getInstance("RSA");
-			c.init(Cipher.ENCRYPT_MODE, pubKey);
-			byte encryptOut[] = c.doFinal(plainText.getBytes());
-			strEncrypt = Base64.getEncoder().encodeToString(encryptOut);
-		} catch (Exception ex) {
-			ex.printStackTrace();
-			return "";
-		}
-		return strEncrypt;
-	}
+    @Override
+    public String encrypt(String plainText) {
+        String strEncrypt = "";
+        try {
+            // Đọc file chứa public key
+            FileInputStream fis = new FileInputStream("publicKey.rsa");
+            byte[] b = new byte[fis.available()];
+            fis.read(b);
+            fis.close();
 
-	@Override
-	public String decrypt(String encodedText) {
-		String result = "";
-		try {
-			// Đọc file chứa private key
-			FileInputStream fis = new FileInputStream("privateKey.rsa");
-			byte[] b = new byte[fis.available()];
-			fis.read(b);
-			fis.close();
+            // Tạo public key
+            X509EncodedKeySpec spec = new X509EncodedKeySpec(b);
+            KeyFactory factory = KeyFactory.getInstance("RSA");
+            PublicKey pubKey = factory.generatePublic(spec);
 
-			// Tạo private key
-			PKCS8EncodedKeySpec spec = new PKCS8EncodedKeySpec(b);
-			KeyFactory factory = KeyFactory.getInstance("RSA");
-			PrivateKey priKey = factory.generatePrivate(spec);
+            // Mã hoá dữ liệu
+            Cipher c = Cipher.getInstance("RSA");
+            c.init(Cipher.ENCRYPT_MODE, pubKey);
+            byte encryptOut[] = c.doFinal(plainText.getBytes());
+            strEncrypt = Base64.getEncoder().encodeToString(encryptOut);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            return "";
+        }
+        return strEncrypt;
+    }
 
-			// Giải mã dữ liệu
-			Cipher c = Cipher.getInstance("RSA");
-			c.init(Cipher.DECRYPT_MODE, priKey);
-			byte decryptOut[] = c.doFinal(Base64.getDecoder().decode(encodedText));
-			// eJ1h2JLEulXQZf4t7rxP8HynxMKrYcAmGvIYsrUb77ys4K8uUj48ayT3bSsM3wfnoJLtgww2idNB7r8UeIyIGe
-			result = new String(decryptOut);
-		} catch (Exception ex) {
-			ex.printStackTrace();
-			return "";
-		}
-		return result;
-	}
+    @Override
+    public String decrypt(String encodedText) {
+        String result = "";
+        try {
+            // Đọc file chứa private key
+            FileInputStream fis = new FileInputStream("privateKey.rsa");
+            byte[] b = new byte[fis.available()];
+            fis.read(b);
+            fis.close();
+
+            // Tạo private key
+            PKCS8EncodedKeySpec spec = new PKCS8EncodedKeySpec(b);
+            KeyFactory factory = KeyFactory.getInstance("RSA");
+            PrivateKey priKey = factory.generatePrivate(spec);
+
+            // Giải mã dữ liệu
+            Cipher c = Cipher.getInstance("RSA");
+            c.init(Cipher.DECRYPT_MODE, priKey);
+            byte decryptOut[] = c.doFinal(Base64.getDecoder().decode(encodedText));
+            // eJ1h2JLEulXQZf4t7rxP8HynxMKrYcAmGvIYsrUb77ys4K8uUj48ayT3bSsM3wfnoJLtgww2idNB7r8UeIyIGe
+            result = new String(decryptOut);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            return "";
+        }
+        return result;
+    }
 }

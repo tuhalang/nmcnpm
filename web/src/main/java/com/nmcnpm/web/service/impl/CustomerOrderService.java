@@ -24,7 +24,7 @@ public class CustomerOrderService implements ICustomerOrderService {
             customer.setCustomerID(customer.getCustomerID());
             customerOrder.setAmount(tmp);
             customerOrder.setPaymentMethod(PaymentMethod.COD);
-            customerOrder.setOrderStatus(OrderStatus.RECEIVED);
+            customerOrder.setOrderStatus(OrderStatus.WAITING);
             customerOrder.setConfirmNumber(1234567L);
             Long id = customerOrderDAO.insert(customerOrder, customer.getCustomerID());
             return id;
