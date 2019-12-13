@@ -139,14 +139,14 @@
         <servlet-name>autocomplete_home</servlet-name>
         <url-pattern>/autocomplete_home</url-pattern>
     </servlet-mapping>
-    <!--    <servlet>-->
-    <!--        <servlet-name>cart_</servlet-name>-->
-    <!--        <servlet-class>com.nmcnpm.web.controller.web.ShoppingCartController</servlet-class>-->
-    <!--    </servlet>-->
-    <!--    <servlet-mapping>-->
-    <!--        <servlet-name>cart_</servlet-name>-->
-    <!--        <url-pattern>/shopping_cart</url-pattern>-->
-    <!--    </servlet-mapping>-->
+        <servlet>
+            <servlet-name>trackOrder</servlet-name>
+            <servlet-class>com.nmcnpm.web.controller.web.TrackOrderController</servlet-class>
+        </servlet>
+        <servlet-mapping>
+            <servlet-name>trackOrder</servlet-name>
+            <url-pattern>/user/track_order</url-pattern>
+        </servlet-mapping>
     <servlet>
         <servlet-name>cart_controller</servlet-name>
         <servlet-class>com.nmcnpm.web.controller.web.CartController</servlet-class>
@@ -161,7 +161,7 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>accountMaga</servlet-name>
-        <url-pattern>/accountInfo</url-pattern>
+        <url-pattern>/user/accountInfo</url-pattern>
     </servlet-mapping>
     <servlet>
         <servlet-name>update_address</servlet-name>
@@ -177,7 +177,7 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>confirm_order</servlet-name>
-        <url-pattern>/confirm_order</url-pattern>
+        <url-pattern>/user/confirm_order</url-pattern>
     </servlet-mapping>
     <servlet>
         <servlet-name>product_detail</servlet-name>
@@ -201,7 +201,7 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>order</servlet-name>
-        <url-pattern>/order</url-pattern>
+        <url-pattern>/user/order</url-pattern>
     </servlet-mapping>
     <servlet>
         <servlet-name>showProduct</servlet-name>

@@ -1,18 +1,29 @@
 package com.nmcnpm.web.service.impl;
 
+import com.nmcnpm.web.dao.ICustomerDAO;
 import com.nmcnpm.web.dao.ICustomerOrderDAO;
+import com.nmcnpm.web.dao.IOrderedProductDAO;
+import com.nmcnpm.web.dao.IProductDAO;
+import com.nmcnpm.web.dto.OrderCustomerDto;
 import com.nmcnpm.web.dto.OrderDto;
 import com.nmcnpm.web.model.*;
 import com.nmcnpm.web.service.ICustomerOrderService;
 import com.nmcnpm.web.service.ICustomerService;
 
 import javax.inject.Inject;
+import java.util.ArrayList;
 import java.util.List;
 
 public class CustomerOrderService implements ICustomerOrderService {
     @Inject
     ICustomerOrderDAO customerOrderDAO;
+    @Inject
+    IOrderedProductDAO orderedProductDAO;
+    @Inject
+    IProductDAO productDAO;
 
+    @Inject
+    ICustomerDAO customerDAO;
     @Override
     public Long save(List<OrderedProduct> order, Customer customer) {
         try{

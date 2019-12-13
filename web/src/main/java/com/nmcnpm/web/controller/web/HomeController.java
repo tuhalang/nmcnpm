@@ -6,6 +6,7 @@ import com.nmcnpm.web.model.Product;
 import com.nmcnpm.web.service.ICategoryService;
 import com.nmcnpm.web.service.IProductService;
 import com.nmcnpm.web.utils.CookieUtils;
+import com.nmcnpm.web.utils.SessionUtils;
 
 import javax.inject.Inject;
 import javax.servlet.ServletException;
@@ -14,6 +15,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.List;
 import javax.servlet.http.Cookie;
 
 
@@ -25,6 +27,11 @@ public class HomeController extends HttpServlet {
     ICategoryService categoryService;
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        SessionUtils sessionUtils=SessionUtils.getInstance();
+        if (sessionUtils.getValue(request,"categories")==null){
+            List<Category> categories=categoryService.findAll();
+            sessionUtils.putValue(request,"categories",categories);
+        }
         int page=1;
         int recordsPerPage=12;
         Long categoryId=0L;

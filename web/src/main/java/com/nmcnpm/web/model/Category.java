@@ -13,6 +13,7 @@ public class Category extends BaseModel{
 	private String name;
 	private String image;
 	private Long quantity;
+	private String icon;
     
 
 	public Category(Long categoryID, String name, String image, Long quantity) {

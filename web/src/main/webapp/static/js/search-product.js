@@ -44,7 +44,7 @@ function show_result_search(id, key) {
     $("#result-search").empty();
     $("#result-search").removeClass("show");
     var c = $("#input-search-product").val();
-    var s = "show_result?key=" + key + "&head=" + id;
+    var s = "show_result?key=" + encodeURIComponent(key) + "&head=" + id;
     if (key !== "")
         window.location.replace(window.location.pathname.substring(0, window.location.pathname.indexOf("/", 2))+"/" + s);
 }

@@ -15,6 +15,7 @@ import com.nmcnpm.web.model.CustomerOrder;
  */
 public interface IOrderService {
     OrderCustomerDto find(int currentPage, int elePerPage);
+    OrderCustomerDto find(Long customerId,int currentPage, int elePerPage);
     CustomerOrder findById(long orderId);
     boolean nextStatus(long orderId);
 }

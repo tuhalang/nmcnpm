@@ -6,6 +6,7 @@
 package com.nmcnpm.web.dao;
 
 import com.nmcnpm.database.dao.IBaseDao;
+import com.nmcnpm.web.model.CustomerOrder;
 import com.nmcnpm.web.model.OrderedProduct;
 import java.util.List;
 
