@@ -1,8 +1,7 @@
-<%@ page import="com.nmcnpm.web.model.Account" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <header>
-    <nav class="navbar navbar-expand-sm navbar-dark position-relative row w-100" id="header">
+    <nav class="navbar navbar-expand-sm navbar-dark position-relative row w-100 mb-0" id="header">
         <div class="col-lg-7">
             <div class="row w-100">
                 <!-- Brand -->
@@ -31,7 +30,7 @@
             <!-- Links -->
             <ul class="navbar-nav row w-100">
                 <li class="nav-item col-sm-3 px-0">
-                    <a class="nav-link px-0 font-weight-bold" href="#" id="track-order"><i
+                    <a class="nav-link px-0 font-weight-bold" href="${pageContext.request.contextPath}/user/track_order" id="track-order"><i
                             class="fas fa-map-marked-alt fa-2x float-left mr-md-2 mt-md-1"></i><span>Theo dõi<br>đơn hàng</span></a>
                 </li>
                 <li class="nav-item col-sm-3 px-0">
@@ -49,7 +48,7 @@
                         </li>
                     </c:when>
                     <c:otherwise>
-                        <li class="nav-item col-sm-3 px-0" data-toggle="modal" data-target="#exampleModal">
+                        <li class="nav-item col-sm-3 px-0" data-toggle="modal" data-target="#exampleModal" id="login_modal">
                             <a class="nav-link px-0 font-weight-bold" id="icon-login2"><i
                                     class="fas fa-user fa-2x float-left mr-md-2 mt-md-1"></i><span>
                                 Đăng nhập<br>tài khoản</span></a>
@@ -63,7 +62,7 @@
             </ul>
         </div>
     </nav>
-    <nav class="navbar navbar-expand-sm navbar-dark pt-0 pb-0 row">
+    <nav class="navbar navbar-expand-sm navbar-dark pt-0 pb-0 row mb-0">
         <ul class="navbar-nav ">
             <!-- Dropdown -->
             <li class="nav-item dropdown mr-md-4">
@@ -104,7 +103,7 @@
                         <div class="col-lg-7">
                             <ul class="nav nav-tabs" role="tablist">
                                 <li class="nav-item">
-                                    <a class="nav-link active signin_" href="#profile" role="tab"
+                                    <a class="nav-link active signin_" href="#profile" role="tab" id="signin_"
                                        data-toggle="tab" style="color:black !important;">Đăng nhập</a>
                                 </li>
                                 <li class="nav-item">

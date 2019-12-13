@@ -48,7 +48,13 @@ document.getElementById("btn-create").addEventListener("click",function () {
             type: 'post',
             success: function (response) {
                 if (response=="1") {
-                    window.location.replace(window.location.pathname.substring(0, window.location.pathname.indexOf("/", 2)));
+                    username.value="";
+                    fullname.value="";
+                    email.value="";
+                    phone.value="";
+                    passw.value="";
+                    address.value="";
+                    $("#signin_").click();
                 }
                 else alert(response);
             },
@@ -164,5 +170,26 @@ $(function () {
     }else  if (width<1100 && width>=600){
         $("#header").children(":first-child").attr("class","col-sm-8");
         $("#header").children(":nth-child(2)").attr("class","col-sm-4 pr-2 pl-2");
+    }
+})
+$(document).keyup(function (e) {
+    if (e.keyCode===13 || e.keyCode==40){
+        switch (e.target.id) {
+            case "username":$("#fullname").focus();break;
+            case "fullname":$("#phone").focus();break;
+            case "phone":$("#email-account").focus();break;
+            case "email-account":$("#passw").focus();break;
+            case "passw":$("#address").focus();break;
+        }
+    }
+    if (e.keyCode==13 && e.target.id=="address") $("#btn-create").click();
+    if (e.keyCode===38){
+        switch (e.target.id) {
+            case "address":$("#passw").focus();break;
+            case "fullname":$("#username").focus();break;
+            case "phone":$("#fullname").focus();break;
+            case "email-account":$("#phone").focus();break;
+            case "passw":$("#email-account").focus();break;
+        }
     }
 })

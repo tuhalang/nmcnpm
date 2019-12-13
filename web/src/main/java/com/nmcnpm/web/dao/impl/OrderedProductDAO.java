@@ -3,6 +3,7 @@ package com.nmcnpm.web.dao.impl;
 import com.nmcnpm.database.dao.impl.DataBaseDaoImpl;
 import com.nmcnpm.web.dao.IOrderedProductDAO;
 import com.nmcnpm.web.mapprow.CustomerMapper;
+import com.nmcnpm.web.mapprow.CustomerOrderMapper;
 import com.nmcnpm.web.mapprow.OrderedProductMapper;
 import com.nmcnpm.web.model.CustomerOrder;
 import com.nmcnpm.web.model.OrderedProduct;

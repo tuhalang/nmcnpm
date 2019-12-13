@@ -12,26 +12,40 @@
     <title>Lazy</title>
     <link rel="stylesheet" href="<c:url value="/static/css/card.css"/>">
     <link rel="stylesheet" href="<c:url value="/static/bootstrap-4.0.0/css/bootstrap.css"/>">
+<%--    <link rel="stylesheet" href="<c:url value="/static/css/bootstrap.min.css"/>">--%>
     <link rel="stylesheet" href="<c:url value="/static/fontawesome-5.11.2/css/all.css"/>">
+<%--    <link rel="stylesheet" href="<c:url value="/static/css/admin.css"/>">--%>
+    <link rel="stylesheet" href="<c:url value="/static/css/datepicker3.css"/>">
     <link rel="stylesheet" href="<c:url value="/static/css/footer.css"/>">
     <link rel="stylesheet" href="<c:url value="/static/css/header.css"/>">
     <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
-
+    <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
     <script src="<c:url value="/static/jquery-3.4.1/jquery-3.4.1.min.js"/>"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="<c:url value="/static/bootstrap-4.0.0/js/bootstrap.min.js"/>"></script>
 </head>
 <body>
 <jsp:include page="commons/header.jsp"></jsp:include>
-
-<div class="container">
-    <div class="row">
+<div class="container mt-4" style="font-family: 'Montserrat', Helvetica, Arial, sans-serif;font-weight: lighter;">
+    <div class="breadcrumb-wrap row w-100">
+        <div class="container mt-2">
+            <div class="row w-100">
+                <div class="col-lg-12">
+                    <ol class="breadcrumb">
+                        <li><a href="${pageContext.request.contextPath}">Trang chủ</a></li>
+                        <li class="active">/Theo dõi đơn hàng</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row w-100 mt-2">
         <div class="col-lg-12">
             <div class="panel panel-default">
                 <div class="panel-body panel-group">
                     <div class="panel-group">
                         <div class="panel panel-default">
-                            <div class="panel-body">
+                            <div class="panel-body row w-100">
                                 <div class="col-sm-2"><strong>Amount</strong></div>
                                 <div class="col-sm-4"><strong>Address</strong></div>
                                 <div class="col-sm-2"><strong>Created At</strong></div>
@@ -42,7 +56,7 @@
                         </div>
                         <c:forEach items="${orderDto.listOfData}" var="order">
                             <div class="panel panel-default">
-                                <div class="panel-body">
+                                <div class="panel-body w-100 row">
                                     <div class="col-sm-2"><strong>${order.amount}</strong></div>
                                     <div class="col-sm-4"><strong>${order.customer.address}</strong></div>
                                     <div class="col-sm-2"><strong>${order.createdAt}</strong></div>
@@ -51,7 +65,7 @@
                                     <div class="col-sm-1"><strong>${order.paymentMethod}</strong></div>
                                     <div class="col-sm-1">
                                         <a
-                                                href="${pageContext.request.contextPath}/admin/order?orderId=${order.orderID}"
+                                                href="${pageContext.request.contextPath}/user/track_order?orderId=${order.orderID}"
                                                 class="btn btn-light"><i class="fa fa-eye"
                                                                          aria-hidden="true"></i></a>
                                     </div>
@@ -61,9 +75,9 @@
 
 
                         <!-- pagination -->
-                        <div class="container">
-                            <nav aria-label="pagination">
-                                <ul class="pagination">
+                        <div class="row w-100 mt-4">
+                            <nav class="col-lg-12" aria-label="pagination">
+                                <ul class="pagination" style="width: fit-content !important;left:50%;transform: translateX(-50%);position: relative;">
                                     <c:if test="${orderDto.currentPage == 1}">
                                         <li class="page-item disabled">
                                             <a class="page-link" href="#" tabindex="-1">Previous</a>

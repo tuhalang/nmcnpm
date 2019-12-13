@@ -139,14 +139,14 @@
         <servlet-name>autocomplete_home</servlet-name>
         <url-pattern>/autocomplete_home</url-pattern>
     </servlet-mapping>
-    <!--    <servlet>-->
-    <!--        <servlet-name>cart_</servlet-name>-->
-    <!--        <servlet-class>com.nmcnpm.web.controller.web.ShoppingCartController</servlet-class>-->
-    <!--    </servlet>-->
-    <!--    <servlet-mapping>-->
-    <!--        <servlet-name>cart_</servlet-name>-->
-    <!--        <url-pattern>/shopping_cart</url-pattern>-->
-    <!--    </servlet-mapping>-->
+        <servlet>
+            <servlet-name>trackOrder</servlet-name>
+            <servlet-class>com.nmcnpm.web.controller.web.TrackOrderController</servlet-class>
+        </servlet>
+        <servlet-mapping>
+            <servlet-name>trackOrder</servlet-name>
+            <url-pattern>/user/track_order</url-pattern>
+        </servlet-mapping>
     <servlet>
         <servlet-name>cart_controller</servlet-name>
         <servlet-class>com.nmcnpm.web.controller.web.CartController</servlet-class>

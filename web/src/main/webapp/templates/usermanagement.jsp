@@ -54,7 +54,7 @@
                     <a class="dropdown-item" href="#"> <i class="far fa-bell"></i>
                         <span>Thông báo của tôi</span></a>
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#"><i class="fas fa-receipt"></i>
+                    <a class="dropdown-item" href="${pageContext.request.contextPath}/user/track_order"><i class="fas fa-receipt"></i>
                         <span> Đơn hàng của tôi </span></a>
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item" href="#" onclick="removeUserInfo()"><i class="fas fa-sign-out-alt"></i>
