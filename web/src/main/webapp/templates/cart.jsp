@@ -11,6 +11,7 @@
 
 <head>
     <title>Cart</title>
+    <link rel="shortcut icon" href="<c:url value="/static/image/lazy.ico"/>">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/cart.css" type="text/css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/static/bootstrap-4.0.0/css/bootstrap.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/static/fontawesome-5.11.2/css/all.css">
@@ -76,14 +77,6 @@
                     </div>
                 </c:forEach>
             </div>
-            <c:choose>
-                <c:when test="${orderDto.listOfData.size() >0}">
-                    Bạn có  ${orderDto.listOfData.size()} sản phẩm
-                </c:when>
-                <c:otherwise>
-                    Bạn chưa có sản phẩm nào
-                </c:otherwise>
-            </c:choose>
             <div class="row main w-100">
                 <div class="row w-100 mt-4">
                     <div class="col-sm-9 content-left">
@@ -194,75 +187,76 @@
 
             </div>
         </div>
-
-        <jsp:include page="commons/footer.jsp"></jsp:include>
-        <script>
-            /**
-             * remove product on cart
-             * */
-            function removeOnCart(productId) {
-                $.ajax({
-                    url: window.location.pathname.substring(0, window.location.pathname.indexOf("/", 2)) + "/api/cart",
-                    contentType: 'application/json;charset=utf-8',
-                    dataType: 'json',
-                    data: {
-                        action: 0,
-                        productId: productId,
-                    },
-                    type: 'get',
-                    success: function (response) {
-                        location.reload();
-                    },
-                    error: function (x, e) {
-                        console.log(e)
-                    }
-                });
-            }
-
-            function call_detail(a) {
-                window.location.replace(window.location.pathname.substring(0, window.location.pathname.indexOf("/", 2)) + "/detail?productID=" + a);
-            }
-
-            /**
-             * function to change quantity of product
-             * @param {int} type
-             * @param {long} productId
-             * type = 1: increase
-             * type = 0: decrease
-             * */
-            function changeQuantity(type, productId) {
-                if (type == 1) {
-                    let i = document.getElementById("quantity_" + productId).value;
-                    document.getElementById("quantity_" + productId).value = parseInt(i) + 1;
-                } else if (type == 0) {
-                    var i = document.getElementById("quantity_" + productId).value;
-                    if (parseInt(i) > 1)
-                        document.getElementById("quantity_" + productId).value = parseInt(i) - 1;
+    </div>
+</div>
+    <jsp:include page="commons/footer.jsp"></jsp:include>
+    <script>
+        /**
+         * remove product on cart
+         * */
+        function removeOnCart(productId) {
+            $.ajax({
+                url: window.location.pathname.substring(0, window.location.pathname.indexOf("/", 2)) + "/api/cart",
+                contentType: 'application/json;charset=utf-8',
+                dataType: 'json',
+                data: {
+                    action: 0,
+                    productId: productId,
+                },
+                type: 'get',
+                success: function (response) {
+                    location.reload();
+                },
+                error: function (x, e) {
+                    console.log(e)
                 }
-                const quantity = document.getElementById("quantity_" + productId).value;
-                $.ajax({
-                    url: window.location.pathname.substring(0, window.location.pathname.indexOf("/", 2)) + "/api/cart",
-                    contentType: 'application/json;charset=utf-8',
-                    dataType: 'json',
-                    data: {
-                        action: 1,
-                        productId: productId,
-                        quantity: quantity
-                    },
-                    type: 'get',
-                    success: function (response) {
-                        location.reload();
-                    },
-                    error: function (x, e) {
-                        console.log(e)
-                    }
-                });
-            }
+            });
+        }
 
-            function abc(id) {
-                window.location.replace(window.location.pathname.substring(0, window.location.pathname.indexOf("/", 2)) + "/detail?productID=" + id);
+        function call_detail(a) {
+            window.location.replace(window.location.pathname.substring(0, window.location.pathname.indexOf("/", 2)) + "/detail?productID=" + a);
+        }
+
+        /**
+         * function to change quantity of product
+         * @param {int} type
+         * @param {long} productId
+         * type = 1: increase
+         * type = 0: decrease
+         * */
+        function changeQuantity(type, productId) {
+            if (type == 1) {
+                let i = document.getElementById("quantity_" + productId).value;
+                document.getElementById("quantity_" + productId).value = parseInt(i) + 1;
+            } else if (type == 0) {
+                var i = document.getElementById("quantity_" + productId).value;
+                if (parseInt(i) > 1)
+                    document.getElementById("quantity_" + productId).value = parseInt(i) - 1;
             }
-        </script>
+            const quantity = document.getElementById("quantity_" + productId).value;
+            $.ajax({
+                url: window.location.pathname.substring(0, window.location.pathname.indexOf("/", 2)) + "/api/cart",
+                contentType: 'application/json;charset=utf-8',
+                dataType: 'json',
+                data: {
+                    action: 1,
+                    productId: productId,
+                    quantity: quantity
+                },
+                type: 'get',
+                success: function (response) {
+                    location.reload();
+                },
+                error: function (x, e) {
+                    console.log(e)
+                }
+            });
+        }
+
+        function abc(id) {
+            window.location.replace(window.location.pathname.substring(0, window.location.pathname.indexOf("/", 2)) + "/detail?productID=" + id);
+        }
+    </script>
 
 </body>
 </html>

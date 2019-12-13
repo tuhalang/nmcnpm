@@ -12,6 +12,7 @@
     <link rel="stylesheet"
           href="${pageContext.request.contextPath}/static/css/usermanagement.css"
           type="text/css">
+    <link rel="shortcut icon" href="<c:url value="/static/image/lazy.ico"/>">
     <link rel="stylesheet" href="<c:url value="/static/css/card.css"/>">
     <link rel="stylesheet" href="<c:url value="/static/bootstrap-4.0.0/css/bootstrap.css"/>">
     <link rel="stylesheet" href="<c:url value="/static/fontawesome-5.11.2/css/all.css"/>">

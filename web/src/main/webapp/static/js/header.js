@@ -142,3 +142,27 @@ function validateAddress(address){
 function resetInputValue(a){
     $(a).css("border","1px solid #ced4da");
 }
+$(window).resize(function () {
+    var width = $(window).width();
+    if (width<600){
+        $("#header").children(":first-child").attr("class","col-sm-5");
+        $("#header").children(":nth-child(2)").attr("class","col-sm-7");
+    }else  if (width<1100 && width>=600){
+        $("#header").children(":first-child").attr("class","col-sm-8");
+        $("#header").children(":nth-child(2)").attr("class","col-sm-4 pr-2 pl-2");
+    }
+    else {
+        $("#header").children(":first-child").attr("class","col-sm-7");
+        $("#header").children(":nth-child(2)").attr("class","col-sm-5 pr-2 pl-2");
+    }
+})
+$(function () {
+    var width = $(window).width();
+    if (width<600){
+        $("#header").children(":first-child").attr("class","col-sm-5");
+        $("#header").children(":nth-child(2)").attr("class","col-sm-7");
+    }else  if (width<1100 && width>=600){
+        $("#header").children(":first-child").attr("class","col-sm-8");
+        $("#header").children(":nth-child(2)").attr("class","col-sm-4 pr-2 pl-2");
+    }
+})

@@ -39,12 +39,11 @@ header {
 }
 
 .navbar .navbar-nav .item-cart {
-	margin :5px;
     border: 2px solid #fff !important;
     padding: 0px 10px 0px 20px !important;
     border-radius: 4px !important;
-    margin-left: 0 !important;
-    letter-spacing: .7px !important;
+    margin:5px 0 5px 0;
+    letter-spacing: 0.7px !important;
     font-weight: 400 !important;
     font-size: 13px !important;
     vertical-align: middle !important;
@@ -110,8 +109,36 @@ li { list-style: none; }
 #form-signup input{
     font-size: 1em;
 }
-@media only screen and (max-width: 968px) {
+#form_search{
+    padding-top: 1.2em;
+}
+@media only screen and (max-width: 1100px) {
+    #input-search-product{
+        width: 300px !important;
+    }
+    #exampleModal img{
+        display: none;
+    }
     #btn-search-product span{
-        visibility: hidden;
+        display: none;
+    }
+    #track-order span{
+        display: none;
+    }
+    #notification span{
+        display: none;
+    }
+    #icon-login1 span,#icon-login2 span,#icon-cart span{
+        display: none;
+    }
+    #icon-cart{
+        padding:0 !important;
+        margin: 0;
+        border: none !important;
+    }
+}
+@media all and (max-width: 640px) {
+    #form_search{
+        display: none;
     }
 }

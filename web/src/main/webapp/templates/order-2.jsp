@@ -10,6 +10,7 @@
 <html>
 <head>
     <title>Title</title>
+    <link rel="shortcut icon" href="<c:url value="/static/image/lazy.ico"/>">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/card.css" type="text/css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/static/bootstrap-4.0.0/css/bootstrap.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/static/fontawesome-5.11.2/css/all.css">
