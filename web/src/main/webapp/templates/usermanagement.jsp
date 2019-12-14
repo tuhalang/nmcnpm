@@ -165,27 +165,37 @@
         var new_password = document.getElementById("new_password");
         var re_new = document.getElementById("re_new_password");
         var address = document.getElementById("address_");
+        var note="";
         if (!validateFullname(fullname.value)) {
             fullname.style.borderColor = "red";
+            note+="fullname,";
         }
         if (!validateEmail(email.value)) {
             email.value = "";
             email.style.borderColor = "red";
+            note+="email,";
         }
         if (!validatePhoneNumber(phone.value)) {
             phone.style.borderColor = "red";
         }
         if (!validatePass(old_password.value)) {
             old_password.style.borderColor = "red";
+            note+="password,";
+        }
+        if (!validateAddress(address.value)) {
+            address.style.borderColor = "red";
+            note+="address,";
         }
         if (!validatePass(new_password.value) || new_password.value==old_password.value) {
             new_password.style.borderColor = "red";
         }
         if (!validatePass(re_new.value) || new_password.value != re_new.value) {
             re_new.style.borderColor = "red";
+            note +="repassword is incorrect,";
         }
-        if (!validateAddress(address.value)) {
-            address.style.borderColor = "red";
+        if (note.length>0){
+            note=note.substring(0,note.length-1)+" is invalid";
+            alert(note);
         }
         if (validateFullname(fullname.value) && validateEmail(email.value) && validatePhoneNumber(phone.value) && validatePass(old_password.value)
             && validateAddress(address.value) && validatePass(new_password.value) && new_password.value!=old_password.value && validatePass(re_new.value) && new_password.value == re_new.value) {

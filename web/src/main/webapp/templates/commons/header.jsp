@@ -113,7 +113,7 @@
                             </ul>
                             <div class="tab-content" id="form-signup">
                                 <div role="tabpanel" class="tab-pane fade show active" id="profile">
-                                    <div class="row w-100 mt-4">
+                                    <div class="row w-100 mt-3">
                                         <div class="col-sm-3">Username</div>
                                         <input type="text" class="form-control col-sm-9" id="login-username"
                                                placeholder="Nhập email hoặc Số điện thoại">
@@ -135,35 +135,59 @@
                                     </div>
                                 </div>
                                 <div role="tabpanel" class="tab-pane fade" id="buzz">
-                                    <div class="row w-100 mt-3">
+                                    <div class="row w-100 mt-3" style="font-size: 0.8em;">
+                                        <div class="col-sm-3"></div>
+                                        <label class="col-sm-9" for="username" style="color: red;visibility: hidden;margin:0 !important;padding-left:0;">Tài khoản không hợp lệ</label>
+                                    </div>
+                                    <div class="row w-100">
                                         <div class="col-sm-3">Tài khoản</div>
                                         <input type="text" class="form-control col-sm-9"
-                                               placeholder="Nhập họ tên" id="username"
+                                               placeholder="Nhập tài khoản" id="username"
                                                oninput="resetInputValue(this)">
                                     </div>
-                                    <div class="row w-100 mt-3">
+                                    <div class="row w-100 mt-1" style="font-size: 0.8em;">
+                                        <div class="col-sm-3"></div>
+                                        <label class="col-sm-9" for="fullname" style="color: red;visibility: hidden;margin:0 !important;padding-left:0;">Họ tên không hợp lệ</label>
+                                    </div>
+                                    <div class="row w-100">
                                         <div class="col-sm-3">Họ tên</div>
                                         <input type="text" class="form-control col-sm-9"
                                                placeholder="Nhập họ tên" id="fullname"
                                                oninput="resetInputValue(this)">
                                     </div>
-                                    <div class="row w-100 mt-3">
+                                    <div class="row w-100 mt-1" style="font-size: 0.8em;">
+                                        <div class="col-sm-3"></div>
+                                        <label class="col-sm-9" for="phone" style="color: red;visibility: hidden;margin:0 !important;padding-left:0;">SDT không hợp lệ</label>
+                                    </div>
+                                    <div class="row w-100">
                                         <div class="col-sm-3">SDT</div>
                                         <input type="text" class="form-control col-sm-9" id="phone"
                                                placeholder="Nhập số điện thoại" oninput="resetInputValue(this)">
                                     </div>
-                                    <div class="row w-100 mt-3">
+                                    <div class="row w-100 mt-1" style="font-size: 0.8em;">
+                                        <div class="col-sm-3"></div>
+                                        <label class="col-sm-9" for="email-account" style="color: red;visibility: hidden;margin:0 !important;padding-left:0;">Email không hợp lệ</label>
+                                    </div>
+                                    <div class="row w-100">
                                         <div class="col-sm-3">Email</div>
                                         <input type="email" class="form-control col-sm-9"
                                                placeholder="Nhập email" id="email-account"
                                                oninput="resetInputValue(this)">
                                     </div>
-                                    <div class="row w-100 mt-3">
+                                    <div class="row w-100 mt-1" style="font-size: 0.8em;">
+                                        <div class="col-sm-3"></div>
+                                        <label class="col-sm-9" for="passw" style="color: red;visibility: hidden;margin:0 !important;padding-left:0;">Mật khẩu không hợp lệ</label>
+                                    </div>
+                                    <div class="row w-100">
                                         <div class="col-sm-3">Mật khẩu</div>
                                         <input type="password" class="form-control col-sm-9" id="passw"
                                                placeholder="Password" oninput="resetInputValue(this)">
                                     </div>
-                                    <div class="row w-100 mt-3">
+                                    <div class="row w-100 mt-1" style="font-size: 0.8em;">
+                                        <div class="col-sm-3"></div>
+                                        <label class="col-sm-9" for="address" style="color: red;visibility: hidden;margin:0 !important;padding-left:0;">Địa chỉ không hợp lệ</label>
+                                    </div>
+                                    <div class="row w-100">
                                         <div class="col-sm-3">Địa chỉ</div>
                                         <input type="text" class="form-control col-sm-9" id="address"
                                                placeholder="Địa chỉ" oninput="resetInputValue(this)">

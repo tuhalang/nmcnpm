@@ -5,35 +5,30 @@ document.getElementById("btn-create").addEventListener("click",function () {
     var phone=document.getElementById("phone");
     var passw=document.getElementById("passw");
     var address=document.getElementById("address");
-    var note="";
     if (!validateFullname(fullname.value)){
+        $('label[for="fullname"]').css("visibility","visible");
         fullname.style.borderColor="red";
-        note+="fullname,";
     }
     if (!validateUsername(username.value)){
+        $('label[for="username"]').css("visibility","visible");
         username.style.borderColor="red";
-        note+="username,";
     }
     if (!validateEmail(email.value)){
         email.value="";
+        $('label[for="email-account"]').css("visibility","visible");
         email.style.borderColor="red";
-        note+="email,";
     }
     if (!validatePhoneNumber(phone.value)){
+        $('label[for="phone"]').css("visibility","visible");
         phone.style.borderColor="red";
-        note+="phone,";
     }
     if (!validatePass(passw.value)){
+        $('label[for="passw"]').css("visibility","visible");
         passw.style.borderColor="red";
-        note+="password,";
     }
     if (!validateAddress(address.value)){
+        $('label[for="address"]').css("visibility","visible");
         address.style.borderColor="red";
-        note+="address,";
-    }
-    if (note.length>0){
-        note=note.substring(0,note.length-1)+" is invalid";
-        alert(note);
     }
     if (validateFullname(fullname.value) && validateEmail(email.value) && validatePhoneNumber(phone.value) && validatePass(passw.value)
     && validateAddress(address.value) && validateUsername(username.value)){
@@ -147,6 +142,7 @@ function validateAddress(address){
 }
 function resetInputValue(a){
     $(a).css("border","1px solid #ced4da");
+    $("label[for='"+$(a).attr('id')+"']").css("visibility","hidden");
 }
 $(window).resize(function () {
     var width = $(window).width();

@@ -26,7 +26,10 @@ public class ShowResultSearchController extends HttpServlet {
         String key = "";
         if (request.getParameter("head") != null) head = Integer.parseInt(request.getParameter("head"));
         if (request.getParameter("key") != null) key = request.getParameter("key").toLowerCase();
-        List<Product> products = productService.findByKey(my_Levenshtein_level_one(key, "h"), 24);
+        if (key.contains("!")) key.replaceAll("!","");
+        if (key.contains("^")) key.replaceAll("^","");
+        if (key.contains("*")) key.replaceAll("*","");
+        List<Product> products = productService.findByKey(my_Levenshtein_level_one(key, "h"), 12);
         request.setAttribute("products", products);
         if (head != 0)
             request.setAttribute("head", productService.findById(head));
