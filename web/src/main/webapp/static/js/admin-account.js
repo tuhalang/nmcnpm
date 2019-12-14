@@ -17,8 +17,8 @@ $("#form-change-password").submit(function (event) {
     /* Send the data using post with element id name and name2*/
     $.ajax({
         url: window.location.pathname.substring(0, window.location.pathname.indexOf("/", 2)) + '/admin/api/account',
-        contentType: 'application/json;charset=utf-8',
-        dataType: 'json',
+        contentType: 'application/text;charset=utf-8',
+        dataType: 'text',
         data: {
             data: btoa("current="+$('#current-pass').val()+"&new="+$('#new-pass').val()+"&confirm="+$('#confirm-pass').val())
         },

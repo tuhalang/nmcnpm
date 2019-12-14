@@ -65,14 +65,14 @@ public class AccountAPIController extends HttpServlet {
         Account account = (Account) SessionUtils.getInstance().getValue(request, "USER");
         account = accountService.findById(account.getAccountID());
 
-        if (_new.equals(confirm)) {
+        if (_new.equals(confirm) && validPassword(_new)) {
             _new = PasswordHashing.getInstance().getMethod().encrypt(_new);
             current = PasswordHashing.getInstance().getMethod().encrypt(current);
             if (current.equals(account.getPassword())) {
                 if (!_new.equals(current)) {
                     account.setPassword(_new);
                     accountService.update(account);
-                    response.getWriter().print("ok");
+                    response.getWriter().print("Password is changed!");
                     response.getWriter().flush();
                 } else {
                     response.getWriter().print("New password equal current password!");
@@ -83,7 +83,7 @@ public class AccountAPIController extends HttpServlet {
                 response.getWriter().flush();
             }
         } else {
-            response.getWriter().print("Error!");
+            response.getWriter().print("New password is invalid or new password not equal confirm password!");
             response.getWriter().flush();
         }
 
@@ -117,6 +117,13 @@ public class AccountAPIController extends HttpServlet {
         encodedString = encodedString.replaceAll("%2F", "/");
         byte[] bytes = Base64.getDecoder().decode(encodedString);
         return new String(bytes);
+    }
+
+    public boolean validPassword(String password){
+        if (!password.matches("^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=\\S+$)(?=.*[#$^+=!*()@%&]).{8,20}$")) {
+            return false;
+        }
+        return true;
     }
 
     /**
