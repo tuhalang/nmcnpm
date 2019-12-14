@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="3.0" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
     <display-name>Tiki</display-name>
+    <distributable/>
     <filter>
         <filter-name>servletFilter</filter-name>
         <filter-class>com.nmcnpm.web.security.AuthorizationFilter</filter-class>
@@ -139,14 +140,14 @@
         <servlet-name>autocomplete_home</servlet-name>
         <url-pattern>/autocomplete_home</url-pattern>
     </servlet-mapping>
-    <!--    <servlet>-->
-    <!--        <servlet-name>cart_</servlet-name>-->
-    <!--        <servlet-class>com.nmcnpm.web.controller.web.ShoppingCartController</servlet-class>-->
-    <!--    </servlet>-->
-    <!--    <servlet-mapping>-->
-    <!--        <servlet-name>cart_</servlet-name>-->
-    <!--        <url-pattern>/shopping_cart</url-pattern>-->
-    <!--    </servlet-mapping>-->
+        <servlet>
+            <servlet-name>trackOrder</servlet-name>
+            <servlet-class>com.nmcnpm.web.controller.web.TrackOrderController</servlet-class>
+        </servlet>
+        <servlet-mapping>
+            <servlet-name>trackOrder</servlet-name>
+            <url-pattern>/user/track_order</url-pattern>
+        </servlet-mapping>
     <servlet>
         <servlet-name>cart_controller</servlet-name>
         <servlet-class>com.nmcnpm.web.controller.web.CartController</servlet-class>
@@ -161,7 +162,7 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>accountMaga</servlet-name>
-        <url-pattern>/accountInfo</url-pattern>
+        <url-pattern>/user/accountInfo</url-pattern>
     </servlet-mapping>
     <servlet>
         <servlet-name>update_address</servlet-name>
@@ -177,7 +178,7 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>confirm_order</servlet-name>
-        <url-pattern>/confirm_order</url-pattern>
+        <url-pattern>/user/confirm_order</url-pattern>
     </servlet-mapping>
     <servlet>
         <servlet-name>product_detail</servlet-name>
@@ -201,7 +202,7 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>order</servlet-name>
-        <url-pattern>/order</url-pattern>
+        <url-pattern>/user/order</url-pattern>
     </servlet-mapping>
     <servlet>
         <servlet-name>showProduct</servlet-name>

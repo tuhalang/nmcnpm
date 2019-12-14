@@ -11,6 +11,7 @@
 
 <head>
     <title>Cart</title>
+    <link rel="shortcut icon" href="<c:url value="/static/image/lazy.ico"/>">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/cart.css" type="text/css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/static/bootstrap-4.0.0/css/bootstrap.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/static/fontawesome-5.11.2/css/all.css">
@@ -40,38 +41,9 @@
             </div>
         </div>
     </div>
-    <c:choose>
-    <c:when test="${cart.numberOfItems >0}">
-    Bạn có  ${cart.numberOfItems} sản phẩm
-    </c:when>
-    <c:otherwise>
-    Bạn chưa có sản phẩm nào
-    </c:otherwise>
-    </c:choose>
+
     <div class="row main w-100">
-        <div class="row w-100 mt-4">
-            <div class="col-sm-9 content-left">
-                <c:forEach var="item" items="${cart.items}" varStatus="iter">
-                <c:set var="product" value="${item.product}">
-                </c:set>
-
-                <div class="container" id="item" onclick="abc(${item.product.productID})">
-                    <div class="row w-100 row-bordered mb-2">
-                        <div class="col-sm-2" id="img-thumb"><img style="width:100px;height:100px;" alt=""
-                                                                  src="${product.thumbImage}">
-                        </div>
-
-                        <div class="col-sm-6">
-                            <div class="row w-100">
-                                <a id="linkSp" href="#" style="color: blue; ">${product.name} </a>
-                            </div>
-                            <btn class="btn btn-success" onclick="deleteProduct(${item.product.productID})">Xoá</btn>
-                        </div>
-
-                    </div>
-                </div>
-                </c:forEach>
-            </div>
+        <h4 style="color: deepskyblue;padding-left: 1em;">
             <c:choose>
                 <c:when test="${orderDto.listOfData.size() >0}">
                     Bạn có  ${orderDto.listOfData.size()} sản phẩm
@@ -80,6 +52,31 @@
                     Bạn chưa có sản phẩm nào
                 </c:otherwise>
             </c:choose>
+        </h4>
+        <div class="row w-100 mt-4">
+            <div class="col-sm-9 content-left">
+                <c:forEach var="item" items="${cart.items}" varStatus="iter">
+                    <c:set var="product" value="${item.product}">
+                    </c:set>
+
+                    <div class="container" id="item" onclick="abc(${item.product.productID})">
+                        <div class="row w-100 row-bordered mb-2">
+                            <div class="col-sm-2" id="img-thumb"><img style="width:100px;height:100px;" alt=""
+                                                                      src="${product.thumbImage}">
+                            </div>
+
+                            <div class="col-sm-6">
+                                <div class="row w-100">
+                                    <a id="linkSp" href="#" style="color: blue; ">${product.name} </a>
+                                </div>
+                                <btn class="btn btn-success" onclick="deleteProduct(${item.product.productID})">Xoá
+                                </btn>
+                            </div>
+
+                        </div>
+                    </div>
+                </c:forEach>
+            </div>
             <div class="row main w-100">
                 <div class="row w-100 mt-4">
                     <div class="col-sm-9 content-left">
@@ -89,14 +86,16 @@
                             <div class="container">
                                 <div class="row w-100 row-bordered mb-2" onclick="call_detail(${product.productID})">
                                     <div class="col-sm-2" id="img-thumb_"><img style="width:100px;height:100px;" alt=""
-                                                                              src="${product.thumbImage}">
+                                                                               src="${product.thumbImage}">
                                     </div>
 
                                     <div class="col-sm-5">
                                         <div class="row w-100">
                                             <a id="linkSp_" href="#" style="color: blue; ">${product.name} </a>
                                         </div>
-                                        <button onclick="removeOnCart(${product.productID})" type="button" class="btn btn-danger">Xóa</button>
+                                        <button onclick="removeOnCart(${product.productID})" type="button"
+                                                class="btn btn-danger">Xóa
+                                        </button>
                                     </div>
 
                                     <div class="col-sm-3 price">
@@ -105,15 +104,16 @@
 
                                     <div class="col-sm-2" id="quantity">
                                         <p>Số lượng</p>
-
                                         <div class="input-group">
                                             <div class="input-group-prepend">
-                                                <button onclick="changeQuantity(1, ${product.productID})" class="btn btn-outline-secondary" type="button">
+                                                <button onclick="changeQuantity(1, ${product.productID})"
+                                                        class="btn btn-outline-secondary" type="button">
                                                     <i class="fas fa-plus"></i>
                                                 </button>
                                                 <input type="text" style="width:40px;" class="form-control"
                                                        value="${item.quantity}" id="quantity_${product.productID}">
-                                                <button onclick="changeQuantity(0, ${product.productID})" class="btn btn-outline-secondary" type="button">
+                                                <button onclick="changeQuantity(0, ${product.productID})"
+                                                        class="btn btn-outline-secondary" type="button">
                                                     <i class="fas fa-minus"></i>
                                                 </button>
 
@@ -134,7 +134,7 @@
                             <div class="row w-100">
                                 <div class="tam-tinh">
                                     <p class="list-info-price"><span>Tạm tính:</span> <strong>
-                                            ${orderDto.totalMoney} <span>VND</span>
+                                        ${orderDto.totalMoney} <span>VND</span>
                                     </strong></p>
                                 </div>
                             </div>
@@ -142,7 +142,7 @@
                                 <div class="total2 each-row">
                                     <div class="each-row"><span> Thành tiền: </span></div>
                                     <div class="amount each-row" style="color:red;">
-                                            ${orderDto.totalMoney} VND
+                                        ${orderDto.totalMoney} VND
 
                                         <p><small>(Đã bao gồm VAT nếu có)</small></p>
                                     </div>
@@ -152,18 +152,24 @@
                                 <form action="${pageContext.request.contextPath}/confirm_address" method="post">
                                     <c:choose>
                                         <c:when test="${orderDto.listOfData.size() >0}">
-                                            <button type="submit" class="btn btn-large btn-block btn-danger btn-checkout" id="dat-hang"
+                                            <button type="submit"
+                                                    class="btn btn-large btn-block btn-danger btn-checkout"
+                                                    id="dat-hang"
                                                 <%--                                onclick="location.href='<c:url value="/confirm_address"/>';--%>
-                                                    return false;">Tiến
+                                                    return false;
+                                            ">Tiến
                                             hành
                                             đặt
                                             hàng
                                             </button>
                                         </c:when>
                                         <c:otherwise>
-                                            <button type="submit" class="btn btn-large btn-block btn-danger btn-checkout" id="dat-hang" disabled
+                                            <button type="submit"
+                                                    class="btn btn-large btn-block btn-danger btn-checkout"
+                                                    id="dat-hang" disabled
                                                 <%--                                onclick="location.href='<c:url value="/confirm_address"/>';--%>
-                                                    return false;">Tiến
+                                                    return false;
+                                            ">Tiến
                                             hành
                                             đặt
                                             hàng
@@ -181,73 +187,76 @@
 
             </div>
         </div>
+    </div>
+</div>
+<jsp:include page="commons/footer.jsp"></jsp:include>
+<script>
+    /**
+     * remove product on cart
+     * */
+    function removeOnCart(productId) {
+        $.ajax({
+            url: window.location.pathname.substring(0, window.location.pathname.indexOf("/", 2)) + "/api/cart",
+            contentType: 'application/json;charset=utf-8',
+            dataType: 'json',
+            data: {
+                action: 0,
+                productId: productId,
+            },
+            type: 'get',
+            success: function (response) {
+                location.reload();
+            },
+            error: function (x, e) {
+                console.log(e)
+            }
+        });
+    }
 
-            <jsp:include page="commons/footer.jsp"></jsp:include>
-        <script>
-            /**
-             * remove product on cart
-             * */
-            function removeOnCart(productId) {
-                $.ajax({
-                    url: window.location.pathname.substring(0, window.location.pathname.indexOf("/", 2)) + "/api/cart",
-                    contentType: 'application/json;charset=utf-8',
-                    dataType: 'json',
-                    data: {
-                        action: 0,
-                        productId: productId,
-                    },
-                    type: 'get',
-                    success: function (response) {
-                        location.reload();
-                    },
-                    error: function (x, e) {
-                        console.log(e)
-                    }
-                });
-            }
-            function call_detail(a){
-                window.location.replace(window.location.pathname.substring(0, window.location.pathname.indexOf("/", 2))+"/detail?productID="+a);
-            }
-            /**
-             * function to change quantity of product
-             * @param {int} type
-             * @param {long} productId
-             * type = 1: increase
-             * type = 0: decrease
-             * */
-            function changeQuantity(type, productId) {
-                if (type == 1) {
-                    let i = document.getElementById("quantity_" + productId).value;
-                    document.getElementById("quantity_" + productId).value = parseInt(i) + 1;
-                } else if (type == 0) {
-                    var i = document.getElementById("quantity_" + productId).value;
-                    if (parseInt(i) > 1)
-                        document.getElementById("quantity_" + productId).value = parseInt(i) - 1;
-                }
-                const quantity = document.getElementById("quantity_" + productId).value;
-                $.ajax({
-                    url: window.location.pathname.substring(0, window.location.pathname.indexOf("/", 2)) + "/api/cart",
-                    contentType: 'application/json;charset=utf-8',
-                    dataType: 'json',
-                    data: {
-                        action: 1,
-                        productId: productId,
-                        quantity: quantity
-                    },
-                    type: 'get',
-                    success: function (response) {
-                        if (response=="0") alert("Mặt hàng này không đủ số lượng yêu cầu");
-                        location.reload();
-                    },
-                    error: function (x, e) {
-                        console.log(e)
-                    }
-                });
-            }
-            function abc(id) {
-                window.location.replace(window.location.pathname.substring(0, window.location.pathname.indexOf("/", 2))+ "/detail?productID=" +id);
-            }
-        </script>
+    function call_detail(a) {
+        window.location.replace(window.location.pathname.substring(0, window.location.pathname.indexOf("/", 2)) + "/detail?productID=" + a);
+    }
 
+    /**
+     * function to change quantity of product
+     * @param {int} type
+     * @param {long} productId
+     * type = 1: increase
+     * type = 0: decrease
+     * */
+    function changeQuantity(type, productId) {
+        if (type == 1) {
+            let i = document.getElementById("quantity_" + productId).value;
+            document.getElementById("quantity_" + productId).value = parseInt(i) + 1;
+        } else if (type == 0) {
+            var i = document.getElementById("quantity_" + productId).value;
+            if (parseInt(i) > 1)
+                document.getElementById("quantity_" + productId).value = parseInt(i) - 1;
+        }
+        const quantity = document.getElementById("quantity_" + productId).value;
+        $.ajax({
+            url: window.location.pathname.substring(0, window.location.pathname.indexOf("/", 2)) + "/api/cart",
+            contentType: 'application/json;charset=utf-8',
+            dataType: 'json',
+            data: {
+                action: 1,
+                productId: productId,
+                quantity: quantity
+            },
+            type: 'get',
+            success: function (response) {
+                if (response == "0") alert("Mặt hàng này không đủ số lượng yêu cầu");
+                location.reload();
+            },
+            error: function (x, e) {
+                console.log(e)
+            }
+        });
+    }
+
+    function abc(id) {
+        window.location.replace(window.location.pathname.substring(0, window.location.pathname.indexOf("/", 2)) + "/detail?productID=" + id);
+    }
+</script>
 </body>
 </html>

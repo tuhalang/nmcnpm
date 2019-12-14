@@ -15,6 +15,7 @@
 <html>
 <head>
     <title>Lazy</title>
+    <link rel="shortcut icon" href="<c:url value="/static/image/lazy.ico"/>">
     <link rel="stylesheet" href="<c:url value="/static/css/card.css"/>">
     <link rel="stylesheet" href="<c:url value="/static/bootstrap-4.0.0/css/bootstrap.css"/>">
     <link rel="stylesheet" href="<c:url value="/static/fontawesome-5.11.2/css/all.css"/>">
@@ -62,8 +63,7 @@
                                     <div class="card" style="max-width: 15rem;" onclick="abc(${head.productID})">
                                         <a href="#" class="card-link"> <img
                                                 src="${head.image}"
-                                                class="card-img-top" alt="image"
-                                                style="height:200px;width:fit-content;">
+                                                class="card-img-top" alt="image">
                                             <div class="card-body">
                                                 <p class="card-title"
                                                    style="font-size: 0.8em;line-height: 1.2;">${head.name}</p>
@@ -71,7 +71,7 @@
                                                     <b>${head.price} VND</b>
                                                     <span class="sale-tag"><small>-12%</small></span>
                                                 </p>
-                                                <div class="row">
+                                                <div class="row w-100">
                                                     <span class="fa fa-star checked"></span>
                                                     <span class="fa fa-star checked"></span>
                                                     <span class="fa fa-star checked"></span>
@@ -92,8 +92,7 @@
                                         <div class="card" style="max-width: 15rem;" onclick="abc(${product.productID})">
                                             <a href="#" class="card-link"> <img
                                                     src="${product.image}"
-                                                    class="card-img-top" alt="image"
-                                                    style="height:200px;width:fit-content;">
+                                                    class="card-img-top" alt="image">
                                                 <div class="card-body">
                                                     <p class="card-title"
                                                        style="font-size: 0.8em;line-height: 1.2;height: 2.5em;overflow: hidden;">${product.name}</p>
@@ -101,7 +100,7 @@
                                                         <b>${product.price} VND</b>
                                                         <span class="sale-tag"><small>-12%</small></span>
                                                     </p>
-                                                    <div class="row">
+                                                    <div class="row w-100">
                                                         <span class="fa fa-star checked"></span>
                                                         <span class="fa fa-star checked"></span>
                                                         <span class="fa fa-star checked"></span>

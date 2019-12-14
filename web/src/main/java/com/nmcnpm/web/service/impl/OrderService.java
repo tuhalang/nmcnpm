@@ -59,6 +59,27 @@ public class OrderService implements IOrderService {
     }
 
     @Override
+    public OrderCustomerDto find(Long customerId, int currentPage, int elePerPage) {
+        List<CustomerOrder> orders = new ArrayList<>();
+        for (CustomerOrder order : customerOrderDAO.find(customerId,(currentPage - 1) * elePerPage, elePerPage)) {
+            order.setOrderedProducts(orderedProductDAO.findByCustomerOrderID(order.getOrderID()));
+            long amount = 0;
+            for (OrderedProduct orderedProduct : order.getOrderedProducts()) {
+                amount += orderedProduct.getQuantity() * productDAO.findById(orderedProduct.getProductID()).getPrice();
+            }
+            order.setCustomer(customerDAO.findById(order.getCustomerID()));
+            order.setAmount(amount);
+            orders.add(order);
+        }
+        OrderCustomerDto orderDto = new OrderCustomerDto();
+        orderDto.setCurrentPage(currentPage);
+        orderDto.setElePerPage(elePerPage);
+        orderDto.setTotalPages(customerOrderDAO.count() / elePerPage + 1);
+        orderDto.setListOfData(orders);
+        return orderDto;
+    }
+
+    @Override
     public CustomerOrder findById(long orderId) {
         CustomerOrder order = new CustomerOrder();
         order = customerOrderDAO.findByOrderId(orderId);

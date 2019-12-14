@@ -27,7 +27,7 @@ public class AccountService implements IAccountService {
         if (!account.getUsername().matches("^[a-zA-Z0-9._-]{5,}$")) {
             return false;
         }
-        if (!account.getPassword().matches("^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=\\S+$).{8,20}$")) {
+        if (!account.getPassword().matches("^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=\\S+$)(?=.*[#$^+=!*()@%&]).{8,20}$")) {
             return false;
         }
         return true;

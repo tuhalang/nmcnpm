@@ -8,6 +8,10 @@ import java.util.ResourceBundle;
 
 import com.nmcnpm.database.dao.IBaseDao;
 import com.nmcnpm.database.mapper.IRowMapper;
+import com.nmcnpm.database.utils.AES;
+import com.nmcnpm.hashing.DataHashing;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class DataBaseDaoImpl<T> implements IBaseDao<T> {
 	ResourceBundle resourceBundle = ResourceBundle.getBundle("application");
@@ -15,16 +19,23 @@ public class DataBaseDaoImpl<T> implements IBaseDao<T> {
 		Connection conn = null;
 		try {
 			Class.forName(resourceBundle.getString("driver.name"));
-			conn = DriverManager.getConnection(
-					resourceBundle.getString("nmcnpm.mysql.url"),
-					resourceBundle.getString("nmcnpm.mysql.user"),
-					resourceBundle.getString("nmcnpm.mysql.password"));
+//			conn = DriverManager.getConnection(
+//					resourceBundle.getString("nmcnpm.mysql.url"),
+//					resourceBundle.getString("nmcnpm.mysql.user"),
+//					resourceBundle.getString("nmcnpm.mysql.password"));
+                        conn = DriverManager.getConnection(
+                                AES.decrypt(resourceBundle.getString("nmcnpm.mysql.url")),
+                                AES.decrypt(resourceBundle.getString("nmcnpm.mysql.user")),
+                                AES.decrypt(resourceBundle.getString("nmcnpm.mysql.password"))
+                        );
 			return conn;
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
-		}
+		} catch (Exception ex) {
+                Logger.getLogger(DataBaseDaoImpl.class.getName()).log(Level.SEVERE, null, ex);
+            }
 		return null;
 	}
 	

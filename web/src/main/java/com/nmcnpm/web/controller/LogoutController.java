@@ -22,7 +22,7 @@ public class LogoutController extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         SessionUtils.getInstance().removeValue(req,"IS_LOGIN");
         SessionUtils.getInstance().removeValue(req,"USER");
-        resp.sendRedirect(req.getContextPath()+"/signin");
+        resp.sendRedirect(req.getContextPath()+"/home");
     }
 
     @Override

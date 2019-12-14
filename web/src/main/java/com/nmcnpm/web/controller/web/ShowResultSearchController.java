@@ -10,7 +10,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.net.URLDecoder;
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.List;
 
 @WebServlet(name = "ShowResultSearch")
@@ -23,7 +25,7 @@ public class ShowResultSearchController extends HttpServlet {
         long head = 0;
         String key = "";
         if (request.getParameter("head") != null) head = Integer.parseInt(request.getParameter("head"));
-        if (request.getParameter("key") != null) key = request.getParameter("key").toString().toLowerCase();
+        if (request.getParameter("key") != null) key = request.getParameter("key").toLowerCase();
         List<Product> products = productService.findByKey(my_Levenshtein_level_one(key, "h"), 24);
         request.setAttribute("products", products);
         if (head != 0)

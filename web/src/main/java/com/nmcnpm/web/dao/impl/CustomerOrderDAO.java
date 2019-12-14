@@ -56,9 +56,25 @@ public class CustomerOrderDAO extends DataBaseDaoImpl<CustomerOrder> implements 
     }
 
     @Override
+    public CustomerOrder findByCustomerId(long id) {
+        String sql = "select * from customer_order where customer_id=?";
+        List<CustomerOrder> customerOrders = query(sql,new CustomerOrderMapper(), id);
+        if(customerOrders.isEmpty())
+            return null;
+        return customerOrders.get(0);
+    }
+
+    @Override
     public List<CustomerOrder> find(int start, int limit) {
         String sql = "select * from customer_order order by FIELD(status, 'WAITING', 'CONFIRM', 'DELIVERING', 'RECEIVED'), created_at limit ?,?";
         List<CustomerOrder> customerOrders = query(sql,new CustomerOrderMapper(), start, limit);
+        return customerOrders;
+    }
+
+    @Override
+    public List<CustomerOrder> find(Long customerId, int start, int limit) {
+        String sql = "select * from customer_order where customer_id=? order by FIELD(status, 'WAITING', 'CONFIRM', 'DELIVERING', 'RECEIVED'), created_at limit ?,?";
+        List<CustomerOrder> customerOrders = query(sql,new CustomerOrderMapper(),customerId, start, limit);
         return customerOrders;
     }
 

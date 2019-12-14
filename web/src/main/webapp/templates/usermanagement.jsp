@@ -1,3 +1,4 @@
+<%@ page import="com.nmcnpm.web.utils.SessionUtils" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" %>
@@ -11,6 +12,7 @@
     <link rel="stylesheet"
           href="${pageContext.request.contextPath}/static/css/usermanagement.css"
           type="text/css">
+    <link rel="shortcut icon" href="<c:url value="/static/image/lazy.ico"/>">
     <link rel="stylesheet" href="<c:url value="/static/css/card.css"/>">
     <link rel="stylesheet" href="<c:url value="/static/bootstrap-4.0.0/css/bootstrap.css"/>">
     <link rel="stylesheet" href="<c:url value="/static/fontawesome-5.11.2/css/all.css"/>">
@@ -52,9 +54,11 @@
                     <a class="dropdown-item" href="#"> <i class="far fa-bell"></i>
                         <span>Thông báo của tôi</span></a>
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#"><i class="fas fa-receipt"></i>
+                    <a class="dropdown-item" href="${pageContext.request.contextPath}/user/track_order"><i class="fas fa-receipt"></i>
                         <span> Đơn hàng của tôi </span></a>
-
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="#" onclick="removeUserInfo()"><i class="fas fa-sign-out-alt"></i>
+                        <span> Đăng xuất </span></a>
                 </div>
             </div>
 
@@ -174,7 +178,7 @@
         if (!validatePass(old_password.value)) {
             old_password.style.borderColor = "red";
         }
-        if (!validatePass(new_password.value)) {
+        if (!validatePass(new_password.value) || new_password.value==old_password.value) {
             new_password.style.borderColor = "red";
         }
         if (!validatePass(re_new.value) || new_password.value != re_new.value) {
@@ -184,18 +188,18 @@
             address.style.borderColor = "red";
         }
         if (validateFullname(fullname.value) && validateEmail(email.value) && validatePhoneNumber(phone.value) && validatePass(old_password.value)
-            && validateAddress(address.value) && validatePass(new_password.value) && validatePass(re_new.value) && new_password.value == re_new.value) {
+            && validateAddress(address.value) && validatePass(new_password.value) && new_password.value!=old_password.value && validatePass(re_new.value) && new_password.value == re_new.value) {
             var account = "old_password=" + document.getElementById("old_password").value;
             var customer = "phone_number=" + document.getElementById("phone_number").value + "&email=" + document.getElementById("form_email").value
                 + "&address=" + document.getElementById("address_").value + "&fullname=" + document.getElementById("full_name").value;
             var new_pass = "new_password=" + document.getElementById("new_password").value;
             $.ajax({
-                url: window.location.pathname.substring(0, window.location.pathname.indexOf("/", 2)) + "/accountInfo",
+                url: window.location.pathname.substring(0, window.location.pathname.indexOf("/", 2)) + "/user/accountInfo",
                 contentType: 'application/json;charset=utf-8',
                 dataType: 'text',
                 headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
                 data: {
-                    data: btoa(account + "&" + customer + "&" + new_pass)
+                    data: btoa(encodeURIComponent(account) + "&" + encodeURIComponent(customer) + "&" + encodeURIComponent(new_pass))
                 },
                 type: 'post',
                 success: function (response) {
@@ -239,6 +243,9 @@
 
     function resetInputValue(a) {
         $(a).css("border", "1px solid #ced4da");
+    }
+    function removeUserInfo() {
+        window.location.replace(window.location.pathname.substring(0, window.location.pathname.indexOf("/", 2))+"/logout");
     }
 </script>
 </body>

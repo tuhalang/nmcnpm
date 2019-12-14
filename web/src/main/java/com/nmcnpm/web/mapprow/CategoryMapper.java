@@ -17,6 +17,7 @@ public class CategoryMapper implements IRowMapper<Category>{
 			category.setImage(result.getString("image"));
 			category.setCreatedAt(result.getDate("created_at"));
 			category.setLastModifiedAt(result.getDate("last_modified_at"));
+			category.setIcon(result.getString("icon"));
 			return category;
 		}catch (SQLException e) {
 			e.printStackTrace();

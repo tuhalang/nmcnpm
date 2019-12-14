@@ -10,6 +10,7 @@
 <html>
 <head>
     <title>Title</title>
+    <link rel="shortcut icon" href="<c:url value="/static/image/lazy.ico"/>">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/card.css" type="text/css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/static/bootstrap-4.0.0/css/bootstrap.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/static/fontawesome-5.11.2/css/all.css">
@@ -34,7 +35,7 @@
     <div class="container">
         <h3>2. Địa chỉ giao hàng</h3>
         <div class="row row-2">
-            <form id="form-address" method="post" action="${pageContext.request.contextPath}/confirm_order">
+            <form id="form-address" method="post" action="${pageContext.request.contextPath}/user/confirm_order">
                 <div class="container">
                     <h5>Chọn địa chỉ giao hàng có sẵn bên dưới</h5>
                 </div>
