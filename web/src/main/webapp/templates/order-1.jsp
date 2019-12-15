@@ -72,35 +72,59 @@
                                 </div>
                             </div>
                             <div role="tabpanel" class="tab-pane fade" id="buzz">
-                                <div class="row w-100 mt-3">
+                                <div class="row w-100 mt-3" style="font-size: 0.8em;">
+                                    <div class="col-sm-3"></div>
+                                    <label class="col-sm-9" for="username" style="color: red;visibility: hidden;margin:0 !important;padding-left:0;">Tài khoản không hợp lệ</label>
+                                </div>
+                                <div class="row w-100">
                                     <div class="col-sm-3">Tài khoản</div>
                                     <input type="text" class="form-control col-sm-9"
-                                           placeholder="Nhập họ tên" id="username"
+                                           placeholder="Nhập tài khoản" id="username"
                                            oninput="resetInputValue(this)">
                                 </div>
-                                <div class="row w-100 mt-3">
+                                <div class="row w-100 mt-1" style="font-size: 0.8em;">
+                                    <div class="col-sm-3"></div>
+                                    <label class="col-sm-9" for="fullname" style="color: red;visibility: hidden;margin:0 !important;padding-left:0;">Họ tên không hợp lệ</label>
+                                </div>
+                                <div class="row w-100">
                                     <div class="col-sm-3">Họ tên</div>
                                     <input type="text" class="form-control col-sm-9"
                                            placeholder="Nhập họ tên" id="fullname"
                                            oninput="resetInputValue(this)">
                                 </div>
-                                <div class="row w-100 mt-3">
+                                <div class="row w-100 mt-1" style="font-size: 0.8em;">
+                                    <div class="col-sm-3"></div>
+                                    <label class="col-sm-9" for="phone" style="color: red;visibility: hidden;margin:0 !important;padding-left:0;">SDT không hợp lệ</label>
+                                </div>
+                                <div class="row w-100">
                                     <div class="col-sm-3">SDT</div>
                                     <input type="text" class="form-control col-sm-9" id="phone"
                                            placeholder="Nhập số điện thoại" oninput="resetInputValue(this)">
                                 </div>
-                                <div class="row w-100 mt-3">
+                                <div class="row w-100 mt-1" style="font-size: 0.8em;">
+                                    <div class="col-sm-3"></div>
+                                    <label class="col-sm-9" for="email-account" style="color: red;visibility: hidden;margin:0 !important;padding-left:0;">Email không hợp lệ</label>
+                                </div>
+                                <div class="row w-100">
                                     <div class="col-sm-3">Email</div>
                                     <input type="email" class="form-control col-sm-9"
                                            placeholder="Nhập email" id="email-account"
                                            oninput="resetInputValue(this)">
                                 </div>
-                                <div class="row w-100 mt-3">
+                                <div class="row w-100 mt-1" style="font-size: 0.8em;">
+                                    <div class="col-sm-3"></div>
+                                    <label class="col-sm-9" for="passw" style="color: red;visibility: hidden;margin:0 !important;padding-left:0;">Mật khẩu không hợp lệ</label>
+                                </div>
+                                <div class="row w-100">
                                     <div class="col-sm-3">Mật khẩu</div>
                                     <input type="password" class="form-control col-sm-9" id="passw"
                                            placeholder="Password" oninput="resetInputValue(this)">
                                 </div>
-                                <div class="row w-100 mt-3">
+                                <div class="row w-100 mt-1" style="font-size: 0.8em;">
+                                    <div class="col-sm-3"></div>
+                                    <label class="col-sm-9" for="address" style="color: red;visibility: hidden;margin:0 !important;padding-left:0;">Địa chỉ không hợp lệ</label>
+                                </div>
+                                <div class="row w-100">
                                     <div class="col-sm-3">Địa chỉ</div>
                                     <input type="text" class="form-control col-sm-9" id="address"
                                            placeholder="Địa chỉ" oninput="resetInputValue(this)">
@@ -153,22 +177,28 @@
         var passw=document.getElementById("passw");
         var address=document.getElementById("address");
         if (!validateFullname(fullname.value)){
+            $('label[for="fullname"]').css("visibility","visible");
             fullname.style.borderColor="red";
         }
         if (!validateUsername(username.value)){
+            $('label[for="username"]').css("visibility","visible");
             username.style.borderColor="red";
         }
         if (!validateEmail(email.value)){
             email.value="";
+            $('label[for="email-account"]').css("visibility","visible");
             email.style.borderColor="red";
         }
         if (!validatePhoneNumber(phone.value)){
+            $('label[for="phone"]').css("visibility","visible");
             phone.style.borderColor="red";
         }
         if (!validatePass(passw.value)){
+            $('label[for="passw"]').css("visibility","visible");
             passw.style.borderColor="red";
         }
         if (!validateAddress(address.value)){
+            $('label[for="address"]').css("visibility","visible");
             address.style.borderColor="red";
         }
         if (validateFullname(fullname.value) && validateEmail(email.value) && validatePhoneNumber(phone.value) && validatePass(passw.value)
@@ -184,7 +214,13 @@
                 type: 'post',
                 success: function (response) {
                     if (response=="1") {
-                        window.location.replace(window.location.pathname.substring(0, window.location.pathname.indexOf("/", 2)  + "templates/order-1.jsp"));
+                        username.value="";
+                        fullname.value="";
+                        email.value="";
+                        phone.value="";
+                        passw.value="";
+                        address.value="";
+                        $("#signin_").click();
                     }
                     else alert(response);
                 },
@@ -195,37 +231,69 @@
         }
     })
     document.getElementById("login").addEventListener("click",function () {
-        console.log(btoa("txtUsername="+document.getElementById("login-username").value+"&txtPassword="+document.getElementById("login-pass").value));
+        var username=document.getElementById("login-username");
+        var passw=document.getElementById("login-pass");
+        var note="";
+        if (!validateUsername(username.value)){
+            username.style.borderColor="red";
+            note+="username,";
+        }
+        if (!validatePass(passw.value)){
+            passw.style.borderColor="red";
+            note+="password,";
+        }
+        if (note.length>0){
+            note=note.substring(0,note.length-1)+" is invalid";
+            alert(note);
+        }
+        if(validatePass(passw.value) && validateUsername(username.value)) login();
+    })
+    document.getElementById("login-pass").addEventListener("keyup",function (e) {
+        if (e.keyCode===13){
+            login();
+        }
+        if (e.keyCode===38){
+            document.getElementById("login-username").focus();
+        }
+    })
+    document.getElementById("login-username").addEventListener("keyup",function (e) {
+        if (e.keyCode===40 || e.keyCode===13){
+            document.getElementById("login-pass").focus();
+        }
+    })
+    function login() {
         $.ajax({
             url: window.location.pathname.substring(0, window.location.pathname.indexOf("/", 2)) + "/signin",
             contentType: 'application/json;charset=utf-8',
             dataType: 'text',
             headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
             data: {
-                data:btoa("txtUsername="+document.getElementById("login-username").value+"&txtPassword="+document.getElementById("login-pass").value)
+                data:btoa("txtUsername="+encodeURIComponent(document.getElementById("login-username").value)+"&txtPassword="+encodeURIComponent(document.getElementById("login-pass").value))
             },
             type: 'post',
             success: function (response) {
                 if (response=="1") {
-                    window.location.replace(window.location.pathname.substring(0, window.location.pathname.indexOf("/", 2) + "templates/order-2.jsp"));
+                    window.location.replace(window.location.pathname.substring(0, window.location.pathname.indexOf("/", 2)));
                 }
-
-                else alert("oops!");
+                else if (response=="2")
+                    window.location.replace(window.location.pathname.substring(0, window.location.pathname.indexOf("/", 2))+"/admin");
+                else alert("username or password is incorrect!");
             },
             error: function (x, e) {
                 console.log(e)
             }
         });
-    })
-    function call_info(a) {
-        window.location.replace(window.location.pathname.substring(0, window.location.pathname.indexOf("/", 2))+"/accountInfo?accountID="+a);
+    }
+    function call_info() {
+        window.location.replace(window.location.pathname.substring(0, window.location.pathname.indexOf("/", 2))+"/user/accountInfo");
     }
     function validateFullname(name) {
         if (name=="") return false;
         return true;
     }
     function validateUsername(username){
-        if (username.includes(" ") && username.length<10) return false;
+        var format = /[ !@#$%^&*()+\-=\[\]{};':"\\|,.<>\/?]/;
+        if (username.includes(" ") || username.length<5 || format.test(username)) return false;
         return true;
     }
     function validateEmail(email) {
@@ -233,11 +301,11 @@
         return re.test(email);
     }
     function validatePhoneNumber(phone){
-        var vnf_regex = /((09|03|07|08|05)+([0-9]{8})\b)/g;
+        var vnf_regex = /((\+84|09|03|07|08|05)+([0-9]{8})\b)/g;
         return vnf_regex.test(phone) || Number.isInteger(phone);
     }
     function validatePass(passw){
-        return (passw.length>6 && passw.length<32);
+        return (passw.length>6 && passw.length<20);
     }
     function validateAddress(address){
         if (address=="") return false;
@@ -245,7 +313,29 @@
     }
     function resetInputValue(a){
         $(a).css("border","1px solid #ced4da");
+        $("label[for='"+$(a).attr('id')+"']").css("visibility","hidden");
     }
+    $(document).keyup(function (e) {
+        if (e.keyCode===13 || e.keyCode==40){
+            switch (e.target.id) {
+                case "username":$("#fullname").focus();break;
+                case "fullname":$("#phone").focus();break;
+                case "phone":$("#email-account").focus();break;
+                case "email-account":$("#passw").focus();break;
+                case "passw":$("#address").focus();break;
+            }
+        }
+        if (e.keyCode==13 && e.target.id=="address") $("#btn-create").click();
+        if (e.keyCode===38){
+            switch (e.target.id) {
+                case "address":$("#passw").focus();break;
+                case "fullname":$("#username").focus();break;
+                case "phone":$("#fullname").focus();break;
+                case "email-account":$("#phone").focus();break;
+                case "passw":$("#email-account").focus();break;
+            }
+        }
+    })
 </script>
 </body>
 </html>
