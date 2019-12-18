@@ -273,10 +273,8 @@
             type: 'post',
             success: function (response) {
                 if (response=="1") {
-                    window.location.replace(window.location.pathname.substring(0, window.location.pathname.indexOf("/", 2)));
+                    window.location.replace(window.location.pathname.substring(0, window.location.pathname.indexOf("/", 2))+"/confirm_address");
                 }
-                else if (response=="2")
-                    window.location.replace(window.location.pathname.substring(0, window.location.pathname.indexOf("/", 2))+"/admin");
                 else alert("username or password is incorrect!");
             },
             error: function (x, e) {

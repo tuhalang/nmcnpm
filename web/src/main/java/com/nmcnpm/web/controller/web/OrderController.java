@@ -53,7 +53,7 @@ public class OrderController extends HttpServlet {
             orderProductService.save(id, orderedProducts);
         }
         for (Map.Entry<String, String> entry : card.entrySet()) {
-            CookieUtils.getInstance().removeCookie(response, entry.getKey(), entry.getValue());
+            CookieUtils.getInstance().removeCookie(response, entry.getKey(), request.getContextPath());
         }
 
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("/home");
