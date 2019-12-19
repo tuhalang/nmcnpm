@@ -12,9 +12,9 @@
 </head>
 <body>
     <form method="post" action="${pageContext.request.contextPath}/signin">
-        <input type="text" name="txtUsername" placeholder="username">
-        <input type="password" name="txtPassword" placeholder="password">
-        <input type="submit" value="SignIn">
+        <input type="text" name="txtUsername" placeholder="tên tài khoản">
+        <input type="password" name="txtPassword" placeholder="mật khẩu">
+        <input type="submit" value="Đăng nhập">
     </form>
 </body>
 </html>
