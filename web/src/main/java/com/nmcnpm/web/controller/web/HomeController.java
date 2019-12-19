@@ -50,7 +50,7 @@ public class HomeController extends HttpServlet {
         else {
             ProductDto productDto = productService.find(page,recordsPerPage);
             request.setAttribute("productDto", productDto);
-            Category category=new Category(0L,"All product","",0L);
+            Category category=new Category(0L,"Tất cả sản phẩm","",0L);
             request.setAttribute("category",category);
         }
 
