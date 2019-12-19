@@ -45,12 +45,12 @@
                 <div class="panel-body panel-group">
                     <div class="panel-group">
                         <div class="panel panel-default mt-3 pb-2" style="border-bottom: 1px solid rgba(0,0,0,0.1);">
-                            <h3>Order Information</h3>
+                            <h3>Thông tin đơn hàng</h3>
                             <div class="panel-body row w-100 mt-2">
-                                <div class="col-sm-3"><strong>Created At</strong></div>
-                                <div class="col-sm-3"><strong>Last Modified At</strong></div>
-                                <div class="col-sm-3"><strong>Status</strong></div>
-                                <div class="col-sm-3"><strong>Payment</strong></div>
+                                <div class="col-sm-3"><strong>Ngày tạo</strong></div>
+                                <div class="col-sm-3"><strong>Sửa đổi lần cuối</strong></div>
+                                <div class="col-sm-3"><strong>Trạng thái</strong></div>
+                                <div class="col-sm-3"><strong>Thanh toán</strong></div>
                             </div>
                             <div class="panel-body row w-100">
                                 <div class="col-sm-3">${order.createdAt}</div>
@@ -62,12 +62,12 @@
                         </div>
 
                         <div class="panel panel-default mt-3 pb-2"style="border-bottom: 1px solid rgba(0,0,0,0.1);">
-                            <h3>Customer Information</h3>
+                            <h3>Thông tin khách hàng</h3>
                             <div class="panel-body row w-100 mt-2">
-                                <div class="col-sm-2"><strong>Name</strong></div>
-                                <div class="col-sm-5"><strong>Address</strong></div>
+                                <div class="col-sm-2"><strong>Tên</strong></div>
+                                <div class="col-sm-5"><strong>Địa chỉ</strong></div>
                                 <div class="col-sm-3"><strong>Email</strong></div>
-                                <div class="col-sm-2"><strong>Phone</strong></div>
+                                <div class="col-sm-2"><strong>Điện thoại</strong></div>
                             </div>
                             <div class="panel-body row w-100">
                                 <div class="col-sm-2">${order.customer.name}</div>
@@ -78,11 +78,11 @@
                         </div>
 
                         <div class="panel panel-default mt-3 mb-3 pb-2" style="border-bottom: 1px solid rgba(0,0,0,0.1);">
-                            <h3>Product Information</h3>
+                            <h3>Thông tin sản phẩm</h3>
                             <div class="panel-body row w-100 mt-2">
-                                <div class="col-sm-6"><strong>Name</strong></div>
-                                <div class="col-sm-3"><strong>Price</strong></div>
-                                <div class="col-sm-3"><strong>Quantity</strong></div>
+                                <div class="col-sm-6"><strong>Tên</strong></div>
+                                <div class="col-sm-3"><strong>Giá</strong></div>
+                                <div class="col-sm-3"><strong>Số lượng</strong></div>
                             </div>
                             <c:forEach items="${order.orderedProducts}" var="orderProduct">
                                 <div class="panel-body row w-100">
