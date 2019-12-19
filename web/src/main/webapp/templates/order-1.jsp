@@ -51,12 +51,12 @@
                         <div class="tab-content" id="form-signup">
                             <div role="tabpanel" class="tab-pane fade show active" id="profile">
                                 <div class="row w-100 mt-4">
-                                    <div class="col-sm-3">Username</div>
+                                    <div class="col-sm-3">Tên tài khoản</div>
                                     <input type="text" class="form-control col-sm-9" id="login-username"
                                            placeholder="Nhập email hoặc Số điện thoại">
                                 </div>
                                 <div class="row w-100 mt-3">
-                                    <div class="col-sm-3">Password</div>
+                                    <div class="col-sm-3">Mật khẩu</div>
                                     <input type="password" class="form-control col-sm-9" id="login-pass"
                                            placeholder="Password">
                                 </div>
