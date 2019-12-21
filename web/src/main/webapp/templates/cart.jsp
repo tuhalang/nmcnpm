@@ -106,15 +106,15 @@
                                         <p>Số lượng</p>
                                         <div class="input-group">
                                             <div class="input-group-prepend">
-                                                <button onclick="changeQuantity(1, ${product.productID})"
-                                                        class="btn btn-outline-secondary" type="button">
-                                                    <i class="fas fa-plus"></i>
-                                                </button>
-                                                <input type="text" style="width:40px;" class="form-control"
-                                                       value="${item.quantity}" id="quantity_${product.productID}">
                                                 <button onclick="changeQuantity(0, ${product.productID})"
                                                         class="btn btn-outline-secondary" type="button">
                                                     <i class="fas fa-minus"></i>
+                                                </button>
+                                                <input type="text" style="width:40px;" class="form-control"
+                                                       value="${item.quantity}" id="quantity_${product.productID}">
+                                                <button onclick="changeQuantity(1, ${product.productID})"
+                                                        class="btn btn-outline-secondary" type="button">
+                                                    <i class="fas fa-plus"></i>
                                                 </button>
 
                                             </div>

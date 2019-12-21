@@ -103,4 +103,11 @@ public class ProductService implements IProductService{
     public Product findById(long id){
         return productDAO.findById(id);
     }
+
+    @Override
+    public ProductDto findBestSeller() {
+        ProductDto productDto = new ProductDto();
+        productDto.setListOfData(productDAO.findBestSeller());
+        return productDto;
+    }
 }

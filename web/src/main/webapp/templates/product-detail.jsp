@@ -80,12 +80,11 @@
                         <div class="col-sm-4" id="quantity">
                             <div class="input-group">
                                 <div class="input-group-prepend">
-                                    <button class="btn btn-outline-secondary border-none" id="inc" style="border-radius:0;border:1px solid rgba(0,0,0,0.2);" type="button"><i class="fas fa-plus"></i>
-                                    </button>
-                                    <input type="text" style="width:40px;border-radius:0;border:1px solid rgba(0,0,0,0.2);" class="form-control" value="1" id="quantity_">
                                     <button class="btn btn-outline-secondary border-none" id="dsc" style="border-radius: 0;border:1px solid rgba(0,0,0,0.2);" type="button"><i class="fas fa-minus"></i>
                                     </button>
-
+                                    <input type="text" style="width:40px;border-radius:0;border:1px solid rgba(0,0,0,0.2);" class="form-control" value="1" id="quantity_">
+                                    <button class="btn btn-outline-secondary border-none" id="inc" style="border-radius:0;border:1px solid rgba(0,0,0,0.2);" type="button"><i class="fas fa-plus"></i>
+                                    </button>
                                 </div>
                             </div>
                         </div>

@@ -1,5 +1,6 @@
 package com.nmcnpm.web.controller.web;
 
+import com.nmcnpm.web.model.Account;
 import com.nmcnpm.web.model.Customer;
 import com.nmcnpm.web.service.ICustomerService;
 import com.nmcnpm.web.service.IProductService;
@@ -21,13 +22,14 @@ public class UpdateAddressController extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("utf-8");
-        Customer customer = (Customer) sessionUtils.getValue(request, "customer");
+        Account account = (Account) sessionUtils.getValue(request, "USER");
+        Customer customer=customerService.findByAccountId(account.getAccountID());
         customer.setName(request.getParameter("full_name"));
         customer.setPhone(request.getParameter("telephone"));
         customer.setAddress(request.getParameter("address"));
 
         customerService.update(customer);
-        RequestDispatcher requestDispatcher = request.getRequestDispatcher("/templates/order-2.jsp");
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher("/confirm_address");
         requestDispatcher.forward(request, response);
     }
 }

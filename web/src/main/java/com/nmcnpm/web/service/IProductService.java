@@ -22,4 +22,5 @@ public interface IProductService {
     ProductDto findByCategoryID(Long id,int currentPage,int elePerPage);
     List<Product> findByKey(List<String> key,long amount);
     Product findById(long id);
+    ProductDto findBestSeller();
 }

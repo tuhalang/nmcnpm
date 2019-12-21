@@ -103,4 +103,17 @@ public class ProductDAO extends DataBaseDaoImpl<Product> implements IProductDAO 
         }
         return false;
     }
+
+    @Override
+    public List<Product> findBestSeller() {
+        String sql = "select * from product inner join (\n" +
+                "SELECT product.product_id \n" +
+                "FROM product left join order_product \n" +
+                "using(product_id) \n" +
+                "group by product.product_id \n" +
+                "order by count(product.product_id) \n" +
+                "desc limit 4) a using(product_id);";
+        List<Product> products = query(sql, new ProductMapper());
+        return products;
+    }
 }

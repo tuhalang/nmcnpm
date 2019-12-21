@@ -27,4 +27,5 @@ public interface IProductDAO extends IBaseDao<Product>{
     List<Product> findByProductKey(List<String> key,long amount);
     Long countByCategoryId(long id);
     boolean isExist(Long productId);
+    List<Product> findBestSeller();
 }

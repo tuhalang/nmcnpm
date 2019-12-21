@@ -48,9 +48,13 @@ public class HomeController extends HttpServlet {
             request.setAttribute("category", categoryService.findById(categoryId));
         }
         else {
+            ProductDto bestSeller = productService.findBestSeller();
             ProductDto productDto = productService.find(page,recordsPerPage);
             request.setAttribute("productDto", productDto);
-            Category category=new Category(0L,"All product","",0L);
+            request.setAttribute("bestSeller", bestSeller);
+            Category categoryBS=new Category(0L,"Best Seller","",0L);
+            request.setAttribute("categoryBS",categoryBS);
+            Category category=new Category(0L,"All Product","",0L);
             request.setAttribute("category",category);
         }
 

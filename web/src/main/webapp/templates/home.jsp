@@ -35,6 +35,45 @@
         <div class="col-lg-12">
             <div class="panel panel-default">
                 <div class="panel-heading">
+                    <div class="col-lg-12"><h2>${categoryBS.name}</h2></div>
+                </div>
+                <div class="panel-body">
+                    <div class="row w-100">
+                        <c:forEach items="${bestSeller.listOfData}" var="product" varStatus="status">
+                            <div class="col-sm-3 mb-3">
+                                <div class="card" style="max-width: 15rem;" onclick="abc(${product.productID})">
+                                    <p style="display: none;" id="pID1">${product.productID}</p>
+                                    <a href="#" class="card-link"> <img
+                                            src="${product.image}"
+                                            class="card-img-top" alt="image">
+                                        <div class="card-body">
+                                            <p class="card-title" style="font-size: 0.8em;line-height: 1.2;height: 2.5em;overflow: hidden;">${product.name}</p>
+                                            <p class="card-text">
+                                                <b>${product.price} VND</b>
+                                                <span class="sale-tag"><small>-12%</small></span>
+                                            </p>
+                                            <div class="row w-100">
+                                                <span class="fa fa-star checked"></span>
+                                                <span class="fa fa-star checked"></span>
+                                                <span class="fa fa-star checked"></span>
+                                                <span class="far fa-star"></span>
+                                                <span class="far fa-star"></span>
+                                            </div>
+                                        </div>
+                                    </a>
+
+                                </div>
+                            </div>
+                        </c:forEach>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row w-100">
+        <div class="col-lg-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
                     <div class="col-lg-12"><h2>${category.name}</h2></div>
                 </div>
                 <div class="panel-body">
