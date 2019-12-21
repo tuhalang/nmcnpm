@@ -12,6 +12,6 @@
     <title>Title</title>
 </head>
 <body>
-    page not found
+    Không tìm thấy trang tìm kiếm 
 </body>
 </html>

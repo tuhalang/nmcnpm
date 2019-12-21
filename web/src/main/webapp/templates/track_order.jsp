@@ -46,12 +46,12 @@
                     <div class="panel-group">
                         <div class="panel panel-default">
                             <div class="panel-body row w-100">
-                                <div class="col-sm-2"><strong>Amount</strong></div>
-                                <div class="col-sm-4"><strong>Address</strong></div>
-                                <div class="col-sm-2"><strong>Created At</strong></div>
-                                <div class="col-sm-1"><strong>Status</strong></div>
-                                <div class="col-sm-1"><strong>Payment</strong></div>
-                                <div class="col-sm-1"><strong>View</strong></div>
+                                <div class="col-sm-2"><strong>Giá tiền</strong></div>
+                                <div class="col-sm-4"><strong>Địa chỉ</strong></div>
+                                <div class="col-sm-2"><strong>Ngày tạo</strong></div>
+                                <div class="col-sm-1"><strong>Trạng thái</strong></div>
+                                <div class="col-sm-1"><strong>Thanh toán</strong></div>
+                                <div class="col-sm-1"><strong>Xem</strong></div>
                             </div>
                         </div>
                         <c:forEach items="${orderDto.listOfData}" var="order">

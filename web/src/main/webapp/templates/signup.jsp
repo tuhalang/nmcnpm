@@ -13,14 +13,14 @@
 <body>
     <form method="post" action="${pageContext.request.contextPath}/signup">
         ${pageContext.request.contextPath}
-        <input type="text" name="txtUsername" placeholder="username">
-        <input type="password" name="txtPassword" placeholder="password">
-        <input type="password" name="txtRePass" placeholder="re-pass">
-        <input type="text" name="txtName" placeholder="name">
-        <input type="text" name="txtPhone" placeholder="phone">
+        <input type="text" name="txtUsername" placeholder="tên tài khoản">
+        <input type="password" name="txtPassword" placeholder="mật khẩu">
+        <input type="password" name="txtRePass" placeholder="nhập lại mật khẩu">
+        <input type="text" name="txtName" placeholder="tên">
+        <input type="text" name="txtPhone" placeholder="số điện thoại">
         <input type="text" name="txtEmail" placeholder="email">
-        <input type="text" name="txtAddress" placeholder="address">
-        <input type="submit" value="SignUp">
+        <input type="text" name="txtAddress" placeholder="địa chỉ">
+        <input type="submit" value="Đăng kí">
     </form>
 </body>
 </html>

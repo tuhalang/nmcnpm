@@ -54,7 +54,7 @@ public class HomeController extends HttpServlet {
             request.setAttribute("bestSeller", bestSeller);
             Category categoryBS=new Category(0L,"Best Seller","",0L);
             request.setAttribute("categoryBS",categoryBS);
-            Category category=new Category(0L,"All Product","",0L);
+            Category category=new Category(0L,"Tất cả sản phẩm","",0L);
             request.setAttribute("category",category);
         }
 
