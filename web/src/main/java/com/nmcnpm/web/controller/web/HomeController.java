@@ -52,7 +52,7 @@ public class HomeController extends HttpServlet {
             ProductDto productDto = productService.find(page,recordsPerPage);
             request.setAttribute("productDto", productDto);
             request.setAttribute("bestSeller", bestSeller);
-            Category categoryBS=new Category(0L,"Best Seller","",0L);
+            Category categoryBS=new Category(0L,"Sản phẩm bán chạy","",0L);
             request.setAttribute("categoryBS",categoryBS);
             Category category=new Category(0L,"Tất cả sản phẩm","",0L);
             request.setAttribute("category",category);

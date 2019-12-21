@@ -12,9 +12,9 @@
     <title>Lazy</title>
     <link rel="stylesheet" href="<c:url value="/static/css/card.css"/>">
     <link rel="stylesheet" href="<c:url value="/static/bootstrap-4.0.0/css/bootstrap.css"/>">
-<%--    <link rel="stylesheet" href="<c:url value="/static/css/bootstrap.min.css"/>">--%>
+    <%--    <link rel="stylesheet" href="<c:url value="/static/css/bootstrap.min.css"/>">--%>
     <link rel="stylesheet" href="<c:url value="/static/fontawesome-5.11.2/css/all.css"/>">
-<%--    <link rel="stylesheet" href="<c:url value="/static/css/admin.css"/>">--%>
+    <%--    <link rel="stylesheet" href="<c:url value="/static/css/admin.css"/>">--%>
     <link rel="stylesheet" href="<c:url value="/static/css/datepicker3.css"/>">
     <link rel="stylesheet" href="<c:url value="/static/css/footer.css"/>">
     <link rel="stylesheet" href="<c:url value="/static/css/header.css"/>">
@@ -44,107 +44,110 @@
             <div class="panel panel-default">
                 <div class="panel-body panel-group">
                     <div class="panel-group">
-                        <div class="panel panel-default">
-                            <div class="panel-body row w-100">
-                                <div class="col-sm-2"><strong>Giá tiền</strong></div>
-                                <div class="col-sm-4"><strong>Địa chỉ</strong></div>
-                                <div class="col-sm-2"><strong>Ngày tạo</strong></div>
-                                <div class="col-sm-1"><strong>Trạng thái</strong></div>
-                                <div class="col-sm-1"><strong>Thanh toán</strong></div>
-                                <div class="col-sm-1"><strong>Xem</strong></div>
-                            </div>
-                        </div>
-                        <c:forEach items="${orderDto.listOfData}" var="order">
+                        <c:if test="${orderDto.listOfData.size()>0}">
                             <div class="panel panel-default">
-                                <div class="panel-body w-100 row">
-                                    <div class="col-sm-2"><strong>${order.amount}</strong></div>
-                                    <div class="col-sm-4"><strong>${order.customer.address}</strong></div>
-                                    <div class="col-sm-2"><strong>${order.createdAt}</strong></div>
-                                    <div class="col-sm-1" style="overflow-x: hidden;">
-                                        <strong>${order.orderStatus}</strong></div>
-                                    <div class="col-sm-1"><strong>${order.paymentMethod}</strong></div>
-                                    <div class="col-sm-1">
-                                        <a
-                                                href="${pageContext.request.contextPath}/user/track_order?orderId=${order.orderID}"
-                                                class="btn btn-light"><i class="fa fa-eye"
-                                                                         aria-hidden="true"></i></a>
-                                    </div>
+                                <div class="panel-body row w-100">
+                                    <div class="col-sm-2"><strong>Giá tiền</strong></div>
+                                    <div class="col-sm-4"><strong>Địa chỉ</strong></div>
+                                    <div class="col-sm-2"><strong>Ngày tạo</strong></div>
+                                    <div class="col-sm-1"><strong>Trạng thái</strong></div>
+                                    <div class="col-sm-1"><strong>Thanh toán</strong></div>
+                                    <div class="col-sm-1"><strong>Xem</strong></div>
                                 </div>
                             </div>
-                        </c:forEach>
+                            <c:forEach items="${orderDto.listOfData}" var="order">
+                                <div class="panel panel-default">
+                                    <div class="panel-body w-100 row">
+                                        <div class="col-sm-2"><strong>${order.amount}</strong></div>
+                                        <div class="col-sm-4"><strong>${order.customer.address}</strong></div>
+                                        <div class="col-sm-2"><strong>${order.createdAt}</strong></div>
+                                        <div class="col-sm-1" style="overflow-x: hidden;">
+                                            <strong>${order.orderStatus}</strong></div>
+                                        <div class="col-sm-1"><strong>${order.paymentMethod}</strong></div>
+                                        <div class="col-sm-1">
+                                            <a
+                                                    href="${pageContext.request.contextPath}/user/track_order?orderId=${order.orderID}"
+                                                    class="btn btn-light"><i class="fa fa-eye"
+                                                                             aria-hidden="true"></i></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </c:forEach>
 
 
-                        <!-- pagination -->
-                        <div class="row w-100 mt-4">
-                            <nav class="col-lg-12" aria-label="pagination">
-                                <ul class="pagination" style="width: fit-content !important;left:50%;transform: translateX(-50%);position: relative;">
-                                    <c:if test="${orderDto.currentPage == 1}">
-                                        <li class="page-item disabled">
-                                            <a class="page-link" href="#" tabindex="-1">Previous</a>
-                                        </li>
-                                        <li class="page-item active">
-                                            <a class="page-link"
-                                               href="${pageContext.request.contextPath}/admin/order?currentPage=1">1 <span
-                                                    class="sr-only">(current)</span></a>
-                                        </li>
-                                        <c:if test="${orderDto.totalPages > 1}">
-                                            <li class="page-item"><a class="page-link"
-                                                                     href="${pageContext.request.contextPath}/admin/order?currentPage=2">2</a>
+                            <!-- pagination -->
+                            <div class="row w-100 mt-4">
+                                <nav class="col-lg-12" aria-label="pagination">
+                                    <ul class="pagination"
+                                        style="width: fit-content !important;left:50%;transform: translateX(-50%);position: relative;">
+                                        <c:if test="${orderDto.currentPage == 1}">
+                                            <li class="page-item disabled">
+                                                <a class="page-link" href="#" tabindex="-1">Previous</a>
                                             </li>
-                                        </c:if>
-                                        <c:if test="${orderDto.totalPages > 2}">
-                                            <li class="page-item"><a class="page-link"
-                                                                     href="${pageContext.request.contextPath}/admin/order?currentPage=3">3</a>
+                                            <li class="page-item active">
+                                                <a class="page-link"
+                                                   href="${pageContext.request.contextPath}/admin/order?currentPage=1">1
+                                                    <span
+                                                            class="sr-only">(current)</span></a>
                                             </li>
+                                            <c:if test="${orderDto.totalPages > 1}">
+                                                <li class="page-item"><a class="page-link"
+                                                                         href="${pageContext.request.contextPath}/admin/order?currentPage=2">2</a>
+                                                </li>
+                                            </c:if>
+                                            <c:if test="${orderDto.totalPages > 2}">
+                                                <li class="page-item"><a class="page-link"
+                                                                         href="${pageContext.request.contextPath}/admin/order?currentPage=3">3</a>
+                                                </li>
+                                            </c:if>
+                                            <c:if test="${orderDto.totalPages > 1}">
+                                                <li class="page-item">
+                                                    <a class="page-link"
+                                                       href="${pageContext.request.contextPath}/admin/order?currentPage=2">Next</a>
+                                                </li>
+                                            </c:if>
+                                            <c:if test="${orderDto.totalPages == 1}">
+                                                <li class="page-item disabled">
+                                                    <a class="page-link" href="#">Next</a>
+                                                </li>
+                                            </c:if>
                                         </c:if>
-                                        <c:if test="${orderDto.totalPages > 1}">
+
+                                        <c:if test="${orderDto.currentPage > 1}">
                                             <li class="page-item">
                                                 <a class="page-link"
-                                                   href="${pageContext.request.contextPath}/admin/order?currentPage=2">Next</a>
+                                                   href="${pageContext.request.contextPath}/admin/order?currentPage=${orderDto.currentPage-1}"
+                                                   tabindex="-1">Previous</a>
                                             </li>
-                                        </c:if>
-                                        <c:if test="${orderDto.totalPages == 1}">
-                                            <li class="page-item disabled">
-                                                <a class="page-link" href="#">Next</a>
-                                            </li>
-                                        </c:if>
-                                    </c:if>
-
-                                    <c:if test="${orderDto.currentPage > 1}">
-                                        <li class="page-item">
-                                            <a class="page-link"
-                                               href="${pageContext.request.contextPath}/admin/order?currentPage=${orderDto.currentPage-1}"
-                                               tabindex="-1">Previous</a>
-                                        </li>
-                                        <li class="page-item"><a class="page-link"
-                                                                 href="${pageContext.request.contextPath}/admin/order?currentPage=${orderDto.currentPage-1}">${orderDto.currentPage-1}</a>
-                                        </li>
-                                        <li class="page-item active">
-                                            <a class="page-link"
-                                               href="${pageContext.request.contextPath}/admin/order?currentPage=${orderDto.currentPage}">${orderDto.currentPage}
-                                                <span class="sr-only">(current)</span></a>
-                                        </li>
-                                        <c:if test="${orderDto.totalPages > orderDto.currentPage}">
                                             <li class="page-item"><a class="page-link"
-                                                                     href="${pageContext.request.contextPath}/admin/order?currentPage=${orderDto.currentPage+1}">${orderDto.currentPage+1}</a>
+                                                                     href="${pageContext.request.contextPath}/admin/order?currentPage=${orderDto.currentPage-1}">${orderDto.currentPage-1}</a>
                                             </li>
-                                        </c:if>
-                                        <c:if test="${orderDto.totalPages > orderDto.currentPage}">
-                                            <li class="page-item">
+                                            <li class="page-item active">
                                                 <a class="page-link"
-                                                   href="${pageContext.request.contextPath}/admin/order?currentPage=${orderDto.currentPage+1}">Next</a>
+                                                   href="${pageContext.request.contextPath}/admin/order?currentPage=${orderDto.currentPage}">${orderDto.currentPage}
+                                                    <span class="sr-only">(current)</span></a>
                                             </li>
+                                            <c:if test="${orderDto.totalPages > orderDto.currentPage}">
+                                                <li class="page-item"><a class="page-link"
+                                                                         href="${pageContext.request.contextPath}/admin/order?currentPage=${orderDto.currentPage+1}">${orderDto.currentPage+1}</a>
+                                                </li>
+                                            </c:if>
+                                            <c:if test="${orderDto.totalPages > orderDto.currentPage}">
+                                                <li class="page-item">
+                                                    <a class="page-link"
+                                                       href="${pageContext.request.contextPath}/admin/order?currentPage=${orderDto.currentPage+1}">Next</a>
+                                                </li>
+                                            </c:if>
+                                            <c:if test="${orderDto.totalPages <= orderDto.currentPage}">
+                                                <li class="page-item disabled">
+                                                    <a class="page-link" href="#">Next</a>
+                                                </li>
+                                            </c:if>
                                         </c:if>
-                                        <c:if test="${orderDto.totalPages <= orderDto.currentPage}">
-                                            <li class="page-item disabled">
-                                                <a class="page-link" href="#">Next</a>
-                                            </li>
-                                        </c:if>
-                                    </c:if>
-                                </ul>
-                            </nav>
-                        </div>
-
+                                    </ul>
+                                </nav>
+                            </div>
+                        </c:if>
                         <div class="panel panel-default">
                             <%--<%@ include file="pagination.jsp"%>--%>
                         </div>

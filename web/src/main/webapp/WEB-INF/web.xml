@@ -26,6 +26,10 @@
         <servlet-name>OrderAPIController</servlet-name>
         <servlet-class>com.nmcnpm.web.controller.api.OrderAPIController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>WEB-ProductAPIController</servlet-name>
+        <servlet-class>com.nmcnpm.web.controller.web.api.ProductAPIController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>CategoryAPIController</servlet-name>
         <url-pattern>/admin/api/categories</url-pattern>
@@ -45,6 +49,10 @@
     <servlet-mapping>
         <servlet-name>OrderAPIController</servlet-name>
         <url-pattern>/admin/api/orders</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>WEB-ProductAPIController</servlet-name>
+        <url-pattern>/api/products</url-pattern>
     </servlet-mapping>
     <welcome-file-list>
         <welcome-file>index.jsp</welcome-file>
@@ -140,14 +148,14 @@
         <servlet-name>autocomplete_home</servlet-name>
         <url-pattern>/autocomplete_home</url-pattern>
     </servlet-mapping>
-        <servlet>
-            <servlet-name>trackOrder</servlet-name>
-            <servlet-class>com.nmcnpm.web.controller.web.TrackOrderController</servlet-class>
-        </servlet>
-        <servlet-mapping>
-            <servlet-name>trackOrder</servlet-name>
-            <url-pattern>/user/track_order</url-pattern>
-        </servlet-mapping>
+    <servlet>
+        <servlet-name>trackOrder</servlet-name>
+        <servlet-class>com.nmcnpm.web.controller.web.TrackOrderController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>trackOrder</servlet-name>
+        <url-pattern>/user/track_order</url-pattern>
+    </servlet-mapping>
     <servlet>
         <servlet-name>cart_controller</servlet-name>
         <servlet-class>com.nmcnpm.web.controller.web.CartController</servlet-class>

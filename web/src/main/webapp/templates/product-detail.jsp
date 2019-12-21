@@ -89,7 +89,7 @@
                             </div>
                         </div>
                         <div class="col-sm-8">
-                            <button type="button" class="btn btn-primary" onclick="addToCart(${product.productID})">
+                            <button id="btn-pay" type="button" class="btn btn-primary" onclick="addToCart(${product.productID})">
                                 <i class="fas fa-cart-plus"></i> Chọn mua
                             </button>
                         </div>
@@ -128,7 +128,7 @@
      * */
     document.getElementById("dsc").addEventListener("click",function (ev) {
         var i=document.getElementById("quantity_").value;
-        if (parseInt(i)>1) document.getElementById("quantity_").value=parseInt(i)-1;
+        if (parseInt(i)>1) checkQuantity(parseInt(i)-1)
     });
     
     /**
@@ -136,8 +136,42 @@
      * */
     document.getElementById("inc").addEventListener("click",function (ev) {
        var i=document.getElementById("quantity_").value;
-       document.getElementById("quantity_").value=parseInt(i)+1;
+       checkQuantity(parseInt(i)+1)
     });
+
+    function checkQuantity(quantity){
+        const id = ${product.productID}
+        $.ajax({
+            url: window.location.pathname.substring(0, window.location.pathname.indexOf("/", 2)) + "/api/products",
+            contentType: 'application/json;charset=utf-8',
+            dataType: 'text',
+            headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+            data: {
+                productId: id,
+                quantity: quantity
+            },
+            type: 'get',
+            success: function (response) {
+                if (response=="1"){
+                    $('#btn-pay').prop('disabled', false);
+                    $('#inc').prop('disabled', false);
+                    document.getElementById("quantity_").value=quantity;
+                    return true;
+                }
+                else {
+                    $('#btn-pay').prop('disabled', true);
+                    $('#inc').prop('disabled', true);
+                    alert("Quá số lượng hàng trong kho.");
+                    return false;
+                }
+            },
+            error: function (x, e) {
+                console.log(e)
+                return false;
+            }
+        });
+
+    }
     
     /**
      * add product to cart 

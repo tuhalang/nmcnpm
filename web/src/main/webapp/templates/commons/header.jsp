@@ -48,7 +48,7 @@
                         </li>
                     </c:when>
                     <c:otherwise>
-                        <li class="nav-item col-sm-3 px-0" data-toggle="modal" data-target="#exampleModal" id="login_modal">
+                        <li style="cursor: pointer;" class="nav-item col-sm-3 px-0" data-toggle="modal" data-target="#exampleModal" id="login_modal">
                             <a class="nav-link px-0 font-weight-bold" id="icon-login2"><i
                                     class="fas fa-user fa-2x float-left mr-md-2 mt-md-1"></i><span>
                                 Đăng nhập<br>tài khoản</span></a>
