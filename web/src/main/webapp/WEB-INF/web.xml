@@ -173,6 +173,22 @@
         <url-pattern>/update_address</url-pattern>
     </servlet-mapping>
     <servlet>
+        <servlet-name>add_address</servlet-name>
+        <servlet-class>com.nmcnpm.web.controller.web.AddAddressController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>add_address</servlet-name>
+        <url-pattern>/add_address</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>delete_address</servlet-name>
+        <servlet-class>com.nmcnpm.web.controller.web.DeleteAddressController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>delete_address</servlet-name>
+        <url-pattern>/delete_address</url-pattern>
+    </servlet-mapping>
+    <servlet>
         <servlet-name>confirm_order</servlet-name>
         <servlet-class>com.nmcnpm.web.controller.web.ConfirmOrderController</servlet-class>
     </servlet>

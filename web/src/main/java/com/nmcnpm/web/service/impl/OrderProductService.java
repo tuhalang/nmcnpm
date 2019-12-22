@@ -62,7 +62,7 @@ public class OrderProductService<IOrderProduct> implements IOrderProductService{
 
     @Override
     public CustomerOrder findByCustomerId(long accountId) {
-        Customer customer = customerService.findByAccountId(accountId);
+        Customer customer = customerService.findByAccountId(accountId).get(0);
         CustomerOrder order = new CustomerOrder();
         order = customerOrderDAO.findByCustomerId(customer.getCustomerID());
         order.setOrderedProducts(orderedProductDAO.findByCustomerOrderID(order.getOrderID()));
@@ -83,7 +83,7 @@ public class OrderProductService<IOrderProduct> implements IOrderProductService{
     @Override
     public boolean nextStatus(long accountId) {
         try{
-            Customer customer = customerService.findByAccountId(accountId);
+            Customer customer = customerService.findByAccountId(accountId).get(0);
             CustomerOrder order = new CustomerOrder();
             order = customerOrderDAO.findByCustomerId(customer.getCustomerID());
             switch(order.getOrderStatus()){

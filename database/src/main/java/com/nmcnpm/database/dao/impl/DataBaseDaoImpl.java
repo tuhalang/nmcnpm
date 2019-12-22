@@ -278,6 +278,8 @@ public class DataBaseDaoImpl<T> implements IBaseDao<T> {
 					statement.setBoolean(index, ((Boolean) parameter));
 				}else if (parameter instanceof Enum) {
 					statement.setString(index, (parameter.toString()));
+				}else if (parameter == null) {
+					statement.setString(index, "NULL");
 				}else {
 					throw new Exception(parameter.getClass().getName() + " has not supported yet!");
 				}
