@@ -90,4 +90,15 @@ public class CustomerOrderDAO extends DataBaseDaoImpl<CustomerOrder> implements 
         String sql = "select count(1) from customer_order";
         return count(sql);
     }
+
+    @Override
+    public List<CustomerOrder> findByAccountId(Long accountId, int start, int limit) {
+        String sql = "SELECT * FROM customer_order " +
+                    "inner join customer using(customer_id) " +
+                    "inner join account using(account_id) " +
+                    "where account_id=? " +
+                    "order by FIELD(customer_order.status, 'WAITING', 'CONFIRM', 'DELIVERING', 'RECEIVED'), customer_order.created_at limit ?,?";
+        List<CustomerOrder> customerOrders = query(sql,new CustomerOrderMapper(),accountId, start, limit);
+        return customerOrders;
+    }
 }

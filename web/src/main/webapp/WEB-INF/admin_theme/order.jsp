@@ -206,11 +206,12 @@
                                 <div class="panel panel-default">
                                     <div class="panel-body">
                                         <div class="col-sm-1"><strong>ID</strong></div>
-                                        <div class="col-sm-2"><strong>Amount</strong></div>
                                         <div class="col-sm-4"><strong>Address</strong></div>
                                         <div class="col-sm-2"><strong>Created At</strong></div>
+                                        
                                         <div class="col-sm-1"><strong>Status</strong></div>
                                         <div class="col-sm-1"><strong>Payment</strong></div>
+                                        <div class="col-sm-2"><strong>Amount</strong></div>
                                         <div class="col-sm-1"><strong>View</strong></div>
                                     </div>
                                 </div>
@@ -218,12 +219,13 @@
                                     <div class="panel panel-default">
                                         <div class="panel-body">
                                             <div class="col-sm-1"><strong>${order.orderID}</strong></div>
-                                            <div class="col-sm-2"><strong>${order.amount}</strong></div>
                                             <div class="col-sm-4"><strong>${order.customer.address}</strong></div>
                                             <div class="col-sm-2"><strong>${order.createdAt}</strong></div>
+                                            
                                             <div class="col-sm-1" style="overflow-x: hidden;">
                                                 <strong>${order.orderStatus}</strong></div>
                                             <div class="col-sm-1"><strong>${order.paymentMethod}</strong></div>
+                                            <div class="col-sm-2"><strong>${order.amount}</strong></div>
                                             <div class="col-sm-1">
                                                 <a
                                                     href="${pageContext.request.contextPath}/admin/order?orderId=${order.orderID}"
