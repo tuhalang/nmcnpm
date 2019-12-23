@@ -47,7 +47,7 @@ public class OrderController extends HttpServlet {
         }
         Account account = (Account) SessionUtils.getInstance().getValue(request, "USER");
         Long accountID = account.getAccountID();
-        Customer customer = customerService.findByAccountId(accountID);
+        Customer customer = customerService.findByAccountId(accountID).get(0);
         Long id = customerOrderService.save(orderedProducts, customer);
         if (id > -1){
             orderProductService.save(id, orderedProducts);

@@ -23,7 +23,8 @@ public class UpdateAddressController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("utf-8");
         Account account = (Account) sessionUtils.getValue(request, "USER");
-        Customer customer=customerService.findByAccountId(account.getAccountID());
+        System.out.println(Long.parseLong((String)request.getParameter( "customerID" )));
+        Customer customer = customerService.findById(Long.parseLong((String)request.getParameter( "customerID" )));
         customer.setName(request.getParameter("full_name"));
         customer.setPhone(request.getParameter("telephone"));
         customer.setAddress(request.getParameter("address"));

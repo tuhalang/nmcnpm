@@ -52,7 +52,7 @@ public class TrackOrderController extends HttpServlet {
         } else {
             Account account = (Account) SessionUtils.getInstance().getValue(request, "USER");
             Long accountID = account.getAccountID();
-            Customer customer = customerService.findByAccountId(accountID);
+            
             int currentPage = 1;
             int elePerPage = 12;
             try {
@@ -61,7 +61,7 @@ public class TrackOrderController extends HttpServlet {
             } catch (Exception x) {
 
             }
-            OrderCustomerDto orderDto = orderService.find(customer.getCustomerID(),currentPage, elePerPage);
+            OrderCustomerDto orderDto = orderService.findByAccountId(accountID, currentPage, elePerPage);
             request.setAttribute("orderDto", orderDto);
             request.getRequestDispatcher("/templates/track_order.jsp").forward(request, response);
         }

@@ -40,7 +40,7 @@ public class AccountManagmentController extends HttpServlet {
             throws ServletException, IOException {
         HttpSession session = request.getSession();
         Account account = (Account) session.getAttribute("USER");
-        Customer customer = customerService.findByAccountId(account.getAccountID());
+        Customer customer = customerService.findByAccountId(account.getAccountID()).get(0);
         request.setAttribute("customer", customer);
         request.getRequestDispatcher("/templates/usermanagement.jsp").forward(request, response);
     }

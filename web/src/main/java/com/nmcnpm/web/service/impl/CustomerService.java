@@ -79,9 +79,12 @@ public class CustomerService implements ICustomerService {
     }
 
     @Override
-    public Customer findByAccountId(Long accountId) {
-        Customer customer = customerDAO.findByAccountId(accountId);
-        customer.setAccount(accountDAO.findById(customer.getAccountID()));
+    public List<Customer> findByAccountId(Long accountId) {
+        List<Customer> customer = customerDAO.findByAccountId(accountId);
+        for (Customer cus : customer) {
+            cus.setAccount(accountDAO.findById(cus.getAccountID()));
+        }
+
         return customer;
     }
 
@@ -114,6 +117,16 @@ public class CustomerService implements ICustomerService {
         } catch (Exception e) {
             e.printStackTrace();
             return null;
+        }
+    }
+
+    @Override
+    public boolean delete(Long Id) {
+        try {
+            return customerDAO.delete(Id);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
         }
     }
 }

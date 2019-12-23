@@ -13,11 +13,11 @@ public interface ICustomerDAO extends IBaseDao<Customer> {
     void insert(Customer customer);
     void update(Customer customer);
     void updateByAccountId(Customer customer);
-    void delete(Customer customer);
+    boolean delete(Long id);
     boolean isExist(Customer customer);
     List<Customer> findAll();
     Customer findById(long id);
-    Customer findByAccountId(long id);
+    List<Customer> findByAccountId(long id);
     List<Customer> find(int start, int limit);
     List<Customer> findLikeName(String name);
     List<Customer> findLikeAddress(String address);

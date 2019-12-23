@@ -30,5 +30,6 @@ public interface ICustomerOrderDAO {
     List<CustomerOrder> find(int start, int limit);
     List<CustomerOrder> find(Long customerId,int start, int limit);
     List<CustomerOrder> findByConfirmNumber(long id);
+    List<CustomerOrder> findByAccountId(Long accountId,int start, int limit);
     Long insert(CustomerOrder customerOrder, Long customerID);
 }

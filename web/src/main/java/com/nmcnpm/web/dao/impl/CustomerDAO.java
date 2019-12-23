@@ -31,9 +31,16 @@ public class CustomerDAO extends DataBaseDaoImpl<Customer> implements ICustomerD
         }
     }
 
-    public void delete(Customer customer) {
+    public boolean delete(Long id) {
         String sql = "delete from customer where customer_id=? limit 1";
-        delete(sql, customer.getCustomerID());
+        try{
+            delete(sql, id);
+            return true;
+        }catch (Exception e){
+            e.printStackTrace();
+            return false;
+        }
+
     }
 
     @Override
@@ -59,12 +66,10 @@ public class CustomerDAO extends DataBaseDaoImpl<Customer> implements ICustomerD
         return customers.get(0);
     }
 
-    public Customer findByAccountId(long id) {
+    public List<Customer> findByAccountId(long id) {
         String sql = "select * from customer where account_id=?";
         List<Customer> customers = query(sql, new CustomerMapper(), id);
-        if (customers.isEmpty())
-            return null;
-        return customers.get(0);
+        return customers;
     }
 
     public List<Customer> find(int start, int limit) {

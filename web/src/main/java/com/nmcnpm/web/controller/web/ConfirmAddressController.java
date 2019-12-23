@@ -46,8 +46,8 @@ public class ConfirmAddressController  extends HttpServlet {
             requestDispatcher.forward(request, response);
         }else {
             Long accountID = account.getAccountID();
-            Customer customer = customerService.findByAccountId(accountID);
-            request.setAttribute("customer", customer);
+            List<Customer> customers = customerService.findByAccountId(accountID);
+            request.setAttribute("customers", customers);
             RequestDispatcher requestDispatcher = request.getRequestDispatcher("/templates/order-2.jsp");
             requestDispatcher.forward(request, response);
         }
