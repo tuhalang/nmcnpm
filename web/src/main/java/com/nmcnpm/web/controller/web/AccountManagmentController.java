@@ -4,7 +4,10 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.URLDecoder;
+import java.util.ArrayList;
 import java.util.Base64;
+import java.util.Date;
+import java.util.List;
 
 import javax.inject.Inject;
 import javax.servlet.ServletException;
@@ -40,8 +43,8 @@ public class AccountManagmentController extends HttpServlet {
             throws ServletException, IOException {
         HttpSession session = request.getSession();
         Account account = (Account) session.getAttribute("USER");
-        Customer customer = customerService.findByAccountId(account.getAccountID()).get(0);
-        request.setAttribute("customer", customer);
+        List<Customer> customers = customerService.findByAccountId(account.getAccountID());
+        request.setAttribute("customers", customers);
         request.getRequestDispatcher("/templates/usermanagement.jsp").forward(request, response);
     }
 
@@ -50,39 +53,52 @@ public class AccountManagmentController extends HttpServlet {
         HttpSession session = req.getSession();
         Account user = (Account) session.getAttribute("USER");
         Account account = new Account();
-        Customer customer = new Customer();
+        List<Customer> customers = customerService.findByAccountId(user.getAccountID());
         resp.setContentType("text/html");
         BufferedReader rd = new BufferedReader(new InputStreamReader(req.getInputStream(), "UTF-8"));
         String line = rd.readLine();
-        String decode = URLDecoder.decode(decodeString(line.split("=")[1]),"UTF-8");
+        String decode = URLDecoder.decode(decodeString(line.split("=")[1]), "UTF-8");
         String[] list = decode.split("&");
-        account.setPassword(list[0].split("=")[1]);
-        customer.setPhone(list[1].split("=")[1]);
-        customer.setEmail(list[2].split("=")[1]);
-        customer.setAddress(list[3].split("=")[1]);
-        customer.setName(list[4].split("=")[1]);
-        String new_password = list[5].split("=")[1];
-        if (accountService.comparePassword(user.getUsername(),account.getPassword())) {
-            account.setAccountID(user.getAccountID());
-            account.setPassword(new_password);
-            account.setUsername(user.getUsername());
-            if (accountService.valid(account)) {
-                if (customerService.valid(customer)) {
+        String action = list[0].split("=")[1];
+        if (action.equals("1")) {
+            for (Customer customer : customers) {
+                customer.setName(list[1].split("=")[1]);
+                customerService.updateByAccountId(customer);
+            }
+            resp.getWriter().print("1");
+        } else if (action.equals("2")) {
+            Customer customer = customers.get(Integer.parseInt(list[4].split("=")[1]));
+            customer.setAddress(list[1].split("=")[1]);
+            customer.setPhone(list[2].split("=")[1]);
+            customer.setName(list[3].split("=")[1]);
+            customerService.update(customer);
+            resp.getWriter().print("1");
+        } else if (action.equals("3")) {
+            Customer customer = customers.get(0);
+            customer.setAddress(list[1].split("=")[1]);
+            customer.setPhone(list[2].split("=")[1]);
+            customer.setName(list[3].split("=")[1]);
+            customer.setCreatedAt(new Date(System.currentTimeMillis()));
+            customer.setLastModifiedAt(new Date(System.currentTimeMillis()));
+            customerService.save(customer);
+            resp.getWriter().print("1");
+        } else {
+            account.setPassword(list[1].split("=")[1]);
+            String new_password = list[2].split("=")[1];
+            if (accountService.comparePassword(user.getUsername(), account.getPassword())) {
+                account.setAccountID(user.getAccountID());
+                account.setPassword(new_password);
+                account.setUsername(user.getUsername());
+                account.setStatus(true);
+                if (accountService.valid(account)) {
                     accountService.update(account);
-                    customer.setAccountID(account.getAccountID());
-                    customerService.updateByAccountId(customer);
-                    MailSMTP mail = new MailSMTP("tuhalang007@gmail.com", customer.getEmail(), "Cảm ơn bạn đã đăng kí tài khoản!", "ĐĂNG KÍ TÀI KHOẢN THÀNH CÔNG !");
-                    MailSystem.execute(mail);
                     resp.getWriter().print("1");
                 } else {
-                    resp.getWriter().print("customer is not valid!");
+                    resp.getWriter().print("2");
                 }
-
             } else {
-                resp.getWriter().print("2");
+                resp.getWriter().print("3");
             }
-        }else {
-            resp.getWriter().print("2");
         }
         resp.getWriter().flush();
     }

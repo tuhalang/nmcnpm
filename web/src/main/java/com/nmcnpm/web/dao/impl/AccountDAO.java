@@ -24,9 +24,9 @@ public class AccountDAO extends DataBaseDaoImpl<Account> implements IAccountDAO{
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
 	}
-	
+
+
 	public void delete(Account account) {
 		String sql = "delete from account where username=? and password=? and account_id=? limit 1";
 		delete(sql, account.getUsername(), account.getPassword(), account.getAccountID());

@@ -24,6 +24,52 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="<c:url value="/static/bootstrap-4.0.0/js/bootstrap.min.js"/>"></script>
     <title>User Account</title>
+    <style>
+        body {
+            font-family: "Montserrat", Helvetica, Arial, sans-serif;
+        }
+
+        #myTab .nav-link {
+            font-size: 1em !important;
+        }
+
+        #account-info {
+            min-height: 80vh;
+        }
+
+        #myTabContent .form-control {
+            font-size: 1em;
+        }
+
+        .nav-pills .nav-link.active {
+            background-color: #ececec;
+        }
+
+        .add-address {
+            border: 1px dashed #d8d8d8;
+            border-radius: 4px;
+            display: block;
+            padding: 18px;
+            background: #fff;
+            color: #007ff0;
+            text-align: center;
+            margin-bottom: 10px;
+            font-size: 1.4em;
+            position: relative;
+        }
+
+        .add-address span:hover {
+            color: deepskyblue;
+            text-decoration: deepskyblue;
+        }
+
+        .cur-address {
+            border: 1px solid #d8d8d8;
+            border-radius: 4px;
+            padding-top: 20px;
+            padding-bottom: 20px;
+        }
+    </style>
 </head>
 <body>
 <jsp:include page="commons/header.jsp"></jsp:include>
@@ -40,192 +86,268 @@
         </div>
     </div>
 </div>
-<div class="container mb-4">
+<div class="container">
+    <h1> Quản lí tài khoản</h1>
+    <hr>
     <div class="row w-100">
-        <div class="col-sm-12">
-            <div id="left" class="col-sm-4">
-                <div class="menu dropdown">
-                    <h6 class="dropdown-header">Danh mục</h6>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#"><i
-                            class="fas fa-user-circle"></i> <span> Thông tin tài khoản
-						</span></a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#"> <i class="far fa-bell"></i>
-                        <span>Thông báo của tôi</span></a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="${pageContext.request.contextPath}/user/track_order"><i class="fas fa-receipt"></i>
-                        <span> Đơn hàng của tôi </span></a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#" onclick="removeUserInfo()"><i class="fas fa-sign-out-alt"></i>
-                        <span> Đăng xuất </span></a>
+        <div class="col-md-3 mb-3">
+            <ul class="nav nav-pills flex-column" id="myTab" role="tablist">
+                <li class="nav-item">
+                    <a class="nav-link active" id="account-info-tab" data-toggle="tab" href="#account-info" role="tab"
+                       aria-controls="account-info" aria-selected="true">
+                        <i class="fas fa-user-circle"></i>
+                        <span>  Thông tin tài khoản</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="address-tab" data-toggle="tab" href="#address-content" role="tab"
+                       aria-controls="address-content" aria-selected="false">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>  Sổ địa chỉ</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="my-order-tab" href="${pageContext.request.contextPath}/user/track_order">
+                        <i class="fas fa-receipt"></i>
+                        <span>  Đơn hàng của tôi </span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="logout-tab" onclick="removeUserInfo()">
+                        <i class="fas fa-sign-out-alt"></i>
+                        <span>  Đăng xuất </span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <!-- /.col-md-4 -->
+        <div class="col-md-9">
+            <div class="tab-content" id="myTabContent" style="font-size: 0.8em;">
+                <div class="tab-pane fade show active" id="account-info" role="tabpanel"
+                     aria-labelledby="account-info-tab">
+                    <h3 style="padding-left: 10px;">Thông tin tài khoản</h3>
+                    <div class="row w-100 mt-1" style="font-size: 0.8em;">
+                        <div class="col-sm-3"></div>
+                        <label class="col-sm-9" for="full_name"
+                               style="color: red;visibility: hidden;margin:0 !important;padding-left:0;">Họ tên không
+                            hợp lệ</label>
+                    </div>
+                    <div class="row w-100 mt-2">
+                        <div class="col-sm-3">Họ tên</div>
+                        <input type="text" class="form-control col-sm-9"
+                               placeholder="Nhập họ tên" id="full_name"
+                               oninput="resetInputValue(this)" value="${customers.get(0).name }">
+                    </div>
+                    <div class="row w-100 mt-3">
+                        <div class="col-sm-3">SDT</div>
+                        <input type="text" class="form-control col-sm-9" id="phone" disabled
+                               value="${customers.get(0).phone }">
+                    </div>
+                    <div class="row w-100 mt-3">
+                        <div class="col-sm-3">Email</div>
+                        <input type="email" class="form-control col-sm-9" id="email-account" disabled
+                               value="${customers.get(0).email }">
+                    </div>
+                    <div class="row w-100 mt-3">
+                        <div class="col-sm-3"></div>
+                        <div class="col-sm-9 custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" id="check-pass">
+                            <label class="custom-control-label" for="check-pass">Thay đổi mật khẩu</label>
+                        </div>
+                    </div>
+                    <div class="row w-100" id="change-pass" style="display: none;">
+                        <div class="row w-100 mt-1" style="font-size: 0.8em;">
+                            <div class="col-sm-3"></div>
+                            <label class="col-sm-9" for="old-pass"
+                                   style="color: red;visibility: hidden;margin:0 !important;padding-left:0;">Mật khẩu
+                                không hợp lệ</label>
+                        </div>
+                        <div class="row w-100">
+                            <div class="col-sm-3">Mật khẩu cũ</div>
+                            <input type="password" class="form-control col-sm-9"
+                                   placeholder="Nhập mật khẩu cũ" id="old-pass"
+                                   oninput="resetInputValue(this)">
+                        </div>
+                        <div class="row w-100 mt-1" style="font-size: 0.8em;">
+                            <div class="col-sm-3"></div>
+                            <label class="col-sm-9" for="new-pass"
+                                   style="color: red;visibility: hidden;margin:0 !important;padding-left:0;">Mật khẩu
+                                mới không hợp lệ</label>
+                        </div>
+                        <div class="row w-100">
+                            <div class="col-sm-3">Mật khẩu mới</div>
+                            <input type="password" class="form-control col-sm-9" id="new-pass"
+                                   placeholder="Nhập mật khẩu mới" oninput="resetInputValue(this)">
+                        </div>
+                        <div class="row w-100 mt-1" style="font-size: 0.8em;">
+                            <div class="col-sm-3"></div>
+                            <label class="col-sm-9" for="re-newpass"
+                                   style="color: red;visibility: hidden;margin:0 !important;padding-left:0;">Nhập lại mật khẩu mới</label>
+                        </div>
+                        <div class="row w-100">
+                            <div class="col-sm-3">Nhập lại</div>
+                            <input type="password" class="form-control col-sm-9" id="re-newpass"
+                                   placeholder="Nhập lại mật khẩu" oninput="resetInputValue(this)">
+                        </div>
+                    </div>
+                    <div class="row w-100 mt-3" style="font-size: 0.8em;">
+                        <div class="col-sm-3"></div>
+                        <button class="btn btn-warning col-sm-9" id="btn-update-account"> Cập nhật</button>
+                    </div>
                 </div>
-            </div>
+                <div class="tab-pane fade h-75" id="address-content" role="tabpanel"
+                     aria-labelledby="address-content-tab">
+                    <h2>Sổ địa chỉ</h2>
+                    <a class="row w-100 add-address" data-toggle="modal" data-target="#add-address">
+                        <span>Thêm địa chỉ</span>
+                    </a>
+                    <div class="modal" id="add-address">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
 
-            <div id="content" class="col-sm-8">
-
-                <!--  <p class="text-error-link-social"><span class='cross'></span>Tài khoản mạng xã hội này đã được liên kết với một tài khoản Tiki khác. Vui lòng kết nối tài khoản khác.</p> -->
-
-                <h1 class="have-margin">Thông tin tài khoản</h1>
-
-                <div class="account-profile register-form">
-                    <div class="content"
-                         id="edit-account">
-                        <div class="form-group">
-                            <p class="login-lable">Tài khoản đăng nhập bằng Google</p>
-                            <label class="control-label" for="full_name">Họ tên</label>
-
-                            <div class="input-wrap">
-                                <input type="text" name="full_name" class="form-control" oninput="resetInputValue(this)"
-                                       id="full_name" value="${customer.name }" placeholder="Họ tên">
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label class="control-label" for="phone_number">Số điện
-                                thoại</label>
-
-                            <div class="input-wrap">
-                                <input type="text" disabled value="${customer.phone }" oninput="resetInputValue(this)"
-                                       class="form-control" name="phone_number" id="phone_number"
-                                       placeholder="Số điện thoại">
-                            </div>
-                        </div>
-
-
-                        <div class="form-group">
-                            <label class="control-label" for="form_email">Email</label>
-                            <div class="input-wrap">
-                                <input type="email" disabled value="${customer.email }" oninput="resetInputValue(this)"
-                                       class="form-control" name="email" id="form_email"
-                                       placeholder="Email">
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label class="control-label">Địa chỉ</label>
-
-                            <div class="input-wrap">
-                                <input type="text" name="address" class="form-control" oninput="resetInputValue(this)"
-                                       id="address_" value="${customer.address }" placeholder="Địa chỉ">
-                            </div>
-                        </div>
-                        <div class="password-group">
-                            <div class="form-group">
-                                <label class="control-label" for="old_password">Mật khẩu cũ</label>
-
-                                <div class="input-wrap">
-                                    <input type="password" name="old_password" oninput="resetInputValue(this)"
-                                           class="form-control" id="old_password" value=""
-                                           autocomplete="off" placeholder="Nhập mật khẩu cũ">
+                                <!-- Modal Header -->
+                                <div class="modal-header">
+                                    <h4 class="modal-title">Thêm địa chỉ</h4>
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
                                 </div>
-                            </div>
 
-                            <div class="form-group">
-                                <label class="control-label">Mật khẩu mới</label>
-
-                                <div class="input-wrap">
-                                    <input type="password" name="new_password" oninput="resetInputValue(this)"
-                                           class="form-control" id="new_password" value=""
-                                           autocomplete="off" placeholder="Mật khẩu từ 6 đến 32 ký tự">
+                                <!-- Modal body -->
+                                <div class="modal-body">
+                                    <div class="row w-100 mt-1" style="font-size: 0.8em;">
+                                        <div class="col-sm-3"></div>
+                                        <label class="col-sm-9" for="input-add-fullname"
+                                               style="color: red;visibility: hidden;margin:0 !important;padding-left:0;">Họ tên  không hợp lệ</label>
+                                    </div>
+                                    <div class="row w-100">
+                                        <div class="col-sm-3">Họ tên</div>
+                                        <input type="text" class="form-control col-sm-9" id="input-add-fullname" placeholder="Nhập họ tên" oninput="resetInputValue(this)">
+                                    </div>
+                                    <div class="row w-100 mt-1" style="font-size: 0.8em;">
+                                        <div class="col-sm-3"></div>
+                                        <label class="col-sm-9" for="input-add-address"
+                                               style="color: red;visibility: hidden;margin:0 !important;padding-left:0;">Địa chỉ  không hợp lệ</label>
+                                    </div>
+                                    <div class="row w-100">
+                                        <div class="col-sm-3">Địa chỉ</div>
+                                        <input type="text" class="form-control col-sm-9" id="input-add-address" placeholder="Nhập địa chỉ" oninput="resetInputValue(this)">
+                                    </div>
+                                    <div class="row w-100 mt-1" style="font-size: 0.8em;">
+                                        <div class="col-sm-3"></div>
+                                        <label class="col-sm-9" for="add-phone"
+                                               style="color: red;visibility: hidden;margin:0 !important;padding-left:0;">Số điện thoại không hợp lệ</label>
+                                    </div>
+                                    <div class="row w-100">
+                                        <div class="col-sm-3">Số điện thoại</div>
+                                        <input type="number" id="add-phone" class="form-control col-sm-9" placeholder="Nhập số điện thoại" oninput="resetInputValue(this)">
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label" for="re_new_password">Nhập
-                                    lại</label>
 
-                                <div class="input-wrap">
-                                    <input type="password" name="re_new_password" oninput="resetInputValue(this)"
-                                           class="form-control" id="re_new_password" value=""
-                                           autocomplete="off" placeholder="Nhập lại mật khẩu mới">
+                                <!-- Modal footer -->
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-success" id="btn-add-address">Thêm địa chỉ</button>
+                                    <button type="button" class="btn btn-danger" data-dismiss="modal">Đóng</button>
                                 </div>
-                            </div>
-                        </div>
-                        <%--                        <p>${message }</p>--%>
-                        <div class="form-group">
-                            <div class="input-wrap margin">
-                                <button onclick="update_account()" class="btn btn-info btn-block btn-update">Cập
-                                    nhật
-                                </button>
+
                             </div>
                         </div>
                     </div>
+                    <c:forEach var="i" begin="0" end="${customers.size()-1}">
+                        <div class="w-100 cur-address mb-3">
+                            <input value="${i}" style="display: none;">
+                            <div class="row w-100">
+                                <div class="col-sm-2">Họ tên:</div>
+                                <input type="text" class="col-sm-7 form-control" disabled value="${customers.get(i).name}"/>
+                                <div class="col-sm-3 change" style="color: #00b6f0 !important;text-align: center;" onclick="changeAddress(this)">Chỉnh sửa</div>
+                            </div>
+                            <div class="row w-100 mt-2">
+                                <div class="col-sm-2">Địa chỉ:</div>
+                                <input type="text" class="col-sm-7 form-control" disabled value="${customers.get(i).address}"/>
+                            </div>
+                            <div class="row w-100 mt-3">
+                                <div class="col-sm-2">Điện thoại:</div>
+                                <input type="number" class="col-sm-7 form-control" disabled value="${customers.get(i).phone}"/>
+                                <div class="col-sm-1"></div>
+                                <button class="col-sm-2 btn btn-warning update-address" style="display: none;" onclick="update(this)">Cập nhật</button>
+                            </div>
+                        </div>
+                    </c:forEach>
                 </div>
             </div>
         </div>
+        <!-- /.col-md-8 -->
     </div>
 </div>
+<!-- /.container -->
 <jsp:include page="commons/footer.jsp"></jsp:include>
 <script type="text/javascript">
-    function update_account() {
-        var fullname = document.getElementById("full_name");
-        var email = document.getElementById("form_email");
-        var phone = document.getElementById("phone_number");
-        var old_password = document.getElementById("old_password");
-        var new_password = document.getElementById("new_password");
-        var re_new = document.getElementById("re_new_password");
-        var address = document.getElementById("address_");
-        var note="";
-        if (!validateFullname(fullname.value)) {
-            fullname.style.borderColor = "red";
-            note+="fullname,";
-        }
-        if (!validateEmail(email.value)) {
-            email.value = "";
-            email.style.borderColor = "red";
-            note+="email,";
-        }
-        if (!validatePhoneNumber(phone.value)) {
-            phone.style.borderColor = "red";
-        }
-        if (!validatePass(old_password.value)) {
-            old_password.style.borderColor = "red";
-            note+="password,";
-        }
-        if (!validateAddress(address.value)) {
-            address.style.borderColor = "red";
-            note+="address,";
-        }
-        if (!validatePass(new_password.value) || new_password.value==old_password.value) {
-            new_password.style.borderColor = "red";
-        }
-        if (!validatePass(re_new.value) || new_password.value != re_new.value) {
-            re_new.style.borderColor = "red";
-            note +="repassword is incorrect,";
-        }
-        if (note.length>0){
-            note=note.substring(0,note.length-1)+" is invalid";
-            alert(note);
-        }
-        if (validateFullname(fullname.value) && validateEmail(email.value) && validatePhoneNumber(phone.value) && validatePass(old_password.value)
-            && validateAddress(address.value) && validatePass(new_password.value) && new_password.value!=old_password.value && validatePass(re_new.value) && new_password.value == re_new.value) {
-            var account = "old_password=" + document.getElementById("old_password").value;
-            var customer = "phone_number=" + document.getElementById("phone_number").value + "&email=" + document.getElementById("form_email").value
-                + "&address=" + document.getElementById("address_").value + "&fullname=" + document.getElementById("full_name").value;
-            var new_pass = "new_password=" + document.getElementById("new_password").value;
-            $.ajax({
-                url: window.location.pathname.substring(0, window.location.pathname.indexOf("/", 2)) + "/user/accountInfo",
-                contentType: 'application/json;charset=utf-8',
-                dataType: 'text',
-                headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
-                data: {
-                    data: btoa(encodeURIComponent(account) + "&" + encodeURIComponent(customer) + "&" + encodeURIComponent(new_pass))
-                },
-                type: 'post',
-                success: function (response) {
-                    if (response == "1") alert("update success");
-                    else if (response=="2"){
-                        old_password.value="";
-                        old_password.style.borderColor="red";
+    var check = false;
+    document.getElementById("btn-update-account").addEventListener("click", function () {
+            var fullname = document.getElementById("full_name");
+            if (!validateFullname(fullname.value)) {
+                $('label[for="full_name"]').css("visibility", "visible");
+            } else {
+                if (!check) {
+                    $.ajax({
+                        url: window.location.pathname.substring(0, window.location.pathname.indexOf("/", 2)) + "/user/accountInfo",
+                        contentType: 'application/json;charset=utf-8',
+                        dataType: 'text',
+                        headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+                        data: {
+                            data: btoa("action=1&fullname=" + encodeURIComponent(fullname.value))
+                        },
+                        type: 'post',
+                        success: function (response) {
+                            if (response == "1") alert("update success");
+                            else $('label[for="full_name"]').css("visibility", "visible");
+                        },
+                        error: function (x, e) {
+                            console.log(e)
+                        }
+                    });
+                }else{
+                    var oldpass=document.getElementById("old-pass");
+                    var newpass=document.getElementById("new-pass");
+                    var repass=document.getElementById("re-newpass");
+                    if (!validatePass(oldpass.value)){
+                        $('label[for="old-pass"]').css("visibility","visible");
+                        oldpass.style.borderColor="red";
                     }
-                    else alert(response);
-                },
-                error: function (x, e) {
-                    console.log(e)
+                    if (!validatePass(newpass.value)){
+                        $('label[for="new-pass"]').css("visibility","visible");
+                        newpass.style.borderColor="red";
+                    }
+                    if (repass.value!=newpass.value){
+                        $('label[for="re-newpass"]').css("visibility","visible");
+                        repass.style.borderColor="red";
+                    }
+                    if (validatePass(oldpass.value) && validatePass(newpass.value) && repass.value==newpass.value){
+                        $.ajax({
+                            url: window.location.pathname.substring(0, window.location.pathname.indexOf("/", 2)) + "/user/accountInfo",
+                            contentType: 'application/json;charset=utf-8',
+                            dataType: 'text',
+                            headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+                            data: {
+                                data: btoa("action=4&oldpass="+encodeURIComponent(oldpass.value)+"&newpass="+encodeURIComponent(newpass.value))
+                            },
+                            type: 'post',
+                            success: function (response) {
+                                if (response == "1") {
+                                    alert("update success");
+                                    location.reload();
+                                }
+                                else if (response=="3")
+                                    $('label[for="old-pass"]').css("visibility", "visible");
+                                else $('label[for="new-pass"]').css("visibility", "visible");
+                            },
+                            error: function (x, e) {
+                                console.log(e)
+                            }
+                        });
+                    }
                 }
-            });
+            }
         }
-    }
+    );
 
     function validateFullname(name) {
         if (name == "") return false;
@@ -253,9 +375,89 @@
 
     function resetInputValue(a) {
         $(a).css("border", "1px solid #ced4da");
+        $("label[for='" + $(a).attr('id') + "']").css("visibility", "hidden");
     }
+
     function removeUserInfo() {
-        window.location.replace(window.location.pathname.substring(0, window.location.pathname.indexOf("/", 2))+"/logout");
+        window.location.replace(window.location.pathname.substring(0, window.location.pathname.indexOf("/", 2)) + "/logout");
+    }
+
+    $('#check-pass').change(function () {
+        check = $(this).prop('checked');
+        if (check) $("#change-pass").css("display", "block");
+        else $("#change-pass").css("display", "none");
+    })
+    document.getElementById("btn-add-address").addEventListener("click",function () {
+        var fullname=document.getElementById("input-add-fullname");
+        var phone=document.getElementById("add-phone");
+        var address=document.getElementById("input-add-address");
+        if (!validateFullname(fullname.value)){
+            $('label[for="input-add-fullname"]').css("visibility","visible");
+            phone.style.borderColor="red";
+        }
+        if (!validatePhoneNumber(phone.value)){
+            $('label[for="add-phone"]').css("visibility","visible");
+            phone.style.borderColor="red";
+        }
+        if (!validateAddress(address.value)){
+            $('label[for="input-add-address"]').css("visibility","visible");
+            address.style.borderColor="red";
+        }
+        if (validatePhoneNumber(phone.value) && validateAddress(address.value) && validateFullname(fullname.value)){
+            $.ajax({
+                url: window.location.pathname.substring(0, window.location.pathname.indexOf("/", 2)) + "/user/accountInfo",
+                contentType: 'application/json;charset=utf-8',
+                dataType: 'text',
+                headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+                data: {
+                    data: btoa("action=3&address="+encodeURIComponent(address.value)+"&phone="+encodeURIComponent(phone.value)+"&fullname="+encodeURIComponent(fullname.value))
+                },
+                type: 'post',
+                success: function (response) {
+                    if (response == "1") {
+                        alert("Thêm thành công");
+                        location.reload();
+                    }
+                    else if (response=="3")
+                        $('label[for="add-phone"]').css("visibility", "visible");
+                    else $('label[for="input-add-address"]').css("visibility", "visible");
+                },
+                error: function (x, e) {
+                    console.log(e)
+                }
+            });
+        }
+    })
+    function changeAddress(a){
+        $(a).parent().parent().children(":nth-child(2)").children(":nth-child(2)").prop("disabled", false);
+        $(a).parent().parent().children(":nth-child(3)").children(":nth-child(2)").prop("disabled", false);
+        $(a).parent().parent().children(":nth-child(4)").children(":nth-child(2)").prop("disabled", false);
+        $(a).parent().parent().children(":nth-child(4)").children(":nth-child(4)").css("display", "block");
+    }
+    function update(a){
+        var fullname=$(a).parent().parent().children(":nth-child(2)").children(":nth-child(2)");
+        var address=$(a).parent().parent().children(":nth-child(3)").children(":nth-child(2)");
+        var phone=$(a).parent().parent().children(":nth-child(4)").children(":nth-child(2)");
+        $.ajax({
+            url: window.location.pathname.substring(0, window.location.pathname.indexOf("/", 2)) + "/user/accountInfo",
+            contentType: 'application/json;charset=utf-8',
+            dataType: 'text',
+            headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+            data: {
+                data: btoa("action=2&address="+encodeURIComponent(address.val())+"&phone="+encodeURIComponent(phone.val())+"&fullname="+encodeURIComponent(fullname.val())+"&id="+encodeURIComponent($(a).parent().parent().children(":first").val()))
+            },
+            type: 'post',
+            success: function (response) {
+                if (response == "1") {
+                    alert("Cập nhật thành công");
+                    location.reload();
+                }
+                else alert("Các trường không hợp lệ")
+            },
+            error: function (x, e) {
+                console.log(e)
+            }
+        });
     }
 </script>
 </body>
